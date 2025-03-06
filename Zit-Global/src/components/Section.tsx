@@ -21,10 +21,10 @@ export const Section = ({ id, title, subtitle, children, className }: SectionPro
         className
       )}
     >
-      <div className="container">
+      <div className="container ">
         {(title || subtitle) && (
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">{title}</h2>
+            <h2 className="text-4xl font-bold mb-4 hidden ">{title}</h2>
             {subtitle && (
               <p className="text-xl text-gray-600">{subtitle}</p>
             )}
