@@ -1,3 +1,6 @@
+import forms from '@tailwindcss/forms';
+import aspectRatio from '@tailwindcss/aspect-ratio';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -8,7 +11,7 @@ export default {
     extend: {
       colors: {
         primary: '#000054',
-        secondary: 'EFEFEF',
+        secondary: '#EFEFEF', // Added missing #
         accent: '#060657',
       },
       fontFamily: {
@@ -17,7 +20,7 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
+    forms,
+    aspectRatio,
   ],
-}
+};
