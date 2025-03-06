@@ -1,10 +1,10 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion} from 'framer-motion';
 import {
   HomeModernIcon,
   PaintBrushIcon,
   ChartBarIcon,
   ChatBubbleBottomCenterTextIcon,
-  LightBulbIcon,
+  // LightBulbIcon,
   AcademicCapIcon,
   BeakerIcon,
   HomeIcon,
@@ -17,8 +17,8 @@ import { AnimatedStat } from '../components/AnimatedStat';
 import { ParallaxSection } from '../components/ParallaxSection';
 import { BackgroundMesh } from '../components/BackgroundMesh';
 import { GradientText } from '../components/GradientText';
-import { FloatingElement } from '../components/FloatingElement';
-import { ArchitectureScene } from '../components/ArchitectureScene';
+// import { FloatingElement } from '../components/FloatingElement';
+// import { ArchitectureScene } from '../components/ArchitectureScene';
 import Footer from "../components/Footer/index"
 import { Carousel } from '../components/Carousel';
 import * as variants from '../animations/variants';
@@ -56,15 +56,16 @@ const carouselSlides = [
 ];
 
 const Home = () => {
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  // const { scrollYProgress } = useScroll();
+  // const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  // const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
   return (
     <main className="bg-gray-200 text-primary overflow-hidden w-full">
       {/* Hero Section with Carousel */}
       <Section
         id="hero"
+        title='Hero'
         className="bg-primary-900 min-h-screen relative flex items-center justify-center overflow-hidden w-full"
       >
 
@@ -76,6 +77,8 @@ const Home = () => {
       {/* Our Approach Section */}
       <Section
         id="approach"
+        title='Our Approach'
+
         className="py-24 relative bg-gray-200 text-primary "
       >
         <BackgroundMesh className="rotate-45 opacity-10" />
@@ -141,6 +144,7 @@ const Home = () => {
       {/* How the TTM model works */}
       <Section
         id="impact"
+        title='TTM model'
         className="py-24 relative bg-primary text-white overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-mesh bg-mesh opacity-10" />
@@ -183,7 +187,7 @@ const Home = () => {
               },
             ].map((stat, index) => (
               <ParallaxSection
-                key={stat.label}
+                key={index}
                 offset={30}
                 className="relative"
               >
@@ -210,6 +214,7 @@ const Home = () => {
       {/* Programs Section */}
       <Section
         id="programs"
+        title='Programs section'
         className="py-24 relative bg-gray-200"
       >
         <BackgroundMesh className="rotate-180 opacity-10" />
@@ -282,9 +287,10 @@ const Home = () => {
         </motion.div>
       </Section>
 
-      {/* Technology & Innovation */}
+      {/* Big Brother Model*/}
       <Section
         id="technology"
+        title='Big Brother Model '
         className="py-24 relative bg-primary text-white"
       >
         <BackgroundMesh className="-rotate-45" />
@@ -361,6 +367,7 @@ const Home = () => {
       {/* Sustainability Commitment */}
       <Section
         id="sustainability"
+        title='Sustainability commitment'
         className="py-24 relative bg-primary text-white"
       >
         <div className="absolute inset-0 bg-gradient-mesh bg-mesh opacity-10" />
@@ -426,6 +433,7 @@ const Home = () => {
       {/* Enhanced CTA Section */}
       <Section
         id="cta"
+        title='CTA'
         className="my-10 md:py-24 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-800" />
