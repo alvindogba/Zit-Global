@@ -18,31 +18,22 @@ const navigation = [
     name: 'Make Impact',
     href: '/services',
     dropdown: [
-      { name: 'Big Brother Program', href: '/services#architecture' },
+      { name: 'Guiding Hands Program', href: '/services#architecture' },
       { name: 'Mentorship Program', href: '/services#interior' },
       { name: 'Tutorship Program', href: '/services#interior' },
 
-      { name: 'Planning', href: '/services#planning' },
+      { name: 'Be A Donor', href: '/services#planning' },
     ],
   },
   {
-    name: 'Projects',
+    name: 'Admission',
     href: '/projects',
     dropdown: [
-      { name: 'Residential', href: '/projects?category=residential' },
-      { name: 'Commercial', href: '/projects?category=commercial' },
-      { name: 'Industrial', href: '/projects?category=industrial' },
+      { name: 'Ho To Apply', href: '/projects?category=residential' },
+      { name: 'Application Form', href: '/projects?category=commercial' },
     ],
   },
-  {
-    name: 'Blog',
-    href: '/blog',
-    dropdown: [
-      { name: 'Latest Posts', href: '/blog' },
-      { name: 'Architecture News', href: '/blog?category=news' },
-      { name: 'Design Tips', href: '/blog?category=tips' },
-    ],
-  },
+
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -130,7 +121,7 @@ export const Header = () => {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
-            to="/contact"
+            to="/donate"
             className="rounded-full bg-primary border border-white px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
           >
             Make A Donation

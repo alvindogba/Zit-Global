@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface CarouselProps {
   slides: {
@@ -19,44 +18,44 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((current) => (current + 1) % slides.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, autoPlayInterval);
 
     return () => clearInterval(timer);
   }, [slides.length, autoPlayInterval]);
 
   const handlePrevious = () => {
-    setCurrentIndex((current) => (current - 1 + slides.length) % slides.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
   const handleNext = () => {
-    setCurrentIndex((current) => (current + 1) % slides.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   return (
-    <div className="bg-primary-900 w-full h-full overflow-hidden">
-      <AnimatePresence initial={false} mode="wait">
+    <div className="relative w-full h-screen overflow-hidden bg-primary-900 ">
+      <AnimatePresence initial={false}>
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, x: 100 }}
+          initial={{ opacity: 1, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.2, ease: 'easeInOut' }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
           className="absolute inset-0"
         >
-          <div 
-            className=" absolute inset-0 bg-cover bg-center bg-no-repeat"
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slides[currentIndex].image})` }}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/50 to-black/30" />
           </div>
-          
-          <div className="relative h-full flex items-center">
-            <div className="container mx-auto px-4">
+
+          <div className="relative flex items-center justify-center h-full">
+            <div className="container mx-auto px-8 ">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
                 className="max-w-3xl"
               >
                 <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
@@ -83,18 +82,7 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
       </AnimatePresence>
 
       {/* Navigation Buttons */}
-      <button
-        onClick={handlePrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm transition-colors"
-      >
-        <ChevronLeftIcon className="h-6 w-6" />
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm transition-colors"
-      >
-        <ChevronRightIcon className="h-6 w-6" />
-      </button>
+  
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
