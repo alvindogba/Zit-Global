@@ -19,12 +19,12 @@ export default (sequelize, DataTypes) => {
       allowNull: true,
     },
     paymentMethod: {
-      type: DataTypes.ENUM('PayPal', 'Stripe'),
+      type: DataTypes.STRING,
       allowNull: true,
     },
     paymentStatus: {
-      type: DataTypes.ENUM('pending', 'processing', 'completed', 'failed', 'refunded'),
-      defaultValue: 'pending',
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     transactionId: {
       type: DataTypes.STRING,

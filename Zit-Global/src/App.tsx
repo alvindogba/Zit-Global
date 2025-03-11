@@ -5,7 +5,7 @@ import { Header } from './components/Header';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-const DonationPage = lazy(() => import('./pages/Donationations'));
+const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -14,6 +14,7 @@ const Services = lazy(() => import('./pages/Services'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Contact = lazy(() => import('./pages/Contact'));
+const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
 
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -100,7 +101,14 @@ function App() {
                 </Suspense>
               }
             />
-        
+            <Route
+              path="/donation-success"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}> 
+                  <PaymentSuccessPage />
+                </Suspense>
+              }
+            />
           </Routes>
         </div>
       </div>

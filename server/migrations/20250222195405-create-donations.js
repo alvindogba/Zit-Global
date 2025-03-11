@@ -20,12 +20,12 @@ export default {
         allowNull: true,
       },
       paymentMethod: {
-        type: Sequelize.ENUM('PayPal', 'Stripe'),
+        type: Sequelize.STRING,
         allowNull: true,
       },
       paymentStatus: {
-        type: Sequelize.ENUM('pending', 'processing', 'completed', 'failed', 'refunded'),
-        defaultValue: 'pending',
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       transactionId: {
         type: Sequelize.STRING,
