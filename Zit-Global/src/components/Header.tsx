@@ -8,29 +8,29 @@ import Logo from "../asset/images/zongea-logo.png";
 const navigation = [
   {
     name: 'Academics',
-    href: '/about',
+    href: '/cohorts',
     dropdown: [
-      { name: 'Cohort', href: '/about#story' },
-      { name: 'Students', href: '/about#team' },
+      { name: 'Cohort', href: '/cohorts' },
+      { name: 'Students', href: '/students' },
     ],
   },
   {
     name: 'Make Impact',
-    href: '/services',
+    href: '/guilding-hands-program',
     dropdown: [
-      { name: 'Guiding Hands Program', href: '/services#architecture' },
-      { name: 'Mentorship Program', href: '/services#interior' },
-      { name: 'Tutorship Program', href: '/services#interior' },
+      { name: 'Guiding Hands Program', href: '/guilding-hands-program' },
+      { name: 'Mentorship Program', href: '/mentorship-program' },
+      { name: 'Tutorship Program', href: '/tutorship-program' },
 
-      { name: 'Be A Donor', href: '/services#planning' },
+      { name: 'Be A Donor', href: '/be-a-donor' },
     ],
   },
   {
     name: 'Admission',
-    href: '/projects',
+    href: '/admission',
     dropdown: [
-      { name: 'Ho To Apply', href: '/projects?category=residential' },
-      { name: 'Application Form', href: '/projects?category=commercial' },
+      { name: 'How To Apply', href: '/how-to-apply' },
+      { name: 'Application Form', href: '/admission' },
     ],
   },
 
@@ -86,7 +86,7 @@ export const Header = () => {
           )}
 
           <Link
-            to="/"
+            to="/motivation"
             className="text-md leading-6 text-white hover:text-primary-600 transition-colors"
           >
             Motivation

@@ -29,6 +29,14 @@ export const ProjectSkeleton = () => (
   </div>
 );
 
+export const CoursesSkeleton = () => (
+  <div className="space-y-4">
+    <Skeleton height={200} />
+    <Skeleton width={200} />
+    <Skeleton height={20} />
+  </div>
+);
+
 export const ServiceSkeleton = () => (
   <div className="space-y-4">
     <Skeleton height={60} width={60} className="rounded-full" />
