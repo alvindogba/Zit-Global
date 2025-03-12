@@ -1,0 +1,613 @@
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, User, BookOpen, Phone, CheckCircle } from 'lucide-react';
+import { NewRegistry } from '../../api/adimssionApi'; // Adjust the import path accordingly
+
+type FormData = {
+  // Personal Information
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  gender: string;
+  identificationType: string;
+  identificationNumber: string;
+  applicantImage: File | null;
+  nationality: string;
+  haveComputer: string;
+  desiredProgram: string;
+
+  // Academic Details
+  educationLevel: string;
+  academicYear: string;
+  yearOfGraduation: string;
+  lastSchoolAttended: string;
+  computerKnowledge: string;
+  personalStatement: string;
+  communityImpact: string;
+
+  // Contact Information
+  email: string;
+  phone: string;
+  address: string;
+
+  // Emergency Contact Information
+  emergencyContactName: string;
+  emergencyPersonAddress: string;
+  emergencyContactNumber: string;
+  relationshipType: string;
+
+  // Supporting Documents
+  churchRecommendationLetter: File | null;
+  communityRecommendationLetter: File | null;
+
+  // Agreement statement
+  consented: boolean;
+};
+
+const initialFormData: FormData = {
+  // Personal Information
+  firstName: "",
+  lastName: "",
+  dateOfBirth: "",
+  gender: "",
+  identificationType: "",
+  identificationNumber: "",
+  applicantImage: null,
+  nationality: "",
+  haveComputer: "",
+  desiredProgram: "",
+
+  // Academic Details
+  educationLevel: "",
+  academicYear: "",
+  yearOfGraduation: "",
+  lastSchoolAttended: "",
+  computerKnowledge: "",
+  personalStatement: "",
+  communityImpact: "",
+
+  // Contact Information
+  email: "",
+  phone: "",
+  address: "",
+
+  // Emergency Contact Information
+  emergencyContactName: "",
+  emergencyPersonAddress: "",
+  emergencyContactNumber: "",
+  relationshipType: "",
+
+  // Supporting Documents
+  churchRecommendationLetter: null,
+  communityRecommendationLetter: null,
+
+  // Agreement statement
+  consented: false,
+};
+
+const inputClassName = "w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary";
+const checkboxClassName = "h-4 w-4 text-secondary-yellow focus:ring-secondary-yellow border-gray-300 rounded";
+
+function AdmissionPage() {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, files } = e.target;
+    if (files && files[0]) {
+      setFormData(prev => ({
+        ...prev,
+        [name]: files[0]
+      }));
+    }
+  };
+
+  const nextStep = () => {
+    setStep(prev => Math.min(prev + 1, 3));
+  };
+
+  const prevStep = () => {
+    setStep(prev => Math.max(prev - 1, 1));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const formDataToSend = new FormData();
+
+    // Append all form fields to the FormData object
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value instanceof File) {
+        formDataToSend.append(key, value);
+      } else if (typeof value === 'boolean') {
+        formDataToSend.append(key, value ? 'true' : 'false');
+      } else {
+        formDataToSend.append(key, value);
+      }
+    });
+
+    try {
+      const response = await NewRegistry(formDataToSend);
+      console.log('Form submitted successfully:', response.data);
+      alert('Form submitted successfully!');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error submitting form. Please try again.');
+    }
+  };
+
+  const renderStepIndicator = () => (
+    <div className="flex justify-center mb-8">
+      {[1, 2, 3].map((num) => (
+        <div key={num} className="flex items-center">
+          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= num ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+            {num === 1 && <User size={20} />}
+            {num === 2 && <BookOpen size={20} />}
+            {num === 3 && <Phone size={20} />}
+          </div>
+          {num < 3 && (
+            <div className={`w-20 h-1 ${step > num ? 'bg-blue-600' : 'bg-gray-200'}`} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderStep1 = () => (
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            className={inputClassName}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            className={inputClassName}
+            required
+          />
+        </div>
+      </div>
+
+      <div className='grid grid-cols-2 gap-4'>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Date of Birth</label>
+          <input
+            type="date"
+            name="dateOfBirth"
+            value={formData.dateOfBirth}
+            onChange={handleInputChange}
+            className={inputClassName}
+            required
+          />
+        </div>
+        <div className=''>
+          <label className="block text-sm font-medium text-gray-700">Gender</label>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleInputChange}
+            className={inputClassName}
+            required
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Identification Type</label>
+          <select
+            name="identificationType"
+            value={formData.identificationType}
+            onChange={handleInputChange}
+            className={inputClassName}
+          >
+            <option value="" disabled>Select type</option>
+            <option value="birth-certificate">Birth Certificate</option>
+            <option value="passport">Passport</option>
+            <option value="national-id">National ID</option>
+            <option value="drivers-license">Driver's License</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Identification Number</label>
+          <input
+            type="text"
+            name="identificationNumber"
+            value={formData.identificationNumber}
+            onChange={handleInputChange}
+            className={inputClassName}
+          />
+        </div>
+      </div>
+
+      <div className='grid grid-cols-2 gap-4'>
+        <div>
+          <label className="block text-primary text-sm font-medium mb-2">Application Image</label>
+          <input
+            type="file"
+            name="applicantImage"
+            onChange={handleFileChange}
+            className={inputClassName}
+          />
+        </div>
+        <div>
+          <label className="block text-primary text-sm font-medium mb-2">Nationality</label>
+          <input
+            type="text"
+            name="nationality"
+            value={formData.nationality}
+            onChange={handleInputChange}
+            className={inputClassName}
+          />
+        </div>
+      </div>
+
+      <div className='grid grid-cols-2 gap-4'>
+        <div>
+          <p className="block text-primary text-sm font-medium mb-2">Do you have a personal computer?</p>
+          <div className="flex items-center space-x-4">
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="haveComputer"
+                value="YES"
+                checked={formData.haveComputer === "YES"}
+                onChange={handleInputChange}
+                className={`${checkboxClassName} rounded-full`}
+              />
+              <span className="text-gray-700 text-sm">YES</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="haveComputer"
+                value="NO"
+                checked={formData.haveComputer === "NO"}
+                onChange={handleInputChange}
+                className={`${checkboxClassName} rounded-full`}
+              />
+              <span className="text-gray-700 text-sm">NO</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Desired Program</label>
+          <select
+            name="desiredProgram"
+            value={formData.desiredProgram}
+            onChange={handleInputChange}
+            className={inputClassName}
+          >
+            <option value="">Select a program</option>
+            <option value="microsoft-365">MicroSoft 365</option>
+            <option value="basic-computer">Basic to Computer</option>
+            <option value="graphic-design">Graphic Design</option>
+            <option value="full-stack-development">Full Stack Development</option>
+            <option value="ui-ux-design">UI-UX Design</option>
+            <option value="cybersecurity">Cybersecurity</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep2 = () => (
+    <div className="space-y-4 grid">
+      <div className='grid grid-cols-2 gap-4'>
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Highest Level of Education Completed</label>
+          <select
+            name="educationLevel"
+            value={formData.educationLevel}
+            onChange={handleInputChange}
+            className={inputClassName}
+          >
+            <option value="" disabled>
+              Select education type
+            </option>
+            <option value="High School">High School</option>
+            <option value="Technical Certificate">Technical Certificate</option>
+            <option value="Associate Degree">Associate Degree</option>
+            <option value="Bachelor's Degree">Bachelor's Degree</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Name of Last Attended School/College/University</label>
+          <input
+            type="text"
+            name="lastSchoolAttended"
+            value={formData.lastSchoolAttended}
+            onChange={handleInputChange}
+            className={inputClassName}
+          />
+        </div>
+      </div>
+
+      <div className='grid grid-cols-2 gap-5'>
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Graduation Year</label>
+          <input
+            type="number"
+            name="yearOfGraduation"
+            value={formData.yearOfGraduation}
+            onChange={handleInputChange}
+            className={inputClassName}
+          />
+        </div>
+
+        <div>
+          <p className="block text-primary text-sm font-medium mb-2">Do you have a basic computer knowledge?</p>
+          <div className="flex items-center space-x-4">
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="computerKnowledge"
+                value="YES"
+                checked={formData.computerKnowledge === "YES"}
+                onChange={handleInputChange}
+                className={`${checkboxClassName} rounded-full`}
+              />
+              <span className="text-gray-700 text-sm">YES</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="computerKnowledge"
+                value="NO"
+                checked={formData.computerKnowledge === "NO"}
+                onChange={handleInputChange}
+                className={`${checkboxClassName} rounded-full`}
+              />
+              <span className="text-gray-700 text-sm">NO</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      {/* Supporting Document  */}
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Personal Statement</label>
+          <textarea
+            name='personalStatement'
+            value={formData.personalStatement}
+            onChange={handleInputChange}
+            rows={4}
+            className={inputClassName}
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 text-sm font-medium mb-2">Community Impact</label>
+          <textarea
+            name='communityImpact'
+            value={formData.communityImpact}
+            onChange={handleInputChange}
+            rows={4}
+            className={inputClassName}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep3 = () => (
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className={inputClassName}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            className={inputClassName}
+            required
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Address</label>
+        <textarea
+          name="address"
+          value={formData.address}
+          onChange={handleInputChange}
+          rows={3}
+          className={inputClassName}
+          required
+        />
+      </div>
+
+      <div>
+        <h2 className="text-center mb-6">Emergency Contact Information</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Emergency Contact Name</label>
+            <input
+              type="text"
+              name="emergencyContactName"
+              value={formData.emergencyContactName}
+              onChange={handleInputChange}
+              className={inputClassName}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-sm font-medium">Emergency Phone Number</label>
+            <input
+              type="tel"
+              name="emergencyContactNumber"
+              value={formData.emergencyContactNumber}
+              onChange={handleInputChange}
+              className={inputClassName}
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">Emergency Person Address</label>
+            <input
+              type="text"
+              name="emergencyPersonAddress"
+              value={formData.emergencyPersonAddress}
+              onChange={handleInputChange}
+              className={inputClassName}
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">Relationship Type</label>
+            <select
+              name="relationshipType"
+              value={formData.relationshipType}
+              onChange={handleInputChange}
+              className={inputClassName}
+            >
+              <option value="" disabled>Select type</option>
+              <option value="father">Father</option>
+              <option value="mother">Mother</option>
+              <option value="brother">Brother</option>
+              <option value="sister">Sister</option>
+              <option value="guardian">Guardian</option>
+            </select>
+          </div>
+        </div>
+
+        <section>
+          <h2 className="mt-6 mb-4 text-center">Supporting Documents</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-gray-700 text-sm font-medium mb-2">Church Recommendation</label>
+              <input
+                type="file"
+                name="churchRecommendationLetter"
+                onChange={handleFileChange}
+                className={inputClassName}
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 text-sm font-medium mb-2">Community Recommendation</label>
+              <input
+                type="file"
+                name="communityRecommendationLetter"
+                onChange={handleFileChange}
+                className={inputClassName}
+              />
+            </div>
+          </div>
+        </section>
+
+        <label className="flex items-center space-x-3 mt-8">
+          <input
+            type="checkbox"
+            name="consented"
+            checked={formData.consented}
+            onChange={(e) => setFormData({ ...formData, consented: e.target.checked })}
+            className={checkboxClassName}
+          />
+          <span className="text-gray-700 text-sm font-medium">I hereby declare that the information provided in this application is accurate to the best of my knowledge. I understand that providing false information may result in the cancellation of my admission.</span>
+            </label> 
+
+      </div>
+    </div>
+
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl md:max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900">ZIT Student Admission Form</h2>
+          <p className="mt-2 text-sm text-gray-600">
+            {step === 1 && "Step 1: Personal Information"}
+            {step === 2 && "Step 2: Educational Background"}
+            {step === 3 && "Step 3: Contact Information"}
+          </p>
+        </div>
+
+        {renderStepIndicator()}
+
+        <form onSubmit={handleSubmit}>
+          {step === 1 && renderStep1()}
+          {step === 2 && renderStep2()}
+          {step === 3 && renderStep3()}
+
+          <div className="mt-8 flex justify-between">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={prevStep}
+                className="flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+              >
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                Previous
+              </button>
+            )}
+            {step < 3 ? (
+              <button
+                type="button"
+                onClick={nextStep}
+                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+              >
+                Next
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700"
+              >
+                Submit
+                <CheckCircle className="ml-2 h-4 w-4" />
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default AdmissionPage;

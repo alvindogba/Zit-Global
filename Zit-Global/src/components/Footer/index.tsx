@@ -68,9 +68,9 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/academics/courses"
+                to="/courses"
                 className={`block text-white hover:text-secondary-yellow ${
-                  isActive ('/academics/courses') ? 'text-secondary-yellow' : ''
+                  isActive ('/courses') ? 'text-secondary-yellow' : ''
                 }`}
               >
                Courses
@@ -178,12 +178,12 @@ const Footer = () => {
         <div className="flex flex-col gap-[4px] text-primary">
            <button className="bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white">
             <Link
-                to="/donate"
+                to="/tutorship"
                 className={`block text-white hover:text-primary ${
-                 isActive ('/donate') ? 'text-text-primary' : ''
+                 isActive ('/tutorship') ? 'text-text-primary' : ''
                 }`}
               >
-                Donate Today
+                Tutorship
             </Link>
           </button>
           <button className="bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white">
@@ -198,12 +198,12 @@ const Footer = () => {
             </button>
            <button className="bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white">
             <Link 
-              to="/make-impart/be-a-volunteer"
+              to="/mentorship"
               className={`block text-white hover:text-primary ${
-                isActive ('/make-impart/be-a-volunteer') ? 'text-primary' : ''
+                isActive ('/mentorship') ? 'text-primary' : ''
                }`}
               >
-                TTM Model
+                Mentorship
             </Link>
             </button>
            <button className="bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white">

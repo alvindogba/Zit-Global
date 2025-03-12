@@ -1,5 +1,4 @@
 import { motion} from 'framer-motion';
-import Footer from '../components/Footer/index'
 import {
   ChartBarIcon,
   } from '@heroicons/react/24/outline';
@@ -158,8 +157,7 @@ const Home = () => {
         </motion.div>
       </Section>
 
-      {/* Footer */}
-      <Footer />
+   
     </main>
   );
 };
