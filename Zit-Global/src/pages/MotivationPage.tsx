@@ -105,7 +105,7 @@ export default function MotivationPage() {
           </p>
           <Link
           to="/admission"
-          className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+          className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
           Start Your Journey <ArrowRight className="ml-2" size={16} />
           </Link>
@@ -132,7 +132,7 @@ export default function MotivationPage() {
             {believeExplanations.map((explanation, index) => (
               <div key={index} className="flex items-center sm:flex-row gap-8">
                 <div className="w-24 h-24 rounded-tl-3xl rounded-br-3xl bg-primary shadow-xl flex items-center justify-center">
-                 <explanation.icon className="w-12 h-12 text-secondary-yellow"/>
+                 <explanation.icon className="w-12 h-12 text-white"/>
                 </div>
                 <div className='w-[80%]'>
                   <h2 className="text-lg font-bold text-primary mb-2">{explanation.title}</h2>
@@ -144,7 +144,7 @@ export default function MotivationPage() {
       </div>
 
       {/* Features Section */}
-      <div className="bg-white">
+      <div className="bg-gray-50 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-primary mb-8">
           Laying the Groundwork: Year One Highlights
@@ -163,7 +163,7 @@ export default function MotivationPage() {
       </div>
 
       {/* Vision Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 mb-4 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 mb-4 bg-gray-50">
         <h2 className="text-lg font-bold text-primary mt-12 ">
           Our Vision: Opportunity and Empowerment for Every Liberian
         </h2>
@@ -193,7 +193,7 @@ export default function MotivationPage() {
           </p>
           <Link
           to="/admission"
-          className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+          className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
           Apply Now <ArrowRight className="ml-2" size={16} />
           </Link>

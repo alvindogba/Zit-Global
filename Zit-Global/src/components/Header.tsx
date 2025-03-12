@@ -107,7 +107,7 @@ export const Header = () => {
                       key={dropdownItem.name}
                       to={dropdownItem.href}
                       className={`block px-4 py-2 text-sm transition-colors ${isActive(dropdownItem.href)
-                          ? 'bg-primary-50 text-primary-600'
+                          ? 'bg-primary-50 text-primary'
                           : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
                         }`}
                     >

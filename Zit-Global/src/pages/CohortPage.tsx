@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaLaptopCode, FaServer, FaLayerGroup, FaPaintBrush, FaShieldAlt, FaPalette } from 'react-icons/fa';
 import ContactImg from '../asset/images/OT image .jpg';
 
 interface Program {
@@ -114,7 +115,7 @@ const CohortPage = () => {
           enrolledStudents: 20,
           instructor: 'Sarah Chen',
           skills: ['User Research', 'Wireframing', 'Prototyping', 'Figma', 'Design Systems', 'Usability Testing'],
-          icon: '✨'
+          icon: '💻' 
         }
       }
     },
