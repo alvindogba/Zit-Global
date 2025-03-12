@@ -1,27 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProjectSkeleton, BlogPostSkeleton, ServiceSkeleton, CoursesSkeleton } from './components/Skeleton';
 import { Header } from './components/Header';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Footer from './components/Footer/index'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import { Header } from './components/Header';
-import { ProjectSkeleton, BlogPostSkeleton, ServiceSkeleton } from './components/Skeleton';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Services = lazy(() => import('./pages/Services'));
-const Projects = lazy(() => import('./pages/Projects'));
-const Blog = lazy(() => import('./pages/Blog'));
-const Contact = lazy(() => import('./pages/Contact'));
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
-const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
-// const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
 const HowToApply = lazy(() => import('./pages/Admission/HowToApply'));
 const Students = lazy(() => import('./pages/StudentsPage'));
@@ -161,14 +150,14 @@ function App() {
                 </Suspense>
               }
             />
-            {/* <Route
+           <Route
               path="/donation-success"
               element={
                 <Suspense fallback={<ServiceSkeleton />}> 
-                  <PaymentSuccessPage />
+                  <DonationSuccess />
                 </Suspense>
               }
-            /> */}
+            /> 
              {/* The Couses Page route */}
              <Route
               path="/courses/ui-ux-design"
