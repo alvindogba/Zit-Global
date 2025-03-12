@@ -10,7 +10,7 @@ import Footer from './components/Footer/index'
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
-const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
+// const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
 const HowToApply = lazy(() => import('./pages/Admission/HowToApply'));
 const Students = lazy(() => import('./pages/StudentsPage'));
@@ -162,14 +162,14 @@ function App() {
                 </Suspense>
               }
             />
-            <Route
+            {/* <Route
               path="/donation-success"
               element={
                 <Suspense fallback={<ServiceSkeleton />}> 
                   <PaymentSuccessPage />
                 </Suspense>
               }
-            />
+            /> */}
              {/* The Couses Page route */}
              <Route
               path="/courses/ui-ux-design"
