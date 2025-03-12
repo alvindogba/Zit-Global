@@ -21,7 +21,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
-const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
+// const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
 const HowToApply = lazy(() => import('./pages/Admission/HowToApply'));
 const Students = lazy(() => import('./pages/StudentsPage'));
@@ -51,80 +51,165 @@ function App() {
       components: "buttons,funding-eligibility"
     }}>
       <Elements stripe={stripePromise}>
-        <Router>
-          <div className="min-h-screen bg-gray-50">
-            <Header />
-            <div className="">
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <Suspense fallback={<ServiceSkeleton />}>
-                      <Home />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/success"
-                  element={
-                    <Suspense fallback={<ServiceSkeleton />}>
-                      <DonationSuccess />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/donate"
-                  element={
-                    <Suspense fallback={<ServiceSkeleton />}>
-                      <DonationPage />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/about"
-                  element={
-                    <Suspense fallback={<ServiceSkeleton />}>
-                      <About />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/services"
-                  element={
-                    <Suspense fallback={<ServiceSkeleton />}>
-                      <Services />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/projects"
-                  element={
-                    <Suspense fallback={<ProjectSkeleton />}>
-                      <Projects />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/blog"
-                  element={
-                    <Suspense fallback={<BlogPostSkeleton />}>
-                      <Blog />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/contact"
-                  element={
-                    <Suspense fallback={<ServiceSkeleton />}>
-                      <Contact />
-                    </Suspense>
-                  }
-                />
-              </Routes>
-            </div>
-          </div>
-        </Router>
-      </Elements>
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <Header />
+        <div className="pt-20">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/cohorts"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <Cohort />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/students"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <Students />
+                </Suspense>
+              }
+            />
+             <Route
+              path="/how-to-apply"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <HowToApply />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/courses"
+              element={
+                <Suspense fallback={<CoursesSkeleton />}>
+                  <Courses />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/motivation"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <Motivation />
+                </Suspense>
+              }
+            />
+             <Route
+              path="/guilding-hands-program"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <GuidingHand />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/mentorship-program"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <Mentorship />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/toturship-program"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <Tutorship />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/be-a-donor"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <BeADonor />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admission"
+              element={
+                <Suspense fallback={<BlogPostSkeleton />}>
+                  <Admission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <Contact />
+                </Suspense>
+              }
+            />
+            {/* The Donation route */}
+            <Route
+              path="/donate"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <DonationPage />
+                </Suspense>
+              }
+            />
+            {/* <Route
+              path="/donation-success"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}> 
+                  <PaymentSuccessPage />
+                </Suspense>
+              }
+            /> */}
+             {/* The Couses Page route */}
+             <Route
+              path="/courses/ui-ux-design"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <UIUXDesign />
+                </Suspense>
+              }
+            />
+             <Route
+              path="/courses/graphic-design"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <GraphicDesign />
+                </Suspense>
+              }
+            />
+             <Route
+              path="/courses/cybersecurity"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <CyberSecurity />
+                </Suspense>
+              }
+            />
+             <Route
+              path="/courses/full-stack-development"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <Fullstack />
+                </Suspense>
+              }
+            />
+        
+          </Routes>
+        </div>
+           {/* Footer */}
+        <Footer />
+      </div>
+    </BrowserRouter>
+    </Elements>
     </PayPalScriptProvider>
   );
 }
