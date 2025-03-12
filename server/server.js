@@ -11,7 +11,8 @@ import fs from 'fs';
 import path from 'path';
 import db from './models/index.js';
 import router from './Routes/AdmissionRoute.js'
-import donationRouter from './Routes/DonationRoute.js';
+import stripeRouter from './Routes/StripePay.js';
+import paypalRouter from './Routes/PaypalRoute.js';
 import contactRouter from './Routes/ContactRoute.js';
 
 const app = express();
@@ -47,7 +48,8 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/adminssion", router)
-app.use('/api/donations', donationRouter)
+app.use('/api/stripe', stripeRouter)
+app.use('/api/paypal', paypalRouter)
 app.use('/api/contact', contactRouter)
 app.get('/test', (req, res) => res.json({ message: 'Server is running!' }));
 app.get('/health', (req, res) => res.status(200).json({ status: 'healthy', uptime: process.uptime() }));
