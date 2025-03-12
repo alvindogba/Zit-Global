@@ -63,17 +63,16 @@ const OurApproach = ()=>{
               variants={variants.fadeInUp}
               className="relative"
             > 
-              <Link to={approach.href}>
+              <Link className="text-primary" to={approach.href}>
 
         
               <GlassCard
                 className="p-8 h-full bg-transparent backdrop-blur-md border border-gray-100 hover:translate-y-1 hover:cursor-pointer"
-                hover={true}
                 glowColor={`from-primary-${(index + 4) * 100}/20`}
-              > 
+              >
 
                 <approach.icon className="w-12 h-12 text-primary-600 mb-6" />
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900">{approach.title}</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-gray-900 hover:translate-y-1">{approach.title}</h3>
                 <p className="text-gray-700">{approach.description}</p>
               </GlassCard>
               </Link>
