@@ -81,7 +81,7 @@ export default function TTM() {
 
           {/* Buttons */}
           <div className=" mt-6  w-full flex flex-col md:flex-row gap-4  items-center md:w-[80%] space-x-4">
-            <button className="w-full md:w-fit px-4 py-1 border border-primary bg-white text-primary rounded-lg border-primary hover:font-bold transition-all">
+            <button className="w-full md:w-fit px-4 py-1 border border-primary bg-white text-primary rounded-lg hover:font-bold transition-all">
               {tabContent[activeTab].primaryBtn}
             </button>
             <button className="w-full md:w-fit px-4 py-1  bg-primary text-white rounded-lg hover:bg-white hover:text-primary border border-primary hover:font-bold transition-all">

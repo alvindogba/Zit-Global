@@ -31,7 +31,7 @@ export default function TeachSomeone() {
           <img
             src={image} // Ensure you replace this with the correct image path
             alt="Mentor smiling"
-            className="w-full md:w-[94%] md:h-[94%] w-full object-cover rounded-full relative top-2 left-3"
+            className="md:w-[94%] md:h-[94%] w-full object-cover rounded-full relative top-2 left-3"
           />
         </div>
       </div>
