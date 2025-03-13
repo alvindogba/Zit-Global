@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, User, BookOpen, Phone, CheckCircle } from 'lucide-react';
 import { NewRegistry } from '../../api/adimssionApi'; // Adjust the import path accordingly
+import axios from 'axios';
 
 type FormData = {
   // Personal Information
@@ -134,8 +135,8 @@ function AdmissionPage() {
     });
 
     try {
-      const response = await NewRegistry(formDataToSend);
-      console.log('Form submitted successfully:', response.data);
+      const response = await axios.post("http://localhost:5000/admission/register", formData)
+      console.log('Form submitted successfully:', formData);
       alert('Form submitted successfully!');
     } catch (error) {
       console.error('Error submitting form:', error);

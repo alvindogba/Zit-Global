@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/adminssion", router)
+app.use("/admission", upload, router)
 app.use('/api/stripe', stripeRouter)
 app.use('/api/paypal', paypalRouter)
 app.use('/api/contact', contactRouter)
