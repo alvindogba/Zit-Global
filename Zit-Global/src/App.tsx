@@ -6,6 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Footer from './components/Footer/index'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import ScrollToTop from './components/common/ScrollToTop';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -44,6 +45,8 @@ function App() {
       <div className="min-h-screen">
         <Header />
         <div className="pt-20">
+        <ScrollToTop />
+
           <Routes>
             <Route
               path="/"
@@ -110,7 +113,7 @@ function App() {
               }
             />
             <Route
-              path="/toturship-program"
+              path="/tutorship-program"
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
                   <Tutorship />
@@ -151,7 +154,7 @@ function App() {
               }
             />
            <Route
-              path="/donation-success"
+              path="/success"
               element={
                 <Suspense fallback={<ServiceSkeleton />}> 
                   <DonationSuccess />

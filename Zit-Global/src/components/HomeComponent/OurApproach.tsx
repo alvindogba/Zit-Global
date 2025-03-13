@@ -41,21 +41,21 @@ const OurApproach = ()=>{
               title: 'TTM Model',
               description: 'Learn directly from industry professionals through our Teaching Tutoring Mentorship approach.',
               icon: AcademicCapIcon,
-              href: '/ttm-model'
+              href: '/mentorship-program'
             },
             {
 
               title: 'Guiding Hands Program',
               description: 'Experience peer-to-peer learning in our global community of tech enthusiasts.',
               icon: ChatBubbleBottomCenterTextIcon,
-              href: '/guiding-hands-program'
+              href: '/guilding-hands-program'
             },
             {
 
               title: 'Practical Projects',
               description: 'Work on real-world projects with guidance from industry experts.',
               icon: BeakerIcon,
-              href: '/projects'
+              href: '/students'
             },
           ].map((approach, index) => (
             <motion.div
@@ -69,6 +69,7 @@ const OurApproach = ()=>{
               <GlassCard
                 className="p-8 h-full bg-transparent backdrop-blur-md border border-gray-100 hover:translate-y-1 hover:cursor-pointer"
                 glowColor={`from-primary-${(index + 4) * 100}/20`}
+                hover={true}
               >
 
                 <approach.icon className="w-12 h-12 text-primary-600 mb-6" />

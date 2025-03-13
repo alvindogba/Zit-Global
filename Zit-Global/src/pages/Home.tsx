@@ -60,7 +60,7 @@ const Home = () => {
                   Get in Touch
                 </a>
                 <a
-                  href="/projects"
+                  href="/admission"
                   className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white text-white hover:bg-white/10 transition-colors"
                 >
                   Register Now
