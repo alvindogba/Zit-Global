@@ -1,10 +1,12 @@
+import React from 'react';
+import dynamic from 'next/dynamic';
 import AnimateOnScroll from "../common/AnimateOnScroll";
-// import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const StudySucceed = () => {
   return (
     <AnimateOnScroll animation="slideDown">
-      <section className="py-12 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <AnimateOnScroll animation="fadeIn" delay={200}>
@@ -16,15 +18,15 @@ const StudySucceed = () => {
               </p>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fadeIn" delay={600}>
-              {/* <a
+              <a
                 href="#success-stories"
                 className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
               >
                 LEARN MORE <ArrowRight className="ml-2" size={16} />
-              </a> */}
+              </a>
             </AnimateOnScroll>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-4">
             <AnimateOnScroll animation="slideUp" delay={800}>
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80"
@@ -33,7 +35,7 @@ const StudySucceed = () => {
               />
             </AnimateOnScroll>
             <AnimateOnScroll animation="fadeIn" delay={1000}>
-              <div className="grid grid-cols-2 gap-4 mt-24">
+              <div className="grid grid-cols-2 gap-4">
                 <img
                   src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80"
                   alt="Campus facilities"

@@ -129,7 +129,7 @@ const Home = () => {
             className="w-full md:max-w-3xl mx-auto text-center text-white"
           >
             <GlassCard
- className="p-2 md:p-12 text-center w-full bg-white/5 backdrop-blur-sm" variant="light"
+              className="p-2 md:p-12 text-center w-full bg-white/5 backdrop-blur-sm" variant="light"
               glowColor="from-white/2"
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6">

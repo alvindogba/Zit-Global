@@ -20,7 +20,7 @@ const navigation = [
     dropdown: [
       { name: 'Guiding Hands Program', href: '/guilding-hands-program' },
       { name: 'Mentorship Program', href: '/mentorship-program' },
-      { name: 'Tutorship Program', href: '/tutorship-program' },
+      { name: 'Tutorship Program', href: '/toturship-program' },
 
       { name: 'Be A Donor', href: '/be-a-donor' },
     ],

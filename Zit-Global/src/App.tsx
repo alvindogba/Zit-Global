@@ -9,6 +9,7 @@ import Footer from './components/Footer/index'
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
+const HomePage = lazy(() => import('./pages/HomePage'))
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 // const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
@@ -62,6 +63,14 @@ function App() {
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
                   <Home />
+                </Suspense>
+              }
+            />
+             <Route
+              path="/home"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <HomePage />
                 </Suspense>
               }
             />

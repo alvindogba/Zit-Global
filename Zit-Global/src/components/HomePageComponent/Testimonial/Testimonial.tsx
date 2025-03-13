@@ -186,31 +186,27 @@ const Testimonial = () => {
   return (
     <div>
       {/* Header Section */}
-      <section className="text-center bg-gray-50 px-4 py-4">
-        <div className="max-w-5xl mx-auto">
-          <AnimateOnScroll animation="slideDown">
-            <h1 className="text-2xl md:text-3xl font-bold text-primary mb-8">
-              YOUR BEST PATH TO A NEW TECH CAREER
-            </h1>
-          </AnimateOnScroll>
-
-          {/* Grid container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {cardData.map((card, index) => (
-              <AnimateOnScroll
-                key={card.id}
-                animation={index % 2 === 0 ? "slideLeft" : "slideRight"}
-                delay={index * 200}
+      <section className="text-center  bg-gray-50">
+        <AnimateOnScroll animation="slideDown">
+          <h1 className="text-2xl md:text-3xl font-bold text-primary mb-8">
+            YOUR BEST PATH TO A NEW TECH CAREER
+          </h1>
+        </AnimateOnScroll>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-10">
+          {cardData.map((card, index) => (
+            <AnimateOnScroll
+              key={card.id}
+              animation={index % 2 === 0 ? "slideLeft" : "slideRight"}
+              delay={index * 200}
+            >
+              <div
+                className={`${card.bgColor} ${card.textColor} py-8 px-6 rounded-lg shadow-md text-left text-sm hover:scale-105 transition-transform`}
               >
-                <div
-                  className={`${card.bgColor} ${card.textColor} py-8 px-6 rounded-lg shadow-md text-left text-sm hover:scale-105 transition-transform`}
-                >
-                  <h3 className="text-lg font-semibold mb-2">{card.title}</h3>
-                  <p className="text-sm">{card.description}</p>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
+                <h3 className="text-lg font-semibold mb-2">{card.title}</h3>
+                <p className='text-sm'>{card.description}</p>
+              </div>
+            </AnimateOnScroll>
+          ))}
         </div>
       </section>
 
@@ -231,7 +227,7 @@ const Testimonial = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             ref={carouselRef}
-            className="carousel-container overflow-hidden pb-32"
+            className="carousel-container overflow-hidden"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}

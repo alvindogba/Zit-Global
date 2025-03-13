@@ -4,7 +4,7 @@ import { FaUserGraduate, FaChalkboardTeacher, FaSearch, FaArrowRight, FaGlobe, F
 import img1 from '../../asset/images/Graduation-Bg-Img.jpg';
 import img2 from '../../asset/images/herobg3.jpg';
 import img3 from '../../asset/images/herobg2.jpg';
-const GetTutorShip = () => {
+const GetMentorShip = () => {
     const [activeTab, setActiveTab] = useState('find');
     const [showForm, setShowForm] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -611,4 +611,4 @@ const GetTutorShip = () => {
     );
 };
 
-export default GetTutorShip;
+export default GetMentorShip;
