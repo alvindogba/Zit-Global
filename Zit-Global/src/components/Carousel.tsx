@@ -24,14 +24,6 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
     return () => clearInterval(timer);
   }, [slides.length, autoPlayInterval]);
 
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  };
-
   return (
     <div className="relative w-full h-screen overflow-hidden bg-primary-900 ">
       <AnimatePresence initial={false}>

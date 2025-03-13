@@ -2,16 +2,16 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProjectSkeleton, BlogPostSkeleton, ServiceSkeleton, CoursesSkeleton } from './components/Skeleton';
 import { Header } from './components/Header';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Footer from './components/Footer/index'
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
 const HomePage = lazy(() => import('./pages/HomePage'))
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
-// const PaymentSuccessPage = lazy(() => import('./pages/Donationations/PaymentSucessPage'));
+const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
 const HowToApply = lazy(() => import('./pages/Admission/HowToApply'));
 const Students = lazy(() => import('./pages/StudentsPage'));
@@ -33,25 +33,13 @@ const CyberSecurity =lazy(() => import('./pages/CoursesDetails/CyberSercurity'))
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-// PayPal initial options
-const paypalOptions = {
-  clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
-  currency: "USD",
-  intent: "capture",
-  components: "buttons",
-  vault: true,
-  "enable-funding": ["venmo", "paylater"],
-  "disable-funding": ["card"],
-  "data-sdk-integration-source": "react-paypal-js",
-  "data-uid-auto": true,
-  "data-user-id-token": true,
-  locale: "en_US",
-  "buyer-country": "US"
-};
-
 function App() {
   return (
-    <PayPalScriptProvider options={paypalOptions}>
+    <PayPalScriptProvider options={{
+      clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
+      currency: "USD",
+      components: "buttons,funding-eligibility"
+    }}>
       <Elements stripe={stripePromise}>
     <BrowserRouter>
       <div className="min-h-screen">
@@ -171,14 +159,14 @@ function App() {
                 </Suspense>
               }
             />
-            {/* <Route
+           <Route
               path="/donation-success"
               element={
                 <Suspense fallback={<ServiceSkeleton />}> 
-                  <PaymentSuccessPage />
+                  <DonationSuccess />
                 </Suspense>
               }
-            /> */}
+            /> 
              {/* The Couses Page route */}
              <Route
               path="/courses/ui-ux-design"

@@ -30,17 +30,15 @@ const carouselSlides = [
     }
   ];
 
-const LandingSection = ()=>{
+const LandingSection = () => {
     return(
         <section
           id="hero"
           title='Hero'
           className="bg-primary-900 min-h-screen relative flex items-center justify-center overflow-hidden w-full"
         >
-  
           <div className="text-white bg-primary-900 absolute inset-0 " />
           <Carousel slides={carouselSlides} />
-        
         </section>  
     )
 }
