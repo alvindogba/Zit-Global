@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || 'development';
 const dbConfig = config[env];
 const db = {};
 

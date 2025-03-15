@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const env = process.env.NODE_ENV || 'production';
+const env = process.env.NODE_ENV || 'development';
 const config = {
     development: {
         database: process.env.DB_NAME,
@@ -37,6 +37,7 @@ const config = {
         dialectOptions: {
             connectTimeout: 60000, // Increased to 60 seconds
             ssl: {
+                require: true,
                 rejectUnauthorized: false
             }
         },
