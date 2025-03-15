@@ -25,7 +25,7 @@ const DonationSuccess = () => {
           throw new Error('Transaction ID not found');
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/stripe/get-success-donation/${transactionId}`);
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/stripe/get-success-donation/${transactionId}`);
         setDonation(data);
       } catch (err) {
         console.error('Error fetching donation details:', err);
@@ -73,8 +73,8 @@ const DonationSuccess = () => {
       <div className="max-w-3xl mx-auto px-4 py-16">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
-            <div className="mx-auto h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-              <svg className="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="mx-auto h-16 w-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -116,7 +116,7 @@ const DonationSuccess = () => {
               <div className="text-center pt-6">
                 <Link
                   to="/"
-                  className="inline-block bg-green-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-600 transition-colors"
+                  className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors"
                 >
                   Return Home
                 </Link>

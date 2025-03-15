@@ -22,6 +22,8 @@ const Cohort = lazy(() => import('./pages/CohortPage'))
 const BeADonor =lazy(() => import('./pages/MakeImpact/BeADonor'))
 const Mentorship =lazy(() => import('./pages/MakeImpact/Mentorship'))
 const Tutorship =lazy(() => import('./pages/MakeImpact/Tutorship'))
+const AdmissionSuccess = lazy(() => import('./pages/Admission/AdminssionSuccessPage'));
+const GuidingHandPage =lazy(() => import('./pages/MakeImpact/GuidingHand'))
 // const GuidingHand =lazy(() => import('./pages/MakeImpact/GuidingHand'))
 //Each course offer page
 const Fullstack =lazy(() => import('./pages/CoursesDetails/FullStackDevelopment'))
@@ -96,14 +98,14 @@ function App() {
                 </Suspense>
               }
             />
-             {/* <Route
+             <Route
               path="/guilding-hands-program"
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
-                  <GuidingHand />
+                  <GuidingHandPage />
                 </Suspense>
               }
-            /> */}
+            />
             <Route
               path="/mentorship-program"
               element={
@@ -133,6 +135,14 @@ function App() {
               element={
                 <Suspense fallback={<BlogPostSkeleton />}>
                   <Admission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admission-success"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <AdmissionSuccess />
                 </Suspense>
               }
             />

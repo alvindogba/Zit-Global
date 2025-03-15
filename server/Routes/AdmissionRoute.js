@@ -17,18 +17,15 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ 
+// File filter to allow all file types but restrict size to 10MB
+const upload = multer({
     storage,
     fileFilter: (req, file, cb) => {
-        // Allow only images and PDFs
-        if (file.mimetype.startsWith('image/') || file.mimetype === 'application/pdf') {
-            cb(null, true);
-        } else {
-            cb(new Error('Only images and PDF files are allowed!'), false);
-        }
+        // Accept all file types
+        cb(null, true);
     },
     limits: {
-        fileSize: 5 * 1024 * 1024 // 5MB limit
+        fileSize: 10 * 1024 * 1024 // 10 MB file size limit
     }
 });
 
@@ -43,9 +40,9 @@ const uploadFields = upload.fields([
 router.post('/register', uploadFields, NewAdmission);
 
 // Get application status
-router.get('/status/:applicationNumber', getApplicationStatus);
+router.get('/status/:id', getApplicationStatus);
 
 // Update application status (admin only)
-router.put('/status/:applicationNumber', isAdmin, updateApplicationStatus);
+router.put('/status/:id', isAdmin, updateApplicationStatus);
 
 export default router;

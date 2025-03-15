@@ -86,18 +86,18 @@ const GetMentorShip = () => {
             {/* Hero Section with Image Slideshow */}
             <div className="relative h-[80vh] pt-28 md:pt-10 overflow-hidden">
                 {/* Slideshow */}
-                <div className="absolute inset-0">
+                <div className="absolute bg-primary inset-0">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentSlide}
                             className="absolute inset-0"
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0.9 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.7 }}
+                            transition={{ duration: 0.5 }}
                         >
                             <div 
-                                className="w-full h-full bg-cover bg-center"
+                                className="w-full h-full bg-primary bg-cover bg-center"
                                 style={{
                                     backgroundImage: `url(${slides[currentSlide].image})`,
                                     backgroundPosition: 'center',
@@ -116,18 +116,15 @@ const GetMentorShip = () => {
                         </motion.div>
                     </AnimatePresence>
                 </div>
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-primary opacity-80 blur-xl" />
-                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/50 to-black/30" />
                 {/* Content */}
                 <div className="relative h-full flex items-center">
                     <div className="container mx-auto px-1 sm:px-1">
                         <motion.div 
                             className="max-w-4xl"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
+                            initial={{ opacity: 1, y: 1 }}
+                            animate={{ opacity: 1, y: 1 }}
+                            transition={{ duration: 0.5 }}
                         >
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
                                 Connect. Learn. Grow.
@@ -152,29 +149,7 @@ const GetMentorShip = () => {
                                 ))}
                             </div>
 
-                            {/* Glass Effect Tabs */}
-                            <div className="flex  flex-col w-fit sm:flex-row bg-[#1c1752]/30 backdrop-blur-xl rounded-2xl border border-[#1c1752]/30">
-                                <button
-                                    onClick={() => setActiveTab('find')}
-                                    className={`w-full sm:w-auto px-4 sm:px-6 py-3 rounded-xl transition-all border-none outline-none ${
-                                        activeTab === 'find'
-                                            ? 'bg-white text-primary'
-                                            : 'text-white hover:bg-[#1c1752]/50'
-                                    }`}
-                                >
-                                    Find a Mentor
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('become')}
-                                    className={`w-full sm:w-auto px-4 sm:px-6 py-3 rounded-xl transition-all border-none outline-none ${
-                                        activeTab === 'become'
-                                            ? 'bg-white text-primary'
-                                            : 'text-white hover:bg-[#1c1752]/50'
-                                    }`}
-                                >
-                                    Become a Mentor
-                                </button>
-                            </div>
+                           
                         </motion.div>
                     </div>
                 </div>
@@ -182,6 +157,29 @@ const GetMentorShip = () => {
 
             {/* Main Content Section */}
             <div className="container mx-auto px-4 sm:px-6 py-20">
+                 {/* Glass Effect Tabs */}
+                 <div className="flex  flex-col w-fit sm:flex-row gap-2  backdrop-blur-xl">
+                                <button
+                                    onClick={() => setActiveTab('find')}
+                                    className={`w-full sm:w-auto px-4 sm:px-6 py-3  rounded-xl transition-all border-none outline-none ${
+                                        activeTab === 'find'
+                                            ? 'bg-primary text-white'
+                                            : 'text-primary bg-white hover:bg-white'
+                                    }`}
+                                >
+                                    Find a Mentor
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('become')}
+                                    className={`w-full sm:w-auto px-4 sm:px-6 py-3  rounded-xl transition-all border-none outline-none ${
+                                        activeTab === 'become'
+                                            ? 'bg-primary text-white'
+                                            : 'bg-white text-primary hover:bg-white'
+                                    }`}
+                                >
+                                    Become a Mentor
+                                </button>
+                            </div>
                 {activeTab === 'find' ? (
                     <motion.div {...fadeIn}>
                         <div className="grid md:grid-cols-2 gap-12 items-center">

@@ -6,7 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
 // Load your Stripe publishable key
-const stripePromise = loadStripe('pk_test_51QlCfNCGF0Nfp7XGSv4FGtuubZAOBVtK6A1GqEbMhsZH419dkaUL7WJdbjASc0vNTbe28wR73hmpiadQfeoI3RA500GxgtmAIJ');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

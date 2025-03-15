@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, User, BookOpen, Phone, CheckCircle } from 'lucide-react';
-import { NewRegistry } from '../../api/adimssionApi'; // Adjust the import path accordingly
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 type FormData = {
   // Personal Information
@@ -89,8 +90,11 @@ const inputClassName = "w-full px-2 py-2 border border-gray-300 rounded-md focus
 const checkboxClassName = "h-4 w-4 text-secondary-yellow focus:ring-secondary-yellow border-gray-300 rounded";
 
 function AdmissionPage() {
+  const navigate = useNavigate();
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add loading state
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -120,27 +124,34 @@ function AdmissionPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true); // Start loading
 
+  
     const formDataToSend = new FormData();
-
+  
     // Append all form fields to the FormData object
     Object.entries(formData).forEach(([key, value]) => {
       if (value instanceof File) {
         formDataToSend.append(key, value);
       } else if (typeof value === 'boolean') {
         formDataToSend.append(key, value ? 'true' : 'false');
-      } else {
-        formDataToSend.append(key, value);
+      } else if (value !== null) { // Add null check
+        formDataToSend.append(key, value.toString());
       }
     });
-
+  
     try {
-      const response = await axios.post("http://localhost:5000/admission/register", formData)
-      console.log('Form submitted successfully:', formData);
-      alert('Form submitted successfully!');
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admission/register`, formDataToSend, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      console.log('Response:', response.data.data.id, response.data.data.email );
+      // Going to the success page
+      navigate(`/admission-success?id=${response.data.data.id}&email=${formData.email}`);
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Error submitting form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -148,13 +159,13 @@ function AdmissionPage() {
     <div className="flex justify-center mb-8">
       {[1, 2, 3].map((num) => (
         <div key={num} className="flex items-center">
-          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= num ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= num ? 'bg-primary text-white' : 'bg-gray-200 text-gray-600'}`}>
             {num === 1 && <User size={20} />}
             {num === 2 && <BookOpen size={20} />}
             {num === 3 && <Phone size={20} />}
           </div>
           {num < 3 && (
-            <div className={`w-20 h-1 ${step > num ? 'bg-blue-600' : 'bg-gray-200'}`} />
+            <div className={`w-20 h-1 ${step > num ? 'bg-primary' : 'bg-gray-200'}`} />
           )}
         </div>
       ))}
@@ -590,7 +601,7 @@ function AdmissionPage() {
               <button
                 type="button"
                 onClick={nextStep}
-                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/80"
               >
                 Next
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -598,10 +609,39 @@ function AdmissionPage() {
             ) : (
               <button
                 type="submit"
-                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700"
+                disabled={isSubmitting}
+                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-primary hover:bg-primary/80"
               >
-                Submit
-                <CheckCircle className="ml-2 h-4 w-4" />
+              {isSubmitting ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Submit
+                    <CheckCircle className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </button>
             )}
           </div>

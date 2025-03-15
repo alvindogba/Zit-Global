@@ -142,8 +142,7 @@ const Testimonial = () => {
     setIsDragging(true);
   };
 
-  const onMouseMove = (e: MouseEvent) => {
-    if (!isDragging) return;
+  const onMouseMove = (e: React.MouseEvent) => {    if (!isDragging) return;
     const carouselRect = carouselRef.current?.getBoundingClientRect();
     if (!carouselRect) return;
     const mousePosition = e.clientX;

@@ -8,117 +8,52 @@ import {
 
 // Creating the New Admission controller
 export const NewAdmission = async (req, res) => {
-  try {
-    const {
-      fullName,
-      dateOfBirth,
-      address,
-      countyOfResidence,
-      phone,
-      email,
-      gender,
-      identificationType,
-      identificationNumber,
-      age,
-      nationality,
-      emergencyContactName,
-      emergencyPersonAddress,
-      emergencyContactNumber,
-      relationshipType,
-      desiredProgram,
-      educationLevel,
-      lastSchoolAttended,
-      fieldOfStudy,
-      yearOfGraduation,
-      personalStatement,
-      communityImpact,
-      haveComputer,
-      consented,
-    } = req.body;
+    // Handle file paths
+    const files = req.files;
+    const filePaths = {
+      applicantImage: files.applicantImage?.[0]?.path,
+      churchRecommendationLetter: files.churchRecommendationLetter?.[0]?.path,
+      communityRecommendationLetter: files.communityRecommendationLetter?.[0]?.path
+    };
 
-    // File uploads (if using multer for handling files)
-    const applicantImage = req.files?.applicantImage?.[0]?.filename || null;
-    const churchRecommendationLetter = req.files?.churchRecommendationLetter?.[0]?.filename || null;
-    const communityRecommendationLetter = req.files?.communityRecommendationLetter?.[0]?.filename || null;
-
-    // Validate required fields
-    if (!fullName || !email || !phone || !desiredProgram || !consented) {
-      return res.status(400).json({
-        success: false,
-        message: 'Please provide all required fields.',
-      });
-    }
-
-    // Create the new admission record
-    const newAdmission = await db.Admission.create({
-      fullName,
-      dateOfBirth,
-      address,
-      countyOfResidence,
-      phone,
-      email,
-      gender,
-      identificationType,
-      identificationNumber,
-      age,
-      nationality,
-      emergencyContactName,
-      emergencyPersonAddress,
-      emergencyContactNumber,
-      relationshipType,
-      desiredProgram,
-      educationLevel,
-      lastSchoolAttended,
-      fieldOfStudy,
-      yearOfGraduation,
-      personalStatement,
-      communityImpact,
-      applicantImage,
-      haveComputer,
-      consented,
-      churchRecommendationLetter,
-      communityRecommendationLetter,
-      status: 'pending',
-      notificationHistory: [{
-        status: 'pending',
-        date: new Date(),
-        message: 'Application submitted successfully'
-      }]
-    });
-
-    // Send confirmation emails
     try {
-      await sendApplicationConfirmation(newAdmission);
-    } catch (emailError) {
-      console.error('Error sending confirmation email:', emailError);
-      // Continue processing even if email fails
-    }
+      // Create application record
+      const application = {
+        ...req.body,
+        ...filePaths,
+        consented: req.body.consented === 'true'
+      };
 
-    return res.status(201).json({
-      success: true,
-      message: 'Application submitted successfully. Please check your email for confirmation.',
-      data: {
-        applicationNumber: newAdmission.applicationNumber,
-        status: newAdmission.status
-      }
-    });
-  } catch (error) {
+      console.log("application", application)
+
+      // Save application record
+      const newAdmission = await db.Admission.create(application);
+
+      // // Send confirmation email
+      await sendApplicationConfirmation(newAdmission);
+
+      return res.status(200).json({
+        success: true,
+        message: 'Application created successfully',
+        data: newAdmission
+      });
+     } catch (error) {
     console.error('Error creating new admission:', error);
     return res.status(500).json({
       success: false,
-      message: 'An error occurred while submitting your application.',
-      error: error.message,
+      message: 'Error creating new admission'
     });
   }
 };
 
+
 // Get application status
 export const getApplicationStatus = async (req, res) => {
   try {
-    const { applicationNumber } = req.params;
+    const { id } = req.params;
     const admission = await db.Admission.findOne({
-      where: { applicationNumber },
-      attributes: ['applicationNumber', 'status', 'fullName', 'desiredProgram', 'interviewDate', 'interviewLocation', 'createdAt']
+      where: { id },
+      attributes: ['applicationNumber', 'status', 'firstName', 'lastName', 'email', 'desiredProgram', 'applicantImage', 'createdAt']
     });
 
     if (!admission) {
@@ -144,11 +79,11 @@ export const getApplicationStatus = async (req, res) => {
 // Update application status (admin only)
 export const updateApplicationStatus = async (req, res) => {
   try {
-    const { applicationNumber } = req.params;
+    const { id } = req.params;
     const { status, interviewDate, interviewLocation, notes } = req.body;
 
     const admission = await db.Admission.findOne({
-      where: { applicationNumber }
+      where: { id }
     });
 
     if (!admission) {
