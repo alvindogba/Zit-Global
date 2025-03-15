@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { FaLaptopCode, FaServer, FaLayerGroup, FaPaintBrush, FaShieldAlt, FaPalette } from 'react-icons/fa';
 import ContactImg from '../asset/images/OT image .jpg';
 
 interface Program {

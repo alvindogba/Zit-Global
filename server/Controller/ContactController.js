@@ -1,7 +1,8 @@
-import Contact from '../models/Contact.js';
 import { sendContactConfirmation, sendAdminNotification } from '../utils/emailService.js';
+import db from "../models/index.js"
 
 export const submitContactForm = async (req, res) => {
+  console.log(req.body)
   try {
     const { name, email, subject, message } = req.body;
 
@@ -14,7 +15,7 @@ export const submitContactForm = async (req, res) => {
     }
 
     // Create contact entry in database
-    const contact = await Contact.create({
+    const contact = await db.Contact.create({
       name,
       email,
       subject,

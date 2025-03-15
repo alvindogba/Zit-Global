@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 export const sendApplicationConfirmation = async (admission) => {
   const template = generateEmailTemplate('application_confirmation', {
     applicationNumber: admission.applicationNumber,
-    fullName: admission.fullName,
+    fullName: `${admission.firstName} ${admission.lastName}`,
     program: admission.desiredProgram,
     applicationDate: new Date(admission.createdAt).toLocaleDateString(),
   });
@@ -23,7 +23,7 @@ export const sendApplicationConfirmation = async (admission) => {
   await transporter.sendMail({
     from: `"ZIT Admissions" <${process.env.EMAIL_USER}>`,
     to: admission.email,
-    subject: 'Application Received - Zion Institute of Technology',
+    subject: 'Application Received - Zongea Institute of Technology',
     html: template,
   });
 
@@ -34,7 +34,7 @@ export const sendApplicationConfirmation = async (admission) => {
     subject: `New Application Received - ${admission.applicationNumber}`,
     html: generateEmailTemplate('admin_application_notification', {
       applicationNumber: admission.applicationNumber,
-      fullName: admission.fullName,
+      fullName: `${admission.firstName} ${admission.lastName}`,
       program: admission.desiredProgram,
       email: admission.email,
       phone: admission.phone,
@@ -54,7 +54,7 @@ export const sendInterviewInvitation = async (admission) => {
   await transporter.sendMail({
     from: `"ZIT Admissions" <${process.env.EMAIL_USER}>`,
     to: admission.email,
-    subject: 'Interview Invitation - Zion Institute of Technology',
+    subject: 'Interview Invitation - Zongea Institute of Technology',
     html: template,
   });
 };
@@ -62,8 +62,8 @@ export const sendInterviewInvitation = async (admission) => {
 export const sendAdmissionDecision = async (admission) => {
   const templateName = admission.status === 'accepted' ? 'acceptance_letter' : 'rejection_letter';
   const subject = admission.status === 'accepted' ? 
-    'Congratulations! Admission Decision - Zion Institute of Technology' :
-    'Admission Decision - Zion Institute of Technology';
+    'Congratulations! Admission Decision - Zongea Institute of Technology' :
+    'Admission Decision - Zongea Institute of Technology';
 
   const template = generateEmailTemplate(templateName, {
     fullName: admission.fullName,
@@ -92,7 +92,7 @@ export const sendStatusUpdateNotification = async (admission, previousStatus) =>
   await transporter.sendMail({
     from: `"ZIT Admissions" <${process.env.EMAIL_USER}>`,
     to: admission.email,
-    subject: 'Application Status Update - Zion Institute of Technology',
+    subject: 'Application Status Update - Zongea Institute of Technology',
     html: template,
   });
 };

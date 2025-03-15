@@ -1,5 +1,5 @@
-
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Section } from '../Section';
 import { GlassCard } from '../GlassCard';
 import { BackgroundMesh } from '../BackgroundMesh';
@@ -35,32 +35,38 @@ const ProgramsWeOffer = ()=>{
                 title: "Graphic Design",
                 description: "Transform your creative vision into professional designs. Master industry-standard tools and design principles",
                 icon: HomeIcon,
+                href: "/courses/graphic-design"
               },
 
               {
                 title: 'Web Development',
                 description: 'Master modern web technologies and frameworks with hands-on projects and expert mentorship.',
                 icon: HomeModernIcon,
+                href: "/courses/full-stack-development"
               },
               {
                 title: 'CyberSecurity',
                 description: "Learn to protect systems and data from cyber threats with hands-on training in security practices.",
                 icon: PaintBrushIcon,
+                href: "/courses/cybersecurity"
               },
               {
                 title: 'UI/UX Design',
                 description: 'Design intuitive and engaging user interfaces and experiences with modern tools and techniques.',
                 icon: ChartBarIcon,
+                href: "/courses/ui-ux-design"
               },
               {
                 title: 'Database Administration',
                 description: 'Learn how to design, manage, and optimize databases using SQL and NoSQL technologies.',
                 icon: ServerIcon,
+                href: "/courses/database-administration"
               },
               {
                 title: 'Microsoft Office Suite',
                 description: ' Microsoft Word, Excel, PowerPoint, and Outlook for professional productivity.',
                 icon: DocumentTextIcon,
+                href: "/courses/microsoft-office"
               },
             ].map((program, index) => (
               <motion.div
@@ -68,8 +74,9 @@ const ProgramsWeOffer = ()=>{
                 variants={variants.fadeInUp}
                 className="relative"
               >
+                <Link className="text-primary" to={program.href}>
                 <GlassCard
-                  className="p-8 bg-transparent backdrop-blur-md border border-gray-100"
+                  className="h-full p-8 bg-transparent backdrop-blur-md border border-gray-100"
                   hover={true}
                   glowColor={`from-primary-${(index + 4) * 100}/20`}
                 >
@@ -77,10 +84,20 @@ const ProgramsWeOffer = ()=>{
                   <h3 className="text-2xl font-semibold mb-4 text-gray-900">{program.title}</h3>
                   <p className="text-gray-700">{program.description}</p>
                 </GlassCard>
+                </Link>
               </motion.div>
             ))}
+
           </div>
         </motion.div>
+        <div className=" p-4  ">
+        <Link
+    className="relative top-4 left-[80%] -translate-x-1/2 px-4 py-2 text-primary border border-primary rounded-lg hover:bg-gray-800 hover:text-white transition-all"
+    to="/courses"
+>
+    View All Courses
+</Link>
+        </div>
       </Section>
     )
 }

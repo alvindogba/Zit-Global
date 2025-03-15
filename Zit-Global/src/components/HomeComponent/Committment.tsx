@@ -56,7 +56,7 @@ const commitment = ()=>{
                 variants={variants.fadeInUp}
               >
                 <GlassCard
-                  className="p-6 text-center bg-white/5 backdrop-blur-sm"
+                  className="h-full p-6 text-center bg-white/5 backdrop-blur-sm"
                   variant="light"
                   glowColor="from-primary-400/10"
                 >

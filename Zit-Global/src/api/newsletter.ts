@@ -1,6 +1,7 @@
 import axios from "axios";
+const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-const API_BASE_URL = "http://localhost:5000/api/subscribe"; // Base URL for the backend API
+const API_BASE_URL = `${VITE_BACKEND_URL}/api/subscribe`;
 
 /**
  * Subscribe a user to the newsletter.

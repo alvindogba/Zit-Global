@@ -9,8 +9,8 @@ interface PayPalButtonProps {
 const PayPalButton = ({ amount, onSuccess, onError }: PayPalButtonProps) => {
   return (
     <PayPalButtons
-      style={{ layout: "vertical" }}
-      createOrder={(data, actions) => {
+      style={{ layout: "vertical"}}
+      createOrder={(_data, actions) => {
         return actions.order.create({
           intent: "CAPTURE",
           purchase_units: [
@@ -23,7 +23,7 @@ const PayPalButton = ({ amount, onSuccess, onError }: PayPalButtonProps) => {
           ]
         });
       }}
-      onApprove={async (data, actions) => {
+      onApprove={async (_data, actions) => {
         if (!actions.order) {
           onError?.("Failed to process PayPal payment");
           return;

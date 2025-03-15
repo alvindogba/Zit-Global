@@ -6,6 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Footer from './components/Footer/index'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import ScrollToTop from './components/common/ScrollToTop';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -22,7 +23,9 @@ const Cohort = lazy(() => import('./pages/CohortPage'))
 const BeADonor =lazy(() => import('./pages/MakeImpact/BeADonor'))
 const Mentorship =lazy(() => import('./pages/MakeImpact/Mentorship'))
 const Tutorship =lazy(() => import('./pages/MakeImpact/Tutorship'))
-const GuidingHand =lazy(() => import('./pages/MakeImpact/GuidingHand'))
+const AdmissionSuccess = lazy(() => import('./pages/Admission/AdminssionSuccessPage'));
+const GuidingHandPage =lazy(() => import('./pages/MakeImpact/GuidingHand'))
+// const GuidingHand =lazy(() => import('./pages/MakeImpact/GuidingHand'))
 //Each course offer page
 const Fullstack =lazy(() => import('./pages/CoursesDetails/FullStackDevelopment'))
 const UIUXDesign =lazy(() => import('./pages/CoursesDetails/UIUXDesign'))
@@ -45,6 +48,8 @@ function App() {
       <div className="min-h-screen">
         <Header />
         <div className="pt-20">
+        <ScrollToTop />
+
           <Routes>
             <Route
               path="/"
@@ -106,7 +111,7 @@ function App() {
               path="/guilding-hands-program"
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
-                  <GuidingHand />
+                  <GuidingHandPage />
                 </Suspense>
               }
             />
@@ -119,7 +124,7 @@ function App() {
               }
             />
             <Route
-              path="/toturship-program"
+              path="/tutorship-program"
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
                   <Tutorship />
@@ -143,6 +148,14 @@ function App() {
               }
             />
             <Route
+              path="/admission-success"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <AdmissionSuccess />
+                </Suspense>
+              }
+            />
+            <Route
               path="/contact"
               element={
                 <Suspense fallback={<ServiceSkeleton />}>
@@ -160,7 +173,7 @@ function App() {
               }
             />
            <Route
-              path="/donation-success"
+              path="/success"
               element={
                 <Suspense fallback={<ServiceSkeleton />}> 
                   <DonationSuccess />

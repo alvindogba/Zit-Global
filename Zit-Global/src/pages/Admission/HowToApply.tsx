@@ -69,7 +69,7 @@ export default function HowToApply() {
           </p>
           <Link
             to="/admission"
-            className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            className="border border-white font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
             Apply Now<ArrowRight className="ml-2" size={16} />
           </Link>
@@ -100,7 +100,7 @@ export default function HowToApply() {
             {stepsToApply.map((step, index) => (
               <div key={index} className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-secondary-yellow rounded-full flex items-center justify-center font-bold text-white">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-white">
                     {index + 1}
                   </div>
                 </div>

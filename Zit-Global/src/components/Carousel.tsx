@@ -7,8 +7,8 @@ interface CarouselProps {
     subtitle: string;
     description: string;
     image: string;
-    ctaText?: string;
-    ctaLink?: string;
+    ctaText: string;
+    ctaLink: string;
   }[];
   autoPlayInterval?: number;
 }
@@ -59,7 +59,7 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
                 <p className="text-lg md:text-xl mb-8 text-white/85 drop-shadow-md leading-relaxed">
                   {slides[currentIndex].description}
                 </p>
-                {slides[currentIndex].ctaText && (
+                {slides[currentIndex].ctaText && slides[currentIndex].ctaLink && (
                   <a
                     href={slides[currentIndex].ctaLink}
                     className="inline-flex items-center px-8 py-4 text-lg border font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-500 transition-colors shadow-lg hover:shadow-xl"

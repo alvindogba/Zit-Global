@@ -4,7 +4,7 @@ import PDFDocument from 'pdfkit';
 import { Donation } from '../models/Donation.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const DOMAIN = process.env.DOMAIN || 'http://localhost:5000';
+const DOMAIN = process.env.DOMAIN 
 
 // Email transporter
 const transporter = nodemailer.createTransport({

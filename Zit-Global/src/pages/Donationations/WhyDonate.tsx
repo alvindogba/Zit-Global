@@ -49,7 +49,7 @@ const WhyDonate = () => {
   );
 };
 
-const ImpactItem = ({ icon, title, description }) => {
+const ImpactItem = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
   return (
     <div className="flex items-start space-x-4">
       <div className="bg-[#E0E0E0] p-4 rounded-full">{icon}</div>
