@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = {
     development: {
         database: process.env.DB_NAME,
@@ -12,14 +12,14 @@ const config = {
         password: process.env.DB_PASSWORD,
         host: process.env.DB_HOST,
         dialect: 'postgres',
-        port: process.env.DB_PORT || 3306,
+        port: process.env.DB_PORT || 5432,
       
         pool: {
             max: 10,
             min: 0,
             acquire: 120000, // Increased to 120 seconds
             idle: 20000,    // Increased to 20 seconds
-            evict: 60000    // Run cleanup every 60 seconds
+            evict: 20000    // Run cleanup every 60 seconds
         },
         retry: {
             max: 10,        // Increased retry attempts
@@ -29,11 +29,11 @@ const config = {
     },
     production: {
         database: process.env.DB_NAME,
-        username: process.env.DB_USER,
+        username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         host: process.env.DB_HOST,
         dialect: 'postgres',
-        port: process.env.DB_PORT || 3306,
+        port: process.env.DB_PORT || 5432,
         dialectOptions: {
             connectTimeout: 60000, // Increased to 60 seconds
             ssl: {
@@ -43,9 +43,9 @@ const config = {
         pool: {
             max: 10,
             min: 0,
-            acquire: 120000, // Increased to 120 seconds
-            idle: 20000,    // Increased to 20 seconds
-            evict: 60000    // Run cleanup every 60 seconds
+            acquire: 3000, // Increased to 120 seconds
+            idle: 10000,    // Increased to 20 seconds
+            evict: 20000    // Run cleanup every 60 seconds
         },
         retry: {
             max: 10,        // Increased retry attempts
