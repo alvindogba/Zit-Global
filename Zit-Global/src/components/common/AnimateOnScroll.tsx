@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 interface AnimateOnScrollProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     animation: 'fadeIn' | 'slideUp' | 'slideDown' | 'slideLeft' | 'slideRight';
     delay?: number;
     className?: string;
