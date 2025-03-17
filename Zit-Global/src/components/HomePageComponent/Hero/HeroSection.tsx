@@ -36,9 +36,9 @@ export default function HeroSection() {
     >
       {/* Content Box */}
       <AnimateOnScroll animation="slideUp">
-        <div className="text-white px-4 w-full md:w-[50%] lg:w-[55%] bg-primary opacity-[75%] rounded-tr-lg rounded-tl-lg h-fit  md:ml-[8%] py-6 sm:py-6 md:py-0 ">
+        <div className="text-white px-4 w-full md:w-[50%] lg:w-[55%] bg-primary opacity-[75%] rounded-tr-lg rounded-tl-lg h-fit  md:ml-[8%] py-6 sm:py-6 md:py-0 md:mb-8">
           <AnimateOnScroll animation="fadeIn" delay={200}>
-            <h1 className="text-base sm:text-lg md:text-lg font-semibold my-3 sm:my-5 sm:ml-6 md:ml-5 w-[85%]">
+            <h1 className="text-base sm:text-lg md:text-lg font-semibold my-6 sm:my-5 sm:ml-6 md:ml-5 w-[85%]">
               Unlock Your Potential: Begin Your Journey with ZIT's Transformative Tech Training
             </h1>
           </AnimateOnScroll>
@@ -55,7 +55,7 @@ export default function HeroSection() {
             <AnimateOnScroll animation="slideLeft" delay={600}>
               <Link
                 to="/courses"
-                className="bg-transpirent text-base hover:bg-white hover:text-primary hover:font-bold text-white border hover:px-4 hover:py-2 px-3 sm:px-4 py-1 sm:py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center group"
+                className="bg-transpirent text-base hover:bg-white hover:text-primary hover:font-bold text-white border hover:px-4 hover:py-2 px-3 sm:px-4 py-1 sm:py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center group mb-2"
               >
                 Explore Courses 
                 <ArrowRight className="ml-1 md:ml-4 transform transition-transform group-hover:translate-x-1" size={12} />
@@ -81,7 +81,7 @@ export default function HeroSection() {
           {images.map((_, index) => (
             <div
               key={index}
-              className={`w-4 h-4 rounded-full transition-all duration-300 cursor-pointer hover:scale-110 ${index === currentIndex ? 'bg-secondary-yellow scale-125' : 'bg-gray-500'}`}
+              className={`w-4 h-4 rounded-full transition-all duration-300 cursor-pointer hover:scale-110 ${index === currentIndex ? 'bg-white scale-125' : 'bg-gray-500'}`}
               onClick={() => setCurrentIndex(index)}
             ></div>
           ))}

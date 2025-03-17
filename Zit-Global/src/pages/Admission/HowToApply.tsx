@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const MotivationBgImg = "https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D2314086985545239&tbnid=8Nm98VvfnsuJPM&vet=10CBwQxiAoDGoXChMI0MbR0YaViwMVAAAAAB0AAAAAEAc..i&imgrefurl=https%3A%2F%2Fwww.facebook.com%2FWacti1%2Fposts%2F2314087155545222%2F&docid=iGWay-_km4BnyM&w=960&h=720&itg=1&q=students%2C%20young%20adults%20on%20computers&client=ubuntu-sn&ved=0CBwQxiAoDGoXChMI0MbR0YaViwMVAAAAAB0AAAAAEAc";
+import  MotivationBgImg from  "../../asset/images/contact-page-img.jpeg";
 import { ArrowRight } from 'lucide-react';
 
 export default function HowToApply() {
@@ -100,7 +100,7 @@ export default function HowToApply() {
             {stepsToApply.map((step, index) => (
               <div key={index} className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-secondary-yellow rounded-full flex items-center justify-center font-bold text-white">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-white">
                     {index + 1}
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import image from '../../../asset/images/Abel B. Winn.jpg'
 
 export default function TeachSomeone() {
   return (
-    <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-28 pt-20 pb-4 md:pb-20">
+    <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-28 pt-20 pb-4 md:pb-20 bg-white">
       {/* Left Side - Text Content */}
       <div className="w-full  md:w-2/7  md:text-left">
         <h3 className="text-base font-medium text-primary">Want to be part of this Journey?</h3>
@@ -25,13 +25,12 @@ export default function TeachSomeone() {
       {/* Right Side - Image with Circular Border */}
       <div className="hidden md:visible w-full md:w-1/2  md:flex justify-center md:justify-end mt-10 md:mt-0">
         <div className="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
-          {/* Circular Border */}
-          <div className="absolute w-full h-full border-8 border-primary bg-primary rounded-full"></div>
+
           {/* Mentor Image */}
           <img
             src={image} // Ensure you replace this with the correct image path
             alt="Mentor smiling"
-            className="md:w-[94%] md:h-[94%] w-full object-cover rounded-full relative top-2 left-3"
+            className="md:w-[94%] md:h-[94%] w-full object-cover relative top-2 left-3"
           />
         </div>
       </div>
