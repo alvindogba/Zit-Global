@@ -69,7 +69,7 @@ export default function HowToApply() {
           </p>
           <Link
             to="/admission"
-            className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            className="border border-white font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
             Apply Now<ArrowRight className="ml-2" size={16} />
           </Link>

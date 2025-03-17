@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { FaLaptopCode, FaServer, FaLayerGroup, FaPaintBrush, FaShieldAlt, FaPalette } from 'react-icons/fa';
 import ContactImg from '../asset/images/OT image .jpg';
 import { Link } from 'react-router-dom'
 
@@ -51,7 +50,7 @@ const CohortPage = () => {
           enrolledStudents: 25,
           instructor: 'Alfred Jallah',
           skills: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Responsive Design', 'Web Performance'],
-          icon: <FaLaptopCode />
+          icon: 'FaLaptopCode'
         },
         backend: {
           id: 'backend',
@@ -64,7 +63,7 @@ const CohortPage = () => {
           enrolledStudents: 22,
           instructor: 'Hilton Jackson',
           skills: ['Node.js', 'Express', 'PostgreSQL', 'API Design', 'Authentication', 'Cloud Services'],
-          icon: <FaServer />
+          icon: 'FaServer'
         },
         fullstack: {
           id: 'fullstack',
@@ -77,7 +76,7 @@ const CohortPage = () => {
           enrolledStudents: 20,
           instructor: 'Sharderd Mechard',
           skills: ['React', 'Node.js', 'Full-Stack Architecture', 'Database Design', 'DevOps', 'System Design'],
-          icon: <FaLayerGroup />
+          icon: 'FaLayerGroup'
         },
         graphics: {
           id: 'graphics',
@@ -90,7 +89,7 @@ const CohortPage = () => {
           enrolledStudents: 18,
           instructor: 'Tarr Zlan',
           skills: ['Adobe Creative Suite', 'Typography', 'Brand Design', 'Digital Illustration', 'Print Design', 'Color Theory'],
-          icon: <FaPaintBrush />
+          icon: 'FaPaintBrush'
         },
         security: {
           id: 'security',
@@ -103,7 +102,7 @@ const CohortPage = () => {
           enrolledStudents: 15,
           instructor: 'Jonathan Williams',
           skills: ['Network Security', 'Ethical Hacking', 'Security Protocols', 'Risk Assessment', 'Incident Response', 'Security Tools'],
-          icon: <FaShieldAlt />
+          icon: 'FaShieldAlt'
         },
         uiux: {
           id: 'uiux',
@@ -116,7 +115,7 @@ const CohortPage = () => {
           enrolledStudents: 20,
           instructor: 'Sarah Chen',
           skills: ['User Research', 'Wireframing', 'Prototyping', 'Figma', 'Design Systems', 'Usability Testing'],
-          icon: <FaPalette />
+          icon: 'FaPalette'
         }
       }
     },
@@ -139,7 +138,7 @@ const CohortPage = () => {
           enrolledStudents: 28,
           instructor: 'Alfred Jallah',
           skills: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Responsive Design', 'Web Performance'],
-          icon: <FaLaptopCode />
+          icon: 'FaLaptopCode'
         },
         backend: {
           id: 'backend',
@@ -152,7 +151,7 @@ const CohortPage = () => {
           enrolledStudents: 25,
           instructor: 'Hilton Jackson',
           skills: ['Node.js', 'Express', 'PostgreSQL', 'API Design', 'Authentication', 'Cloud Services'],
-          icon: <FaServer />
+          icon: 'FaServer'
         }
       }
     },
@@ -175,7 +174,7 @@ const CohortPage = () => {
           enrolledStudents: 25,
           instructor: 'Alfred Jallah',
           skills: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Responsive Design'],
-          icon: <FaLaptopCode />
+          icon: 'FaLaptopCode'
         }
       }
     }

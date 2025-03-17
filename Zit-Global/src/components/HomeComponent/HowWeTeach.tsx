@@ -61,6 +61,7 @@ const HowWeTeach = ()=>{
                   className="p-6 h-[15rem] text-center bg-white/5 backdrop-blur-sm"
                   variant="light"
                   glowColor="from-primary-400/10"
+                  hover={true}
                 >
                   <motion.div
                     className="text-3xl font-bold text-primary-300 mb-2"

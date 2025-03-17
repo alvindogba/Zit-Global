@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, TouchEvent } from 'react';
 import { Quote } from 'lucide-react';
-import AnimateOnScroll from "../common/AnimateOnScroll";
+import AnimateOnScroll from "../../common/AnimateOnScroll";
 import image1 from '../../asset/images/Alfred.jpg';
 import image2 from '../../asset/images/Abel B. Winn.jpg';
 import image3 from '../../asset/images/Paulfina.jpg';
@@ -138,11 +138,12 @@ const Testimonial = () => {
   };
 
   // Mouse event handlers
-  const onMouseDown = () => {
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
+    e.preventDefault();
   };
 
-  const onMouseMove = (e: MouseEvent) => {
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     const carouselRect = carouselRef.current?.getBoundingClientRect();
     if (!carouselRect) return;

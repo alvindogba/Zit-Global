@@ -1,108 +1,72 @@
-"use strict";
+'use strict';
 
+import { DataTypes, QueryInterface } from 'sequelize';
 
- export const up = async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Admissions", {
-      id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false,
-      },
-      fullName: {
-        type: Sequelize.STRING,
-      },
-      dateOfBirth: {
-        type: Sequelize.DATE,
-      },
-      countyOfResidence: {
-        type: Sequelize.STRING,
-      },
-      age: {
-        type: Sequelize.INTEGER,
-      },
-      nationality: {
-        type: Sequelize.STRING,
-      },
-      applicantImage: {
-        type: Sequelize.BLOB,
-      },
-      gender: {
-        type: Sequelize.STRING,
-      },
-      phone: {
-        type: Sequelize.STRING, // Changed to STRING
-      },
-      email: {
-        type: Sequelize.STRING,
-      },
-      address: {
-        type: Sequelize.STRING,
-      },
-      identificationType: {
-        type: Sequelize.STRING,
-      },
-      identificationNumber: {
-        type: Sequelize.STRING, // Changed to STRING
-      },
-      emergencyContactName: {
-        type: Sequelize.STRING,
-      },
-      emergencyContactNumber: {
-        type: Sequelize.STRING, // Changed to STRING
-      },
-      relationshipType: {
-        type: Sequelize.STRING,
-      },
-      emergencyPersonAddress: {
-        type: Sequelize.STRING,
-      },
-      educationLevel: {
-        type: Sequelize.STRING,
-      },
-      lastSchoolAttended: {
-        type: Sequelize.STRING,
-      },
-      fieldOfStudy: {
-        type: Sequelize.STRING,
-      },
-      yearOfGraduation: {
-        type: Sequelize.DATE,
-      },
-      desiredProgram: {
-        type: Sequelize.STRING,
-      },
-      personalStatement: {
-        type: Sequelize.STRING,
-      },
-      communityImpact: {
-        type: Sequelize.STRING,
-      },
-      churchRecoommendationLetter: {
-        type: Sequelize.BLOB,
-      },
-      communityRecommendationLetter: {
-        type: Sequelize.BLOB,
-      },
-      haveComputer: {
-        type: Sequelize.STRING,
-      },
-      consented: {
-        type: Sequelize.BOOLEAN,
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW, // Added default value
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW, // Added default value
-      },
-    });
-  };
+export const up = async (queryInterface) => {
+  await queryInterface.createTable('Admissions', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false,
+    },
+    applicationNumber: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    firstName: { type: DataTypes.STRING, allowNull: false },
+    lastName: { type: DataTypes.STRING, allowNull: false },
+    dateOfBirth: { type: DataTypes.DATE, allowNull: false },
+    gender: { type: DataTypes.STRING },
+    identificationType: { type: DataTypes.STRING, allowNull: false },
+    identificationNumber: { type: DataTypes.STRING, allowNull: false },
+    nationality: { type: DataTypes.STRING, allowNull: false },
+    haveComputer: { type: DataTypes.BOOLEAN, allowNull: false },
+    desiredProgram: { type: DataTypes.STRING, allowNull: false },
+    academicYear: { type: DataTypes.STRING },
+    educationLevel: { type: DataTypes.STRING },
+    yearOfGraduation: { type: DataTypes.STRING },
+    lastSchoolAttended: { type: DataTypes.STRING },
+    computerKnowledge: { type: DataTypes.STRING },
+    personalStatement: { type: DataTypes.TEXT },
+    communityImpact: { type: DataTypes.TEXT },
+    email: { type: DataTypes.STRING, allowNull: false },
+    phone: { type: DataTypes.STRING, allowNull: false },
+    address: { type: DataTypes.STRING, allowNull: false },
+    emergencyContactName: { type: DataTypes.STRING, allowNull: false },
+    emergencyPersonAddress: { type: DataTypes.STRING, allowNull: false },
+    emergencyContactNumber: { type: DataTypes.STRING, allowNull: false },
+    relationshipType: { type: DataTypes.STRING, allowNull: false },
+    consented: { type: DataTypes.BOOLEAN, allowNull: false },
+    applicantImage: { type: DataTypes.STRING },
+    churchRecommendationLetter: { type: DataTypes.STRING },
+    communityRecommendationLetter: { type: DataTypes.STRING },
+    status: {
+      type: DataTypes.ENUM('pending', 'under_review', 'interview_scheduled', 'accepted', 'rejected'),
+      defaultValue: 'pending',
+    },
+    interviewDate: { type: DataTypes.DATE },
+    interviewLocation: { type: DataTypes.STRING },
+    admissionDecisionDate: { type: DataTypes.DATE },
+    lastNotificationSent: { type: DataTypes.DATE },
+    notificationHistory: {
+      type: DataTypes.JSON,
+      defaultValue: [],
+    },
+    notes: { type: DataTypes.TEXT },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+  });
+};
 
-  export const down = async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Admissions");
-  }
+export const down = async (queryInterface) => {
+  await queryInterface.dropTable('Admissions');
+};

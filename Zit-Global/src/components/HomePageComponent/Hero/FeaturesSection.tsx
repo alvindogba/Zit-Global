@@ -3,6 +3,13 @@ import AnimateOnScroll from "../../common/AnimateOnScroll";
 import image1 from "../../../asset/images/OT image .jpg";
 import image2 from "../../../asset/images/WhatsApp Image 2024-11-23 at 19.24.55_c7b5e29d.jpg";
 import image3 from "../../../asset/images/student_teaching.jpg"
+interface CardProps {
+  imgSrc: string;
+  title: string;
+  description: string;
+  linkText: string;
+  fullHeight?: boolean; // Optional prop
+}
 
 function FeaturesSection() {
   return (
@@ -63,7 +70,7 @@ function FeaturesSection() {
 }
 
 // Reusable Hover Card Component
-function HoverCard({ imgSrc, title, description, linkText, fullHeight }) {
+function HoverCard({ imgSrc, title, description, linkText, fullHeight }: CardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -92,7 +99,7 @@ function HoverCard({ imgSrc, title, description, linkText, fullHeight }) {
 }
 
 // Reusable Feature Card Component
-function FeatureCard({ imgSrc, title, description, linkText }) {
+function FeatureCard({ imgSrc, title, description, linkText }: CardProps) {
   return (
     <div className="flex flex-col md:p-4 rounded-lg transform transition-all duration-300 hover:scale-105">
       <div className="overflow-hidden rounded-lg">

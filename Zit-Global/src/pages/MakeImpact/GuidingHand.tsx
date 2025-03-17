@@ -1,174 +1,194 @@
-import { ArrowRight, Handshake } from 'lucide-react';
-import MotivationBgImg from '../../asset/images/Graduation-Bg-Img.jpg';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState } from "react";
+import backgroundImage from '../../asset/images/bigBrother.jpg'
+import childImage from '../../asset/images/student_teaching.jpg'
+import { motion } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa";
 
+// Interface for the Guide
+interface GuidanceData {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  experience: string;
+  availability: string;
+}
 
+// Interface for the child 
+interface ChildData {
+  parentName: string;
+  childName: string;
+  childAge: string;
+  childInterest: string;
+  email: string;
+}
 
-export default function GuidingHandPage() {
+function GuidingHandPage() {
+  const [guidienData, setGuidienData] = useState<GuidanceData>({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    experience: "",
+    availability: ""
+  });
 
-  const volunteersaying = [
-    {
-      saying: "Empower the next generation of leaders",
-      statement: '“Volunteering with Zongea Institute of Technology has been a life-changing experience. Seeing young adults gain confidence and skills through my support is deeply fulfilling.”',
-      name: "Jane Smith",
-      job: "Software Engineer, Tech Solutions Inc.",
-      location: "Volunteer, Monrovia"
-    },
-    {
-      saying: "Be a catalyst for change",
-      statement: '“Zongea Institute of Technology provides an incredible opportunity to bridge the gap for young people. Volunteering here allows me to play a role in shaping a better future.”',
-      name: "Michael Johnson",
-      job: "HR Specialist, Global HR Partners",
-      location: "Volunteer, Buchanan"
-    },
-    {
-      saying: "Shape brighter futures",
-      statement: '“It’s amazing to see how much potential these young adults have. Zongea Institute gives them the tools to succeed, and I’m proud to be a part of that mission.”',
-      name: "Emma Brown",
-      job: "Marketing Manager, Bright Ideas Ltd.",
-      location: "Volunteer, Ganta"
-    },
-    {
-      saying: "Invest in tomorrow's talent",
-      statement: '“Volunteering at Zongea Institute has allowed me to give back in a meaningful way. Helping students grow and achieve their goals is truly rewarding.”',
-      name: "Robert Wilson",
-      job: "Project Manager, BuildSmart Inc.",
-      location: "Volunteer, Kakata"
-    },
-    {
-      saying: "Support dreams, change lives",
-      statement: '“Zongea Institute of Technology creates real opportunities for young people. Being a volunteer here means contributing to something impactful and transformative.”',
-      name: "Sophia Davis",
-      job: "Business Analyst, Insight Analytics Co.",
-      location: "Volunteer, Harper"
-    }
-  ];
-  
-// State for the current slide
-const [currentSlide, setCurrentSlide] = useState(0);
+  // State for child registration
+  const [childData, setChildData] = useState<ChildData>({
+    parentName: "",
+    childName: "",
+    childAge: "",
+    childInterest: "",
+    email: ""
+  });
 
-// Length of the testimonials array
-const totalSlides = volunteersaying.length;
+  // Function to handle child input change 
+  function handleChild(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setChildData({
+      ...childData,
+      [e.target.name]: e.target.value
+    });
+  }
 
-// Go to the next slide
-const nextSlide = () => {
-  setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-};
+  // Function to handle Guide input change 
+  function handleGuidien(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setGuidienData({
+      ...guidienData,
+      [e.target.name]: e.target.value
+    });
+  }
 
-// Go to the previous slide
-const prevSlide = () => {
-  setCurrentSlide((prevSlide) =>
-    prevSlide === 0 ? totalSlides - 1 : prevSlide - 1
+  // Function to submit Guide Data 
+  function submitGuidienData(e: React.FormEvent) {
+    e.preventDefault();
+    // Add submission logic here
+  }
+
+  // Function to submit Child Data 
+  function submitChildData(e: React.FormEvent) {
+    e.preventDefault();
+    // Add submission logic here
+  }
+
+  return (
+    <div className="w-full bg-secondary">
+      {/* Hero Section */}
+      <div className="relative h-[400px] bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="absolute inset-0 bg-primary bg-opacity-50 flex items-center justify-center text-center px-6">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">Guiding Hand Mentorship</h1>
+            <p className="text-lg text-white mt-4">Connecting children with mentors to guide them toward a brighter future.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
+      <section className="py-12 sm:py-20 relative overflow-hidden bg-gray-100">
+        <div className="absolute inset-0 bg-primary/5" />
+        <div className="container mx-auto px-4 sm:px-6 relative">
+        <motion.div
+            className="bg-white/70 backdrop-blur-xl rounded-3xl p-6 sm:p-12 border border-gray-100 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">How It Works</h2>
+            <p className="text-gray-600 text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
+              Our mentorship program follows a simple, effective process to connect mentors and mentees
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center relative">
+                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-2xl font-bold text-primary">1</span>
+                </div>
+                {/* Desktop connector line - hidden on mobile */}
+                <div className="hidden lg:block absolute top-8 left-[60%] w-full h-[2px] bg-primary/20" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Sign Up</h3>
+                <p className="text-gray-600">
+                  Create your profile as either a mentor or mentee. Tell us about your expertise or learning goals.
+                </p>
+              </div>
+
+              <div className="text-center relative">
+                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-2xl font-bold text-primary">2</span>
+                </div>
+                {/* Desktop connector line - hidden on mobile */}
+                <div className="hidden lg:block absolute top-8 left-[60%] w-full h-[2px] bg-primary/20" />
+                
+              </div>
+
+              <div className="text-center relative">
+                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-2xl font-bold text-primary">3</span>
+                </div>
+                {/* Desktop connector line - hidden on mobile */}
+                <div className="hidden lg:block absolute top-8 left-[60%] w-full h-[2px] bg-primary/20" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Connect</h3>
+                <p className="text-gray-600">
+                  Schedule your first meeting and start your mentorship journey together.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-2xl font-bold text-primary">4</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Grow Together</h3>
+                <p className="text-gray-600">
+                  Meet regularly, track progress, and achieve your goals with ongoing support.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 sm:mt-12 text-center">
+              <button
+                className="bg-primary text-white px-6 sm:px-8 py-3 rounded-xl hover:bg-primary/90 transition-colors inline-flex items-center gap-2"
+              >
+                Start Your Journey
+                <FaArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Two-Column Guide Registration */}
+      <div className="bg-secondary container mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 className="text-3xl font-bold text-gray-800">Become a Guide</h2>
+          <p className="text-lg text-gray-600 mt-4">Make a difference in a child's life by becoming a Guide. Share your experience, provide guidance, and help shape the future.</p>
+          <button className="mt-6 px-6 py-3 bg-primary text-white rounded-lg shadow-lg hover:bg-primary/90">Register as a Guide</button>
+        </div>
+        <div className="bg-white bg-opacity-20 backdrop-blur-md shadow-lg rounded-lg p-6 max-w-md mx-auto">
+          <h3 className="text-2xl font-semibold text-gray-800">Guidien Registration</h3>
+          <form className="mt-4 space-y-4" onSubmit={submitGuidienData}>
+            <input name="fullName" type="text" placeholder="Full Name" className="w-full p-3 border rounded-lg" onChange={handleGuidien} />
+            <input name="email" type="email" placeholder="Email" className="w-full p-3 border rounded-lg" onChange={handleGuidien} />
+            <input name="phoneNumber" type="text" placeholder="Phone Number" className="w-full p-3 border rounded-lg" onChange={handleGuidien} />
+            <textarea name="experience" placeholder="Your Experience" className="w-full p-3 border rounded-lg" onChange={handleGuidien} />
+            <textarea name="availability" placeholder="Your Availability" className="w-full p-3 border rounded-lg" onChange={handleGuidien} />
+            <button type="submit" className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary/90">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      {/* Parent Enrollment Section */}
+      <div className="container mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 items-center">
+        <img src={childImage} alt="Parent and Child" className="rounded-lg shadow-lg" />
+        <div className="bg-white bg-opacity-20 backdrop-blur-md shadow-lg rounded-lg p-6 ">
+          <h2 className="text-3xl font-bold text-gray-800">Enroll Your Child</h2>
+          <p className="text-lg text-gray-600 mt-4">Give your child the opportunity to learn and grow under the guidance of a caring mentor.</p>
+          <form className="mt-4 space-y-4" onSubmit={submitChildData}>
+            <input name="parentName" type="text" placeholder="Parent's Name" className="w-full p-3 border rounded-lg" onChange={handleChild} />
+            <input name="childName" type="text" placeholder="Child's Name" className="w-full p-3 border rounded-lg" onChange={handleChild} />
+            <input name="childAge" type="number" placeholder="Child's Age" className="w-full p-3 border rounded-lg" onChange={handleChild} />
+            <input name="email" type="email" placeholder="Email" className="w-full p-3 border rounded-lg" onChange={handleChild} />
+            <textarea name="childInterest" placeholder="Child's Interests" className="w-full p-3 border rounded-lg" onChange={handleChild} />
+            <button type="submit" className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary/90">Enroll Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
-// Auto-slide (optional)
-useEffect(() => {
-  const interval = setInterval(() => {
-    nextSlide();
-  }, 5000); // Adjust the timing as needed
-  return () => clearInterval(interval);
-}, []);
-
-
-return (
-<div className="min-h-screen bg-white">
-  {/* Hero Section */}
-  <div className="relative bg-navy-600 text-white">
-  <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-  }}
-  >
-    <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
-  </div>
-  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-    <h1 className="text-2xl md:text-3xl font-bold mb-6">
-     Create an impact. Empower others to unlock career opportunities.
-    </h1>
-    <p className="text-md text-gray-200 max-w-2xl mb-8">
-      Share your skills, insights, and experiences to guide young professionals on their career paths and help bridge the gap in access to opportunities.
-    </p>
-    <Link
-    to="/donate"
-    className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
-    >
-      Volunteer Now<ArrowRight className="ml-2" size={16} />
-    </Link>
-  </div>
-  </div>
-
-  <section 
-    className="py-16 px-4 relative bg-secondary-light">
-    <div className="container mx-auto text-center text-secondary-black">
-
-      <div className='mb-20 w-3/4 mx-auto'>
-        <p className='mb-4 text-left text-sm'>At Zongea Institute of Technology, volunteers play an essential role in equipping young adults with the skills, experiences, and encouragement they need to achieve their full potential. By offering your expertise, you can help bridge the Opportunity Divide and contribute to building a more inclusive workforce.</p>
-        <p className='mb-4 text-left text-sm'>Interested in joining an upcoming volunteer event? Visit our volunteer portal to discover and sign up for a range of opportunities across the Year Up United network. Events include resume workshops, mock interviews, networking sessions, and more—each tailored to support young adults in advancing their careers.</p>
-        <p className='mb-4 text-left text-sm'>Start your journey by creating a volunteer account today. For additional details, feel free to contact us at <Link className='underline text-secondary-yellow hover:text-primary font-semibold' to="mailto:info@zongeatech.com">info@zongeatech.com</Link>. Together, we can make a meaningful impact and help close the Opportunity Divide.</p>
-      </div>
-
-      <div className="mb-8 w-20 h-20 mx-auto rounded-full bg-primary flex items-center justify-center">
-        <Handshake className="w-10 h-10 text-secondary-yellow" />
-      </div>
-      <h2 className="text-xl md:text-2xl font-bold mb-4 w-3/4 mx-auto">You can make a unforgettable difference that will forever impact the lives of young professionals.</h2>
-      <Link
-      to="/donate"
-      className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
-      >
-        Volunteer Now<ArrowRight className="ml-2" size={16} />
-      </Link>
-    </div>
-  </section>
-
-  {/* What Volunteers Say Section */}
-  <section className="bg-white py-20">
-    <div className="relative max-w-3xl mx-auto overflow-hidden">
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
-        {volunteersaying.map((testimonial, index) => (
-          <div
-            key={index}
-            className="min-w-full bg-primary text-secondary-light p-8 rounded-lg shadow-lg"
-          >
-            <h4 className="text-xl font-semibold mb-4">{testimonial.saying}</h4>
-            <p className="mb-6 text-sm">{testimonial.statement}</p>
-            <h4 className="font-semibold text-md">{testimonial.name}</h4>
-            <p className="text-sm text-secondary-yellow">{testimonial.job}</p>
-            <p className="text-sm text-secondary-yellow">{testimonial.location}</p>
-          </div>
-        ))}
-      </div>
-      {/* Arrow Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white text-primary text-2xl rounded-full w-8 h-8 flex items-center justify-center shadow"
-      >
-        &#10094;
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white text-primary text-2xl rounded-full w-8 h-8 flex items-center justify-center shadow"
-      >
-        &#10095;
-      </button>
-      {/* Dots for Navigation */}
-      <div className="flex justify-center mt-6">
-        {volunteersaying.map((_, index) => (
-          <div
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 mx-2 rounded-full cursor-pointer ${
-              index === currentSlide ? 'bg-primary' : 'bg-gray-400'
-            }`}
-          ></div>
-        ))}
-      </div>
-    </div>
-  </section>
-</div>
-
-)}
+export default GuidingHandPage;

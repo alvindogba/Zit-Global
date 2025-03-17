@@ -3,7 +3,7 @@ const templates = {
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h1 style="color: #2c3e50; text-align: center;">Application Received</h1>
       <p>Dear ${data.fullName},</p>
-      <p>Thank you for applying to Zion Institute of Technology. We have received your application for the ${data.program} program.</p>
+      <p>Thank you for applying to Zongea Institute of Technology. We have received your application for the ${data.program} program.</p>
       <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
         <p><strong>Application Details:</strong></p>
         <ul style="list-style: none; padding: 0;">
