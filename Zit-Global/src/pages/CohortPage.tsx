@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ContactImg from '../asset/images/OT image .jpg';
+import { Link } from 'react-router-dom'
 
 interface Program {
   id: string;
@@ -330,9 +331,9 @@ const CohortPage = () => {
 
                 {cohorts[activeCohort].status === 'current' && (
                   <div className="mt-8 flex justify-center">
-                    <button className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                    <Link to='/admission' className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
                       Apply Now
-                    </button>
+                    </Link>
                   </div>
                 )}
               </div>

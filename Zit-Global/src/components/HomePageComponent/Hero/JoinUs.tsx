@@ -19,7 +19,7 @@ export default function JoinUs() {
           By volunteering, you can make a significant impact in the lives of learners in the USA and Liberia. 
           Register now to be part of our mission and help shape the future.
         </p>
-        <button className="mt-10 px-6 py-2 border border-white  rounded-lg hover:bg-white hover:text-primary hover:font-extrabold transition-all w-full md:w-auto">
+        <button className="mt-10 px-6 py-2 border border-white bg-primary text-white  rounded-lg hover:bg-white hover:text-primary hover:font-extrabold transition-all w-full md:w-auto">
           Become a Teacher
         </button>
       </div>

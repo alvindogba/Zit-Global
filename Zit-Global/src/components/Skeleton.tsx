@@ -21,6 +21,14 @@ export const Skeleton = ({ className, width, height }: SkeletonProps) => {
   );
 };
 
+// export const DefualtSkeleton = () => (
+//   <div className="space-y-4">
+//     <Skeleton height={200} />
+//     <Skeleton width={200} />
+//     <Skeleton height={20} />
+//   </div>
+// );
+
 export const ProjectSkeleton = () => (
   <div className="space-y-4">
     <Skeleton height={200} />

@@ -174,12 +174,12 @@ const SuccessStory = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 h-full py-20">
+        <div className="max-w-7xl bg-white mx-auto px-6 md:px-10 py-12 h-full py-20">
             <AnimateOnScroll animation="slideDown">
-                <h2 className="text-2xl font-bold text-primary text-center mb-2">Our Successful Testimonials</h2>
+                <h2 className="text-2xl font-bold text-primary text-center mb-2">Our Success Story</h2>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fadeIn" delay={200}>
-                <p className="text-lg text-gray-600 mb-2 text-left md:text-center">
+                <p className="text-lg text-black mb-2 text-left md:text-center">
                     Listen to what some of our students have to say about the impact of our programs and how it helps in their careers.
                 </p>
             </AnimateOnScroll>
@@ -207,7 +207,7 @@ const SuccessStory = () => {
                                 delay={index * 100}
                                 className="flex-shrink-0 w-full md:w-[calc(50%-8px)]"
                             >
-                                <div className="border rounded-lg p-6 bg-gray-200 transition-transform transform hover:scale-105 hover:shadow-lg h-full flex flex-col justify-between">
+                                <div className="border rounded-lg p-6 bg-gray-300 transition-transform transform hover:scale-105 hover:shadow-lg h-full flex flex-col justify-between">
                                     <div className="text-center">
                                         <Quote className="mx-auto" />
                                         <p className="text-left px-4">{student.message}</p>
