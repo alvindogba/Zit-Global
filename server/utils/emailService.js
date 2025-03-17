@@ -34,6 +34,7 @@ export const sendContactConfirmation = async (userEmail, userName) => {
   };
 
   try {
+    
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error('Error sending confirmation email:', error);
@@ -50,7 +51,7 @@ export const sendAdminNotification = async (contactData) => {
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${contactData.name}</p>
+        <p><strong>Name:</strong> ${contactData.fullName}</p>
         <p><strong>Email:</strong> ${contactData.email}</p>
         <p><strong>Subject:</strong> ${contactData.subject}</p>
         <p><strong>Message:</strong></p>
