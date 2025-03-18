@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import ContactImg from '../asset/images/OT image .jpg';
 import { Link } from 'react-router-dom'
+// Import Icons
+import { FaLaptopCode, FaServer, FaLayerGroup, FaPaintBrush, FaShieldAlt, FaPalette } from "react-icons/fa";
 
 interface Program {
   id: string;
@@ -13,7 +15,7 @@ interface Program {
   enrolledStudents: number;
   instructor: string;
   skills: string[];
-  icon: string;
+  icon: JSX.Element; // Store icon as a JSX element
 }
 
 interface Cohort {
@@ -25,6 +27,14 @@ interface Cohort {
   endDate: string;
   programs: Record<string, Program>;
 }
+
+// Define icons in variables
+const frontendIcon = <FaLaptopCode />;
+const backendIcon = <FaServer />;
+const fullstackIcon = <FaLayerGroup />;
+const graphicsIcon = <FaPaintBrush />;
+const securityIcon = <FaShieldAlt />;
+const uiuxIcon = <FaPalette />;
 
 const CohortPage = () => {
   const [activeCohort, setActiveCohort] = useState('cohort-2025-1');
@@ -50,7 +60,7 @@ const CohortPage = () => {
           enrolledStudents: 25,
           instructor: 'Alfred Jallah',
           skills: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Responsive Design', 'Web Performance'],
-          icon: 'FaLaptopCode'
+          icon: frontendIcon,
         },
         backend: {
           id: 'backend',
@@ -63,7 +73,7 @@ const CohortPage = () => {
           enrolledStudents: 22,
           instructor: 'Hilton Jackson',
           skills: ['Node.js', 'Express', 'PostgreSQL', 'API Design', 'Authentication', 'Cloud Services'],
-          icon: 'FaServer'
+          icon: backendIcon,
         },
         fullstack: {
           id: 'fullstack',
@@ -76,7 +86,7 @@ const CohortPage = () => {
           enrolledStudents: 20,
           instructor: 'Sharderd Mechard',
           skills: ['React', 'Node.js', 'Full-Stack Architecture', 'Database Design', 'DevOps', 'System Design'],
-          icon: 'FaLayerGroup'
+          icon: fullstackIcon,
         },
         graphics: {
           id: 'graphics',
@@ -89,7 +99,7 @@ const CohortPage = () => {
           enrolledStudents: 18,
           instructor: 'Tarr Zlan',
           skills: ['Adobe Creative Suite', 'Typography', 'Brand Design', 'Digital Illustration', 'Print Design', 'Color Theory'],
-          icon: 'FaPaintBrush'
+          icon: graphicsIcon,
         },
         security: {
           id: 'security',
@@ -102,7 +112,7 @@ const CohortPage = () => {
           enrolledStudents: 15,
           instructor: 'Jonathan Williams',
           skills: ['Network Security', 'Ethical Hacking', 'Security Protocols', 'Risk Assessment', 'Incident Response', 'Security Tools'],
-          icon: 'FaShieldAlt'
+          icon: securityIcon,
         },
         uiux: {
           id: 'uiux',
@@ -115,7 +125,7 @@ const CohortPage = () => {
           enrolledStudents: 20,
           instructor: 'Sarah Chen',
           skills: ['User Research', 'Wireframing', 'Prototyping', 'Figma', 'Design Systems', 'Usability Testing'],
-          icon: 'FaPalette'
+          icon: uiuxIcon,
         }
       }
     },
@@ -138,7 +148,7 @@ const CohortPage = () => {
           enrolledStudents: 28,
           instructor: 'Alfred Jallah',
           skills: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Responsive Design', 'Web Performance'],
-          icon: 'FaLaptopCode'
+          icon: frontendIcon,
         },
         backend: {
           id: 'backend',
@@ -151,7 +161,7 @@ const CohortPage = () => {
           enrolledStudents: 25,
           instructor: 'Hilton Jackson',
           skills: ['Node.js', 'Express', 'PostgreSQL', 'API Design', 'Authentication', 'Cloud Services'],
-          icon: 'FaServer'
+          icon: backendIcon,
         }
       }
     },
@@ -174,7 +184,7 @@ const CohortPage = () => {
           enrolledStudents: 25,
           instructor: 'Alfred Jallah',
           skills: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Responsive Design'],
-          icon: 'FaLaptopCode'
+          icon: frontendIcon,
         }
       }
     }

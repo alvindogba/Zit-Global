@@ -90,13 +90,13 @@ const ProgramsWeOffer = ()=>{
 
           </div>
         </motion.div>
-        <div className=" p-4  ">
-        <Link
-    className="relative top-4 left-[80%] -translate-x-1/2 px-4 py-2 text-primary border border-primary rounded-lg hover:bg-gray-800 hover:text-white transition-all"
-    to="/courses"
->
-    View All Courses
-</Link>
+        <div className=" p-4 ">
+          <Link
+            className="relative top-4  md:left-[80%] -translate-x-1/2 px-4 py-2 text-primary border border-primary rounded-lg hover:bg-gray-800 hover:text-white transition-all"
+            to="/courses"
+          >
+            View All Courses
+          </Link>
         </div>
       </Section>
     )

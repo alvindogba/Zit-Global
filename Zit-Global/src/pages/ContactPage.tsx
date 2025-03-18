@@ -68,10 +68,10 @@ export default function ContactPage() {
         </div>
         <div className="relative max-w-5xl mx-auto px-8 sm:px-6 lg:px-8 py-24">
 
-          <h1 className="text-2xl md:text-3xl font-bold mb-6 w-[28rem]">
+          <h1 className="text-2xl md:text-3xl font-bold mb-6 md:w-[28rem] ">
             Get More Information About Our School & Courses
           </h1>
-          <div className='w-[40rem]'>
+          <div className='md:w-[40rem]'>
             <p className="text-md text-gray-200 max-w-2xl mb-8">
              Your donation helps provide free, high-quality education, mentorship and skill development to students in Liberia and beyond
             </p>
@@ -141,14 +141,14 @@ export default function ContactPage() {
               <label className="block text-gray-700">Name</label>
               <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full p-2 border rounded-md bg-gray-100" required />
             </div>
-            <div className="mb-4 xm:gap-2 flex justify-between items-center w-full">
+            <div className="mb-4 md:gap-2 md:flex justify-between items-center w-full">
               <div>
                 <label className="block text-gray-700">Email</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-[28rem] p-2 border rounded-md bg-gray-100" required />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className="md:w-[28rem] w-full p-2 border rounded-md bg-gray-100" required />
               </div>
               <div>
                 <label className="block text-gray-700">Subject</label>
-                <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-[28rem] p-2 border rounded-md bg-gray-100" required />
+                <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="md:w-[28rem] w-full p-2 border rounded-md bg-gray-100" required />
               </div>
             </div>
             
@@ -183,23 +183,30 @@ export default function ContactPage() {
           backgroundPosition: 'center'
         }}
       >
-        <div className="container w-full  text-center  text-white">
-        <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
-        Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!     </h2>
-        <Link
-        to="/donate"
-        className="w-full md:w-fit border hover:bg-white hover:text-primary  text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center md:mr-4 mt-4"
-        >
-        Be A Volunteer <ArrowRight className="ml-2" size={16} />
-        </Link>
+      <div className="container w-full text-center text-white">
+  <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
+    Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
+  </h2>
 
-        <Link
-        to="/donate"
-        className="w-full md:w-fit bg-white  text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center md:ml-4 mt-4"
-        >
-        Donate Today <ArrowRight className="ml-4" size={16} />
-        </Link>
-      </div>
+  <div className="flex flex-col sm:flex-row justify-center gap-4">
+    {/* Volunteer Button */}
+    <Link
+      to="/guiding-hands-program"
+      className="w-full sm:w-fit border hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+    >
+      Be A Volunteer <ArrowRight className="ml-2" size={16} />
+    </Link>
+
+    {/* Donate Button */}
+    <Link
+      to="/donate"
+      className="w-full sm:w-fit bg-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+    >
+      Donate Today <ArrowRight className="ml-2" size={16} />
+    </Link>
+  </div>
+</div>
+
       </div>
 
     </div>
