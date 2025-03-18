@@ -1,29 +1,39 @@
 export const up = async (queryInterface, Sequelize) => {
-  await queryInterface.createTable('Contacts', {
+  await queryInterface.createTable('mentors', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    fullName: {
+    firstName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    lastName: {
       type: Sequelize.STRING,
       allowNull: false,
     },
     email: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
-    subject: {
+    phone: {
       type: Sequelize.STRING,
-      allowNull: false,
     },
-    message: {
-      type: Sequelize.TEXT,
-      allowNull: false,
+    country: {
+      type: Sequelize.STRING,
     },
-    status: {
-      type: Sequelize.ENUM('pending', 'responded'),
-      defaultValue: 'pending',
+    state: {
+      type: Sequelize.STRING,
+    },
+    community: {
+      type: Sequelize.STRING,
+    },
+    expertise: {
+      type: Sequelize.STRING,
+    },
+    motivation: {
+      type: Sequelize.STRING,
     },
     createdAt: {
       type: Sequelize.DATE,
@@ -37,5 +47,5 @@ export const up = async (queryInterface, Sequelize) => {
 };
 
 export const down = async (queryInterface, Sequelize) => {
-  await queryInterface.dropTable('Contacts');
+  await queryInterface.dropTable('mentors');
 };

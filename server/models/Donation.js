@@ -57,14 +57,7 @@ export default (sequelize, DataTypes) => {
   }, {
     tableName: 'Donations',
     timestamps: true,
-    // hooks: {
-    //   beforeCreate: async (donation) => {
-    //     // Generate unique receipt number
-    //     const year = new Date().getFullYear();
-    //     const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    //     donation.receiptNumber = `DON-${year}-${random}`;
-    //   },
-    // },
+  
   });
   return Donation;
 }
