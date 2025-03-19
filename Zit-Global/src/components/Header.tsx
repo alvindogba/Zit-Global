@@ -16,11 +16,11 @@ const navigation = [
   },
   {
     name: "Make Impact",
-    href: "/guiding-hands-program",
+    href: "/guiding-hand",
     dropdown: [
-      { name: "Guiding Hands Program", href: "/guiding-hands-program" }, // Fixed typo
+      { name: "Guiding Hand Program", href: "/guiding-hand" }, // Fixed typo
       { name: "Mentorship Program", href: "/mentorship-program" },
-      { name: "Tutorship Program", href: "/tutorship-program" }, // Fixed typo
+      // { name: "Tutorship Program", href: "/tutorship-program" }, // Fixed typo
       { name: "Be A Donor", href: "/be-a-donor" },
     ],
   },

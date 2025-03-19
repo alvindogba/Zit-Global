@@ -106,7 +106,7 @@ export default function CyberSecurityDetailPage() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
           <h1 className="text-3xl font-bold text-white mb-4">Cybersecurity Course</h1>
-          <p className="text-secondary-yellow text-lg">
+          <p className="text-gray-200 text-lg">
             Protect the Digital World – Get Free Training in Cybersecurity and Ethical Hacking
           </p>
         </div>
@@ -158,7 +158,7 @@ export default function CyberSecurityDetailPage() {
                   <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
                     <button 
                       onClick={() => toggleSection(index)}
-                      className="w-full px-4 py-3 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                      className="bg-white w-full px-4 py-3 flex items-center justify-between text-left hover:bg-gray-500 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
                         <span className="text-primary">{section.icon}</span>
