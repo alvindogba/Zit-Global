@@ -4,6 +4,8 @@ import { FaUserGraduate, FaChalkboardTeacher, FaSearch, FaArrowRight, FaGlobe, F
 import img1 from '../../asset/images/Graduation-Bg-Img.jpg';
 import img2 from '../../asset/images/herobg3.jpg';
 import img3 from '../../asset/images/herobg2.jpg';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const GetMentorShip = () => {
     const [activeTab, setActiveTab] = useState('find');
     const [showForm, setShowForm] = useState(false);
@@ -50,10 +52,13 @@ const GetMentorShip = () => {
         interests: '',
         goals: '',
         preferredSchedule: '',
-        mentorPreferences: ''
+        mentorPreferences: '',
+        role: ''
     });
 
     const videoRef = useRef<HTMLVideoElement>(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (videoRef.current) {
@@ -75,12 +80,48 @@ const GetMentorShip = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(formData);
-        setShowForm(false);
+        
+        // Determine role based on active tab
+        const role = activeTab === 'find' ? 'mentee' : 'mentor';
+        
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/mentorship/create`, {
+                ...formData,
+                role // Include role in the request body
+            });
+    
+            console.log("Success:", response.data);
+            setShowForm(false);
+            // Reset form after successful submission
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                country: '',
+                state: '',
+                community: '',
+                expertise: '',
+                motivation: '',
+                interests: '',
+                goals: '',
+                preferredSchedule: '',
+                mentorPreferences: '',
+                role: ''
+            });
+            // Redirect to dashboard on success
+            navigate('/mentorship-dashboard', { 
+                state: { 
+                    userData: response.data,
+                    role: activeTab === 'find' ? 'mentee' : 'mentor'
+                }
+            });
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
     };
-
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section with Image Slideshow */}
