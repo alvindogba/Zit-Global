@@ -154,7 +154,7 @@ export default function ContactPage() {
                 required
               />
             </div>
-            <div className="mb-4 xm:gap-2 flex justify-between items-center w-full">
+            <div className="mb-4 md:gap-2 md:flex justify-between items-center w-full">
               <div>
                 <label className="block text-gray-700">Email</label>
                 <input
@@ -247,25 +247,32 @@ export default function ContactPage() {
           backgroundPosition: 'center',
         }}
       >
-        <div className="container w-full text-center text-white">
-          <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
-            Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
-          </h2>
-          <Link
-            to="/donate"
-            className="w-full md:w-fit border hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center md:mr-4 mt-4"
-          >
-            Be A Volunteer <ArrowRight className="ml-2" size={16} />
-          </Link>
+      <div className="container w-full text-center text-white">
+  <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
+    Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
+  </h2>
 
-          <Link
-            to="/donate"
-            className="w-full md:w-fit bg-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center md:ml-4 mt-4"
-          >
-            Donate Today <ArrowRight className="ml-4" size={16} />
-          </Link>
-        </div>
+  <div className="flex flex-col sm:flex-row justify-center gap-4">
+    {/* Volunteer Button */}
+    <Link
+      to="/guiding-hands-program"
+      className="w-full sm:w-fit border hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+    >
+      Be A Volunteer <ArrowRight className="ml-2" size={16} />
+    </Link>
+
+    {/* Donate Button */}
+    <Link
+      to="/donate"
+      className="w-full sm:w-fit bg-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+    >
+      Donate Today <ArrowRight className="ml-2" size={16} />
+    </Link>
+  </div>
+</div>
+
       </div>
+
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import HeroBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
-import { Code, Palette, Shield, Layout } from 'lucide-react';
+import { Code, Palette, Shield, Layout, Database, FileText } from "lucide-react";
 // import { ArrowRight } from 'lucide-react';
 // import CoursesPageImg from '../asset/images/courseP-bg.jpg';
 //courses Images
@@ -8,12 +8,15 @@ import FullStack from '../asset/images/full-stack-development.jpeg';
 import CyberSecurity from '../asset/images/cyber-security.jpeg';
 import GraphicDesign from '../asset/images/graphic-design.jpeg';
 import UIUXDesign from '../asset/images/ui-ux-design.jpeg';
+import Microsoft from '../asset/images/microsoft-365.jpeg'
+import DatabaseImg from '../asset/images/database.jfif'
 
 export default function Courses() {
   const courses = [
     {
       title: "Full Stack Development",
-      description: "Master both frontend and backend development. Learn to build complete, scalable web applications from scratch with modern technologies.",
+      description:
+        "Master both frontend and backend development. Learn to build complete, scalable web applications from scratch with modern technologies.",
       icon: <Code className="w-12 h-12 text-secondary-yellow" />,
       image: FullStack,
       path: "/courses/full-stack-development",
@@ -21,12 +24,13 @@ export default function Courses() {
         "Frontend & Backend Development",
         "Database Management",
         "API Design",
-        "Cloud Deployment"
-      ]
+        "Cloud Deployment",
+      ],
     },
     {
       title: "UI/UX Design",
-      description: "Create beautiful and user-friendly digital experiences. Learn design principles, prototyping, and user research methods.",
+      description:
+        "Create beautiful and user-friendly digital experiences. Learn design principles, prototyping, and user research methods.",
       icon: <Layout className="w-12 h-12 text-secondary-yellow" />,
       image: UIUXDesign,
       path: "/courses/ui-ux-design",
@@ -34,12 +38,13 @@ export default function Courses() {
         "User Interface Design",
         "User Experience Research",
         "Prototyping",
-        "Design Systems"
-      ]
+        "Design Systems",
+      ],
     },
     {
       title: "Cybersecurity",
-      description: "Protect the digital world. Learn cybersecurity fundamentals, ethical hacking, and defense strategies against cyber threats.",
+      description:
+        "Protect the digital world. Learn cybersecurity fundamentals, ethical hacking, and defense strategies against cyber threats.",
       icon: <Shield className="w-12 h-12 text-secondary-yellow" />,
       image: CyberSecurity,
       path: "/courses/cybersecurity",
@@ -47,12 +52,13 @@ export default function Courses() {
         "Network Security",
         "Ethical Hacking",
         "Security Policies",
-        "Incident Response"
-      ]
+        "Incident Response",
+      ],
     },
     {
       title: "Graphic Design",
-      description: "Transform your creative vision into professional designs. Master industry-standard tools and design principles.",
+      description:
+        "Transform your creative vision into professional designs. Master industry-standard tools and design principles.",
       icon: <Palette className="w-12 h-12 text-secondary-yellow" />,
       image: GraphicDesign,
       path: "/courses/graphic-design",
@@ -60,10 +66,39 @@ export default function Courses() {
         "Digital Design Tools",
         "Brand Identity",
         "Visual Communication",
-        "Print & Digital Media"
-      ]
-    }
+        "Print & Digital Media",
+      ],
+    },
+    {
+      title: "Database Administration",
+      description:
+        "Manage and optimize databases efficiently. Learn SQL, data security, and performance tuning to ensure database reliability.",
+      icon: <Database className="w-12 h-12 text-secondary-yellow" />,
+      image: DatabaseImg, // Unsplash image for Database
+      path: "/courses/database-administration",
+      highlights: [
+        "SQL & NoSQL Databases",
+        "Data Security",
+        "Performance Optimization",
+        "Backup & Recovery Strategies",
+      ],
+    },
+    {
+      title: "Microsoft Office Suite",
+      description:
+        "Master essential Microsoft Office tools like Word, Excel, and PowerPoint. Gain efficiency in document creation, data analysis, and presentations.",
+      icon: <FileText className="w-12 h-12 text-secondary-yellow" />,
+      image: Microsoft,
+      path: "/courses/microsoft-office-suite",
+      highlights: [
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Microsoft PowerPoint",
+        "Office Productivity Tips",
+      ],
+    },
   ];
+  
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -115,7 +150,7 @@ export default function Courses() {
                   <ul className="grid grid-cols-2 gap-2">
                     {course.highlights.map((highlight, idx) => (
                       <li key={idx} className="flex items-center text-sm text-gray-600">
-                        <span className="w-1.5 h-1.5 bg-secondary-yellow rounded-full mr-2"></span>
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
                         {highlight}
                       </li>
                     ))}
@@ -124,7 +159,7 @@ export default function Courses() {
 
                 <Link 
                   to={course.path}
-                  className="inline-flex items-center justify-center w-full bg-navy-600 text-secondary-yellow py-3 px-6 rounded-md hover:bg-navy-700 transition-colors font-semibold"
+                  className="inline-flex items-center justify-center w-full bg-primary text-white py-3 px-6 rounded-md hover:bg-navy-700 transition-colors font-semibold"
                 >
                   Learn More
                 </Link>
@@ -148,7 +183,7 @@ export default function Courses() {
             Join our community of learners and kickstart your career in technology and design.
             All courses are free and designed to help you succeed.
           </p>
-            <Link to="/admission" className="bg-secondary-yellow text-primary py-3 px-6 rounded-md hover:bg-secondary-yellow transition-colors font-semibold">
+            <Link to="/admission" className="bg-white text-primary py-3 px-6 rounded-md hover:bg-secondary-yellow transition-colors font-semibold">
              Apply Now
             </Link>
         </div>
