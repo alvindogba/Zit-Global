@@ -30,9 +30,7 @@ export default (sequelize, DataTypes) =>{
       community: {
         type: DataTypes.STRING,
       },
-      expertise: {
-        type: DataTypes.STRING,
-      },
+   
       interest: {
         type: DataTypes.STRING,
       },
@@ -45,6 +43,7 @@ export default (sequelize, DataTypes) =>{
       mentorPreferences: {
         type: DataTypes.STRING,
       },
+  
     }, {
       tableName: 'mentees',
       timestamps: true,

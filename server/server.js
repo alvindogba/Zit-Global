@@ -13,6 +13,7 @@ import router from './Routes/AdmissionRoute.js';
 import stripeRouter from './Routes/StripePay.js';
 import paypalRouter from './Routes/PaypalRoute.js';
 import contactRouter from './Routes/ContactRoute.js';
+import mentorshipRouter from './Routes/MentorShipRoute.js';
 
 const app = express();
 const PORT = process.env.PORT ; // Match the port in your image URL
@@ -57,6 +58,7 @@ app.use("/admission", router);
 app.use('/api/stripe', stripeRouter);
 app.use('/api/paypal', paypalRouter);
 app.use('/api/contact', contactRouter);
+app.use('/api/mentorship', mentorshipRouter);
 app.get('/test', (req, res) => res.json({ message: 'Server is running!' }));
 app.get('/health', (req, res) => res.status(200).json({ status: 'healthy', uptime: process.uptime() }));
 

@@ -29,9 +29,6 @@ export const up = async (queryInterface, Sequelize) => {
     community: {
       type: Sequelize.STRING,
     },
-    expertise: {
-      type: Sequelize.STRING,
-    },
     interest: {
       type: Sequelize.STRING,
     },

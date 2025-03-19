@@ -36,10 +36,6 @@ export default (sequelize, DataTypes) =>{
       motivation: {
         type: DataTypes.STRING,
       },
-
-
-
-
     }, {
       tableName: 'mentors',
       timestamps: true,

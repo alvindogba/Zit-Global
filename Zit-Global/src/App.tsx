@@ -32,6 +32,7 @@ const GraphicDesign =lazy(() => import('./pages/CoursesDetails/GraphicDesign'))
 const CyberSecurity =lazy(() => import('./pages/CoursesDetails/CyberSercurity'))
 const MicrosoftOffice =lazy(() => import('./pages/CoursesDetails/MicrosoftOfficeDetailPage'))
 const DatabaseAdmin =lazy(() => import('./pages/CoursesDetails/DatabaseAdminDetailPage'))
+const MentorshipDashboard =lazy(() => import('./pages/Dashboards/MentorshipDashboard'))
 
 
 // Initialize Stripe
@@ -129,6 +130,14 @@ function App() {
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
                   <Mentorship />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/mentorship-dashboard"
+              element={
+                <Suspense fallback={<ProjectSkeleton />}>
+                  <MentorshipDashboard />
                 </Suspense>
               }
             />
