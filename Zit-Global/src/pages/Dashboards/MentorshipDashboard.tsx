@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useDaily, DailyProvider } from '@daily-co/daily-react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useDaily, DailyProvider, DailyVideo } from '@daily-co/daily-react';
+import DailyIframe, { DailyCall, DailyFactoryOptions, } from '@daily-co/daily-js';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { 
   FaComments, FaTasks, FaCalendarAlt, FaChartLine, 
-  FaVideo, FaBell, FaTimes, FaCheck, FaUserGraduate,
-  FaChalkboardTeacher, FaSearch, FaArrowRight, FaGlobe,
-  FaLightbulb, FaRocket, FaUsers
+  FaVideo, FaBell, FaTimes, FaCheck, 
+  // FaChalkboardTeacher, FaSearch, FaArrowRight, FaGlobe,
+  // FaLightbulb, FaRocket, FaUsers
 } from 'react-icons/fa';
-import { DailyCall } from '@daily-co/daily-js';
 
 // Video Call Interface Component
-const VideoCallInterface = ({ callFrame, onClose }: { callFrame: DailyCall | null, onClose: () => void }) => {
+const VideoCallInterface = ({ onClose }: { onClose: () => void }) => {
   const daily = useDaily();
   const [participants, setParticipants] = useState<any[]>([]);
   const [micEnabled, setMicEnabled] = useState(true);
@@ -56,13 +56,11 @@ const VideoCallInterface = ({ callFrame, onClose }: { callFrame: DailyCall | nul
               key={participant.session_id}
               className="relative bg-gray-800 rounded-lg overflow-hidden"
             >
-              <video
-                autoPlay
-                playsInline
+              <DailyVideo
+                automirror
+                type="video"
+                sessionId={participant.session_id}
                 className="w-full h-full object-cover"
-                ref={el => {
-                  if (el && daily) daily.attachVideoElement(el, participant.session_id);
-                }}
               />
               <div className="absolute bottom-2 left-2 text-white bg-black/50 px-2 py-1 rounded">
                 {participant.user_name}
@@ -215,10 +213,10 @@ const MentorshipDashboard = () => {
     const startVideoCall = async (sessionId: string) => {
         try {
             const response = await axios.post(`/api/sessions/${sessionId}/start-call`);
-            const call = window.DailyIframe.createCallObject({
+            const options: DailyFactoryOptions = {
                 url: response.data.url,
-                apiKey: import.meta.env.VITE_DAILY_API_KEY,
-            });
+            };
+            const call = DailyIframe.createCallObject(options);
             setActiveCall(call);
             setShowVideoCall(true);
             await call.join();
@@ -251,7 +249,6 @@ const MentorshipDashboard = () => {
                 {/* Video Call Interface */}
                 {showVideoCall && activeCall && (
                     <VideoCallInterface 
-                        callFrame={activeCall}
                         onClose={() => {
                             activeCall.leave();
                             setShowVideoCall(false);

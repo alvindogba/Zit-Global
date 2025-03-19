@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import ContactImg from '../asset/images/OT image .jpg';
 import { Link } from 'react-router-dom'
 // Import Icons
