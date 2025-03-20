@@ -105,7 +105,7 @@ export default function GraphicDesignDetailPage() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
           <h1 className="text-3xl font-bold text-white mb-4">Graphic Design Course</h1>
-          <p className="text-secondary-yellow text-lg">
+          <p className="text-gray-200 text-lg">
             Transform Your Creative Vision into Professional Designs
           </p>
         </div>

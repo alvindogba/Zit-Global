@@ -153,6 +153,26 @@ const Footer = () => {
                 Cyber Security Courses
               </Link>
             </li>
+            <li>
+              <Link 
+                to="/courses/microsoft-office"
+                className={`block text-white hover:text-secondary-yellow ${
+                  isActive ('/courses/microsoft-office') ? 'text-secondary-yellow' : ''
+                 }`}
+              >
+                Microsoft Office Courses
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/courses/database-admin"
+                className={`block text-white hover:text-secondary-yellow ${
+                  isActive ('/courses/database-admin') ? 'text-secondary-yellow' : ''
+                 }`}
+              >
+                Database Admin Courses
+              </Link>
+            </li>
           </ul>
         </div>
 

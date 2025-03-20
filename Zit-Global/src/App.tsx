@@ -31,6 +31,8 @@ const Fullstack =lazy(() => import('./pages/CoursesDetails/FullStackDevelopment'
 const UIUXDesign =lazy(() => import('./pages/CoursesDetails/UIUXDesign'))
 const GraphicDesign =lazy(() => import('./pages/CoursesDetails/GraphicDesign'))
 const CyberSecurity =lazy(() => import('./pages/CoursesDetails/CyberSercurity'))
+const MicrosoftOffice =lazy(() => import('./pages/CoursesDetails/MicrosoftOfficeDetailPage'))
+const DatabaseAdmin =lazy(() => import('./pages/CoursesDetails/DatabaseAdminDetailPage'))
 const MentorshipDashboard =lazy(() => import('./pages/Dashboards/MentorshipDashboard'))
 
 
@@ -89,6 +91,14 @@ function App() {
               element={
                 <Suspense fallback={<ServiceSkeleton />}>
                   <HowToApply />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/guiding-hand"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <GuidingHandPage />
                 </Suspense>
               }
             />
@@ -219,6 +229,22 @@ function App() {
               element={
                 <Suspense fallback={<ServiceSkeleton />}>
                   <Fullstack />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/courses/microsoft-office"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <MicrosoftOffice />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/courses/database-admin"
+              element={
+                <Suspense fallback={<ServiceSkeleton />}>
+                  <DatabaseAdmin />
                 </Suspense>
               }
             />

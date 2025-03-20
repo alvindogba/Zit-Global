@@ -1,91 +1,74 @@
 import { useState } from 'react';
-import { Laptop, Clock, Award, ChevronDown, ChevronRight, Code, Database, Globe, Puzzle, Terminal, BookOpen } from 'lucide-react';
+import { Laptop, Clock, Award, ChevronDown, ChevronRight, Database, Server, FileKey, AlertCircle, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import HeroBgImg from "../../asset/images/full-stack-development.jpeg";
 
-export default function FullStackDetailPage() {
+import HeroBgImg from "../../asset/images/database.jfif"; // Update with an actual image
+
+export default function DatabaseAdminDetailPage() {
   const courseIncludes = [
-    { icon: <Laptop className="w-5 h-5" />, text: "Access to Development Environment" },
-    { icon: <Clock className="w-5 h-5" />, text: "24/7 Access to Learning Resources" },
+    { icon: <Laptop className="w-5 h-5" />, text: "Hands-on Practice with SQL & NoSQL" },
+    { icon: <Clock className="w-5 h-5" />, text: "24/7 Lab Access" },
     { icon: <Award className="w-5 h-5" />, text: "Certificate of Completion" }
   ];
 
   const requirements = [
-    "Basic understanding of HTML, CSS, and JavaScript",
-    "Passion for problem-solving and logical thinking",
-    "Commitment to learning and practicing regularly"
+    "Basic computer knowledge",
+    "Familiarity with database concepts is beneficial but not required"
   ];
 
   const [expandedSections, setExpandedSections] = useState<number[]>([0, 3]);
 
   const curriculumSections = [
     {
-      title: "Frontend Development Fundamentals",
-      icon: <Globe className="w-5 h-5" />,
-      subsections: [
-        "Advanced HTML5 and CSS3",
-        "Modern JavaScript (ES6+)",
-        "React.js fundamentals and hooks",
-        "State management with Redux"
-      ]
-    },
-    {
-      title: "Backend Development",
+      title: "Introduction to Databases",
       icon: <Database className="w-5 h-5" />,
       subsections: [
-        "Node.js and Express.js",
-        "RESTful API design",
-        "Database design and management",
-        "Authentication and authorization"
+        "Types of databases (SQL vs NoSQL)",
+        "Database models & architecture",
+        "Introduction to Relational Databases"
       ]
     },
     {
-      title: "Database Management",
-      icon: <Terminal className="w-5 h-5" />,
+      title: "SQL & Query Optimization",
+      icon: <Server className="w-5 h-5" />,
       subsections: [
-        "SQL fundamentals",
-        "MongoDB and NoSQL",
-        "Database optimization",
-        "Data modeling"
+        "Basic SQL commands",
+        "Advanced Query Optimization",
+        "Indexing & Performance Tuning"
       ]
     },
     {
-      title: "Advanced Concepts",
-      icon: <Code className="w-5 h-5" />,
+      title: "Database Security & Backup",
+      icon: <FileKey className="w-5 h-5" />,
       subsections: [
-        "Cloud deployment",
-        "Docker and containerization",
-        "CI/CD pipelines",
-        "Microservices architecture"
+        "User Roles & Permissions",
+        "Data Encryption & Security",
+        "Backup & Disaster Recovery"
       ]
     },
     {
-      title: "Project Development",
-      icon: <Puzzle className="w-5 h-5" />,
+      title: "Incident Response & Risk Management",
+      icon: <AlertCircle className="w-5 h-5" />,
       subsections: [
-        "Full-stack application development",
-        "Team collaboration",
-        "Version control with Git",
-        "Agile development practices"
+        "Handling Database Failures",
+        "Security Threat Mitigation",
+        "Risk Assessment"
       ]
     },
     {
-      title: "Career Development",
+      title: "More To Learn",
       icon: <BookOpen className="w-5 h-5" />,
       subsections: [
-        "Portfolio building",
-        "Technical interview preparation",
-        "Best practices and coding standards",
-        "Industry trends and technologies"
+        "Cloud Database Management",
+        "Big Data & Analytics",
+        "NoSQL Database Technologies"
       ]
     }
   ];
 
   const toggleSection = (index: number) => {
-    setExpandedSections(prev => 
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+    setExpandedSections(prev =>
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
     );
   };
 
@@ -98,14 +81,13 @@ export default function FullStackDetailPage() {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
-        }}
-      >
+        }}>
           <div className="absolute inset-0 bg-navy-700/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-white mb-4">Full Stack Development Course</h1>
+          <h1 className="text-3xl font-bold text-white mb-4">Database Administration Course</h1>
           <p className="text-gray-200 text-lg">
-            Master Both Frontend and Backend Development – Become a Complete Developer
+            Learn to design, manage, and optimize databases for high-performance applications.
           </p>
         </div>
       </div>
@@ -113,24 +95,12 @@ export default function FullStackDetailPage() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Course Details */}
           <div className="lg:col-span-2 space-y-8">
             {/* About Section */}
             <section className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold text-primary mb-4">About This Course</h2>
               <p className="text-gray-600 text-sm">
-                Our Full Stack Development course provides comprehensive training in both frontend and backend technologies.
-                Learn to build complete, scalable web applications from scratch. This course covers everything from user
-                interfaces to server architecture, database management, and deployment strategies.
-              </p>
-            </section>
-
-            {/* Certification Section */}
-            <section className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-primary mb-4">Certification</h2>
-              <p className="text-gray-600 text-sm">
-                Upon completion, you'll receive a Full Stack Developer Certification from Zonges Institute of Technology,
-                validating your ability to build complete web applications and manage the entire development stack.
+                This Database Administration course will teach students the fundamentals of database design, SQL optimization, security, and management. Ideal for those looking to build a career in data management and database engineering.
               </p>
             </section>
 
@@ -155,11 +125,11 @@ export default function FullStackDetailPage() {
                   <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
                     <button 
                       onClick={() => toggleSection(index)}
-                      className="bg-white w-full px-4 py-3 flex items-center justify-between text-left hover:bg-gray-500 transition-colors"
+                      className="w-full px-4 py-3 flex items-center bg-white justify-between text-left hover:bg-gray-500 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
-                        <span className="text-navy-600">{section.icon}</span>
-                        <span className="font-medium text-navy-700">{section.title}</span>
+                        <span className="text-primary">{section.icon}</span>
+                        <span className="font-medium text-primary text-md">{section.title}</span>
                       </div>
                       <div className="transform transition-transform duration-200">
                         {expandedSections.includes(index) ? (
@@ -193,19 +163,18 @@ export default function FullStackDetailPage() {
             </section>
           </div>
 
-          {/* Right Column - Course Info Card */}
+          {/* Right Column - Course Info */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
               <h3 className="text-xl font-bold text-primary mb-6">This Course is Free</h3>
               <Link
-              to="/admission"
-              className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-2 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+                to="/admission"
+                className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-2 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
               >
-              Apply Now 
+                Apply Now
               </Link>
-              
-              <div className="space-y-6">
-                <h4 className="font-semibold text-primary mt-4">This Course Includes</h4>
+              <div className="space-y-6 mt-4">
+                <h4 className="font-semibold text-primary">This Course Includes</h4>
                 <ul className="space-y-4">
                   {courseIncludes.map((item, index) => (
                     <li key={index} className="flex items-center space-x-3 text-gray-600">
