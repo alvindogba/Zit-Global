@@ -24,7 +24,7 @@ const BeADonor =lazy(() => import('./pages/MakeImpact/BeADonor'))
 const Mentorship =lazy(() => import('./pages/MakeImpact/Mentorship'))
 const Tutorship =lazy(() => import('./pages/MakeImpact/Tutorship'))
 const AdmissionSuccess = lazy(() => import('./pages/Admission/AdminssionSuccessPage'));
-const GuidingHandPage =lazy(() => import('./pages/MakeImpact/GuidingHand'))
+const GuidingHandingProgram =lazy(() => import('./pages/MakeImpact/GuidingHandingProgram'))
 // const GuidingHand =lazy(() => import('./pages/MakeImpact/GuidingHand'))
 //Each course offer page
 const Fullstack =lazy(() => import('./pages/CoursesDetails/FullStackDevelopment'))
@@ -109,10 +109,10 @@ function App() {
               }
             />
              <Route
-              path="/guilding-hands-program"
+              path="/guiding-hands-program"
               element={
                 <Suspense fallback={<ProjectSkeleton />}>
-                  <GuidingHandPage />
+                  <GuidingHandingProgram />
                 </Suspense>
               }
             />
