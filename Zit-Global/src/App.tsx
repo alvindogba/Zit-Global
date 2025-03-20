@@ -94,14 +94,7 @@ function App() {
                 </Suspense>
               }
             />
-            <Route
-              path="/guiding-hand"
-              element={
-                <Suspense fallback={<ServiceSkeleton />}>
-                  <GuidingHandPage />
-                </Suspense>
-              }
-            />
+        
             <Route
               path="/courses"
               element={
