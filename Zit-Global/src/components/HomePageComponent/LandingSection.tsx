@@ -10,7 +10,7 @@ const carouselSlides = [
       description: "We provide world-class technology education through our innovative Teaching Through Mentorship (TTM) model and Big Brother program, preparing students for leadership in the tech industry.",
       image: img1,
       ctaText: "Explore Programs",
-      ctaLink: "/programs"
+      ctaLink: "/courses"
     },
     {
       title: "Teaching Through Mentorship",
@@ -18,7 +18,7 @@ const carouselSlides = [
       description: "Our unique TTM model pairs students with industry professionals and experienced mentors worldwide, creating a practical, hands-on learning environment that bridges the gap between education and industry demands.",
       image: img2,
       ctaText: "Learn About TTM",
-      ctaLink: "/ttm"
+      ctaLink: "/tutorship-program"
     },
     {
       title: "Guiding Hands Program: Empowering Youth",
@@ -26,7 +26,7 @@ const carouselSlides = [
       description: "Through personalized, one-to-one mentoring, the Guiding Hands Program connects children facing adversity with caring mentors. Our approach empowers young individuals to excel academically, build lasting self-confidence, and steer clear of risky behaviors. Backed by a diverse community of volunteers and donors, we ensure measurable, life-changing impact for every child we serve.",
       image: img3,
       ctaText: "Join Our Community",
-      ctaLink: "/community"
+      ctaLink: "/guiding-hands"
     }
   ];
 

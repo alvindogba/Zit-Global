@@ -9,6 +9,9 @@ import visa from '../../asset/images/VISA CARD LOGO-04.png';
 import master from '../../asset/images/Master card Logo.jpg'
 import express from '../../asset/images/American Express-03.png'
 import paypal from '../../asset/images/Paypal Logo.jpg'
+import { Header } from '../../components/Header';
+import Footer from '../../components/Footer';
+import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -172,6 +175,7 @@ const CheckoutForm = () => {
   };
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto py-4 px-4">
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900 text-center">
@@ -518,6 +522,8 @@ const CheckoutForm = () => {
           </div>
         </div>
       </main>
+      <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };

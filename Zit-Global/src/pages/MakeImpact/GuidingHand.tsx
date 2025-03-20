@@ -3,6 +3,9 @@ import backgroundImage from '../../asset/images/bigBrother.jpg'
 import childImage from '../../asset/images/student_teaching.jpg'
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import { Header } from "../../components/Header";
+import Footer from "../../components/Footer";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 // Interface for the Guide
 interface GuidanceData {
@@ -70,6 +73,7 @@ function GuidingHandPage() {
 
   return (
     <div className="w-full bg-secondary">
+      <Header />
       {/* Hero Section */}
       <div className="relative h-[400px] bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="absolute inset-0 bg-primary bg-opacity-50 flex items-center justify-center text-center px-6">
@@ -187,6 +191,8 @@ function GuidingHandPage() {
           </form>
         </div>
       </div>
+      <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };

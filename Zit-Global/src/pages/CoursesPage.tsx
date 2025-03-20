@@ -1,15 +1,15 @@
 import HeroBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
+import { Header } from '../components/Header';
+import Footer from '../components/Footer/index';
 import { Code, Palette, Shield, Layout, Database, FileText } from "lucide-react";
-// import { ArrowRight } from 'lucide-react';
-// import CoursesPageImg from '../asset/images/courseP-bg.jpg';
-//courses Images
 import FullStack from '../asset/images/full-stack-development.jpeg';
 import CyberSecurity from '../asset/images/cyber-security.jpeg';
 import GraphicDesign from '../asset/images/graphic-design.jpeg';
 import UIUXDesign from '../asset/images/ui-ux-design.jpeg';
 import Microsoft from '../asset/images/microsoft-365.jpeg'
 import DatabaseImg from '../asset/images/database.jfif'
+import ScrollToTopButton from '../components/ScrollToTopButton';
 
 export default function Courses() {
   const courses = [
@@ -102,6 +102,7 @@ export default function Courses() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
       {/* Hero Section */}
       <div className="relative text-white"   style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.4), rgba(0, 0, 90, 0.4)), url(${HeroBgImg})`,
@@ -188,6 +189,8 @@ export default function Courses() {
             </Link>
         </div>
       </div>
+      <ScrollToTopButton />
+      <Footer />
     </div>
   );
 }

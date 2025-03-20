@@ -2,6 +2,9 @@ import { ArrowRight, Heart, HandHeart } from 'lucide-react';
 import MotivationBgImg from '../../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Header } from '../../components/Header';
+import Footer from '../../components/Footer';
+import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 
 const donatorhighlightbg = "https://i.pinimg.com/736x/15/b1/c7/15b1c797c9787d575706f17de67600d0.jpg";
@@ -28,7 +31,6 @@ export default function BeADonorPage() {
       description: "Every dollar you contribute has a direct and transformative impact. Your generosity gives motivated young adults access to technical and professional skills that prepare them for successful careers. When you donate to Zongea Institute of Technology, you’re not just giving back – you’re paving the way for the next generation to reach their full potential.",      
     },
   ];
-
   const donatorHighlight = [
     {
       image: donatorhighlightbg,
@@ -46,7 +48,6 @@ export default function BeADonorPage() {
       statement: "“Today, millions of young people in the United States are disconnected from education and the workforce. Zongea Institute of Technology equips these individuals with the critical skills needed to thrive in high-demand careers and secure meaningful employment.”",
     },
   ];
-
   const supportersaying = [
     {
       saying: "Transform lives through education",
@@ -79,26 +80,20 @@ export default function BeADonorPage() {
       location: "Supporter, Harper"
     }
   ];
-  
-
 // State for the current slide
 const [currentSlide, setCurrentSlide] = useState(0);
-
 // Length of the testimonials array
 const totalSlides = supportersaying.length;
-
 // Go to the next slide
 const nextSlide = () => {
   setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
 };
-
 // Go to the previous slide
 const prevSlide = () => {
   setCurrentSlide((prevSlide) =>
     prevSlide === 0 ? totalSlides - 1 : prevSlide - 1
   );
 };
-
 // Auto-slide (optional)
 useEffect(() => {
   const interval = setInterval(() => {
@@ -107,10 +102,10 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
-
 return (
 <div className="min-h-screen bg-white">
   {/* Hero Section */}
+  <Header />
   <div className="relative bg-navy-600 text-white">
   <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
     backgroundRepeat: 'no-repeat',
@@ -245,7 +240,8 @@ return (
       </Link>
     </div>
   </section>
-
+  <ScrollToTopButton />
+  <Footer />
 </div>
 
 )

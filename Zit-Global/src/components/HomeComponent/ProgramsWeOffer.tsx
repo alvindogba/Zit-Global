@@ -60,7 +60,7 @@ const ProgramsWeOffer = ()=>{
                 title: 'Database Administration',
                 description: 'Learn how to design, manage, and optimize databases using SQL and NoSQL technologies.',
                 icon: ServerIcon,
-                href: "/courses/database-administration"
+                href: "/courses/database-admin"
               },
               {
                 title: 'Microsoft Office Suite',

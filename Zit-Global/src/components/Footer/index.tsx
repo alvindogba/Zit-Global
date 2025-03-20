@@ -242,15 +242,12 @@ const Footer = () => {
       {/* Social Media Icons & Copyright */}
       <div className="mt-8  flex flex-col gap-4 md:flex-row justify-between items-center border-t border-white pt-4">
         <p>Copyright Notice © 2025 Zongea Institute of Technology. All rights reserved.</p>
-        
         <div className="flex space-x-4 mt-4 md:mt-0">
           <FaFacebookF className="text-white cursor-pointer" size={18} />
           <FaInstagram className="text-white cursor-pointer" size={18} />
           <FaLinkedinIn className="text-white cursor-pointer" size={18} />
           <FaGithub className="text-white cursor-pointer" size={18} />
         </div>
-        
-        <p>An Institution by Walamen</p>
       </div>
     </footer>
   );

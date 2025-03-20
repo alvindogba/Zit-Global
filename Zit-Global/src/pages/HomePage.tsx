@@ -1,34 +1,32 @@
 import React, { lazy, Suspense } from 'react';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
+import ScrollToTopButton from '../components/ScrollToTopButton';
+import { Header } from '../components/Header';
+import  Footer  from '../components/Footer/index';
 
 // Lazy load components
 const Hero = lazy(() => import('../components/HomePageComponent/Hero/HeroSection'));
 //const Events = lazy(() => import('../components/HomePageComponent/Hero/event'));
 const SuccessStory = lazy(() => import('../components/HomePageComponent/Hero/SuccessStory'));
-//const StudySucceed = lazy(() => import('../components/StudySucceed'));
-//const Testimonial = lazy(() => import('../components/Testimonial/Testimonial'));
-//const CallToAction = lazy(() => import('../components/HomePageComponent/CallToAction/index'));
 const OurApproach = lazy(() => import('../components/HomePageComponent/OurApproach'))
 const StudyAtZit = lazy(() => import('../components/HomePageComponent/StudyAtZit'))
 const ProgramsWeOffer = lazy(() => import('../components/HomePageComponent/ProgramsWeOffer'));
 const TTM = lazy(() => import('../components/HomePageComponent/Hero/TTM'));
 const TeachSomeone = lazy(() => import('../components/HomePageComponent/Hero/TeachSomeon'));
 const JoinUs = lazy(() => import('../components/HomePageComponent/Hero/JoinUs'));
-
-const LoadingComponent = () => (
-    <div className="animate-pulse bg-gray-200 rounded-lg h-full w-full min-h-[200px]" />
-);
+const UpComingEvent = lazy(() => import('../components/HomePageComponent/UpComingEvent'));
+const TutorshipSection = lazy(() => import ('../components/HomePageComponent/TutorshipSection'))
 
 const HomePage: React.FC = () => {
     return (
         <main className="overflow-hidden">
-            <Suspense fallback={<LoadingComponent />}>
+                <Header />
                 <Hero />
                 <OurApproach />
+                <TutorshipSection />
                 <StudyAtZit />
                 <ProgramsWeOffer />
-                 {/* CTA Section */}
                 <div className="text-white py-16" style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
                     backgroundRepeat: 'no-repeat',
@@ -53,11 +51,10 @@ const HomePage: React.FC = () => {
                 <TTM />
                 <TeachSomeone />
                 <JoinUs />
-                 <SuccessStory /> 
-                {/* <StudySucceed /> */}
-                {/* <Testimonial /> */}
-                {/* <CallToAction /> */}
-            </Suspense>
+                <SuccessStory /> 
+                <UpComingEvent />
+                <ScrollToTopButton />
+                <Footer />
         </main>
     );
 };

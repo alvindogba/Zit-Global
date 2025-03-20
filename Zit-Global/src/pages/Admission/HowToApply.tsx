@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import  MotivationBgImg from  "../../asset/images/contact-page-img.jpeg";
 import { ArrowRight } from 'lucide-react';
+import { Header } from '../../components/Header';
+import Footer from '../../components/Footer/index';
+import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 export default function HowToApply() {
 
@@ -49,6 +52,7 @@ export default function HowToApply() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
+      <Header />
       <div className="relative bg-navy-600 text-white">
         <div
           className="absolute inset-0"
@@ -128,6 +132,8 @@ export default function HowToApply() {
           </div>
         </section>
       </div>
+      <ScrollToTopButton />
+      <Footer />
     </div>
   );
 }

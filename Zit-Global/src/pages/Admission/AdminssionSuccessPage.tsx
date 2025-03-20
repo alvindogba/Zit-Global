@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import ScrollToTopButton from '../../components/ScrollToTopButton';
+import { Header } from '../../components/Header';
+import Footer from '../../components/Footer/index';
 
 interface AdmissionDetails {
   firstName: string;
@@ -50,6 +53,8 @@ const AdmissionSuccess = () => {
 
   if (error || !admission) {
     return (
+      <>
+      <Header />
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
           <div className="text-red-500 mb-4">
@@ -61,12 +66,15 @@ const AdmissionSuccess = () => {
           <p className="text-gray-600 mb-6">{error || 'Unable to load admission details'}</p>
           <Link
             to="/"
-            className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors"
+            className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors"
           >
             Return Home
           </Link>
         </div>
       </div>
+      <ScrollToTopButton />
+      <Footer />
+      </>
     );
   }
 

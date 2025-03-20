@@ -1,12 +1,10 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ProjectSkeleton, BlogPostSkeleton, ServiceSkeleton, CoursesSkeleton } from './components/Skeleton';
-import { Header } from './components/Header';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import Footer from './components/Footer/index'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import ScrollToTop from './components/common/ScrollToTop';
+import DefaultSkeletion from './components/DefaultSkeletion';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -34,7 +32,6 @@ const MicrosoftOffice =lazy(() => import('./pages/CoursesDetails/MicrosoftOffice
 const DatabaseAdmin =lazy(() => import('./pages/CoursesDetails/DatabaseAdminDetailPage'))
 const MentorshipDashboard =lazy(() => import('./pages/Dashboards/MentorshipDashboard'))
 
-
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -48,7 +45,6 @@ function App() {
       <Elements stripe={stripePromise}>
     <BrowserRouter>
       <div className="min-h-screen">
-        <Header />
         <div className="pt-20">
         <ScrollToTop />
 
@@ -56,7 +52,7 @@ function App() {
             <Route
               path="/"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Home />
                 </Suspense>
               }
@@ -64,7 +60,7 @@ function App() {
              <Route
               path="/home"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <HomePage />
                 </Suspense>
               }
@@ -72,7 +68,7 @@ function App() {
             <Route
               path="/cohorts"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Cohort />
                 </Suspense>
               }
@@ -80,7 +76,7 @@ function App() {
             <Route
               path="/students"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Students />
                 </Suspense>
               }
@@ -88,7 +84,7 @@ function App() {
              <Route
               path="/how-to-apply"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <HowToApply />
                 </Suspense>
               }
@@ -96,7 +92,7 @@ function App() {
             <Route
               path="/guiding-hand"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <GuidingHandPage />
                 </Suspense>
               }
@@ -104,7 +100,7 @@ function App() {
             <Route
               path="/courses"
               element={
-                <Suspense fallback={<CoursesSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Courses />
                 </Suspense>
               }
@@ -112,23 +108,15 @@ function App() {
             <Route
               path="/motivation"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Motivation />
-                </Suspense>
-              }
-            />
-             <Route
-              path="/guilding-hands-program"
-              element={
-                <Suspense fallback={<ProjectSkeleton />}>
-                  <GuidingHandPage />
                 </Suspense>
               }
             />
             <Route
               path="/mentorship-program"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Mentorship />
                 </Suspense>
               }
@@ -136,7 +124,7 @@ function App() {
             <Route
               path="/mentorship-dashboard"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <MentorshipDashboard />
                 </Suspense>
               }
@@ -144,7 +132,7 @@ function App() {
             <Route
               path="/tutorship-program"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Tutorship />
                 </Suspense>
               }
@@ -152,7 +140,7 @@ function App() {
             <Route
               path="/be-a-donor"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <BeADonor />
                 </Suspense>
               }
@@ -160,7 +148,7 @@ function App() {
             <Route
               path="/admission"
               element={
-                <Suspense fallback={<BlogPostSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Admission />
                 </Suspense>
               }
@@ -168,7 +156,7 @@ function App() {
             <Route
               path="/admission-success"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <AdmissionSuccess />
                 </Suspense>
               }
@@ -176,7 +164,7 @@ function App() {
             <Route
               path="/contact"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Contact />
                 </Suspense>
               }
@@ -185,7 +173,7 @@ function App() {
             <Route
               path="/donate"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <DonationPage />
                 </Suspense>
               }
@@ -193,7 +181,7 @@ function App() {
            <Route
               path="/success"
               element={
-                <Suspense fallback={<ServiceSkeleton />}> 
+                <Suspense fallback={<DefaultSkeletion />}> 
                   <DonationSuccess />
                 </Suspense>
               }
@@ -202,7 +190,7 @@ function App() {
              <Route
               path="/courses/ui-ux-design"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <UIUXDesign />
                 </Suspense>
               }
@@ -210,7 +198,7 @@ function App() {
              <Route
               path="/courses/graphic-design"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <GraphicDesign />
                 </Suspense>
               }
@@ -218,15 +206,15 @@ function App() {
              <Route
               path="/courses/cybersecurity"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <CyberSecurity />
                 </Suspense>
               }
             />
-             <Route
+            <Route
               path="/courses/full-stack-development"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <Fullstack />
                 </Suspense>
               }
@@ -234,7 +222,7 @@ function App() {
             <Route
               path="/courses/microsoft-office"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <MicrosoftOffice />
                 </Suspense>
               }
@@ -242,7 +230,7 @@ function App() {
             <Route
               path="/courses/database-admin"
               element={
-                <Suspense fallback={<ServiceSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <DatabaseAdmin />
                 </Suspense>
               }
@@ -250,8 +238,6 @@ function App() {
         
           </Routes>
         </div>
-           {/* Footer */}
-        <Footer />
       </div>
     </BrowserRouter>
     </Elements>

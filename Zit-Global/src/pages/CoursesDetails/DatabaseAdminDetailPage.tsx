@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Laptop, Clock, Award, ChevronDown, ChevronRight, Database, Server, FileKey, AlertCircle, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 import HeroBgImg from "../../asset/images/database.jfif"; // Update with an actual image
 
@@ -187,6 +188,7 @@ export default function DatabaseAdminDetailPage() {
             </div>
           </div>
         </div>
+        <ScrollToTopButton />
       </div>
     </div>
   );
