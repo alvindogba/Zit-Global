@@ -7,7 +7,6 @@ import ScrollToTop from './components/common/ScrollToTop';
 import DefaultSkeletion from './components/DefaultSkeletion';
 
 // Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
 const HomePage = lazy(() => import('./pages/HomePage'))
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
@@ -50,16 +49,8 @@ function App() {
         <ScrollToTop />
 
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Suspense fallback={<DefaultSkeletion />}>
-                  <Home />
-                </Suspense>
-              }
-            />
              <Route
-              path="/home"
+              path="/"
               element={
                 <Suspense fallback={<DefaultSkeletion />}>
                   <HomePage />

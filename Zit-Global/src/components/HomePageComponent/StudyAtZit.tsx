@@ -37,6 +37,8 @@ export default function StudyAtZit() {
                 <ArrowLeft 
                   className="cursor-pointer text-black text-xl hover:text-gray-800 bg-gray-200 p-2 rounded-full shadow-lg"
                   onClick={prevImage}
+                  size={35}
+
                 />
                 {/* Indicators */}
                 <div className="flex mt-2 gap-2">
@@ -52,7 +54,7 @@ export default function StudyAtZit() {
                 <ArrowRight 
                   className="cursor-pointer text-black hover:text-gray-800 bg-gray-200 p-2 rounded-full shadow-lg"
                   onClick={nextImage}
-                  size={24}
+                  size={35}
                 />
               </div>
 

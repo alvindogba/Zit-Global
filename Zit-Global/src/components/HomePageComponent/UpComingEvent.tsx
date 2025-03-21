@@ -41,17 +41,17 @@ const events: Event[] = [
 const UpcomingEvents: React.FC = () => {
   return (
     <section className="py-12 bg-gray-100">
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold text-primary">Our upcoming Events</h2>
-        <p className="text-gray-600 mt-2 mb-8">
+      <div className="container mx-auto text-left">
+        <h2 className="text-3xl font-bold text-primary text-center">Our upcoming Events</h2>
+        <p className="text-gray-600 mt-2 mb-8 text-center">
           Stay Informed: News & Insights from Zongea Institute of Technology
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-32">
           {events.map((event, index) => (
             <div
-  key={index}
-  className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300"
->
+              key={index}
+              className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300"
+            >
               <img
                 src={event.image}
                 alt={event.title}
@@ -59,7 +59,7 @@ const UpcomingEvents: React.FC = () => {
               />
               <div className="p-4">
                 <p className="text-gray-500 text-sm">{event.date}</p>
-                <h3 className="text-lg font-semibold text-primary mt-1">
+                <h3 className="text-lg  text-primary font-medium mt-1">
                   {event.title}
                 </h3>
                 <p className="text-gray-600 mt-2 text-sm">{event.description}</p>

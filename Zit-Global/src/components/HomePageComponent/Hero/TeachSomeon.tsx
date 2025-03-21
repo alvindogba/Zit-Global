@@ -1,9 +1,9 @@
-import image from '../../../asset/images/Abel B. Winn.jpg'
+import image from '../../../asset/images/Teacher.jpeg'
 
 
 export default function TeachSomeone() {
   return (
-    <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-28 pt-20 pb-4 md:pb-20 bg-white">
+    <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-40 pt-20 pb-4 md:pb-20 bg-white">
       {/* Left Side - Text Content */}
       <div className="w-full  md:w-2/7  md:text-left">
         <h3 className="text-base font-medium text-primary">Want to be part of this Journey?</h3>

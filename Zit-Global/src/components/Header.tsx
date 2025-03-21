@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, ChevronDownIcon, Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../asset/images/zongea-logo.png"; // Fixed path
 
@@ -37,6 +37,7 @@ const navigation = [
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [leftModalOpen, setLeftModalOpen] = useState(false); // Left Modal State
   const [openDropdowns, setOpenDropdowns] = useState(new Set());
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -91,9 +92,8 @@ export const Header = () => {
             <div key={item.name} className="relative group">
               <Link
                 to={item.href}
-                className={`text-md font-semibold transition-colors ${
-                  isActive(item.href) ? "text-primary-600" : "text-white hover:text-primary-600"
-                }`}
+                className={`text-md font-semibold transition-colors ${isActive(item.href) ? "text-primary-600" : "text-white hover:text-primary-600"
+                  }`}
               >
                 {item.name}
               </Link>
@@ -105,11 +105,10 @@ export const Header = () => {
                     <Link
                       key={dropdownItem.name}
                       to={dropdownItem.href}
-                      className={`block px-4 py-2 text-sm transition-colors ${
-                        isActive(dropdownItem.href)
-                          ? "bg-primary-50 text-primary"
-                          : "text-gray-700 hover:bg-primary-50 hover:text-primary-600"
-                      }`}
+                      className={`block px-4 py-2 text-sm transition-colors ${isActive(dropdownItem.href)
+                        ? "bg-primary-50 text-primary"
+                        : "text-gray-700 hover:bg-primary-50 hover:text-primary-600"
+                        }`}
                     >
                       {dropdownItem.name}
                     </Link>
@@ -122,11 +121,97 @@ export const Header = () => {
 
         {/* Donation Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/donate" className="rounded-full bg-primary px-4 py-2 text-sm border border-white font-semibold text-white shadow-sm hover:bg-primary-600 transition">
+          <Link to="/donate" className="border rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-600 transition">
             Make A Donation
           </Link>
         </div>
+        {/* Left Sliding Modal Trigger */}
+        <Bars3BottomLeftIcon className="hidden md:block h-10 w-10 text-white cursor-pointer ml-4" onClick={() => setLeftModalOpen(true)} />
       </nav>
+      {/* Left Sliding Modal */}
+      <AnimatePresence>
+        {leftModalOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/50 z-40" onClick={() => setLeftModalOpen(false)} />
+
+            {/* Sliding Modal */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="fixed top-0 right-0 h-screen overflow-y-auto w-[85%] sm:w-[70%] md:w-[50%] lg:w-[50%] xl:w-[50%] max-w-sm bg-white shadow-lg z-50 "
+              >
+              {/* Modal Header */}
+              <div className="bg-primary text-white p-4 flex justify-between  items-center">
+                <img src={Logo} alt="Logo" className="h-10" />
+                <XMarkIcon className="h-8 w-8 cursor-pointer" onClick={() => setLeftModalOpen(false)} />
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 md:px-8 text-gray-800 bg-white">
+                {/* About Section */}
+                <h2 className="text-lg font-bold text-primary">About ZIT</h2>
+                <p className="text-sm text-gray-600 mt-2 mr-20">
+                  Tech careers within reach. Whether you’re in high school or have some college, we’ll get you job-ready—fast. All it takes is your drive to succeed.
+                </p>
+                <div className="flex justify-center gap-4 mt-6">
+                  <Link
+                    to="/donate"
+                    className="w-full inline-flex justify-center  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Teach
+                  </Link>
+                  <Link
+                    to="/donate"
+                    className="w-full inline-flex justify-center  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Tutor
+                  </Link>
+                  <Link
+                         to="/donate"
+                        className="w-full inline-flex justify-center  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                         onClick={() => setMobileMenuOpen(false)}
+                       >
+                         Mentor
+                       </Link>
+                
+
+
+                </div>
+
+
+                {/* Contact Section */}
+                <h3 className="mt-6 font-bold text-primary mb-2">Contact Information</h3>
+                <p className="text-sm text-gray-600 mb-2">📞 +23169865868986</p>
+                <p className="text-sm text-gray-600 mb-2">📧 info@zongeatech.com</p>
+                <p className="text-sm text-gray-600 mb-2">📍 Rehab Community Opposite Rehab Mansion</p>
+
+                {/* Form */}
+                <h3 className="mt-6 font-bold text-primary">Ready To Get Started?</h3>
+                <div className="flex gap-4 my-6">
+                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                </div>
+                <p>Leave A Messsage</p>
+                <form action="">
+                <input type="text" placeholder="Your Name" className="bg-white w-full mt-2 p-2 border rounded-md" />
+                <input type="phone" placeholder="Your Phone Number" className="bg-white w-full mt-2 p-2 border rounded-md" />
+                <input type="email" placeholder="Your Email" className="bg-white w-full mt-2 p-2 border rounded-md" />
+                <textarea name="message" placeholder="Message" className="bg-white w-full mt-2 p-2 border rounded-md"></textarea>
+                <button className=" bg-primary px-8 mt-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors">Submit</button>
+                </form>
+               
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -185,14 +270,14 @@ export const Header = () => {
                   </div>
                 ))}
                 <div className="mt-4 px-3">
-                      <Link
-                         to="/donate"
-                        className="w-full inline-flex justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
-                         onClick={() => setMobileMenuOpen(false)}
-                       >
-                         Make A Donation
-                       </Link>
-                     </div>
+                  <Link
+                    to="/donate"
+                    className="w-full inline-flex justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Make A Donation
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </Dialog>
@@ -201,4 +286,3 @@ export const Header = () => {
     </header>
   );
 };
-
