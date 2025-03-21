@@ -2,8 +2,6 @@ import React, { lazy } from 'react';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../components/ScrollToTopButton';
-import { Header } from '../components/Header';
-import  Footer  from '../components/Footer/index';
 
 // Lazy load components
 const Hero = lazy(() => import('../components/HomePageComponent/Hero/HeroSection'));
@@ -20,7 +18,6 @@ const TutorshipSection = lazy(() => import ('../components/HomePageComponent/Tut
 const HomePage: React.FC = () => {
     return (
         <main className="overflow-hidden">
-                <Header />
                 <Hero />
                 <OurApproach />
                 <StudyAtZit />
@@ -52,7 +49,6 @@ const HomePage: React.FC = () => {
                 <SuccessStory /> 
                 <UpComingEvent />
                 <ScrollToTopButton />
-                <Footer />
         </main>
     );
 };

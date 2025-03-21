@@ -102,7 +102,7 @@ const ProgramsWeOffer = () => {
         </div>
 
         {/* View More Button */}
-        <div className="text-right mt-8 px-40">
+        <div className="text-right mt-8 md:px-40">
           <Link to="/courses" className="btn btn-primary text-primary hover:text-primary-600">
             View More Courses <ArrowRightIcon className="inline-block" size={20} />
           </Link>

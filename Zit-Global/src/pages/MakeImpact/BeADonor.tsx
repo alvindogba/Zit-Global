@@ -2,8 +2,6 @@ import { ArrowRight, Heart, HandHeart } from 'lucide-react';
 import MotivationBgImg from '../../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Header } from '../../components/Header';
-import Footer from '../../components/Footer';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 
@@ -105,7 +103,6 @@ useEffect(() => {
 return (
 <div className="min-h-screen bg-white">
   {/* Hero Section */}
-  <Header />
   <div className="relative bg-navy-600 text-white">
   <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
     backgroundRepeat: 'no-repeat',
@@ -241,7 +238,6 @@ return (
     </div>
   </section>
   <ScrollToTopButton />
-  <Footer />
 </div>
 
 )

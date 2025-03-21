@@ -149,16 +149,16 @@ export default function TTM() {
       </p>
 
       {/* Content Section - Dynamic Update */}
-      <div className="flex flex-col md:flex-row items-center mt-10 gap-6">
+      <div className="h-[60vh] flex flex-col md:flex-row items-center mt-10 gap-6">
         {/* Left - Image */}
         <img
           src={tabContent[activeTab].image}
           alt={`${activeTab} Image`}
-          className="w-full max-h-[50vh] md:w-1/3 rounded-lg shadow-md object-cover"
+          className="w-full h-[100%] md:w-1/3 rounded-lg shadow-md object-cover"
         />
 
         {/* Right - Text */}
-        <div className="flex px-4 flex-col justify-between gap-4 bg-primary rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
+        <div className="flex px-4 flex-col justify-between gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
           {/* Carve Effect */}
           {/* <div
             className="absolute -left-6 top-0 w-6 h-10 bg-primary hidden md:block" // Top-left carve
@@ -174,10 +174,10 @@ export default function TTM() {
             {["Teach", "Tutor", "Mentor"].map((tab) => (
               <button
                 key={tab}
-                className={`px-1 md:px-3 py-1 md:py-2 outline-none active-none text-center transition-all w-full rounded-none ${
+                className={`px-1 md:px-3 py-1 md:py-2 outline-none border-none active-none text-center transition-all w-full rounded-none ${
                   activeTab === tab
-                    ? "bg-primary font-bold text-white"
-                    : "text-gray-500 bg-white"
+                    ? "bg-gray-200 font-bold  border-none outline-none text-gray-800"
+                    : "text-gray-500 bg-white font-light "
                 }`}
                 onClick={() => setActiveTab(tab as "Teach" | "Tutor" | "Mentor")}
               >
@@ -186,19 +186,17 @@ export default function TTM() {
             ))}
           </div>
 
-          <h3 className="mt-6 text-xl sm:ml-6 font-bold text-white">
+          <h3 className="mt-6 text-xl sm:ml-6 font-bold text-gray-800">
             {tabContent[activeTab].title}
           </h3>
-          <p className="text-white mt-4 sm:w-[60%] sm:ml-6">{tabContent[activeTab].description}</p>
+          <p className="text-gray-600 mt-4 sm:w-[60%] sm:ml-6">{tabContent[activeTab].description}</p>
 
           {/* Buttons */}
           <div className="mt-6 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
             <button className="w-full md:w-fit sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
               {tabContent[activeTab].primaryBtn}
             </button>
-            <button className="w-full md:w-fit sm:w-fit px-4 py-1 border border-white text-primary bg-white rounded-lg hover:font-bold transition-all">
-              Donate Today
-            </button>
+            
           </div>
         </div>
       </div>

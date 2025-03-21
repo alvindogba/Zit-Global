@@ -1,8 +1,6 @@
 import { GraduationCap, Users, Target, ArrowRight, Earth, BookOpen, Laptop, Lightbulb, BookOpenText, Globe, HandHelping, Trophy } from 'lucide-react';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer/index';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 
 export default function MotivationPage() {
@@ -88,7 +86,6 @@ export default function MotivationPage() {
   ]
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       {/* Hero Section */}
       <div className="relative bg-navy-600 text-white">
         <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
@@ -202,7 +199,6 @@ export default function MotivationPage() {
         </div>
       </div>
       <ScrollToTopButton />
-      <Footer />
     </div>
   );
 }

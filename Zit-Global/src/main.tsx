@@ -11,6 +11,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Elements stripe={stripePromise}>
+      
       <App />
     </Elements>
   </StrictMode>,

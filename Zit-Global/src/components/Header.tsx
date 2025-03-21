@@ -18,8 +18,10 @@ const navigation = [
     name: "Make Impact",
     href: "/guiding-hand",
     dropdown: [
-      { name: "Guiding Hand Program", href: "/guiding-hand" }, // Fixed typo
+      { name: "Impact & Connect Center", href: "/guiding-hand" }, // Fixed typo
       { name: "Mentorship Program", href: "/mentorship-program" },
+      { name: "Tutorship Program", href: "/tutorship-program" },
+
       // { name: "Tutorship Program", href: "/tutorship-program" }, // Fixed typo
       { name: "Be A Donor", href: "/be-a-donor" },
     ],
@@ -35,7 +37,7 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ];
 
-export const Header = () => {
+ function Header (){
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [leftModalOpen, setLeftModalOpen] = useState(false); // Left Modal State
   const [openDropdowns, setOpenDropdowns] = useState(new Set());
@@ -286,3 +288,6 @@ export const Header = () => {
     </header>
   );
 };
+
+
+export default Header

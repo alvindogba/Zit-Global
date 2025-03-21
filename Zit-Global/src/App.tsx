@@ -6,6 +6,10 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import ScrollToTop from './components/common/ScrollToTop';
 import DefaultSkeletion from './components/DefaultSkeletion';
 
+const Header = lazy(() => import('./components/Header'));
+const Footer = lazy(() => import('./components/Footer/index'))
+
+
 // Lazy load pages
 const HomePage = lazy(() => import('./pages/HomePage'))
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
@@ -45,6 +49,7 @@ function App() {
       <Elements stripe={stripePromise}>
     <BrowserRouter>
       <div className="min-h-screen">
+          <Header />
         <div className="pt-20">
         <ScrollToTop />
 
@@ -230,8 +235,11 @@ function App() {
             />
         
           </Routes>
+
         </div>
+
       </div>
+      <Footer />
     </BrowserRouter>
     </Elements>
     </PayPalScriptProvider>

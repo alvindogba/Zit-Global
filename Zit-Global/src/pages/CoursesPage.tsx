@@ -1,7 +1,5 @@
 import HeroBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer/index';
 import { Code, Palette, Shield, Layout, Database, FileText } from "lucide-react";
 import FullStack from '../asset/images/full-stack-development.jpeg';
 import CyberSecurity from '../asset/images/cyber-security.jpeg';
@@ -102,7 +100,6 @@ export default function Courses() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
       {/* Hero Section */}
       <div className="relative text-white"   style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.4), rgba(0, 0, 90, 0.4)), url(${HeroBgImg})`,
@@ -190,7 +187,6 @@ export default function Courses() {
         </div>
       </div>
       <ScrollToTopButton />
-      <Footer />
     </div>
   );
 }

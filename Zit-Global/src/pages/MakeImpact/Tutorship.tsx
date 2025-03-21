@@ -4,8 +4,6 @@ import { FaUserGraduate, FaChalkboardTeacher, FaSearch, FaArrowRight, FaGlobe, F
 import img1 from '../../asset/images/Graduation-Bg-Img.jpg';
 import img2 from '../../asset/images/herobg3.jpg';
 import img3 from '../../asset/images/herobg2.jpg';
-import { Header } from '../../components/Header';
-import Footer from '../../components/Footer';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 const GetMentorShip = () => {
@@ -87,7 +85,6 @@ const GetMentorShip = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Header />
             {/* Hero Section with Image Slideshow */}
             <div className="relative h-[80vh] pt-28 md:pt-10 overflow-hidden">
                 {/* Slideshow */}
@@ -612,7 +609,6 @@ const GetMentorShip = () => {
                     </motion.div>
                 </div>
             )}
-            <Footer />
             <ScrollToTopButton />
         </div>
     );

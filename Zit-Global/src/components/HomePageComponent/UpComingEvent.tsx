@@ -46,7 +46,7 @@ const UpcomingEvents: React.FC = () => {
         <p className="text-gray-600 mt-2 mb-8 text-center">
           Stay Informed: News & Insights from Zongea Institute of Technology
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:px-32">
           {events.map((event, index) => (
             <div
               key={index}
