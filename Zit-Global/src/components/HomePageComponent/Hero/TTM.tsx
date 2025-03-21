@@ -136,7 +136,7 @@ export default function TTM() {
   };
 
   return (
-    <section className="bg-gray-100 h-auto px-4 md:px-28 py-20">
+    <section className=" bg-gray-100 h-auto px-4 md:px-28 py-20">
       {/* Heading Section */}
       <h2 className="text-2xl font-bold text-primary">
         Empowering Minds, Transforming Futures
@@ -149,12 +149,12 @@ export default function TTM() {
       </p>
 
       {/* Content Section - Dynamic Update */}
-      <div className="h-[60vh] flex flex-col md:flex-row items-center mt-10 gap-6">
+      <div className="flex flex-col md:flex-row items-center mt-10 gap-6">
         {/* Left - Image */}
         <img
           src={tabContent[activeTab].image}
           alt={`${activeTab} Image`}
-          className="w-full h-[100%] md:w-1/3 rounded-lg shadow-md object-cover"
+          className="w-full h-[45vh] md:h-[67vh] md:w-1/3 rounded-lg shadow-md object-cover"
         />
 
         {/* Right - Text */}
