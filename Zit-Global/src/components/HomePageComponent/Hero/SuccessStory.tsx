@@ -174,7 +174,7 @@ const SuccessStory = () => {
     };
 
     return (
-        <div className="max-w-7xl bg-white mx-auto px-6 md:px-10 py-12 h-full py-20">
+        <div className="max-w-7xl bg-white mx-auto px-6 md:px-10 h-full py-20">
             <AnimateOnScroll animation="slideDown">
                 <h2 className="text-2xl font-bold text-primary text-center mb-2">Our Success Story</h2>
             </AnimateOnScroll>
