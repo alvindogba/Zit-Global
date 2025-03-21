@@ -6,6 +6,7 @@ import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { toast } from 'react-toastify';
 import { Header } from '../components/Header';
 import Footer from '../components/Footer/index';
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 interface ContactFormData {
   fullName: string;
@@ -15,6 +16,38 @@ interface ContactFormData {
 }
 
 export default function ContactPage() {
+
+  const contactInfoCard = [
+    {
+      label: "Call Us",
+      description1: "Main: 878-7348-7853",
+      description2: "Admissions: 878-7348-7853",
+      icon: <Phone />,
+    },
+    {
+      label: "Email Us",
+      description1: "info@zongeatech.com",
+      
+      icon: <Mail />,
+    },
+    {
+      label: "Visit Us",
+      description1: "Liberia, Monrovia",
+      description2: "RIA Rehab Community",
+      description3: "US Address: 300 Southtown",
+      description4: "Circle Rolseville, NC 27571",
+      icon: <MapPin />,
+    },
+    
+    {
+      label: "Hours of Operation",
+      description1: "Monday - Friday: 9:00 AM - 5:00 PM",
+      description2: "Saturday: 10:00 AM - 4:00 PM",
+      description3: 'Sunday: Closed',
+      icon: <Clock3 />,
+    },
+  ];
+
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     email: '',
@@ -77,11 +110,11 @@ export default function ContactPage() {
         >
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
-        <div className="relative max-w-5xl mx-auto px-8 sm:px-6 lg:px-8 py-24">
-          <h1 className="text-2xl md:text-3xl font-bold mb-6 w-[28rem]">
+        <div className="relative max-w-6xl mx-auto px-8 sm:px-6 lg:px-8 py-24">
+          <h1 className="text-xl md:text-2xl font-bold mb-6 md:w-[28rem]">
             Get More Information About Our School & Courses
           </h1>
-          <div className="w-[40rem]">
+          <div className="md:w-[40rem]">
             <p className="text-md text-gray-200 max-w-2xl mb-8">
               Your donation helps provide free, high-quality education, mentorship and skill development to students in Liberia and beyond
             </p>
@@ -89,144 +122,138 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* {Get in touch} */}
-      <div className="bg-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h2 className="text-primary text-2xl font-bold">Get In Touch</h2>
-          <p className="text-md max-w-2xl mb-8">Wether you have questions about our Programs, admissions, or mentorship opportunities</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="bg-primary p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-12 text-white h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3 shadow-sm shadow-black">
-                <Phone />
-              </div>
-              <h4 className="text-md font-bold mb-3 text-white">Call Us</h4>
-              <div className="text-white">
-                <p>Main: 878-7348-7853</p>
-                <p>Admissions: 878-7348-7853</p>
-              </div>
-            </div>
-            <div className="bg-primary p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-12 text-white h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3 shadow-sm shadow-black">
-                <MapPin />
-              </div>
-              <h4 className="text-md font-bold mb-3 text-white">Visit Us</h4>
-              <div className="text-white">
-                <p>Main: 878-7348-7853</p>
-                <p>Admissions: 878-7348-7853</p>
-              </div>
-            </div>
-            <div className="bg-primary p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-12 text-white h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3 shadow-sm shadow-black">
-                <Mail />
-              </div>
-              <h4 className="text-md font-bold mb-3 text-white">Email Us</h4>
-              <div className="text-white">
-                <p>Main: 878-7348-7853</p>
-                <p>Admissions: 878-7348-7853</p>
-              </div>
-            </div>
-            <div className="bg-primary p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-12 text-white h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3 shadow-sm shadow-black">
-                <Clock3 />
-              </div>
-              <h4 className="text-md font-bold mb-3 text-white">Hours of Operation</h4>
-              <div className="text-white">
-                <p>Monday - Friday: 8:00 AM - 7:00 PM</p>
-                <p>Saturday: 8:00 AM - 5:00 PM</p>
-                <p>Sunday: Closed</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:py-12">
+        <h2 className="text-primary text-2xl font-bold">Get In Touch</h2>
+        <p className="text-md max-w-2xl mb-8">Wether you have questions about our Programs, admissions, or mentorship opportunities</p>
       </div>
 
-      {/* Contact Form */}
-      <div className="bg-white py-12">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-primary text-2xl font-bold">We're always eager to hear from you!</h2>
-          <p className="text-lg font-semibold mb-6">Send us a message</p>
-          <form onSubmit={handleSubmit} className="p-6">
-            <div className="mb-4">
-              <label className="block text-gray-700">Name</label>
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md bg-gray-100"
-                required
-              />
-            </div>
-            <div className="mb-4 md:gap-2 md:flex justify-between items-center w-full">
-              <div>
+      <div className='max-w-6xl mx-auto px-1 md:px-8 md:flex flex-wrap justify-between'>
+        <div className='w-[40%] '>
+          {/* Contact Form */}
+          <div className="bg-white py-1 md:py-12">
+            <h2 className="text-primary ml-4 md:ml-0 text-2xl font-bold">Leave A Message</h2>
+            <form onSubmit={handleSubmit} className="p-4">
+              <div className="mb-4">
+                <label className="block text-gray-700">Name</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className="w-72 md:w-80 p-2 border rounded-md bg-gray-100"
+                  required
+                />
+              </div>
+              
+              <div className="mb-4">
                 <label className="block text-gray-700">Email</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-[28rem] p-2 border rounded-md bg-gray-100"
+                  className="w-72 md:w-80 p-2 border rounded-md bg-gray-100"
                   required
                 />
               </div>
-              <div>
+
+              <div className="mb-4">
                 <label className="block text-gray-700">Subject</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-[28rem] p-2 border rounded-md bg-gray-100"
+                  className="w-72 md:w-80 p-2 border rounded-md bg-gray-100"
                   required
                 />
               </div>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700">Message</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full h-36 p-2 border rounded-md bg-gray-100"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="border border-primary border-b-2 text-primary px-4 py-2 rounded-md flex justify-center items-center"
-            >
-              {isSubmitting ? (
-                <div className="spinner-border animate-spin h-5 w-5 border-b-2 border-white rounded-full"></div>
-              ) : (
-                'Submit'
-              )}
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Success Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-8 text-center rounded-lg shadow-lg">
-          <div className="mx-auto h-12 w-12 bg-primary rounded-full flex items-center justify-center mb-10">
-              <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h2 className="text-xl font-bold mb-4">Thank You!</h2>
-            <p>Your message has been successfully sent. We will get back to you soon.</p>
-            <button
-              onClick={closeModal}
-              className="mt-4 bg-primary text-white px-6 py-2 rounded-md"
-            >
-              Close
-            </button>
+              <div className="mb-4">
+                <label className="block text-gray-700">Message</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-72 md:w-80 h-36 p-2 border rounded-md bg-gray-100"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="border border-primary border-b-2 text-primary px-4 py-2 rounded-md flex justify-center items-center"
+              >
+                {isSubmitting ? (
+                  <div className="spinner-border animate-spin h-5 w-5 border-b-2 border-white rounded-full"></div>
+                ) : (
+                  'Submit'
+                )}
+              </button>
+            </form>
           </div>
-        </div>
-      )}
+
+          {/* Success Modal */}
+          {showModal && (
+            <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
+              <div className="bg-white p-8 text-center rounded-lg shadow-lg">
+              <div className="mx-auto h-12 w-12 bg-primary rounded-full flex items-center justify-center mb-10">
+                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-bold mb-4">Thank You!</h2>
+                <p>Your message has been successfully sent. We will get back to you soon.</p>
+                <button
+                  onClick={closeModal}
+                  className="mt-4 bg-primary text-white px-6 py-2 rounded-md"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+        </div>  
+        {/* {Get in touch} */}
+        <div className="w-full md:w-1/2 px-4">
+          
+          <h2 className="text-primary text-2xl font-bold mb-2 md:mb-8">We're always eager to hear from you!</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {contactInfoCard.map((card, index) => (
+           <div key={index} className="bg-gray-100 p-4 border border-gray-200 hover:border-primary hover:shadow-lg rounded-lg text-center md:w-60">
+           <div className="w-12 text-primary border border-primary h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3">
+             {card.icon}
+           </div>
+           <h4 className="text-md font-bold mb-3 text-primary">{card.label}</h4>
+           <div className="text-gray-600">
+             <p>{card.description1}</p>
+             <p>{card.description2}</p>
+             <p>{card.description3}</p>
+             <p>{card.description4}</p>
+           </div>
+           </div>
+         ))}
+          </div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-1 pt-8">
+            <h2 className="text-primary text-2xl font-bold mb-4">Social Media</h2>
+            <p className="text-md max-w-2xl mb-4">At Zongea Institute of Technology (ZIT), we believe in a Liberia where everyone has the opportunity to unlock their potential, acquire</p>
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              <Link to="https://www.facebook.com/ZongeaInstituteOfTechnology/" target="_blank">
+                <FaFacebookF className="text-primary cursor-pointer" size={18} />
+              </Link>
+              <Link to="https://www.instagram.com/zongea_institute_of_technology/" target="_blank">
+                <FaInstagram className="text-primary cursor-pointer" size={18} />
+              </Link>
+              <Link to="https://www.linkedin.com/school/zongea-institute-of-technology/" target="_blank">
+                <FaLinkedinIn className="text-primary cursor-pointer" size={18} />
+              </Link>
+              <Link to="https://github.com/zongea-institute-of-technology" target="_blank">
+                <FaGithub className="text-primary cursor-pointer" size={18} />
+              </Link>
+            </div>
+          </div>
+
+        </div>  
+      </div>
 
       {/* Google Map Section */}
       <div className="max-w-9xl mx-auto my-12">
@@ -250,30 +277,28 @@ export default function ContactPage() {
           backgroundPosition: 'center',
         }}
       >
-      <div className="container w-full text-center text-white">
-  <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
-    Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
-  </h2>
+        <div className="container w-full text-center text-white">
+          <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
+            Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
+          </h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {/* Volunteer Button */}
+            <Link
+              to="/guiding-hands-program"
+              className="w-full sm:w-fit border hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            >
+              Be A Volunteer <ArrowRight className="ml-2" size={16} />
+            </Link>
 
-  <div className="flex flex-col sm:flex-row justify-center gap-4">
-    {/* Volunteer Button */}
-    <Link
-      to="/guiding-hands-program"
-      className="w-full sm:w-fit border hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
-    >
-      Be A Volunteer <ArrowRight className="ml-2" size={16} />
-    </Link>
-
-    {/* Donate Button */}
-    <Link
-      to="/donate"
-      className="w-full sm:w-fit bg-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
-    >
-      Donate Today <ArrowRight className="ml-2" size={16} />
-    </Link>
-  </div>
-</div>
-
+            {/* Donate Button */}
+            <Link
+              to="/donate"
+              className="w-full sm:w-fit bg-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            >
+              Donate Today <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
