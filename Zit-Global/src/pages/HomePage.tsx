@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy } from 'react';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../components/ScrollToTopButton';

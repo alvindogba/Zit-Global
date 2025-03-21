@@ -47,7 +47,7 @@ const SuccessStory = () => {
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState(0);
-    const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+    const autoPlayRef = useRef<number | null>(null);
     const carouselRef = useRef<HTMLDivElement>(null);
 
     // Touch threshold

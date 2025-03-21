@@ -84,7 +84,7 @@ const ProgramsWeOffer = () => {
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
             {programs.map((program, index) => (
-              <motion.div key={program.title} variants={variants.fadeInUp} className="relative">
+              <motion.div key={index} variants={variants.fadeInUp} className="relative">
                 <Link className="text-primary" to={program.href}>
                   <GlassCard className="p-6 h-full w-72 bg-transparent backdrop-blur-md border border-gray-100 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group">
                     {program.icon}
