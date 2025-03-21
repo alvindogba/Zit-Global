@@ -110,7 +110,7 @@ function App() {
              <Route
               path="/guiding-hands-program"
               element={
-                <Suspense fallback={<ProjectSkeleton />}>
+                <Suspense fallback={<DefaultSkeletion />}>
                   <GuidingHandingProgram />
                 </Suspense>
               }

@@ -16,7 +16,7 @@ const DefaultSkeletonPage = () => {
 
   return (
     <div
-      className="text-white  transition-all duration-700 flex items-center flex-col justify-center h-screen w-screen"
+      className="text-white overflow-hidden flex items-center justify-center min-h-96 w-full"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${BgMap})`,
         backgroundRepeat: "no-repeat",
@@ -24,17 +24,19 @@ const DefaultSkeletonPage = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* Blinking Logo While Loading */}
-      <img
-        src={Logo}
-        alt="Loading Logo"
-        className={`w-60 h-20 transition-opacity duration-500 ${
-          showLogo ? "opacity-100" : "opacity-20"
-        }`}
-      />
-      <h2 className="text-2xl font-bold mb-6 text-white">
-        The School For Everyone
-      </h2>
+      <div className="text-center">
+        {/* Blinking Logo While Loading */}
+        <img
+          src={Logo}
+          alt="Loading Logo"
+          className={`w-60 h-20 transition-opacity duration-500 ${
+            showLogo ? "opacity-100" : "opacity-20"
+          }`}
+        />
+        <h2 className="text-lg font-thin text-white">
+          The School For Everyone
+        </h2>
+      </div>
     </div>
   );
 };
