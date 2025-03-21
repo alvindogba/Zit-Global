@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy } from 'react';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../components/ScrollToTopButton';
@@ -14,7 +14,6 @@ const StudyAtZit = lazy(() => import('../components/HomePageComponent/StudyAtZit
 const ProgramsWeOffer = lazy(() => import('../components/HomePageComponent/ProgramsWeOffer'));
 const TTM = lazy(() => import('../components/HomePageComponent/Hero/TTM'));
 const TeachSomeone = lazy(() => import('../components/HomePageComponent/Hero/TeachSomeon'));
-const JoinUs = lazy(() => import('../components/HomePageComponent/Hero/JoinUs'));
 const UpComingEvent = lazy(() => import('../components/HomePageComponent/UpComingEvent'));
 const TutorshipSection = lazy(() => import ('../components/HomePageComponent/TutorshipSection'))
 
@@ -24,11 +23,11 @@ const HomePage: React.FC = () => {
                 <Header />
                 <Hero />
                 <OurApproach />
-                <TutorshipSection />
                 <StudyAtZit />
                 <ProgramsWeOffer />
+                <TutorshipSection />
                 <div className="text-white py-16" style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 90, 1), rgba(0, 0, 90, 0.98)), url(${MotivationBgImg})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
@@ -48,9 +47,8 @@ const HomePage: React.FC = () => {
                     </Link>
                     </div>
                 </div>
-                <TTM />
                 <TeachSomeone />
-                <JoinUs />
+                <TTM />
                 <SuccessStory /> 
                 <UpComingEvent />
                 <ScrollToTopButton />

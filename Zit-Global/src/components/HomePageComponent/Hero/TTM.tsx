@@ -154,20 +154,20 @@ export default function TTM() {
         <img
           src={tabContent[activeTab].image}
           alt={`${activeTab} Image`}
-          className="w-full max-h-[55vh] md:w-1/3 rounded-lg shadow-md object-cover"
+          className="w-full max-h-[50vh] md:w-1/3 rounded-lg shadow-md object-cover"
         />
 
         {/* Right - Text */}
-        <div className="flex flex-col justify-between gap-4 bg-primary rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative -ml-6">
+        <div className="flex px-4 flex-col justify-between gap-4 bg-primary rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
           {/* Carve Effect */}
-          <div
+          {/* <div
             className="absolute -left-6 top-0 w-6 h-10 bg-primary hidden md:block" // Top-left carve
             style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%)" }}
-          ></div>
-          <div
+          ></div> */}
+          {/* <div
             className="absolute -left-6 bottom-0 w-6 h-10 bg-primary hidden md:block" // Bottom-left carve
             style={{ clipPath: "polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%)" }}
-          ></div>
+          ></div> */}
 
           {/* Tabs Section */}
           <div className="flex items-center transition-opacity duration-300 ease-in-out bg-white">
@@ -177,7 +177,7 @@ export default function TTM() {
                 className={`px-1 md:px-3 py-1 md:py-2 outline-none active-none text-center transition-all w-full rounded-none ${
                   activeTab === tab
                     ? "bg-primary font-bold text-white"
-                    : "text-gray-500"
+                    : "text-gray-500 bg-white"
                 }`}
                 onClick={() => setActiveTab(tab as "Teach" | "Tutor" | "Mentor")}
               >
@@ -193,10 +193,10 @@ export default function TTM() {
 
           {/* Buttons */}
           <div className="mt-6 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
-            <button className="md:w-fit sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
+            <button className="w-full md:w-fit sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
               {tabContent[activeTab].primaryBtn}
             </button>
-            <button className="md:w-fit sm:w-fit sm:px-8 px-4 py-1 bg-white text-primary rounded-lg hover:bg-primary hover:text-white border border-primary hover:font-bold transition-all">
+            <button className="w-full md:w-fit sm:w-fit px-4 py-1 border border-white text-primary bg-white rounded-lg hover:font-bold transition-all">
               Donate Today
             </button>
           </div>

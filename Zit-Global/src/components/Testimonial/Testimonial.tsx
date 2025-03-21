@@ -142,7 +142,7 @@ const Testimonial = () => {
     setIsDragging(true);
   };
 
-  const onMouseMove = (e: React.MouseEvent) => {    if (!isDragging) return;
+  const onMouseMove = (e: React.MouseEvent) => {  if (!isDragging) return;
     const carouselRect = carouselRef.current?.getBoundingClientRect();
     if (!carouselRect) return;
     const mousePosition = e.clientX;
@@ -167,7 +167,7 @@ const Testimonial = () => {
   };
 
   // Autoplay functionality
-  const [autoPlayInterval, setAutoPlayInterval] = useState<NodeJS.Timeout | null>(null);
+  const [autoPlayInterval, setAutoPlayInterval] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const startAutoPlay = () => {
     setAutoPlayInterval(setInterval(handleNext, 5000));

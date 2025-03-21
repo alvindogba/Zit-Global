@@ -82,11 +82,11 @@ const ProgramsWeOffer = () => {
 
         {/* Programs Grid */}
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
-            {programs.map((program, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:max-w-4xl">
+            {programs.map((program) => (
               <motion.div key={program.title} variants={variants.fadeInUp} className="relative">
                 <Link className="text-primary" to={program.href}>
-                  <GlassCard className="p-6 h-full w-72 bg-transparent backdrop-blur-md border border-gray-100 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group">
+                  <GlassCard className="p-6 h-full w-full bg-transparent backdrop-blur-md border border-gray-400 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group">
                     {program.icon}
                     <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white">
                       {program.title}

@@ -122,7 +122,7 @@ export const Header = () => {
 
         {/* Donation Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/donate" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-600 transition">
+          <Link to="/donate" className="rounded-full bg-primary px-4 py-2 text-sm border border-white font-semibold text-white shadow-sm hover:bg-primary-600 transition">
             Make A Donation
           </Link>
         </div>

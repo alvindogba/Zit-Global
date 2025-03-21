@@ -36,20 +36,20 @@ const OurApproach = ()=>{
         <div className="flex flex-wrap justify-center gap-4">
           {[
             {
-              title: 'TTM Model',
-              description: 'Learn directly from industry professionals through our Teaching Tutoring Mentorship approach.',
+              title: 'Project Based Learning (PBL)',
+              description: 'Learn by doing',
               icon: AcademicCapIcon,
               href: '/ttm-model'
             },
             {
-              title: 'Guiding Hands Program',
-              description: 'Experience peer-to-peer learning in our global community of tech enthusiasts.',
+              title: 'Competency Based Learning (CBL)',
+              description: 'Master before moving on',
               icon: ChatBubbleBottomCenterTextIcon,
               href: '/guiding-hands-program'
             },
             {
-              title: 'Practical Projects',
-              description: 'Work on real-world projects with guidance from industry experts.',
+              title: 'Mentorship and Industry Collaboration',
+              description: 'Learn from experts.',
               icon: BeakerIcon,
               href: '/projects'
             },
@@ -57,11 +57,11 @@ const OurApproach = ()=>{
             <motion.div
               key={approach.title}
               variants={variants.fadeInUp}
-              className="relative"
+              className="relative  "
             > 
               <Link className="text-primary" to={approach.href}>
               <GlassCard
-                className="p-4 h-full w-72 bg-transparent backdrop-blur-md border border-gray-100 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group"
+                className="p-4 h-full w-72 bg-transparent backdrop-blur-md border border-gray-400 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group"
                 glowColor={`from-primary-${(index + 4) * 100}/20`}
               >
                 <approach.icon className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />
