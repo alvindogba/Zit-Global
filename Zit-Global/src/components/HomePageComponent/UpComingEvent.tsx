@@ -63,12 +63,7 @@ const UpcomingEvents: React.FC = () => {
                   {event.title}
                 </h3>
                 <p className="text-gray-600 mt-2 text-sm">{event.description}</p>
-                <a
-                  href={event.link}
-                  className="text-primary font-medium flex items-center gap-1 mt-3 hover:underline"
-                >
-                  Read More <span>&rarr;</span>
-                </a>
+               
               </div>
             </div>
           ))}

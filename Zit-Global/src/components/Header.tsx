@@ -16,9 +16,9 @@ const navigation = [
   },
   {
     name: "Make Impact",
-    href: "/guiding-hand",
+    href: "/impact-connect-center",
     dropdown: [
-      { name: "Impact & Connect Center", href: "/guiding-hand" }, // Fixed typo
+      { name: "Impact & Connect Center", href: "/impact-connect-center" }, // Fixed typo
       { name: "Mentorship Program", href: "/mentorship-program" },
       { name: "Tutorship Program", href: "/tutorship-program" },
 

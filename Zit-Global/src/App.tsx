@@ -49,7 +49,9 @@ function App() {
       <Elements stripe={stripePromise}>
     <BrowserRouter>
       <div className="min-h-screen">
-          <Header />
+      <Suspense fallback= "">
+                  <Header />
+                </Suspense>
         <div className="pt-20">
         <ScrollToTop />
 
@@ -104,7 +106,7 @@ function App() {
               }
             />
              <Route
-              path="/guiding-hands-program"
+              path="/impact-connect-center"
               element={
                 <Suspense fallback={<DefaultSkeletion />}>
                   <GuidingHandingProgram />
@@ -239,8 +241,10 @@ function App() {
         </div>
 
       </div>
-      <Footer />
-    </BrowserRouter>
+      <Suspense fallback= "">
+                  <Footer />
+                </Suspense>    
+                </BrowserRouter>
     </Elements>
     </PayPalScriptProvider>
   );
