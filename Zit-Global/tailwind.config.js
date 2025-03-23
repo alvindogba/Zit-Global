@@ -11,11 +11,20 @@ export default {
     extend: {
       colors: {
         primary: '#000054',
-        secondary: '#EFEFEF', // Added missing #
+        secondary: '#EFEFEF',
         accent: '#060657',
       },
       fontFamily: {
         sans: ['Inter var', 'sans-serif'],
+      },
+      fontSize: {
+        h1: ['1.75rem', { lineHeight: '1.3', fontWeight: '700' }], // 28px        
+        h2: ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }], // 24px
+        h3: ['1.25rem', { lineHeight: '1.3', fontWeight: '500' }], // 20px
+        h4: ['1.125rem', { lineHeight: '1.3', fontWeight: '500' }], // 18px
+        h5: ['1.25rem', { lineHeight: '1.3', fontWeight: '500' }], // 20px
+        h6: ['1rem', { lineHeight: '1.3', fontWeight: '400' }], // 16px
+        p: ['1rem', { lineHeight: '1.3', fontWeight: '400' }], // 16px
       },
     },
   },
