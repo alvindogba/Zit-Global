@@ -10,14 +10,11 @@ import HowWeTeach from '../components/HomeComponent/HowWeTeach';
 import ProgramsWeOffer from '../components/HomeComponent/ProgramsWeOffer';
 import Committment from '../components/HomeComponent/Committment';
 import ScrollToTopButton from '../components/ScrollToTopButton';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer/index';
 
 const Home = () => {
 
   return (
     <main className="bg-gray-200 text-primary overflow-hidden w-full">
-      <Header />
       <LandingSection />
       <OurApproach />
       <HowWeTeach />
@@ -71,7 +68,6 @@ const Home = () => {
           <ScrollToTopButton />
         </motion.div>
       </Section>
-      <Footer />
     </main>
   );
 };

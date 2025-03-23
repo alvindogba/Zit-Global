@@ -6,8 +6,11 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import ScrollToTop from './components/common/ScrollToTop';
 import DefaultSkeletion from './components/DefaultSkeletion';
 
+const Header = lazy(() => import('./components/Header'));
+const Footer = lazy(() => import('./components/Footer/index'))
+
+
 // Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
 const HomePage = lazy(() => import('./pages/HomePage'))
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
@@ -46,20 +49,15 @@ function App() {
       <Elements stripe={stripePromise}>
     <BrowserRouter>
       <div className="min-h-screen">
+      <Suspense fallback= "">
+                  <Header />
+                </Suspense>
         <div className="pt-20">
         <ScrollToTop />
 
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Suspense fallback={<DefaultSkeletion />}>
-                  <Home />
-                </Suspense>
-              }
-            />
              <Route
-              path="/home"
+              path="/"
               element={
                 <Suspense fallback={<DefaultSkeletion />}>
                   <HomePage />
@@ -108,7 +106,7 @@ function App() {
               }
             />
              <Route
-              path="/guiding-hands-program"
+              path="/impact-connect-center"
               element={
                 <Suspense fallback={<DefaultSkeletion />}>
                   <GuidingHandingProgram />
@@ -239,9 +237,14 @@ function App() {
             />
         
           </Routes>
+
         </div>
+
       </div>
-    </BrowserRouter>
+      <Suspense fallback= "">
+                  <Footer />
+                </Suspense>    
+                </BrowserRouter>
     </Elements>
     </PayPalScriptProvider>
   );

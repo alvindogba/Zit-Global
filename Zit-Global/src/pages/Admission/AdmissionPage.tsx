@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, User, BookOpen, Phone, CheckCircle } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { Header } from '../../components/Header';
-import Footer from '../../components/Footer/index';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 
@@ -572,7 +570,6 @@ function AdmissionPage() {
 
   return (
     <>
-    <Header />
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-8xl md:max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
@@ -654,7 +651,6 @@ function AdmissionPage() {
       </div>
     </div>
     <ScrollToTopButton />
-    <Footer />
     </>
   );
 }

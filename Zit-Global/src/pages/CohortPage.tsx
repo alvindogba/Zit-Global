@@ -1,8 +1,6 @@
 import { JSX, useState } from 'react';
 import ContactImg from '../asset/images/OT image .jpg';
 import { Link } from 'react-router-dom'
-import Footer from '../components/Footer/index';
-import { Header } from '../components/Header';
 
 // Import Icons
 import { FaLaptopCode, FaServer, FaLayerGroup, FaPaintBrush, FaShieldAlt, FaPalette } from "react-icons/fa";
@@ -195,7 +193,6 @@ const CohortPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       {/* Hero Section */}
       <div className="relative bg-navy-600 text-white">
         <div 
@@ -355,7 +352,6 @@ const CohortPage = () => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };

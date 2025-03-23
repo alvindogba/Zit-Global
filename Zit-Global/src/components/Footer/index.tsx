@@ -21,16 +21,16 @@ const Footer = () => {
         </div>
         
         {/* Subscribe Section */}
-        <div className="flex items-center gap-2 w-full md:w-auto">
+        <div className="hidden md:flex items-center gap-2 w-full md:w-auto">
         <NewsletterForm />
 
         </div>
       </div>
 
       {/* Main Content - Logo Description, Links, and Buttons in One Row */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-8 py-8">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-8">
         {/* Logo Description */}
-        <div className="flex flex-col items-center">
+        <div className="col-span-2 flex flex-col items-center">
           <p className="mt-4">
             Zongea Institute of Technology is a free tech school in Liberia, providing
             accessible, high-quality education to empower students with the skills to
@@ -238,6 +238,10 @@ const Footer = () => {
            </button>
         </div>
       </div>
+      <div className="md:hidden flex items-center gap-2 w-full md:w-auto">
+        <NewsletterForm />
+
+        </div>
 
       {/* Social Media Icons & Copyright */}
       <div className="mt-8  flex flex-col gap-4 md:flex-row justify-between items-center border-t border-white pt-4">

@@ -5,15 +5,12 @@ import Instructors from '../components/Instructors/index.tsx';
 import StudentLife from '../components/StudentLife/index.tsx';
 import StudySucceed from '../components/StudySucceed/index.tsx';
 import Testimonial from '../components/Testimonial/Testimonial.tsx';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 
 
 const  StudentsPage = () => {
   return (
     <div className='min-h-screen bg-white'>
-      <Header />
       <div className="relative bg-navy-600 text-white">
       <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
         backgroundRepeat: 'no-repeat',
@@ -42,7 +39,6 @@ const  StudentsPage = () => {
       <StudentLife />
       <Testimonial />
       <ScrollToTopButton />
-      <Footer />
     </div>
   )
 }

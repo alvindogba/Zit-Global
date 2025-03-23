@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import ScrollToTopButton from '../../components/ScrollToTopButton';
-import { Header } from '../../components/Header';
-import Footer from '../../components/Footer/index';
 
 interface AdmissionDetails {
   firstName: string;
@@ -54,7 +52,6 @@ const AdmissionSuccess = () => {
   if (error || !admission) {
     return (
       <>
-      <Header />
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
           <div className="text-red-500 mb-4">
@@ -73,7 +70,6 @@ const AdmissionSuccess = () => {
         </div>
       </div>
       <ScrollToTopButton />
-      <Footer />
       </>
     );
   }

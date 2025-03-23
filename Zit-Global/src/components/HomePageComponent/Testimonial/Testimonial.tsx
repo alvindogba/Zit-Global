@@ -169,7 +169,7 @@ const Testimonial = () => {
   };
 
   // Autoplay functionality
-  const [autoPlayInterval, setAutoPlayInterval] = useState<number | null>(null);
+  const [autoPlayInterval, setAutoPlayInterval] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const startAutoPlay = () => {
     setAutoPlayInterval(setInterval(handleNext, 5000));

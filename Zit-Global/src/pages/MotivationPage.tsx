@@ -1,7 +1,5 @@
-import { GraduationCap, Users, Target, ArrowRight, Earth, BookOpen, Laptop, Lightbulb, BookOpenText, Globe, HandHelping, Trophy } from 'lucide-react';
+import { Earth, BookOpen } from 'lucide-react';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer/index';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import ReadyToStartSec from '../components/MotivationPage/ReadyToStartSec';
 import GroundWork from '../components/MotivationPage/GroundWork'
@@ -27,7 +25,6 @@ export default function MotivationPage() {
   ]
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       {/* Hero Section */}
       <div className="relative bg-navy-600 text-white">
         <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
@@ -112,7 +109,6 @@ export default function MotivationPage() {
       <WhatWeBelieve />
       <SeeAFuture />
       <ScrollToTopButton />
-      <Footer />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import image from '../../../asset/images/Abel B. Winn.jpg'
+import image from '../../../asset/images/Teacher.jpeg'
 
 
 export default function TeachSomeone() {
   return (
-    <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-28 pt-20 pb-4 md:pb-20 bg-white">
+    <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-40 pt-20 pb-4 md:pb-20 bg-white">
       {/* Left Side - Text Content */}
       <div className="w-full  md:w-2/7  md:text-left">
         <h3 className="text-base font-medium text-primary">Want to be part of this Journey?</h3>
@@ -16,7 +16,7 @@ export default function TeachSomeone() {
           tailored to meet the needs of students in Liberia, ensuring a comprehensive and
           inclusive educational experience.
         </p>
-        <button className="w-full md:w-fit mt-10 px-6 py-2 border border-primary text-base text-primary rounded-lg  hover:text-primary hover:font-bold transition-all duration-300">
+        <button className="w-full md:w-fit mt-10 px-6 py-2 border border-primary bg-primary text-white text-base text-primary rounded-lg  hover:text-primary hover:font-bold transition-all duration-300">
           Become a Teacher
         </button>
 

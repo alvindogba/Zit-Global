@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import ContactImg from '../asset/images/OT image .jpg';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
 import { toast } from 'react-toastify';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer/index';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 interface ContactFormData {
@@ -96,7 +94,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       {/* Hero Section */}
       <div className="relative bg-navy-600 text-white">
         <div
@@ -300,7 +297,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
