@@ -1,6 +1,4 @@
 import React, { lazy } from 'react';
-import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
-import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import { Header } from '../components/Header';
 import  Footer  from '../components/Footer/index';
@@ -17,6 +15,7 @@ const TeachSomeone = lazy(() => import('../components/HomePageComponent/Hero/Tea
 const JoinUs = lazy(() => import('../components/HomePageComponent/Hero/JoinUs'));
 const UpComingEvent = lazy(() => import('../components/HomePageComponent/UpComingEvent'));
 const TutorshipSection = lazy(() => import ('../components/HomePageComponent/TutorshipSection'))
+const ReadyToStartSec = lazy(() => import('../components/MotivationPage/ReadyToStartSec'));
 
 const HomePage: React.FC = () => {
     return (
@@ -27,27 +26,7 @@ const HomePage: React.FC = () => {
                 <TutorshipSection />
                 <StudyAtZit />
                 <ProgramsWeOffer />
-                <div className="text-white py-16" style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                    }}
-                >
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-2xl font-bold mb-6 text-white">Ready to Start Learning?</h2>
-                    <p className="text-md text-white mb-8 max-w-2xl mx-auto">
-                        Join our community of learners and kickstart your career in technology and design.
-                        All courses are free and designed to help you successed.
-                     </p>
-                    <Link
-                    to="/admission"
-                    className="border border-white font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
-                    >
-                    Apply Now
-                    </Link>
-                    </div>
-                </div>
+                <ReadyToStartSec />
                 <TTM />
                 <TeachSomeone />
                 <JoinUs />
