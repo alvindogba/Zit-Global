@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
-import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
-import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../components/ScrollToTopButton';
+import { Link } from 'lucide-react';
+import MotivationBgImg from "../asset/images/Graduation-Bg-Img.jpg"
 
 // Lazy load components
 const Hero = lazy(() => import('../components/HomePageComponent/Hero/HeroSection'));
@@ -14,6 +14,7 @@ const TTM = lazy(() => import('../components/HomePageComponent/Hero/TTM'));
 const TeachSomeone = lazy(() => import('../components/HomePageComponent/Hero/TeachSomeon'));
 const UpComingEvent = lazy(() => import('../components/HomePageComponent/UpComingEvent'));
 const TutorshipSection = lazy(() => import ('../components/HomePageComponent/TutorshipSection'))
+const ReadyToStartSec = lazy(() => import('../components/MotivationPage/ReadyToStartSec'));
 
 const HomePage: React.FC = () => {
     return (
@@ -44,6 +45,8 @@ const HomePage: React.FC = () => {
                     </Link>
                     </div>
                 </div>
+                <ReadyToStartSec />
+                <TTM />
                 <TeachSomeone />
                 <TTM />
                 <SuccessStory /> 
