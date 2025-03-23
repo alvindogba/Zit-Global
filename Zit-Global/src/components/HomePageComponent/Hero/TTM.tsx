@@ -45,17 +45,17 @@ export default function TTM() {
       {/* Content Section - Dynamic Update */}
       <div className="flex flex-col md:flex-row items-center mt-10 gap-6">
         {/* Left - Image */}
-        <div className=" h-[50vh] w-full md:h-[68vh] max-h-[75vh] md:w-[40%] ">
+        <div className=" h-[40vh] w-full md:h-[50vh]  md:w-[40%] ">
           <img
             src={tabContent[activeTab].image}
             alt={`${activeTab} Image`}
-            className="w-full  h-full  rounded-lg shadow-md object-cover"
+            className="w-full  h-[100%]  rounded-lg shadow-md object-cover"
           />
         </div>
 
 
         {/* Right - Text */}
-        <div className="h-[68vh] max-h-[75vh] flex px-4 flex-col justify-between md:gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
+        <div className="h-[50vh] max-h-[60vh] flex px-4 flex-col  md:gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
 
           {/* Tabs Section */}
           <div className="flex items-center transition-opacity duration-300 ease-in-out bg-white">
@@ -73,7 +73,7 @@ export default function TTM() {
             ))}
           </div>
 
-          <h3 className="mt-4 text-xl  font-bold text-gray-800">
+          <h3 className="mt-4 text-xl md:w-[60%]  font-bold text-gray-800">
             {tabContent[activeTab].title}
           </h3>
           <p className="text-gray-600 mt-4 sm:w-[60%]">{tabContent[activeTab].description}</p>
