@@ -62,7 +62,7 @@ export default function TTM() {
             {["Teach", "Tutor", "Mentor"].map((tab) => (
               <p
                 key={tab}
-                className={`px-1 md:px-3 py-1 md:py-2 outline-none border-none active-none text-center transition-all w-full rounded-none ${activeTab === tab
+                className={`px-1 md:px-3 py-1 md:py-2 outline-none border-none active-none text-center cursor-pointer transition-all w-full rounded-none ${activeTab === tab
                   ? "bg-gray-200 font-bold  border-none outline-none text-gray-800"
                   : "text-gray-500 bg-white border-none outline-none font-light "
                   }`}
