@@ -1,11 +1,10 @@
 import { BackgroundMesh } from '../BackgroundMesh';
 import { Section } from '../Section';
 import { GlassCard } from '../GlassCard';
-import {
-    ChatBubbleBottomCenterTextIcon,
-  } from '@heroicons/react/24/outline'; 
-  import { GiShakingHands } from "react-icons/gi";
-  import { FaDiagramProject } from "react-icons/fa6";
+import { FaArrowsDownToPeople } from "react-icons/fa6";
+  import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+  import { FaPeoplePulling } from "react-icons/fa6";
+
 
 
 import { motion } from 'framer-motion';
@@ -31,46 +30,45 @@ const OurApproach = ()=>{
             Our Educational Approach
           </h2>
           <p className="text-lg text-gray-800 max-w-2xl mx-auto">
-            Transforming tech education through mentorship and practical experience
+          Revolutionizing tech education through mentorship, experiential learning, and a community-driven approach to impact.
           </p>
         </motion.div>
         <div className="flex flex-wrap justify-center gap-4">
           {[
             {
-              title: 'Project Based Learning (PBL)',
-              description: 'Learn by doing',
-              note: "Students engage in hands-on projects that solve real world problems, helping them develop pratical skills, creativity, and Team work.",
-              icon: FaDiagramProject,
+              title: 'Teach',
+              description: 'Lay a Strong Foundation',
+              note: "Deliver structured, high-quality tech education that empowers students with essential knowledge, critical thinking skills, and hands-on experience to excel in the digital world.",
+              icon: LiaChalkboardTeacherSolid,
             },
             {
-              title: 'Competency Based Learning (CBL)',
-              description: 'Master before moving on',
-              icon: ChatBubbleBottomCenterTextIcon,
-              note: "Students engage in hands-on projects that solve real world problems, helping them develop pratical skills, creativity, and Team work.",
+              title: 'Tutor',
+              description: 'Reinforce and Support',
+              icon: FaPeoplePulling,
+              note: "Provide personalized guidance and hands-on support to help students master concepts, overcome challenges, and confidently apply their knowledge",
 
             },
             {
-              title: 'Mentoring and Industry Collaboration',
-              description: 'Learn from experts.',
-              icon: GiShakingHands,
-              note: "Students engage in hands-on projects that solve real world problems, helping them develop pratical skills, creativity, and Team work.",
+              title: 'Mentor',
+              description: ' Inspire and Give Back',
+              icon: FaArrowsDownToPeople,
+              note: "Equip students to guide and uplift others, fostering a culture of continuous learning, leadership, and community transformation.",
 
-              href: '/mentoring',
             },
           ].map((approach, index) => (
             <motion.div
               key={approach.title}
               variants={variants.fadeInUp}
-              className="relative  "
+              className="relative "
             > 
               <GlassCard
                 className="p-4 h-full w-72 bg-transparent backdrop-blur-md border  transition-all duration-300 hover:translate-y-1 "
                 glowColor={`from-primary-${(index + 4) * 100}/20`}
               >
-                <approach.icon className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />
-                <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white">{approach.title}</h3>
-                <p className="text-gray-700 text-sm group-hover:text-white">{approach.description}</p>
-                <p>{approach.note}</p>
+                <approach.icon className="w-10 h-10 mx-auto text-primary-600 mb-4 group-hover:text-white" />
+                <h3 className="text-lg font-semibold mb-2 text-primary group-hover:text-white">{approach.title}</h3>
+                <h4 className="text-gray-900 text-md font-bold group-hover:text-white">{approach.description}</h4>
+                <p className='text-gray-700 mt-4'>{approach.note}</p>
               </GlassCard>
             </motion.div>
           ))}

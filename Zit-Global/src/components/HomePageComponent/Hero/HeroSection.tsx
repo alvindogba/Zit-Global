@@ -48,13 +48,13 @@ export default function HeroSection() {
         <div className="relative  text-white px-4 w-full md:w-[50%] lg:w-[55%] bg-primary opacity-[75%] rounded-tr-lg rounded-tl-lg h-fit md:ml-[8%] py-6 sm:py-6 md:py-6 md:mb-8">
           <AnimateOnScroll animation="fadeIn" delay={200}>
             <h1 className="text-base sm:text-lg md:text-lg font-semibold my-6 sm:my-5 sm:ml-6 md:ml-5 w-[85%]">
-              Unlock Your Potential: Begin Your Journey with ZIT's Transformative Tech Training
+            Unleash Your Potential: Take the First Step Toward a Thriving Tech Career
             </h1>
           </AnimateOnScroll>
           <div className="w-full sm:ml-6 md:ml-5">
             <AnimateOnScroll animation="fadeIn" delay={400}>
               <p className="text-xs sm:text-sm mb-3 sm:mb-6 w-[90%] md:w-[75%]">
-                Tech careers within reach. Whether you're in high school or have some college, we'll get you job-ready—fast. All it takes is your drive to succeed.
+              Opportunities in tech are within your reach. No matter your background or experience level, we provide the training and support to help you succeed. The path to a brighter future starts now; are you ready to take it?
               </p>
             </AnimateOnScroll>
           </div>
