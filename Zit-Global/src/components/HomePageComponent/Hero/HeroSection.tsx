@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimateOnScroll from "../../common/AnimateOnScroll";
-import heroImg1 from '../../../asset/images/herobg1.jpg'
-import heroImg2 from '../../../asset/images/herobg2.jpg'
-import heroImg3 from '../../../asset/images/herobg3.jpg'
+import heroImg1 from '../../../asset/images/herobg1.jpg';
+import heroImg2 from '../../../asset/images/herobg2.jpg';
+import heroImg3 from '../../../asset/images/herobg3.jpg';
 
 const images = [
   heroImg1,
@@ -15,6 +15,15 @@ const images = [
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Preload images to avoid flickering on transition
+  useEffect(() => {
+    images.forEach((img) => {
+      const image = new Image();
+      image.src = img;
+    });
+  }, []);
+
+  // Interval for changing the background image
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -36,7 +45,7 @@ export default function HeroSection() {
     >
       {/* Content Box */}
       <AnimateOnScroll animation="slideUp">
-        <div className="text-white px-4 w-full md:w-[50%] lg:w-[55%] bg-primary opacity-[75%] rounded-tr-lg rounded-tl-lg h-fit  md:ml-[8%] py-6 sm:py-6 md:py-6 md:mb-8">
+        <div className="relative  text-white px-4 w-full md:w-[50%] lg:w-[55%] bg-primary opacity-[75%] rounded-tr-lg rounded-tl-lg h-fit md:ml-[8%] py-6 sm:py-6 md:py-6 md:mb-8">
           <AnimateOnScroll animation="fadeIn" delay={200}>
             <h1 className="text-base sm:text-lg md:text-lg font-semibold my-6 sm:my-5 sm:ml-6 md:ml-5 w-[85%]">
               Unlock Your Potential: Begin Your Journey with ZIT's Transformative Tech Training
@@ -51,22 +60,22 @@ export default function HeroSection() {
           </div>
 
           {/* Call-to-Action Buttons */}
-          <div className="md:px-6 flex flex-col mt-4 md:flex-row md:gap-8  md:items-center">
-              <Link
-                to="/courses"
-                className="bg-transpirent text-base hover:bg-white hover:text-primary hover:font-bold text-white border hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center group mb-2"
-              >
-                Explore Courses 
-                <ArrowRight className="ml-1 md:ml-4 transform transition-transform group-hover:translate-x-1" size={12} />
-              </Link>
+          <div className="relative z-20 md:px-6 flex flex-col mt-4 md:flex-row md:gap-8 md:items-center">
+            <Link
+              to="/courses"
+              className="bg-transparent text-base border border-white text-white hover:bg-white hover:text-primary hover:font-bold hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center group mb-2"
+            >
+              Explore Courses 
+              <ArrowRight className="ml-1 md:ml-4 transform transition-transform" size={12} />
+            </Link>
 
-              <Link
-                to="/admission"
-                className="bg-white text-base hover:bg-white hover:text-primary hover:font-bold text-primary border hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center group mb-2"
-              >
-                Apply Now 
-                <ArrowRight className="ml-1 md:ml-4 transform transition-transform group-hover:translate-x-1" size={16} />
-              </Link>
+            <Link
+              to="/admission"
+              className="bg-white text-base border border-primary text-primary hover:bg-white hover:text-primary hover:font-bold hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center mb-2"
+            >
+              Apply Now 
+              <ArrowRight className="ml-1 md:ml-4 transform transition-transform" size={16} />
+            </Link>
           </div>
         </div>
       </AnimateOnScroll>
@@ -79,6 +88,8 @@ export default function HeroSection() {
               key={index}
               className={`w-4 h-4 rounded-full transition-all duration-300 cursor-pointer hover:scale-110 ${index === currentIndex ? 'bg-white scale-125' : 'bg-gray-500'}`}
               onClick={() => setCurrentIndex(index)}
+              role="button"
+              aria-label={`Select image ${index + 1}`}
             ></div>
           ))}
         </div>

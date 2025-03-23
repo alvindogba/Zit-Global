@@ -18,7 +18,7 @@ const TutorshipSection = lazy(() => import ('../components/HomePageComponent/Tut
 const HomePage: React.FC = () => {
     return (
         <main className="overflow-hidden">
-                <Hero />
+                <Hero/>
                 <OurApproach />
                 <StudyAtZit />
                 <ProgramsWeOffer />
@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
                     to="/admission"
                     className="border border-white font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
                     >
-                    Apply Now
+                 
                     </Link>
                     </div>
                 </div>

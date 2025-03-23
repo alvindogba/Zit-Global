@@ -4,7 +4,8 @@ import InfoSection from "../../components//GuidingHand/Info-section";
 import HowItWorks from "../../components/GuidingHand/How-it-works";
 import Statistic from "../../components/GuidingHand/Statistic"
 import VisionSection from "../../components/GuidingHand/Vission";
-import  UpComingEvent from "../../components/HomePageComponent/UpComingEvent";
+import UpComingEvent from "../../components/HomePageComponent/UpComingEvent";
+import CallToAction from "../../components/GuidingHand/CTA-Global-Computer";
 
 export default function GuidingHandingProgram() {
     return (
@@ -16,6 +17,8 @@ export default function GuidingHandingProgram() {
             <Statistic />
             <VisionSection />
             <UpComingEvent />
+            <CallToAction />
+
         </div>
     )
 }

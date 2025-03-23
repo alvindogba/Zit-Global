@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
 import { BackgroundMesh } from '../BackgroundMesh';
 import { Section } from '../Section';
 import { GlassCard } from '../GlassCard';
 import {
     ChatBubbleBottomCenterTextIcon,
-    AcademicCapIcon,
-    BeakerIcon,
   } from '@heroicons/react/24/outline'; 
+  import { GiShakingHands } from "react-icons/gi";
+  import { FaDiagramProject } from "react-icons/fa6";
+
+
 import { motion } from 'framer-motion';
 import * as variants from '../../animations/variants';
 
@@ -38,20 +39,23 @@ const OurApproach = ()=>{
             {
               title: 'Project Based Learning (PBL)',
               description: 'Learn by doing',
-              icon: AcademicCapIcon,
-              href: '/ttm-model'
+              note: "Students engage in hands-on projects that solve real world problems, helping them develop pratical skills, creativity, and Team work.",
+              icon: FaDiagramProject,
             },
             {
               title: 'Competency Based Learning (CBL)',
               description: 'Master before moving on',
               icon: ChatBubbleBottomCenterTextIcon,
-              href: '/guiding-hands-program'
+              note: "Students engage in hands-on projects that solve real world problems, helping them develop pratical skills, creativity, and Team work.",
+
             },
             {
-              title: 'Mentorship and Industry Collaboration',
+              title: 'Mentoring and Industry Collaboration',
               description: 'Learn from experts.',
-              icon: BeakerIcon,
-              href: '/projects'
+              icon: GiShakingHands,
+              note: "Students engage in hands-on projects that solve real world problems, helping them develop pratical skills, creativity, and Team work.",
+
+              href: '/mentoring',
             },
           ].map((approach, index) => (
             <motion.div
@@ -59,16 +63,15 @@ const OurApproach = ()=>{
               variants={variants.fadeInUp}
               className="relative  "
             > 
-              <Link className="text-primary" to={approach.href}>
               <GlassCard
-                className="p-4 h-full w-72 bg-transparent backdrop-blur-md border border-gray-400 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group"
+                className="p-4 h-full w-72 bg-transparent backdrop-blur-md border  transition-all duration-300 hover:translate-y-1 "
                 glowColor={`from-primary-${(index + 4) * 100}/20`}
               >
                 <approach.icon className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />
                 <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white">{approach.title}</h3>
                 <p className="text-gray-700 text-sm group-hover:text-white">{approach.description}</p>
+                <p>{approach.note}</p>
               </GlassCard>
-              </Link>
             </motion.div>
           ))}
         </div>
