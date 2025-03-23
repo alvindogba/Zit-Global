@@ -5,7 +5,6 @@ import { BackgroundMesh } from "../BackgroundMesh";
 import * as variants from "../../animations/variants";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { ArrowRightIcon } from "lucide-react";
 import {
   FaServer,
   FaLayerGroup,
@@ -101,12 +100,12 @@ const ProgramsWeOffer = () => {
           </div>
         </div>
 
-        {/* View More Button */}
+        {/* View More Button
         <div className="text-right mt-8 md:px-40">
           <Link to="/courses" className="btn btn-primary text-primary hover:text-primary-600">
             View More Courses <ArrowRightIcon className="inline-block" size={20} />
           </Link>
-        </div>
+        </div> */}
       </motion.div>
     </Section>
   );

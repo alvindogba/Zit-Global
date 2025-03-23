@@ -2,6 +2,7 @@ import image1 from "../../asset/images/a mentor.jpg";
 import image2 from "../../asset/images/a parent.jpg";
 import image3 from "../../asset/images/a school amdin.jpg";
 import image4 from "../../asset/images/a student.jpg";
+import { Link } from "react-router-dom";
 
 export default function TutorshipSection() {
   const imgCard = [
@@ -9,21 +10,28 @@ export default function TutorshipSection() {
       label: "I am a Student",
       linkText: "Get Started",
       img: image4,
+      link: "/icc-student"
     },
     {
       label: "I am a Parent or Guardian",
       linkText: "Get Started",
       img: image2,
+      link: "/icc/parent-guardian"
+
     },
     {
       label: "I am a School Administrator",
       linkText: "Get Started",
       img: image3,
+      link: "/icc/administration"
+
     },
     {
       label: "I’d Like to Mentor Someone",
       linkText: "Get Started",
       img: image1,
+      link: "/icc/mentor"
+
     },
   ];
 
@@ -54,9 +62,9 @@ export default function TutorshipSection() {
             {/* Overlay with Text */}
             <div className="absolute inset-0 bg-primary/50 flex flex-col justify-center items-center p-2 text-center">
               <h3 className="text-sm font-semibold text-white">{card.label}</h3>
-              <button className="mt-2 text-xs font-bold border-l-white border-b-white text-white px-3 py-1 bg-transparent hover:border-white  transition">
+              <Link  to={card.link} className="mt-2 text-xs font-bold border-l-white border-b-white text-white px-3 py-1 bg-transparent hover:border-white  transition">
                 {card.linkText}
-              </button>
+              </Link>
             </div>
           </div>
         ))}

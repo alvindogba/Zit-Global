@@ -73,7 +73,7 @@ export default function Courses() {
         "Manage and optimize databases efficiently. Learn SQL, data security, and performance tuning to ensure database reliability.",
       icon: <Database className="w-12 h-12 text-secondary-yellow" />,
       image: DatabaseImg, // Unsplash image for Database
-      path: "/courses/database-administration",
+      path: "/courses/database-admin",
       highlights: [
         "SQL & NoSQL Databases",
         "Data Security",
@@ -99,7 +99,7 @@ export default function Courses() {
   
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 ">
       {/* Hero Section */}
       <div className="relative text-white"   style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.4), rgba(0, 0, 90, 0.4)), url(${HeroBgImg})`,
@@ -119,8 +119,8 @@ export default function Courses() {
       </div>
 
       {/* Courses Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:px-40">
           {courses.map((course, index) => (
             <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:-translate-y-1">
               <div className="relative h-48">

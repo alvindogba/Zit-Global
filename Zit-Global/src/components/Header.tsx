@@ -11,7 +11,7 @@ const navigation = [
     href: "/cohorts",
     dropdown: [
       { name: "Cohort", href: "/cohorts" },
-      { name: "Students", href: "/students" },
+      { name: "Courses", href: "/courses" },
     ],
   },
   {

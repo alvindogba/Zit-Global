@@ -4,7 +4,6 @@ import ScrollToTopButton from '../components/ScrollToTopButton';
 // Lazy load components
 const Hero = lazy(() => import('../components/HomePageComponent/Hero/HeroSection'));
 //const Events = lazy(() => import('../components/HomePageComponent/Hero/event'));
-const SuccessStory = lazy(() => import('../components/HomePageComponent/Hero/SuccessStory'));
 const OurApproach = lazy(() => import('../components/HomePageComponent/OurApproach'))
 const StudyAtZit = lazy(() => import('../components/HomePageComponent/StudyAtZit'))
 const ProgramsWeOffer = lazy(() => import('../components/HomePageComponent/ProgramsWeOffer'));
@@ -25,7 +24,6 @@ const HomePage: React.FC = () => {
                 <ReadyToStartSec />
                 <TeachSomeone />
                 <TTM />
-                <SuccessStory /> 
                 <UpComingEvent />
                 <ScrollToTopButton />
         </main>

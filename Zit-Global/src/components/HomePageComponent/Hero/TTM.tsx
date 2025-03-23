@@ -1,111 +1,8 @@
-// import { useState } from "react";
-// import mentorImage from "../../../asset/images/alvin-dogba.jpg"
-// import tutorImage from "../../../asset/images/Paulfina.jpg"
-// import teachImage from "../../../asset/images/evelyna-sawah.jpg"
-// export default function TTM() {
-//   const [activeTab, setActiveTab] = useState<"Teach" | "Tutor" | "Mentor">("Tutor");
-
-//   // Tab Content Data
-//   const tabContent = {
-//     Teach: {
-//         title: "Teach - Laying A Strong Foundation",
-//         description: "Learning starts with structured lessons led by experience instructors. we focus on delibering hands-on, practical training in technology, ensuring students gain in-depth knowledge of essential tools and concepts, Each course is designed to be interactive, engaging, and aligned with industry standards, preparing ststudents for real-world applications",
-//         image: teachImage,
-//         primaryBtn: "Become a Teacher",
-//     },
-//     Tutor: {
-//       title: "Tutor – Strengthening Understanding",
-//       description:
-//         "We recognize that every student learns at their own pace. That's why we provide personalized tutoring sessions to reinforce difficult concepts and address individual challenges. Whether through one-on-one guidance or small group discussions, our tutors ensure that students fully grasp each topic, building their confidence and skill set.",
-//       image: tutorImage,
-//       primaryBtn: "Become a Tutor",
-//     },
-//     Mentor: {
-//       title: "Mentor – Guiding the Future",
-//       description:
-//         "Our mentors play a crucial role in shaping the next generation by providing career advice, personal development support, and industry insights. Through one-on-one mentoring and group sessions, we ensure that students are prepared for real-world challenges and opportunities.",
-//       image: mentorImage,
-//       primaryBtn: "Become a Mentor",
-//     },
-//   };
-
-//   return (
-//     <section className="bg-white h-auto px-4 md:px-28 py-20">
-//       {/* Heading Section */}
-//       <h2 className="text-2xl font-bold text-primary">
-//         Empowering Minds, Transforming Futures
-//       </h2>
-//       <p className="md:w-[60%] text-gray-700 mt-6">
-//         At Zongea Institute of Technology, we believe learning goes beyond the classroom. 
-//         Our unique approach ensures that every student not only gains knowledge but also 
-//         receives the guidance and mentorship needed to excel in the real world. Our model 
-//         is built on three core pillars:
-//       </p>
-
-    
-
-//       {/* Content Section - Dynamic Update */}
-//       <div className="flex flex-col md:flex-row">
-//         {/* Left - Image */}
-//         <img
-//           src={tabContent[activeTab].image}
-//           alt={`${activeTab} Image`}
-//           className="w-full max-h-[55vh] md:w-1/3 rounded-lg shadow-md"
-//         />
-
-//         {/* Right - Text */}
-//         <div className="flex flex-col justify-between gap-4 bg-primary rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative -ml-6">
-//           {/* Carve Effect */}
-//           <div
-//             className="absolute -left-6 top-0 w-6 h-10 bg-primary" // Top-left carve
-//             style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%)" }}
-//           ></div>
-//           <div
-//             className="absolute -left-6 bottom-0 w-6 h-10 bg-primary" // Bottom-left carve
-//             style={{ clipPath: "polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%)" }}
-//           ></div>
-
-//           {/* Tabs Section */}
-//           <div className="flex items-center transition-opacity duration-300 ease-in-out bg-white">
-//             {["Teach", "Tutor", "Mentor"].map((tab) => (
-//               <button
-//                 key={tab}
-//                 className={`px-1 md:px-3 py-1 md:py-2 outline-none active-none text-center transition-all w-full rounded-none ${
-//                   activeTab === tab
-//                     ? "bg-primary font-bold text-white"
-//                     : "text-gray-500"
-//                 }`}
-//                 onClick={() => setActiveTab(tab as 'Teach' | 'Tutor' | 'Mentor')}
-//               >
-//                 {tab}
-//               </button>
-//             ))}
-//           </div>
-
-//           <h3 className="mt-6 text-xl font-bold text-white">
-//             {tabContent[activeTab].title}
-//           </h3>
-//           <p className="text-white mt-4">{tabContent[activeTab].description}</p>
-
-//           {/* Buttons */}
-//           <div className="mt-6 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
-//             <button className="w-full md:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
-//               {tabContent[activeTab].primaryBtn}
-//             </button>
-//             <button className="w-full md:w-fit px-4 py-1 bg-white text-primary rounded-lg hover:bg-primary hover:text-white border border-primary hover:font-bold transition-all">
-//               Donate Today
-//             </button>
-//           </div>
-//         </div>
-//     </div>
-//     </section>
-//   );
-// }
 
 import { useState } from "react";
-import mentorImage from "../../../asset/images/alvin-dogba.jpg";
-import tutorImage from "../../../asset/images/Paulfina.jpg";
-import teachImage from "../../../asset/images/evelyna-sawah.jpg";
+import mentorImage from "../../../asset/images/tutoring-1.jpg";
+import tutorImage from "../../../asset/images/female-doctor-consoling-afro-american-patient.jpg";
+import teachImage from "../../../asset/images/close-up-happy-man-clapping.jpg";
 
 export default function TTM() {
   const [activeTab, setActiveTab] = useState<"Teach" | "Tutor" | "Mentor">("Tutor");
@@ -113,23 +10,23 @@ export default function TTM() {
   // Tab Content Data
   const tabContent = {
     Teach: {
-      title: "Teach - Laying A Strong Foundation",
+      title: "Become a Teacher – Educate, Innovate & Transform",
       description:
-        "Learning starts with structured lessons led by experienced instructors. We focus on delivering hands-on, practical training in technology, ensuring students gain in-depth knowledge of essential tools and concepts, Each course is designed to be interactive, engaging, and aligned with industry standards, preparing students for real-world applications.",
+        " Be a part of the movement to revolutionize education. Gain access to specialized training, collaborate with top educators, and equip the next generation with the skills they need to succeed.",
       image: teachImage,
       primaryBtn: "Become a Teacher",
     },
     Tutor: {
-      title: "Tutor – Strengthening Understanding",
+      title: "Become a Tutor – Empower Students & Elevate Your Skills",
       description:
-        "We recognize that every student learns at their own pace. That's why we provide personalized tutoring sessions to reinforce difficult concepts and address individual challenges. Whether through one-on-one guidance or small group discussions, our tutors ensure that students fully grasp each topic, building their confidence and skill set.",
+        " Take your expertise to the next level by guiding students through their learning journey. Set your own schedule, gain hands-on experience, and shape the future—one lesson at a time.",
       image: tutorImage,
       primaryBtn: "Become a Tutor",
     },
     Mentor: {
-      title: "Mentor – Guiding the Future",
+      title: "Become a Mentor – Inspire, Lead & Make a Difference",
       description:
-        "Our mentors play a crucial role in shaping the next generation by providing career advice, personal development support, and industry insights. Through one-on-one mentoring and group sessions, we ensure that students are prepared for real-world challenges and opportunities.",
+        " Your guidance can change lives! Help students navigate their academic and career paths while growing your leadership skills and expanding your professional network.",
       image: mentorImage,
       primaryBtn: "Become a Mentor",
     },
@@ -139,64 +36,54 @@ export default function TTM() {
     <section className=" bg-gray-100 h-auto px-4 md:px-28 py-20">
       {/* Heading Section */}
       <h2 className="text-2xl font-bold text-primary">
-        Empowering Minds, Transforming Futures
-      </h2>
+        Opportunities to Educate, Inspire, and Lead      
+        </h2>
       <p className="md:w-[60%] text-gray-700 mt-6">
-        At Zongea Institute of Technology, we believe learning goes beyond the classroom. 
-        Our unique approach ensures that every student not only gains knowledge but also 
-        receives the guidance and mentorship needed to excel in the real world. Our model 
-        is built on three core pillars:
+      Join a dynamic community where you can enhance your skills, make a tangible impact, and inspire future leaders. Shape minds, foster growth, and lead with purpose.
       </p>
 
       {/* Content Section - Dynamic Update */}
       <div className="flex flex-col md:flex-row items-center mt-10 gap-6">
         {/* Left - Image */}
-        <img
-          src={tabContent[activeTab].image}
-          alt={`${activeTab} Image`}
-          className="w-full h-[45vh] md:h-[67vh] md:w-1/3 rounded-lg shadow-md object-cover"
-        />
+        <div className=" h-[50vh] w-full md:h-[68vh] max-h-[75vh] md:w-[40%] ">
+          <img
+            src={tabContent[activeTab].image}
+            alt={`${activeTab} Image`}
+            className="w-full  h-full  rounded-lg shadow-md object-cover"
+          />
+        </div>
+
 
         {/* Right - Text */}
-        <div className="flex px-4 flex-col justify-between gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
-          {/* Carve Effect */}
-          {/* <div
-            className="absolute -left-6 top-0 w-6 h-10 bg-primary hidden md:block" // Top-left carve
-            style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%)" }}
-          ></div> */}
-          {/* <div
-            className="absolute -left-6 bottom-0 w-6 h-10 bg-primary hidden md:block" // Bottom-left carve
-            style={{ clipPath: "polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%)" }}
-          ></div> */}
+        <div className="h-[68vh] max-h-[75vh] flex px-4 flex-col justify-between md:gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
 
           {/* Tabs Section */}
           <div className="flex items-center transition-opacity duration-300 ease-in-out bg-white">
             {["Teach", "Tutor", "Mentor"].map((tab) => (
-              <button
+              <p
                 key={tab}
-                className={`px-1 md:px-3 py-1 md:py-2 outline-none border-none active-none text-center transition-all w-full rounded-none ${
-                  activeTab === tab
-                    ? "bg-gray-200 font-bold  border-none outline-none text-gray-800"
-                    : "text-gray-500 bg-white font-light "
-                }`}
+                className={`px-1 md:px-3 py-1 md:py-2 outline-none border-none active-none text-center transition-all w-full rounded-none ${activeTab === tab
+                  ? "bg-gray-200 font-bold  border-none outline-none text-gray-800"
+                  : "text-gray-500 bg-white border-none outline-none font-light "
+                  }`}
                 onClick={() => setActiveTab(tab as "Teach" | "Tutor" | "Mentor")}
               >
                 {tab}
-              </button>
+              </p>
             ))}
           </div>
 
-          <h3 className="mt-6 text-xl sm:ml-6 font-bold text-gray-800">
+          <h3 className="mt-4 text-xl  font-bold text-gray-800">
             {tabContent[activeTab].title}
           </h3>
-          <p className="text-gray-600 mt-4 sm:w-[60%] sm:ml-6">{tabContent[activeTab].description}</p>
+          <p className="text-gray-600 mt-4 sm:w-[60%]">{tabContent[activeTab].description}</p>
 
           {/* Buttons */}
-          <div className="mt-6 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
+          <div className="mt-4 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
             <button className="w-full md:w-fit sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
               {tabContent[activeTab].primaryBtn}
             </button>
-            
+
           </div>
         </div>
       </div>

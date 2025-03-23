@@ -1,7 +1,7 @@
 import React from "react";
 import CardImg1 from '../../asset/images/OT image .jpg';
-import CardImg2 from '../../asset/images/Paulfina.jpg';
-import CardImg3 from '../../asset/images/Student-in-tech-Class.jpg';
+import CardImg2 from '../../asset/images/Support-classroom.jpg';
+import CardImg3 from '../../asset/images/support-1.jpg';
 
 interface Event {
   image: string;
@@ -14,15 +14,15 @@ interface Event {
 const events: Event[] = [
   {
     image: CardImg1,
-    date: "March 15, 2025",
-    title: "ZIT’s Coding Bootcamp: A Student’s Journey",
+    date: "November 22, 2025",
+    title: "A Record-Breaking Year For Zongea Institute of Technology",
     description:
-      "Follow a student’s experience through ZIT’s intensive coding bootcamp, learning how to build a real-world app.",
+      "At ZIT, we are dedicated to empowering professionals through high-quality training and capacity-building programs....",
     link: "#",
   },
   {
     image: CardImg2,
-    date: "March 15, 2025",
+    date: "June 28, 2025",
     title: "ZIT’s Coding Bootcamp: A Student’s Journey",
     description:
       "Follow a student’s experience through ZIT’s intensive coding bootcamp, learning how to build a real-world app.",
@@ -30,10 +30,10 @@ const events: Event[] = [
   },
   {
     image: CardImg3,
-    date: "March 15, 2025",
-    title: "ZIT’s Coding Bootcamp: A Student’s Journey",
+    date: "April 21, 2025",
+    title: "Spotlight on Madam Williams: Inspiring LeaderShip at ZIT Cohort 4 Graduation Ceremony",
     description:
-      "Follow a student’s experience through ZIT’s intensive coding bootcamp, learning how to build a real-world app.",
+      "At ZIT, we are dedicated to empowering professionals through high-quality training and capacity-building programs....",
     link: "#",
   },
 ];

@@ -2,13 +2,11 @@ import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimateOnScroll from "../../common/AnimateOnScroll";
-import heroImg1 from '../../../asset/images/herobg1.jpg';
-import heroImg2 from '../../../asset/images/herobg2.jpg';
+import heroImg1 from '../../../asset/images/herobg2.jpg';
 import heroImg3 from '../../../asset/images/herobg3.jpg';
 
 const images = [
   heroImg1,
-  heroImg2,
   heroImg3
 ];
 
@@ -36,7 +34,7 @@ export default function HeroSection() {
     <section
       className="h-[90vh] md:h-[80vh] flex items-end justify-start relative py-20 md:px-31"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.2), rgba(0, 0, 84, 0.3)), url(${images[currentIndex]})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.1), rgba(0, 0, 84, 0.1)), url(${images[currentIndex]})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

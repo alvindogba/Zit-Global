@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import SideImg1 from "../../asset/images/IMG-20240617-WA0004.jpg";
-import SideImg2 from "../../asset/images/IMG-20241222-WA0150 - Copy.jpg";
-import SideImg3 from "../../asset/images/liberiamap-removebg-preview.png";
+import SideImg1 from "../../asset/images/support-1.jpg";
+import SideImg2 from "../../asset/images/teaching-through-mentorring.jpg";
+import SideImg3 from "../../asset/images/Support-classroom.jpg";
 
 export default function StudyAtZit() {
   const images = [SideImg1, SideImg2, SideImg3];
@@ -20,7 +20,7 @@ export default function StudyAtZit() {
   return (
     <div className=" font-sans text-gray-900">
       <section className="py-16 md:px-32 bg-gray-100 relative">
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center align-left">
           <h2 className="text-2xl font-bold text-primary">Study at ZIT</h2>
           <p className="mt-2 text-gray-700 md:w-[37rem]  px-6">
             Unlock job-ready skills that open doors in today's tech landscape. No other program matches the depth and impact of our hands-on training in technology.
@@ -28,7 +28,11 @@ export default function StudyAtZit() {
 
           <div className="relative mt-8 w-[90%] max-w-full flex flex-col sm:flex-row sm:items-start gap-6">
             {/* Image Display */}
-            <img src={images[activeIndex]} alt="Study at ZIT" className="w-full sm:w-[40rem] h-[20rem] mt-8 object-cover" />
+            <div>
+              
+            </div>
+            <img src={images[activeIndex]} alt="Study at ZIT" className="w-full sm:w-[40rem] h-[22rem] mt-8 object-cover"
+ />
 
             {/* Right Content (Moves Below on Small Screens) */}
             <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
@@ -64,8 +68,8 @@ export default function StudyAtZit() {
                 <p className="mt-2 text-sm">
                   We provide tailored support to ensure every learner thrives. From one-on-one tutoring sessions to small-group discussions, our tutors are dedicated to helping you understand even the most complex topics.
                 </p>
-                <Link to="/donate" className="flex justify-center items-center hover:text-primary hover:bg-white font-medium mt-4 text-white border border-1-white w-32 h-8 rounded-md">
-                  Donate Today
+                <Link to="/admission" className="flex justify-center items-center hover:text-primary hover:bg-white font-medium mt-4 text-white border border-1-white w-32 h-8 rounded-md">
+                  Apply Now
                 </Link>
               </div>
             </div>
