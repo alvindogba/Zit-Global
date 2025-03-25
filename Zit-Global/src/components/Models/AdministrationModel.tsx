@@ -3,6 +3,9 @@ import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
 import LeftImg from '../../asset/images/herobg2.jpg'
 import ScrollBackHome from "../Models/ScrollBackHome";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 interface FormData {
   // Step 1: Personal & School Info
@@ -27,6 +30,9 @@ interface FormData {
 
 export default function AdministrationModel() {
   const [isOpen, setIsOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
+
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -59,22 +65,44 @@ export default function AdministrationModel() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-    setIsOpen(false);
+    setIsLoading(true); // Start loading
+
+    try {
+      console.log(formData);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/icc/schoolAdmins`,
+        formData
+      );
+
+
+      if (response.status === 201) {
+        // Redirect using navigate hook
+        navigate('/icc-success', { state: { student: response.data.data } });
+      } else {
+        console.error('Submission failed with status:', response.status);
+      }
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+    finally {
+      setIsLoading(false); // Stop loading
+    }
   };
 
   return (
     <>
+
       <header className="h-max md:py-0 py-4 fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
         <nav className="container mx-auto flex items-center justify-between py-2 px-4 sm:px-6">
           {/* Logo */}
           <div className="flex lg:flex-1">
             <Link to="/" aria-label="Home">
-              <img 
-                src={Logo} 
-                alt="Zongea Logo" 
+              <img
+                src={Logo}
+                alt="Zongea Logo"
                 className="w-24 h-12 sm:w-28 sm:h-14 md:w-40 md:h-16 lg:w-48 lg:h-20"
               />
             </Link>
@@ -90,10 +118,10 @@ export default function AdministrationModel() {
         <div className="container sm:mx-auto flex flex-col lg:flex-row items-center gap-20 lg:items-start pt-4 md:pt-8 lg:pt-20">
           {/* Image and text section - appears below form on mobile */}
           <div className="text-primary mx-8 xl:mx-16 space-y-3 w-[90%] lg:w-[38%] lg:mr-52 mt-24">
-            <img 
-              src={LeftImg} 
-              className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-auto mx-auto" 
-              alt="Parent" 
+            <img
+              src={LeftImg}
+              className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-auto mx-auto"
+              alt="Parent"
             />
             <h3 className="font-noto text-lg sm:text-xl md:text-2xl lg:text-h3 text-center lg:text-left">
               Every Dollar Counts <br /> Toward changing Life
@@ -111,7 +139,7 @@ export default function AdministrationModel() {
               <div className="overflow-hidden">
                 <div className="flex transition-transform duration-300"
                   style={{ transform: `translateX(-${(currentStep - 1) * 100}%)` }}>
-                  
+
                   {/* Step 1: Personal & School Information */}
                   <div className="min-w-full p-2 sm:p-4">
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Personal & School Information</h2>
@@ -162,9 +190,9 @@ export default function AdministrationModel() {
               <div className="border-t pt-4 sm:pt-6 mt-4 sm:mt-6">
                 <div className="flex justify-between">
                   {currentStep > 1 && (
-                    <button 
-                      type="button" 
-                      onClick={() => setCurrentStep((prev) => prev - 1)} 
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep((prev) => prev - 1)}
                       className="px-4 sm:px-6 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 text-sm sm:text-base"
                     >
                       Back
@@ -172,28 +200,45 @@ export default function AdministrationModel() {
                   )}
                   <div className="flex-1" />
                   {currentStep < 3 ? (
-                    <button 
-                      type="button" 
-                      onClick={() => setCurrentStep((prev) => prev + 1)} 
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep((prev) => prev + 1)}
                       className="px-4 sm:px-6 py-2 bg-primary/90 text-white rounded-lg hover:bg-primary text-sm sm:text-base"
                     >
                       Next
                     </button>
                   ) : (
-                    <button 
-                      type="submit" 
-                      className="px-4 sm:px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary text-sm sm:text-base"
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className={`px-4 py-2 sm:py-4 text-sm sm:text-base text-white font-medium rounded-lg transition-colors ${isLoading
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-primary hover:bg-primary/80"
+                        }`}
                     >
-                      Submit
+                      {isLoading ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Processing...
+                        </span>
+                      ) : (
+                        "Submit"
+                      )}
                     </button>
                   )}
                 </div>
               </div>
+
             </form>
           </div>
         </div>
       </div>
+
       <ScrollBackHome />
+
     </>
   );
 }
@@ -244,9 +289,9 @@ const CheckboxGroup = ({ label, options, selected, onChange }: any) => (
     <div className="flex flex-wrap gap-4">
       {options.map((option: string) => (
         <label key={option} className="flex items-center gap-2 cursor-pointer">
-          <input 
-            type="checkbox" 
-            className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary" 
+          <input
+            type="checkbox"
+            className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary"
             value={option}
             checked={selected.includes(option)}
             onChange={onChange}

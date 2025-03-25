@@ -1,61 +1,335 @@
+import {sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation  } from '../utils/IccEmailService.js';
 import db from "../models/index.js";
 
-const createMentorship = async (req, res) => {
-    console.log(req.body);
-    const { firstName, lastName, email, phone, country, state, community, expertise, motivation, interests, goals, preferredSchedule, mentorPreferences, role } = req.body;
+export const createSchoolAdmin = async (req, res) => {
+  console.log(req.body);
+  try {
+    const {
+      fullName,
+      email,
+      phone,
+      schoolName,
+      schoolLocation,
+      services,
+      gradeLevels,
+      supportMode,
+      challenges,
+      contactMethod,
+      bestTime,
+      additionalComments,
+      referral
+    } = req.body;
 
-    try {
-        // Validate required fields
-        if (!firstName || !lastName || !email || !phone || !country || !state || !community) {
-            return res.status(400).json({
-                success: false,
-                message: "Missing required fields."
-            });
-        }
-
-        if (role === "mentor") {
-            if (!expertise || !motivation) {
-                return res.status(400).json({
-                    success: false,
-                    message: "Mentors must provide expertise and motivation."
-                });
-            }
-            const mentor = await db.Mentor.create({ firstName, lastName, email, phone, country, state, community, expertise, motivation });
-            return res.status(201).json({
-                success: true,
-                message: "Mentor created successfully",
-                data: mentor
-            });
-        } 
-        
-        if (role === "mentee") {
-            if (!interests || !goals || !preferredSchedule || !mentorPreferences) {
-                return res.status(400).json({
-                    success: false,
-                    message: "Mentees must provide interests, goals, preferred schedule, and mentor preferences."
-                });
-            }
-            const mentee = await db.Mentee.create({ firstName, lastName, email, phone, country, state, community, interests, goals, preferredSchedule, mentorPreferences });
-            return res.status(201).json({
-                success: true,
-                message: "Mentee created successfully",
-                data: mentee
-            });
-        }
-
-        return res.status(400).json({
-            success: false,
-            message: "Invalid role. Must be either 'mentor' or 'mentee'."
-        });
-
-    } catch (error) {
-        console.error("Error creating mentorship:", error);
-        return res.status(500).json({
-            success: false,
-            message: "An error occurred while creating mentorship.",
-            error: error.message
-        });
+    // Validate required fields
+    if (
+      !fullName ||
+      !email ||
+      !phone ||
+      !schoolName ||
+      !schoolLocation ||
+      !gradeLevels ||
+      !supportMode ||
+      !contactMethod ||
+      !bestTime
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide all required fields.',
+      });
     }
+
+    // Create School Admin entry in the database
+    const schoolAdmin = await db.SchoolAdmin.create({
+      fullName,
+      email,
+      phone,
+      schoolName,
+      schoolLocation,
+      services,
+      gradeLevels,
+      supportMode,
+      challenges,
+      contactMethod,
+      bestTime,
+      additionalComments,
+      referral,
+    });
+
+    // Send confirmation email to user
+    await sendSchoolAdminConfirmation(email, fullName);
+
+    // Send notification email to admin
+    // await sendAdminNotification({
+    //   fullName,
+    //   email,
+    //   phone,
+    //   schoolName,
+    //   schoolLocation,
+    // });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Your submission has been received. A confirmation email has been sent.',
+      data: schoolAdmin,
+    });
+  } catch (error) {
+    console.error('Error creating school admin entry:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your submission.',
+      error: error.message,
+    });
+  }
 };
 
-export default createMentorship;
+
+// The Students=======================
+export const createStudent = async (req, res) => {
+    console.log(req.body);
+    try {
+      const {
+        fullName,
+        dob,
+        email,
+        phone,
+        gender,
+        schoolName,
+        gradeLevel,
+        subjects,
+        learningStyle,
+        tutoringNeeds,
+        objectives,
+        availability,
+        tutorType,
+        referral,
+      } = req.body;
+  
+      // Validate required fields
+      if (
+        !fullName ||
+        !dob ||
+        !email ||
+        !phone ||
+        !gender ||
+        !schoolName ||
+        !gradeLevel ||
+        !learningStyle ||
+        !tutoringNeeds ||
+        !availability ||
+        !tutorType
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: 'Please provide all required fields for student registration.',
+        });
+      }
+  
+      // Create Student entry in the database
+      const student = await db.Student.create({
+        fullName,
+        dob,
+        email,
+        phone,
+        gender,
+        schoolName,
+        gradeLevel,
+        subjects,
+        learningStyle,
+        tutoringNeeds,
+        objectives,
+        availability,
+        tutorType,
+        referral,
+      });
+  
+      // Send confirmation email to user
+      await sendStudentConfirmation(email, fullName);
+  
+      // Send notification email to admin
+    //   await sendAdminNotification({
+    //     fullName,
+    //     email,
+    //     phone,
+    //     schoolName,
+    //     gradeLevel,
+    //   });
+  
+      return res.status(201).json({
+        success: true,
+        message: 'Student registration submitted successfully. A confirmation email has been sent.',
+        data: student,
+      });
+    } catch (error) {
+      console.error('Error creating student entry:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'An error occurred while processing your student registration.',
+        error: error.message,
+      });
+    }
+  };
+
+
+  // Controller for creating a Parent entry ==============
+export const createParent = async (req, res) => {
+    console.log(req.body);
+    try {
+      const {
+        fullName,
+        email,
+        phone,
+        relationToStudent,
+        studentName,
+        studentAge,
+        schoolName,
+        gradeLevel,
+        subjects,
+        tutoringStyle,
+        learningGoals,
+        availability,
+        comments,
+        referral,
+      } = req.body;
+  
+      // Validate required fields
+      if (
+        !fullName ||
+        !email ||
+        !phone ||
+        !relationToStudent ||
+        !studentName ||
+        !studentAge ||
+        !schoolName ||
+        !gradeLevel ||
+        !tutoringStyle ||
+        !availability
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: 'Please provide all required fields for parent registration.',
+        });
+      }
+  
+      // Create Parent entry in the database
+      const parent = await db.Parent.create({
+        fullName,
+        email,
+        phone,
+        relationToStudent,
+        studentName,
+        studentAge,
+        schoolName,
+        gradeLevel,
+        subjects,
+        tutoringStyle,
+        learningGoals,
+        availability,
+        comments,
+        referral,
+      });
+  
+      // Send confirmation email to user
+      await sendParentConfirmation(email, fullName);
+  
+      // Send notification email to admin
+    //   await sendAdminNotification({
+    //     fullName,
+    //     email,
+    //     phone,
+    //     schoolName,
+    //     gradeLevel,
+    //   });
+  
+      return res.status(201).json({
+        success: true,
+        message: 'Parent registration submitted successfully. A confirmation email has been sent.',
+        data: parent,
+      });
+    } catch (error) {
+      console.error('Error creating parent entry:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'An error occurred while processing your parent registration.',
+        error: error.message,
+      });
+    }
+  };
+
+
+  // Controller for creating a Mentor entry
+export const createMentor = async (req, res) => {
+    console.log(req.body);
+    try {
+      const {
+        fullName,
+        email,
+        phone,
+        profession,
+        mentorshipAreas,
+        priorExperience,
+        experienceDetails,
+        mentorshipFormat,
+        availability,
+        motivation,
+        referral,
+      } = req.body;
+  
+      // Validate required fields
+      if (
+        !fullName ||
+        !email ||
+        !phone ||
+        !profession ||
+        !mentorshipAreas ||
+        !priorExperience ||
+        !mentorshipFormat ||
+        !availability
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: 'Please provide all required fields for mentor registration.',
+        });
+      }
+  
+      // Create Mentor entry in the database
+      const mentor = await db.Mentor.create({
+        fullName,
+        email,
+        phone,
+        profession,
+        mentorshipAreas,
+        priorExperience,
+        experienceDetails,
+        mentorshipFormat,
+        availability,
+        motivation,
+        referral,
+      });
+  
+      // Send confirmation email to user
+      await sendMentorConfirmation(email, fullName);
+  
+      // Send notification email to admin
+    //   await sendAdminNotification({
+    //     fullName,
+    //     email,
+    //     phone,
+    //     profession,
+    //   });
+  
+      return res.status(201).json({
+        success: true,
+        message: 'Mentor registration submitted successfully. A confirmation email has been sent.',
+        data: mentor,
+      });
+    } catch (error) {
+      console.error('Error creating mentor entry:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'An error occurred while processing your mentor registration.',
+        error: error.message,
+      });
+    }
+  };
+  
+
