@@ -200,13 +200,13 @@ const navigation = [
                     <FaFacebookF size={20}/>
                   </div>
                   <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
-                    <FaFacebookF size={20}/>
+                    <FaInstagram size={20}/>
                   </div>
                   <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
-                    <FaFacebookF size={20}/>
+                    <FaLinkedinIn size={20}/>
                   </div>
                   <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
-                    <FaFacebookF size={20}/>
+                    <FaGithub size={20}/>
                   </div>
                 </div>
                 <p>Leave A Messsage</p>
