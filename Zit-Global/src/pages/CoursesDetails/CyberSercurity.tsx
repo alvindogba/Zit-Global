@@ -105,8 +105,8 @@ export default function CyberSecurityDetailPage() {
           <div className="absolute inset-0 bg-navy-700/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-white mb-4">Cybersecurity Course</h1>
-          <p className="text-gray-200 text-lg">
+          <h1 className="text-3xl font-noto font-bold text-white mb-4">Cybersecurity Course</h1>
+          <p className="text-gray-200 font-roboto text-lg">
             Protect the Digital World – Get Free Training in Cybersecurity and Ethical Hacking
           </p>
         </div>
@@ -119,8 +119,8 @@ export default function CyberSecurityDetailPage() {
           <div className="lg:col-span-2 space-y-8">
             {/* About Section */}
             <section className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-primary mb-4">About This Course</h2>
-              <p className="text-gray-600 text-sm">
+              <h2 className="text-xl font-noto font-bold text-primary mb-4">About This Course</h2>
+              <p className="text-gray-600 font-roboto text-sm">
                 The Cybersecurity course at Zonges Institute of Technology provides a comprehensive introduction to protecting
                 computer systems, networks, and data from cyber threats. This course will teach students how to secure systems,
                 manage risk, and defend against cyberattacks. Ideal for those who are passionate about technology and want to
@@ -130,8 +130,8 @@ export default function CyberSecurityDetailPage() {
 
             {/* Certification Section */}
             <section className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-primary mb-4">Certification</h2>
-              <p className="text-gray-600 text-sm">
+              <h2 className="text-xl font-noto font-bold text-primary mb-4">Certification</h2>
+              <p className="text-gray-600 font-roboto text-sm">
                 Upon completion, students will receive a Cybersecurity Certification from Zonges Institute of Technology,
                 demonstrating their ability to implement security measures and protect against modern cyber threats.
               </p>
@@ -139,12 +139,12 @@ export default function CyberSecurityDetailPage() {
 
             {/* Requirements Section */}
             <section className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-primary mb-4">Requirements</h2>
+              <h2 className="text-xl font-bold font-noto text-primary mb-4">Requirements</h2>
               <ul className="space-y-3">
                 {requirements.map((req, index) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <ChevronRight className="w-5 h-4 text-secondary-yellow flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-600 text-sm">{req}</span>
+                    <ChevronRight className="w-5 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-600 font-roboto text-sm">{req}</span>
                   </li>
                 ))}
               </ul>
@@ -152,17 +152,17 @@ export default function CyberSecurityDetailPage() {
 
             {/* Curriculum Section */}
             <section className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-primary mb-6">Curriculum</h2>
+              <h2 className="text-xl font-bold font-noto text-primary mb-6">Curriculum</h2>
               <div className="space-y-4">
                 {curriculumSections.map((section, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
                     <button 
                       onClick={() => toggleSection(index)}
-                      className="bg-white w-full px-4 py-3 flex items-center justify-between text-left hover:bg-gray-500 transition-colors"
+                      className="bg-white w-full font-sans px-4 py-3 flex items-center justify-between text-left hover:bg-gray-500 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
                         <span className="text-primary">{section.icon}</span>
-                        <span className="font-medium text-primary text-md">{section.title}</span>
+                        <span className="font-medium text-primary font-noto text-md">{section.title}</span>
                       </div>
                       <div className="transform transition-transform duration-200">
                         {expandedSections.includes(index) ? (
@@ -183,8 +183,8 @@ export default function CyberSecurityDetailPage() {
                         <ul className="space-y-2">
                           {section.subsections.map((subsection, subIndex) => (
                             <li key={subIndex} className="flex items-center space-x-3 text-gray-600">
-                              <ChevronRight className="w-4 h-4 text-secondary-yellow" />
-                              <span className="text-sm">{subsection}</span>
+                              <ChevronRight className="w-4 h-4 text-primary" />
+                              <span className="text-sm font-noto">{subsection}</span>
                             </li>
                           ))}
                         </ul>
@@ -199,22 +199,22 @@ export default function CyberSecurityDetailPage() {
           {/* Right Column - Course Info Card */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
-              <h3 className="text-xl font-bold text-primary mb-6">This Course is Free</h3>
+              <h3 className="text-xl font-bold font-noto text-primary mb-6">This Course is Free</h3>
              
               <Link
               to="/admission"
-              className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-2 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="bg-white font-bold text-xs font-sans hover:px-6 hover:py-2 text-primary px-2 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
               >
               Apply Now 
               </Link>
               
               <div className="space-y-6">
-                <h4 className="font-semibold text-primary mt-4">This Course Includes</h4>
+                <h4 className="font-semibold font-noto text-primary mt-4">This Course Includes</h4>
                 <ul className="space-y-4">
                   {courseIncludes.map((item, index) => (
                     <li key={index} className="flex items-center space-x-3 text-gray-600">
                       {item.icon}
-                      <span className='text-sm'>{item.text}</span>
+                      <span className='text-sm font-roboto'>{item.text}</span>
                     </li>
                   ))}
                 </ul>

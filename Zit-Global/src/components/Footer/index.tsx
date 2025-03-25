@@ -179,15 +179,15 @@ const Footer = () => {
         {/* Contact Us */}
         <div className="flex flex-col">
           <h3 className="font-extrabold font-noto text-base mb-3 text-white">Contact Us</h3>
-          <p className="mb-2 font-roboto">Monrovia, Liberia RIA Rehab Community</p>
-          <p className="mb-2 font-roboto">US Address: 300 Southtown Circle, Roseville NC 27571</p>
-          <p className="mb-2 font-roboto">
-            <a href="mailto:info@zongetech.com" className="hover:text-secondary-yellow font-roboto hover:underline">
+          <p className="mb-2 font-roboto text-[14px]">Monrovia, Liberia RIA Rehab Community</p>
+          <p className="mb-2 font-roboto text-[14px]">US Address: 300 Southtown Circle, Roseville NC 27571</p>
+          <p className="mb-2 font-roboto text-[14px]">
+            <a href="mailto:info@zongetech.com" className=" text-[14px] font-roboto hover:underline">
               Email: info@zongetech.com
             </a>
           </p>
           <p className="mb-2">
-            <a href="tel:+231-888-761-501" className="hover:text-secondary-yellow font-roboto hover:underline">
+            <a href="tel:+231-888-761-501" className=" text-[14px] font-roboto hover:underline">
               Phone: +231-888-761-501
             </a>
           </p>
@@ -198,7 +198,7 @@ const Footer = () => {
       <div className="flex flex-col gap-1 text-primary">
         <Link
           to="/tutorship-program"
-          className={`bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+          className={`bg-primary text-white border border-white  border-r-0 px-2 py-2 rounded-md hover:bg-white text-center font-sans hover:text-primary transition-colors ${
             isActive('/tutorship') ? 'text-primary bg-white' : ''
           }`}
         >
@@ -207,7 +207,7 @@ const Footer = () => {
         
         <Link 
           to="/admission"
-          className={`bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+          className={`bg-primary text-white border border-white text-center border-r-0 px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
             isActive('/admission') ? 'text-primary bg-white' : ''
           }`}
         >
@@ -216,7 +216,7 @@ const Footer = () => {
         
         <Link 
           to="/mentorship-program"
-          className={`bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+          className={`bg-primary text-white border border-white border-r-0 text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
             isActive('/mentorship') ? 'text-primary bg-white' : ''
           }`}
         >
@@ -225,7 +225,7 @@ const Footer = () => {
         
         <Link 
           to="/donate"
-          className={`bg-primary text-white border border-white border-r-0 px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+          className={`bg-primary text-white border border-white border-r-0 text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
             isActive('/donate') ? 'text-primary bg-white' : ''
           }`}
         > 
@@ -240,7 +240,7 @@ const Footer = () => {
 
       {/* Social Media Icons & Copyright */}
       <div className="mt-8  flex flex-col gap-4 md:flex-row justify-between items-center border-t border-white pt-4">
-        <p className="font-roboto">Copyright Notice © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
+        <p className="font-roboto text-[15px]">Copyright Notice © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
         <div className="flex space-x-4 mt-4 md:mt-0">
           <FaFacebookF className="text-white cursor-pointer" size={18} />
           <FaInstagram className="text-white cursor-pointer" size={18} />

@@ -24,7 +24,7 @@ export default function DonationOptions() {
 
   return (
     <div className="flex flex-col items-center text-center  px-4 md:px-36 py-10 md:py-20">
-      <h2 className="text-2xl font-bold text-primary mb-8">Ways to Give</h2>
+      <h2 className="text-2xl font-bold text-primary mb-8 font-noto">Ways to Give</h2>
       <div className="flex space-x-4">
         {donationOptions.map((option) => (
           <div
@@ -36,8 +36,8 @@ export default function DonationOptions() {
             }`}
             onClick={() => setSelected(option.id)}
           >
-            <h3 className="font-bold text-md">{option.id}. {option.title}</h3>
-            <p className="text-gray-600 mt-2">{option.description}</p>
+            <h3 className="font-bold text-md font-noto">{option.id}. {option.title}</h3>
+            <p className="text-gray-600 mt-2 font-roboto">{option.description}</p>
           </div>
         ))}
       </div>

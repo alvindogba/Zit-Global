@@ -87,8 +87,8 @@ const initialFormData: FormData = {
   consented: false,
 };
 
-const inputClassName = "w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary";
-const checkboxClassName = "h-4 w-4 text-secondary-yellow focus:ring-secondary-yellow border-gray-300 rounded";
+const inputClassName = "w-full px-2 py-2 border font-roboto border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary";
+const checkboxClassName = "h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded";
 
 function AdmissionPage() {
   const navigate = useNavigate();
@@ -177,7 +177,7 @@ function AdmissionPage() {
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">First Name</label>
+          <label className="block text-sm font-roboto font-medium text-gray-700">First Name</label>
           <input
             type="text"
             name="firstName"
@@ -224,7 +224,6 @@ function AdmissionPage() {
             <option value="">Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="other">Other</option>
           </select>
         </div>
       </div>
@@ -334,7 +333,7 @@ function AdmissionPage() {
     <div className="space-y-4 grid">
       <div className='grid grid-cols-2 gap-4'>
         <div>
-          <label className="block text-gray-700 text-sm font-medium mb-2">Highest Level of Education Completed</label>
+          <label className="block text-gray-700 font-roboto text-sm font-medium mb-2">Highest Level of Education Completed</label>
           <select
             name="educationLevel"
             value={formData.educationLevel}
@@ -436,7 +435,7 @@ function AdmissionPage() {
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <label className="block text-sm font-roboto font-medium text-gray-700">Email</label>
           <input
             type="email"
             name="email"
@@ -447,7 +446,7 @@ function AdmissionPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+          <label className="block text-sm font-roboto font-medium text-gray-700">Phone Number</label>
           <input
             type="tel"
             name="phone"
@@ -573,8 +572,8 @@ function AdmissionPage() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-8xl md:max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">ZIT Student Admission Form</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="text-3xl font-noto font-bold text-gray-900">ZIT Student Admission Form</h2>
+          <p className="mt-2 text-sm font-roboto text-gray-600">
             {step === 1 && "Step 1: Personal Information"}
             {step === 2 && "Step 2: Educational Background"}
             {step === 3 && "Step 3: Contact Information"}
@@ -593,7 +592,7 @@ function AdmissionPage() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                className="flex items-center font-sans px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Previous
@@ -603,7 +602,7 @@ function AdmissionPage() {
               <button
                 type="button"
                 onClick={nextStep}
-                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/80"
+                className="ml-auto flex items-center font-sans px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/80"
               >
                 Next
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -612,7 +611,7 @@ function AdmissionPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="ml-auto flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-primary hover:bg-primary/80"
+                className="ml-auto flex items-center font-sans px-4 py-2 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-primary hover:bg-primary/80"
               >
               {isSubmitting ? (
                   <>

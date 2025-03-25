@@ -16,7 +16,6 @@ const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
 const HowToApply = lazy(() => import('./pages/Admission/HowToApply'));
-const Students = lazy(() => import('./pages/StudentsPage'));
 const Motivation = lazy(() => import('./pages/MotivationPage'));
 const Contact = lazy(() => import('./pages/ContactPage'));
 const Courses = lazy(() => import('./pages/CoursesPage'))
@@ -74,14 +73,6 @@ function App() {
                   element={
                     <Suspense fallback={<DefaultSkeletion />}>
                       <Cohort />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/students"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Students />
                     </Suspense>
                   }
                 />

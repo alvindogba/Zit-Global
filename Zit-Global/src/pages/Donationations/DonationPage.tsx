@@ -175,7 +175,7 @@ const CheckoutForm = () => {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto py-4 px-4">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 text-center">
+          <h1 className="text-xl font-noto sm:text-2xl font-bold text-gray-900 text-center">
             The zongea Insitute Of Technology
           </h1>
         </div>
@@ -184,10 +184,10 @@ const CheckoutForm = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-32 py-8">
         <div className="bg-white rounded-lg shadow p-4 sm:p-8">
           <div className="text-center mb-8">
-            <h2 className="text-xl sm:text-3xl font-bold mb-2">
+            <h2 className="text-xl font-noto sm:text-3xl font-bold mb-2">
               IT TAKES LITTLE TO BE BIG
             </h2>
-            <p className="text-sm sm:text-base text-gray-600">Mentoring is More Important Than Ever.</p>
+            <p className="text-sm font-roboto sm:text-base text-gray-600">Mentoring is More Important Than Ever.</p>
           </div>
 
           <div className="mb-8">
@@ -195,7 +195,7 @@ const CheckoutForm = () => {
               <button
                 type="button"
                 onClick={() => setGiftType("one-time")}
-                className={`w-full sm:flex-1 py-3 rounded-lg font-medium transition-colors ${
+                className={`w-full sm:flex-1 font-sans py-3 rounded-lg font-medium transition-colors ${
                   giftType === "one-time"
                     ? "bg-primary text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -206,7 +206,7 @@ const CheckoutForm = () => {
               <button
                 type="button"
                 onClick={() => setGiftType("monthly")}
-                className={`w-full sm:flex-1 py-3 rounded-lg font-medium transition-colors ${
+                className={`w-full sm:flex-1 py-3 font-sans rounded-lg font-medium transition-colors ${
                   giftType === "monthly"
                     ? "bg-primary text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -226,7 +226,7 @@ const CheckoutForm = () => {
                     setOtherAmount("");
                     setFormErrors({ ...formErrors, amount: "" });
                   }}
-                  className={`p-2 sm:p-4 rounded-lg text-sm sm:text-base font-medium transition-colors ${
+                  className={`p-2 sm:p-4 rounded-lg font-sans text-sm sm:text-base font-medium transition-colors ${
                     amount === amt
                       ? "bg-primary text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -243,7 +243,7 @@ const CheckoutForm = () => {
                     placeholder="Other Amount"
                     value={otherAmount}
                     onChange={handleOtherAmountChange}
-                    className={`w-full p-2 sm:p-4 pl-8 text-sm sm:text-base border rounded-lg ${
+                    className={`w-full p-2 sm:p-4 pl-8 font-roboto text-sm sm:text-base border rounded-lg ${
                       formErrors.amount ? "border-red-500" : "border-gray-300"
                     }`}
                   />
@@ -252,7 +252,7 @@ const CheckoutForm = () => {
             </div>
 
             <div className="space-y-4 mb-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-2">Personal Information</h2>
+              <h2 className="text-xl sm:text-2xl font-bold font-noto mb-2">Personal Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
                 <div>
                   <input
@@ -262,12 +262,12 @@ const CheckoutForm = () => {
                       setDonorInfo({ ...donorInfo, firstName: e.target.value });
                       setFormErrors({ ...formErrors, firstName: "" });
                     }}
-                    className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
+                    className={`w-full p-2 sm:p-3 text-sm font-roboto sm:text-base border rounded-lg ${
                       formErrors.firstName ? "border-red-500" : "border-gray-300"
                     }`}
                   />
                   {formErrors.firstName && (
-                    <p className="mt-1 text-xs sm:text-sm text-red-500">{formErrors.firstName}</p>
+                    <p className="mt-1 text-xs font-roboto sm:text-sm text-red-500">{formErrors.firstName}</p>
                   )}
                 </div>
                 <div>
@@ -278,12 +278,12 @@ const CheckoutForm = () => {
                       setDonorInfo({ ...donorInfo, lastName: e.target.value });
                       setFormErrors({ ...formErrors, lastName: "" });
                     }}
-                    className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
+                    className={`w-full p-2 sm:p-3 font-roboto text-sm sm:text-base border rounded-lg ${
                       formErrors.lastName ? "border-red-500" : "border-gray-300"
                     }`}
                   />
                   {formErrors.lastName && (
-                    <p className="mt-1 text-xs sm:text-sm text-red-500">{formErrors.lastName}</p>
+                    <p className="mt-1 text-xs font-roboto sm:text-sm text-red-500">{formErrors.lastName}</p>
                   )}
                 </div>
               </div>
@@ -297,12 +297,12 @@ const CheckoutForm = () => {
                     setDonorInfo({ ...donorInfo, email: e.target.value });
                     setFormErrors({ ...formErrors, email: "" });
                   }}
-                  className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
+                  className={`w-full p-2 sm:p-3 font-roboto text-sm sm:text-base border rounded-lg ${
                     formErrors.email ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {formErrors.email && (
-                  <p className="mt-1 text-xs sm:text-sm text-red-500">{formErrors.email}</p>
+                  <p className="mt-1 text-xs font-roboto sm:text-sm text-red-500">{formErrors.email}</p>
                 )}
               </div>
 
@@ -314,12 +314,12 @@ const CheckoutForm = () => {
                     setDonorInfo({ ...donorInfo, address: e.target.value });
                     setFormErrors({ ...formErrors, address: "" });
                   }}
-                  className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
+                  className={`w-full p-2 sm:p-3 font-roboto text-sm sm:text-base border rounded-lg ${
                     formErrors.address ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {formErrors.address && (
-                  <p className="mt-1 text-xs sm:text-sm text-red-500">{formErrors.address}</p>
+                  <p className="mt-1 text-xs font-roboto sm:text-sm text-red-500">{formErrors.address}</p>
                 )}
               </div>
 
@@ -332,7 +332,7 @@ const CheckoutForm = () => {
                       setDonorInfo({ ...donorInfo, city: e.target.value });
                       setFormErrors({ ...formErrors, city: "" });
                     }}
-                    className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
+                    className={`w-full p-2 font-roboto sm:p-3 text-sm sm:text-base border rounded-lg ${
                       formErrors.city ? "border-red-500" : "border-gray-300"
                     }`}
                   />
@@ -347,7 +347,7 @@ const CheckoutForm = () => {
                       setDonorInfo({ ...donorInfo, state: e.target.value });
                       setFormErrors({ ...formErrors, state: "" });
                     }}
-                    className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg bg-white ${
+                    className={`w-full p-2 sm:p-3 font-roboto text-sm sm:text-base border rounded-lg bg-white ${
                       formErrors.state ? "border-red-500" : "border-gray-300"
                     }`}
                   >
@@ -359,7 +359,7 @@ const CheckoutForm = () => {
                     ))}
                   </select>
                   {formErrors.state && (
-                    <p className="mt-1 text-xs sm:text-sm text-red-500">{formErrors.state}</p>
+                    <p className="mt-1 text-xs font-roboto sm:text-sm text-red-500">{formErrors.state}</p>
                   )}
                 </div>
               </div>
@@ -372,18 +372,18 @@ const CheckoutForm = () => {
                     setDonorInfo({ ...donorInfo, zip: e.target.value });
                     setFormErrors({ ...formErrors, zip: "" });
                   }}
-                  className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
+                  className={`w-full p-2 sm:p-3 text-sm font-roboto sm:text-base border rounded-lg ${
                     formErrors.zip ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {formErrors.zip && (
-                  <p className="mt-1 text-xs sm:text-sm text-red-500">{formErrors.zip}</p>
+                  <p className="mt-1 text-xs sm:text-sm font-roboto text-red-500">{formErrors.zip}</p>
                 )}
               </div>
             </div>
 
             <div className="space-y-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-center">Donate with Card</h2>
+              <h2 className="text-xl sm:text-2xl font-noto font-bold text-center">Donate with Card</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-2 sm:gap-4 mb-4 mx-0 sm:mx-20">
                 <img
                   src={visa}
@@ -411,7 +411,7 @@ const CheckoutForm = () => {
                   <label className="block mb-2 text-sm sm:text-base font-medium">Card Information *</label>
                   <CardNumberElement
                     id="card-number"
-                    className="p-2 sm:p-4 text-sm sm:text-base border rounded-lg"
+                    className="p-2 sm:p-4 text-sm font-roboto sm:text-base border rounded-lg"
                     options={{
                       style: {
                         base: {
@@ -431,9 +431,9 @@ const CheckoutForm = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                   <div>
-                    <label className="block mb-2 text-sm sm:text-base font-medium">Expiration *</label>
+                    <label className="block mb-2 text-sm font-roboto sm:text-base font-medium">Expiration *</label>
                     <CardExpiryElement
-                      className="p-2 sm:p-4 text-sm sm:text-base border rounded-lg"
+                      className="p-2 sm:p-4 text-sm font-roboto sm:text-base border rounded-lg"
                       options={{
                         style: {
                           base: {
@@ -451,9 +451,9 @@ const CheckoutForm = () => {
                     />
                   </div>
                   <div>
-                    <label className="block mb-2 text-sm sm:text-base font-medium">CVC *</label>
+                    <label className="block mb-2 font-roboto text-sm sm:text-base font-medium">CVC *</label>
                     <CardCvcElement
-                      className="p-2 sm:p-4 text-sm sm:text-base border rounded-lg"
+                      className="p-2 sm:p-4 font-roboto text-sm sm:text-base border rounded-lg"
                       options={{
                         style: {
                           base: {
@@ -474,14 +474,14 @@ const CheckoutForm = () => {
 
                 {error && (
                   <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-red-500 text-sm">{error}</p>
+                    <p className="text-red-500 font-roboto text-sm">{error}</p>
                   </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={processing}
-                  className={`w-full py-2 sm:py-4 text-sm sm:text-base text-white font-medium rounded-lg transition-colors ${
+                  className={`w-full py-2 sm:py-4 text-sm font-roboto sm:text-base text-white font-medium rounded-lg transition-colors ${
                     processing
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-primary hover:bg-primary/80"
@@ -506,7 +506,7 @@ const CheckoutForm = () => {
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or donate with</span>
+                  <span className="px-2 bg-white font-roboto text-gray-500">Or donate with</span>
                 </div>
               </div>
               

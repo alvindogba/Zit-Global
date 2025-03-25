@@ -207,10 +207,10 @@ const CohortPage = () => {
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <h1 className="font-noto text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="font-noto text-2xl md:text-3xl font-bold mb-6">
             Transform Your Future with ZIT
           </h1>
-          <p className="font-roboto text-xl text-gray-200 max-w-3xl mb-8">
+          <p className="font-roboto text-lg text-gray-200 max-w-3xl mb-8">
             Join our intensive 6-month programs and earn a certificate in your chosen field. 
             Expert-led training, hands-on projects, and career-ready skills.
           </p>
@@ -231,16 +231,16 @@ const CohortPage = () => {
                 }}
                 className={`p-6 rounded-xl transition-all text-left ${
                   activeCohort === cohort.id
-                    ? 'bg-secondary-yellow text-primary shadow-lg scale-105'
+                    ? 'bg-white text-primary shadow-lg scale-105'
                     : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                 }`}
               >
                 <h3 className="font-noto text-xl font-bold mb-2">{cohort.name}</h3>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm">
+                  <span className="text-sm font-roboto">
                     {cohort.startDate} - {cohort.endDate}
                   </span>
-                  <span className={`text-sm font-semibold px-2 py-1 rounded ${
+                  <span className={`text-sm font-semibold font-roboto px-2 py-1 rounded ${
                     cohort.status === 'current' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-800'
                   }`}>
                     {cohort.status === 'current' ? 'Current' : 'Completed'}
@@ -262,12 +262,12 @@ const CohortPage = () => {
                   onClick={() => setActiveTrack(program.id)}
                   className={`p-4 rounded-xl transition-all ${
                     activeTrack === program.id
-                      ? 'bg-secondary-yellow text-primary shadow-lg scale-105'
+                      ? 'bg-white text-primary shadow-lg scale-105'
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                   }`}
                 >
                   <div className="text-3xl mb-2">{program.icon}</div>
-                  <div className="text-sm font-semibold">{program.name}</div>
+                  <div className="text-sm font-noto font-semibold">{program.name}</div>
                 </button>
               ))}
             </div>
@@ -282,19 +282,19 @@ const CohortPage = () => {
                     <p className="font-roboto text-gray-600 mb-6">{cohorts[activeCohort].programs[activeTrack].description}</p>
                     
                     <div className="space-y-4">
-                      <div className="flex items-center">
-                        <span className="w-32 font-semibold">Duration:</span>
+                      <div className="flex font-roboto items-center">
+                        <span className="w-32  font-semibold">Duration:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].duration}</span>
                       </div>
-                      <div className="flex items-center">
+                      <div className="flex font-roboto items-center">
                         <span className="w-32 font-semibold">Start Date:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].startDate}</span>
                       </div>
-                      <div className="flex items-center">
+                      <div className="flex font-roboto items-center">
                         <span className="w-32 font-semibold">End Date:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].endDate}</span>
                       </div>
-                      <div className="flex items-center">
+                      <div className="flex font-roboto items-center">
                         <span className="w-32 font-semibold">Instructor:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].instructor}</span>
                       </div>
@@ -303,9 +303,9 @@ const CohortPage = () => {
 
                   <div>
                     <div className="mb-6">
-                      <h3 className="text-xl font-semibold mb-4">Enrollment Status</h3>
+                      <h3 className="text-xl font-noto font-semibold mb-4">Enrollment Status</h3>
                       <div className="bg-gray-100 rounded-lg p-4">
-                        <div className="flex justify-between mb-2">
+                        <div className="flex font-roboto justify-between mb-2">
                           <span>Available Seats</span>
                           <span className="font-semibold">
                             {cohorts[activeCohort].programs[activeTrack].maxStudents - 
@@ -342,7 +342,7 @@ const CohortPage = () => {
 
                 {cohorts[activeCohort].status === 'current' && (
                   <div className="font-sans mt-8 flex justify-center">
-                    <Link to='/admission' className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                    <Link to='/admission' className="bg-primary font-sans hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
                       Apply Now
                     </Link>
                   </div>

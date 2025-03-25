@@ -109,10 +109,10 @@ export default function Courses() {
         }}
       >
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
-          <h1 className="text-3xl md:text-3xl font-bold mb-6">
+          <h1 className="text-3xl font-noto md:text-3xl text-white font-bold mb-6">
             Transform Your Future with Our Free Courses
           </h1>
-          <p className="text-md text-gray-200 max-w-2xl">
+          <p className="text-md font-roboto text-gray-200 max-w-2xl">
             Choose from our professionally designed courses and start your journey in technology and design. All courses are free and taught by industry experts.
           </p>
         </div>
@@ -133,21 +133,21 @@ export default function Courses() {
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="flex items-center space-x-3">
                     {course.icon}
-                    <h3 className="text-2xl font-bold">{course.title}</h3>
+                    <h3 className="text-2xl font-noto font-bold">{course.title}</h3>
                   </div>
                 </div>
               </div>
 
               <div className="p-6">
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 font-roboto mb-4">
                   {course.description}
                 </p>
 
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-navy-600 mb-3">COURSE HIGHLIGHTS</h4>
+                  <h4 className="text-sm font-semibold text-primary mb-3">COURSE HIGHLIGHTS</h4>
                   <ul className="grid grid-cols-2 gap-2">
                     {course.highlights.map((highlight, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-gray-600">
+                      <li key={idx} className="flex items-center font-roboto text-sm text-gray-600">
                         <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
                         {highlight}
                       </li>
@@ -157,7 +157,7 @@ export default function Courses() {
 
                 <Link 
                   to={course.path}
-                  className="inline-flex items-center justify-center w-full bg-primary text-white py-3 px-6 rounded-md hover:bg-navy-700 transition-colors font-semibold"
+                  className="inline-flex items-center font-sans justify-center w-max bg-primary text-white py-3 px-6 rounded-md hover:bg-navy-700 transition-colors font-semibold"
                 >
                   Learn More
                 </Link>

@@ -62,15 +62,15 @@ export default function HowToApply() {
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <h1 className="text-2xl md:text-3xl font-bold mb-6">
+          <h1 className="text-2xl font-noto md:text-3xl font-bold mb-6 text-white">
             Applying to Zongea Institute of Technology, <br /> create a possibility for a bright future.
           </h1>
-          <p className="text-md text-gray-200 max-w-2xl mb-8">
+          <p className="text-md font-roboto text-gray-200 max-w-2xl mb-8">
             Zongea Institute of Technology equips emerging talent with the skills needed for in-demand careers, revolutionizing the future of work. Your support makes it all happen.
           </p>
           <Link
             to="/admission"
-            className="border border-white font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            className="border border-white font-sans font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
             Apply Now<ArrowRight className="ml-2" size={16} />
           </Link>
@@ -81,10 +81,10 @@ export default function HowToApply() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Overview */}
         <section className="mb-16">
-          <h2 className="text-xl md:text-2xl font-semibold text-navy-600 mb-4">
+          <h2 className="text-xl md:text-2xl font-noto font-semibold text-primary mb-4">
             Application Overview
           </h2>
-          <p className="text-gray-700 text-md leading-6">
+          <p className="text-gray-700 font-roboto text-md leading-6">
             Applying to Zongea Institute of Technology is simple and
             straightforward. Follow the steps below to kickstart your journey to
             a brighter future. Make sure to prepare the required documents and
@@ -94,7 +94,7 @@ export default function HowToApply() {
 
         {/* Steps to Apply */}
         <section className="mb-16">
-          <h2 className="text-xl md:text-2xl font-semibold text-navy-600 mb-4">
+          <h2 className="text-xl md:text-2xl font-noto font-semibold text-primary mb-4">
             Steps to Apply
           </h2>
           <div className="space-y-6">
@@ -106,8 +106,8 @@ export default function HowToApply() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-navy-600">{step.title}</h3>
-                  <p className="text-gray-700 text-sm mt-1">{step.description}</p>
+                  <h3 className="text-lg font-noto font-semibold text-primary">{step.title}</h3>
+                  <p className="text-gray-700 font-roboto text-sm mt-1">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -116,14 +116,14 @@ export default function HowToApply() {
 
         {/* FAQ Section */}
         <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-navy-600 mb-4">
+          <h2 className="text-xl md:text-2xl font-noto font-semibold text-primary mb-4">
             Frequently Asked Questions (FAQ)
           </h2>
           <div className="space-y-6">
             {commonFAQs.map((faq, index) => (
                <div key={index} className="border border-gray-200 rounded-md p-4">
-                 <h4 className="text-md font-semibold text-navy-600">{faq.question}</h4>
-                 <p className="text-gray-700 text-sm mt-2">{faq.answer}</p>
+                 <h4 className="text-md font-noto font-semibold text-primary">{faq.question}</h4>
+                 <p className="text-gray-700 font-roboto text-sm mt-2">{faq.answer}</p>
                </div>
             ))} 
           </div>

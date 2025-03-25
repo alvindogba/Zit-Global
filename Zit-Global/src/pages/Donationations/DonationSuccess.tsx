@@ -78,8 +78,8 @@ const DonationSuccess = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Thank You for Your Donation!</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold font-noto text-gray-900 mb-2">Thank You for Your Donation!</h1>
+            <p className="text-gray-600 font-roboto">
               Your generous contribution will help make a difference in a child's life.
             </p>
           </div>
@@ -87,28 +87,28 @@ const DonationSuccess = () => {
           <div className="border-t border-gray-200 pt-8">
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Donation Details</h3>
+                <h3 className="text-lg font-noto font-medium text-gray-900 mb-2">Donation Details</h3>
                 <div className="bg-gray-50 rounded-lg p-6 space-y-4">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Amount</span>
-                    <span className="text-gray-900 font-medium">${donation.amount.toFixed(2)}</span>
+                    <span className="text-gray-600 font-roboto">Amount</span>
+                    <span className="text-gray-900 font-roboto font-medium">${donation.amount.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Date</span>
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-gray-600 font-roboto">Date</span>
+                    <span className="text-gray-900 font-roboto font-medium">
                       {new Date(donation.createdAt).toLocaleDateString()}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Transaction ID</span>
-                    <span className="text-gray-900 font-medium">{donation.transactionId}</span>
+                    <span className="text-gray-600 font-roboto">Transaction ID</span>
+                    <span className="text-gray-900 font-medium font-roboto">{donation.transactionId}</span>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Receipt</h3>
-                <p className="text-gray-600 mb-4">
+                <h3 className="text-lg font-medium text-gray-900 font-noto mb-2">Receipt</h3>
+                <p className="text-gray-600 font-roboto mb-4">
                   A receipt has been sent to {donation.email}. Please check your email inbox.
                 </p>
               </div>
@@ -116,7 +116,7 @@ const DonationSuccess = () => {
               <div className="text-center pt-6">
                 <Link
                   to="/"
-                  className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors"
+                  className="inline-block bg-primary font-sans text-white px-8 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors"
                 >
                   Return Home
                 </Link>
