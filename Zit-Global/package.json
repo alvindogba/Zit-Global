@@ -12,6 +12,7 @@
   "dependencies": {
     "@daily-co/daily-js": "^0.76.0",
     "@daily-co/daily-react": "^0.22.0",
+    "@fontsource/noto-serif": "^5.2.6",
     "@fontsource/roboto": "^5.2.5",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",

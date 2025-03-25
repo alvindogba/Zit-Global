@@ -16,6 +16,8 @@ export default {
       },
       fontFamily: {
         sans: ['Inter var', 'sans-serif'],
+        noto: ['Noto Serif', 'serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       fontSize: {
         h1: ['1.75rem', { lineHeight: '1.3', fontWeight: '700' }], // 28px        

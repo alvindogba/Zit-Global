@@ -38,6 +38,9 @@ const MentorshipDashboard = lazy(() => import('./pages/Dashboards/MentorshipDash
 
 //form Models 
 import StudentModel from './components/Models/StudentModel';
+import ParentModel from './components/Models/ParentModel';
+import AdministrationModel from './components/Models/AdministrationModel'
+import MentorModel from './components/Models/MentorModel'
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -242,6 +245,30 @@ function App() {
                   element={
                     <Suspense fallback={<DefaultSkeletion />}>
                       <StudentModel />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/icc/parent-guardian"
+                  element={
+                    <Suspense fallback={<DefaultSkeletion />}>
+                      <ParentModel />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/icc/mentor"
+                  element={
+                    <Suspense fallback={<DefaultSkeletion />}>
+                      <MentorModel />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/icc/administration"
+                  element={
+                    <Suspense fallback={<DefaultSkeletion />}>
+                      <AdministrationModel />
                     </Suspense>
                   }
                 />

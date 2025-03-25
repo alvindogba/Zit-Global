@@ -62,7 +62,7 @@ export default function TutorshipSection() {
             {/* Overlay with Text */}
             <div className="absolute inset-0 bg-primary/50 flex flex-col justify-center items-center p-2 text-center">
               <h3 className="text-sm font-semibold text-white">{card.label}</h3>
-              <Link  to={card.link} className="mt-2 text-xs font-bold border-l-white border-b-white text-white px-3 py-1 bg-transparent hover:border-white  transition">
+              <Link  to={card.link} className="mt-2 text-xs font-bold border-l-white border-b-white text-white px-3 py-1 bg-transparent hover:bg-white hover:text-primary  transition">
                 {card.linkText}
               </Link>
             </div>
