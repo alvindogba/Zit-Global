@@ -16,7 +16,7 @@ export default function TeachSomeone() {
           tailored to meet the needs of students in Liberia, ensuring a comprehensive and
           inclusive educational experience.
         </p>
-        <button className="w-full md:w-fit mt-10 px-6 py-2 border border-primary bg-primary text-white text-base text-primary rounded-lg  hover:text-primary hover:font-bold transition-all duration-300">
+        <button className="w-full md:w-fit mt-10 px-6 py-2 border border-primary bg-primary hover:bg-white text-white text-base rounded-lg  hover:text-primary hover:font-bold transition-all duration-300">
           Become a Teacher
         </button>
 

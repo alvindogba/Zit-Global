@@ -247,6 +247,9 @@ const navigation = [
                     Home
                   </Link>
                 )}
+                  <Link to="/motivation" className="block py-2 text-base font-semibold text-primary hover:bg-primary-50 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>
+                    Motivation
+                  </Link>
                 {navigation.map((item) => (
                   <div key={item.name} className="space-y-1">
                     <div className="flex items-center justify-between">
