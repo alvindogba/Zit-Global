@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
 import LeftImg from '../../asset/images/herobg2.jpg'
