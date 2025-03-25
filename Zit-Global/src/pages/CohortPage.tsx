@@ -207,10 +207,10 @@ const CohortPage = () => {
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="font-noto text-4xl md:text-5xl font-bold mb-6">
             Transform Your Future with ZIT
           </h1>
-          <p className="text-xl text-gray-200 max-w-3xl mb-8">
+          <p className="font-roboto text-xl text-gray-200 max-w-3xl mb-8">
             Join our intensive 6-month programs and earn a certificate in your chosen field. 
             Expert-led training, hands-on projects, and career-ready skills.
           </p>
@@ -220,7 +220,7 @@ const CohortPage = () => {
       {/* Cohort Selection */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Select Cohort</h2>
+          <h2 className="font-noto text-2xl font-bold mb-6">Select Cohort</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Object.values(cohorts).map((cohort) => (
               <button
@@ -235,7 +235,7 @@ const CohortPage = () => {
                     : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                 }`}
               >
-                <h3 className="text-xl font-bold mb-2">{cohort.name}</h3>
+                <h3 className="font-noto text-xl font-bold mb-2">{cohort.name}</h3>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">
                     {cohort.startDate} - {cohort.endDate}
@@ -254,7 +254,7 @@ const CohortPage = () => {
         {/* Program Track Selection */}
         {cohorts[activeCohort] && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">Available Programs</h2>
+            <h2 className="font-noto text-2xl font-bold mb-6">Available Programs</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
               {Object.values(cohorts[activeCohort].programs).map((program) => (
                 <button
@@ -278,8 +278,8 @@ const CohortPage = () => {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <div className="text-5xl mb-4">{cohorts[activeCohort].programs[activeTrack].icon}</div>
-                    <h2 className="text-3xl font-bold mb-4">{cohorts[activeCohort].programs[activeTrack].name}</h2>
-                    <p className="text-gray-600 mb-6">{cohorts[activeCohort].programs[activeTrack].description}</p>
+                    <h2 className="font-noto text-3xl font-bold mb-4">{cohorts[activeCohort].programs[activeTrack].name}</h2>
+                    <p className="font-roboto text-gray-600 mb-6">{cohorts[activeCohort].programs[activeTrack].description}</p>
                     
                     <div className="space-y-4">
                       <div className="flex items-center">
@@ -325,7 +325,7 @@ const CohortPage = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-semibold mb-4">Skills You'll Learn</h3>
+                      <h3 className="font-noto text-xl font-semibold mb-4">Skills You'll Learn</h3>
                       <div className="grid grid-cols-2 gap-3">
                         {cohorts[activeCohort].programs[activeTrack].skills.map((skill, index) => (
                           <div
@@ -341,7 +341,7 @@ const CohortPage = () => {
                 </div>
 
                 {cohorts[activeCohort].status === 'current' && (
-                  <div className="mt-8 flex justify-center">
+                  <div className="font-sans mt-8 flex justify-center">
                     <Link to='/admission' className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
                       Apply Now
                     </Link>

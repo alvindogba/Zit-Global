@@ -9,10 +9,10 @@ const SeeAFuture = () => {
     return (
       <div className="text-white md:py-16 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-xl md:text-2xl font-bold mb-6 text-primary">
+          <h2 className="font-noto text-xl md:text-2xl font-bold mb-6 text-primary">
             Our Vision: Opportunity and <br /> Empowerment for Every Liberian
           </h2>
-          <p className="text-sm md:text-md text-black mb-8 max-w-2xl mx-auto">
+          <p className="font-roboto text-sm md:text-md text-black mb-8 max-w-2xl mx-auto">
             At ZIT, we see a Future Where:
           </p>
   

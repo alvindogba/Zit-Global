@@ -6,17 +6,17 @@ export default function WorkForce() {
       {/* First Section */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 h-auto">
         <div className="w-full md:w-2/5 text-center md:text-left mb-8 md:mb-0">
-          <h3 className="text-base font-medium text-primary">Want to be part of this Journey?</h3>
-          <h2 className="text-xl md:text-2xl font-bold text-primary w-full md:w-[90%] mt-2">
+          <h3 className="font-noto text-base font-medium text-primary">Want to be part of this Journey?</h3>
+          <h2 className="font-noto text-xl md:text-2xl font-bold text-primary w-full md:w-[90%] mt-2">
             Be a Teacher Today and Impact the Future Now!
           </h2>
-          <p className="text-gray-700 mt-5 leading-relaxed md:w-[80%]">
+          <p className="font-roboto text-gray-700 mt-5 leading-relaxed md:w-[80%]">
             At Zongea Institute of Technology, we offer a wide array of courses designed to
             empower learners with the skills and knowledge needed for success. Our courses are
             tailored to meet the needs of students in Liberia, ensuring a comprehensive and
             inclusive educational experience.
           </p>
-          <button className="w-fit md:w-fit mt-6 px-6 py-2 border border-primary text-base text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
+          <button className="font-sans w-fit md:w-fit mt-6 px-6 py-2 border border-primary text-base text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
             Become a Teacher
           </button>
         </div>
@@ -47,17 +47,17 @@ export default function WorkForce() {
         </div>
 
         <div className="w-full md:w-2/5 text-center md:text-left mb-8 md:mb-0">
-          <h3 className="text-base font-medium text-primary">Want to be part of this Journey?</h3>
-          <h2 className="text-xl md:text-2xl font-bold text-primary w-full md:w-[90%] mt-2">
+          <h3 className="font-noto text-base font-medium text-primary ">Want to be part of this Journey?</h3>
+          <h2 className="font-noto text-xl md:text-2xl font-bold text-primary w-full md:w-[90%] mt-2">
             Be a Teacher Today and Impact the Future Now!
           </h2>
-          <p className="text-gray-700 mt-5 leading-relaxed md:w-[80%]">
+          <p className="font-roboto text-gray-700 mt-5 leading-relaxed md:w-[80%]">
             At Zongea Institute of Technology, we offer a wide array of courses designed to
             empower learners with the skills and knowledge needed for success. Our courses are
             tailored to meet the needs of students in Liberia, ensuring a comprehensive and
             inclusive educational experience.
           </p>
-          <button className="w-fit md:w-fit mt-6 px-6 py-2 border border-primary text-base text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
+          <button className="font-sans w-fit md:w-fit mt-6 px-6 py-2 border border-primary text-base text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
             Become a Teacher
           </button>
         </div>

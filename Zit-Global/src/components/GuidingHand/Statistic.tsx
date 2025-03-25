@@ -11,8 +11,8 @@ function Statics() {
         }}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-2xl font-bold mb-4 text-white">Our Programs by Number</h2>
-                <p className="text-md text-white mb-8 max-w-2xl mx-auto">
+                <h2 className="font-noto text-2xl font-bold mb-4 text-white">Our Programs by Number</h2>
+                <p className="font-roboto text-md text-white mb-8 max-w-2xl mx-auto">
                     Don't waste any more time, Register Now to secure your spot.
                 </p>
                 <div className='flex justify-center space-x-8'>

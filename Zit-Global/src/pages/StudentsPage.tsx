@@ -20,10 +20,10 @@ const  StudentsPage = () => {
         <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
       </div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <h1 className="text-2xl md:text-3xl font-bold mb-6">
+        <h1 className="font-noto text-2xl md:text-3xl font-bold mb-6">
         Empower Your Academic Journey
         </h1>
-        <p className="text-md text-gray-200 max-w-2xl mb-8">
+        <p className="font-roboto text-md text-gray-200 max-w-2xl mb-8">
         Unlock your potential and excel in your academic pursuits. Explore resources, programs, and opportunities designed to support students at every stage of their educational journey.
         </p>
         <Link
