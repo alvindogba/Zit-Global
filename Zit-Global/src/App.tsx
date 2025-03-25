@@ -41,6 +41,7 @@ import StudentModel from './components/Models/StudentModel';
 import ParentModel from './components/Models/ParentModel';
 import AdministrationModel from './components/Models/AdministrationModel'
 import MentorModel from './components/Models/MentorModel'
+const IccSucessPage = lazy(() => import("../src/pages/IccSucessPage"))
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -272,7 +273,12 @@ function App() {
                     </Suspense>
                   }
                 />
-
+                <Route path='/icc-success'
+                  element={
+                    <Suspense fallback={<DefaultSkeletion />}>
+                      <IccSucessPage />
+                    </Suspense>
+                  } />
               </Routes>
 
             </div>
