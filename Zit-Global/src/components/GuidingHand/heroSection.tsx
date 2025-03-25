@@ -15,10 +15,10 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-[600px]">
-        <h1 className="md:text-4xl text-3xl font-bold mb-10" >
+        <h1 className="font-noto md:text-4xl text-3xl font-bold mb-10" >
           Empowering Futures Through Mentorship, Tutoring, and Teaching
         </h1>
-        <p className="mb-10 text-lg">
+        <p className="font-roboto mb-10 text-lg">
           Join the Guiding Hands Program and unlock your potential with personalized guidance and support.
         </p>
         <div className="flex mt-6 mb-8 space-x-4">

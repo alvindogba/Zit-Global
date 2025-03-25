@@ -11,8 +11,8 @@ const ReadyToStartSec = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-xl md:text-2xl font-bold mb-6 text-white">Ready to Start Learning?</h2>
-        <p className="text-sm md:text-md text-white mb-8 max-w-2xl mx-auto">
+        <h2 className="font-noto text-xl md:text-2xl font-bold mb-6 text-white">Ready to Start Learning?</h2>
+        <p className="font-roboto text-sm md:text-md text-white mb-8 max-w-2xl mx-auto">
           Join our community of learners and kickstart your career in technology and design.
           All courses are free and designed to help you succeed.
         </p>
@@ -20,7 +20,7 @@ const ReadyToStartSec = () => {
         {/* Fixed Button */}
         <Link
           to="/admission"
-          className="border border-white font-bold text-xs text-white px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
+          className="font-sans border border-white font-bold text-xs text-white px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
         >
           Apply Now
         </Link>

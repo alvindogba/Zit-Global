@@ -50,13 +50,13 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
                 transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
                 className="max-w-3xl"
               >
-                <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                <h2 className="font-noto text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
                   {slides[currentIndex].title}
                 </h2>
-                <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white/90 drop-shadow-md">
+                <h3 className="font-noto text-xl md:text-2xl font-semibold mb-6 text-white/90 drop-shadow-md">
                   {slides[currentIndex].subtitle}
                 </h3>
-                <p className="text-lg md:text-xl mb-8 text-white/85 drop-shadow-md leading-relaxed">
+                <p className="font-roboto text-lg md:text-xl mb-8 text-white/85 drop-shadow-md leading-relaxed">
                   {slides[currentIndex].description}
                 </p>
                 {slides[currentIndex].ctaText && slides[currentIndex].ctaLink && (

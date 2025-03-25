@@ -24,10 +24,10 @@ const Hero: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 w-[50%]">
+        <h1 className="font-noto text-4xl md:text-5xl font-bold text-white mb-4 w-[50%]">
           Empowerment. Gaudiance. Inspiration
         </h1>
-        <p className="text-lg text-white mb-6 max-w-xl">
+        <p className="font-roboto text-lg text-white mb-6 max-w-xl">
           Join our mentorship program and unlock your potential through
           personalized guidance from industry leaders.
         </p>

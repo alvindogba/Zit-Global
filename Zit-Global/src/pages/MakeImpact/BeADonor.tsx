@@ -112,10 +112,10 @@ return (
     <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
   </div>
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-    <h1 className="text-2xl md:text-3xl font-bold mb-6">
+    <h1 className="font-noto text-2xl md:text-3xl font-bold mb-6">
     Unlock potential, create possibilities.
     </h1>
-    <p className="text-md text-gray-200 max-w-2xl mb-8">
+    <p className="font-roboto text-md text-gray-200 max-w-2xl mb-8">
       Zongea Institute of Technology equips emerging talent with the skills needed for in-demand careers, revolutionizing the future of work. Your support makes it all happen.
     </p>
     <Link
@@ -130,15 +130,15 @@ return (
   {/* Why donate section */}
   <section className="py-16 px-4 bg-white">
     <div className="container mx-auto px-12">
-      <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center text-primary">
+      <h2 className="font-noto text-2xl md:text-3xl font-bold mb-12 text-center text-primary">
         Why donate to Zongea Institute of Technology?
       </h2>
       <div className="grid md:grid-cols-3 gap-8">
       {reasonWhyDonate.map((whyDonate, index) => (
           <div key={index} className="flex items-start space-x-4 pl-3 border-l-2 border-secondary-yellow">
           <div>
-            <h3 className="text-md font-bold mb-2 text-primary">{whyDonate.title}</h3>
-            <p className="text-secondary-black text-sm">{whyDonate.description}</p>
+            <h3 className="font-noto text-md font-bold mb-2 text-primary">{whyDonate.title}</h3>
+            <p className="font-roboto text-secondary-black text-sm">{whyDonate.description}</p>
           </div>
         </div>
         ))}
@@ -149,7 +149,7 @@ return (
   {/* Donor highlight Section */}
   <section className="py-16 px-4 bg-gray-100">
     <div className="container mx-auto px-12">
-      <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center text-primary">
+      <h2 className="font-noto text-2xl md:text-3xl font-bold mb-12 text-center text-primary">
         Donor Highlights
       </h2>
       <div className="grid md:grid-cols-3 gap-8">
@@ -157,8 +157,8 @@ return (
           <div key={index} className="flex flex-col justify-center items-center space-x-4 gap-2">
             <img src={highlight.image} alt={highlight.description} className="w-40 h-40 rounded-full object-cover" />
           <div>
-            <h3 className="text-md font-bold mb-2 text-primary">{highlight.description}</h3>
-            <p className="text-secondary-black text-sm">{highlight.statement}</p>
+            <h3 className="font-noto text-md font-bold mb-2 text-primary">{highlight.description}</h3>
+            <p className="font-roboto text-secondary-black text-sm">{highlight.statement}</p>
           </div>
         </div>
         ))}
@@ -169,7 +169,7 @@ return (
   {/* What Supporter Section */}
   <section className="bg-white py-10">
     <div className="text-left  mb-10">
-      <h2 className="text-xl ml-[24rem] md:text-2xl font-bold text-primary">What Supporters Say</h2>
+      <h2 className="font-noto text-xl ml-[24rem] md:text-2xl font-bold text-primary">What Supporters Say</h2>
     </div>
     <div className="relative max-w-3xl mx-auto overflow-hidden">
       <div
@@ -179,12 +179,12 @@ return (
         {supportersaying.map((testimonial, index) => (
           <div
             key={index}
-            className="min-w-full bg-primary text-secondary-light p-8 rounded-lg shadow-lg"
+            className="min-w-full bg-gray text-black p-8 rounded-lg shadow-lg"
           >
-            <h4 className="text-xl font-semibold mb-4">{testimonial.saying}</h4>
-            <p className="mb-6 text-sm">{testimonial.statement}</p>
-            <h4 className="font-semibold text-md">{testimonial.name}</h4>
-            <p className="text-sm text-secondary-yellow">{testimonial.location}</p>
+            <h4 className="font-noto text-xl font-semibold mb-4">{testimonial.saying}</h4>
+            <p className="font-roboto mb-6 text-sm">{testimonial.statement}</p>
+            <h4 className="font-noto text-md">{testimonial.name}</h4>
+            <p className="font-roboto text-sm text-white">{testimonial.location}</p>
           </div>
         ))}
       </div>
@@ -228,10 +228,10 @@ return (
       <div className="mb-8 w-20 h-20 mx-auto rounded-full bg-primary flex items-center justify-center">
         <HandHeart className="w-10 h-10 text-secondary-yellow" />
       </div>
-      <h2 className="text-2xl md:text-3xl font-bold mb-4">Help us close the Opportunity Divide. </h2>
+      <h2 className="font-noto text-2xl md:text-3xl font-bold mb-4">Help us close the Opportunity Divide. </h2>
       <Link
       to="/donate"
-      className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+      className="font-sans bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
       >
       Donate  <Heart className="ml-2" size={16} />
       </Link>

@@ -35,7 +35,7 @@ export default function MotivationPage() {
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <h1 className="text-2xl md:text-3xl font-bold mb-6">
+          <h1 className="font-noto text-2xl md:text-3xl font-bold mb-6">
             Join Our Community of <br /> Future Tech Leaders
           </h1>
         </div>
@@ -47,7 +47,7 @@ export default function MotivationPage() {
         <div className="flex flex-col md:flex-row max-w-6xl mx-auto justify-between items-center space-y-8 md:space-y-0">
           {/* Left Side - Title */}
           <div className="text-center md:text-left">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 text-primary">
+            <h2 className="font-noto text-xl md:text-2xl font-bold mb-4 text-primary">
               We believe every <br /> Liberian should have:
             </h2>
           </div>
@@ -62,8 +62,8 @@ export default function MotivationPage() {
                 <div className="w-12 h-12 rounded-full flex justify-center items-center mb-3 bg-primary/10">
                   <believe.icon className="w-7 h-7 text-primary-600" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-primary text-center">{believe.title}</h3>
-                <p className="text-gray-700 text-sm text-center">{believe.description}</p>
+                <h3 className="font-noto text-lg font-semibold mb-2 text-primary text-center">{believe.title}</h3>
+                <p className="font-roboto text-gray-700 text-sm text-center">{believe.description}</p>
               </div>
             ))}
           </div>
@@ -80,12 +80,12 @@ export default function MotivationPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className='flex justify-center items-center'>
-            <h2 className="text-lg md:text-2xl font-bold mb-6 text-white w-full text-center md:w-[30rem]">
+            <h2 className="font-noto text-lg md:text-2xl font-bold mb-6 text-white w-full text-center md:w-[30rem]">
               Our Vision: Opportunity and Empowerment for Every Liberian
             </h2>
           </div>
           
-          <p className="text-md text-white mb-8 max-w-2xl mx-auto">
+          <p className="font-roboto text-md text-white mb-8 max-w-2xl mx-auto">
             Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
         </p>
         
@@ -99,7 +99,7 @@ export default function MotivationPage() {
           </Link>
           <Link
             to="/donate"
-            className="bg-white font-bold text-xs text-primary px-4 py-2 transition-all rounded-lg inline-flex items-center justify-center hover:bg-primary hover:text-white"
+            className="font-sans bg-white font-bold text-xs text-primary px-4 py-2 transition-all rounded-lg inline-flex items-center justify-center hover:bg-primary hover:text-white"
           >
             Donate Today
           </Link>

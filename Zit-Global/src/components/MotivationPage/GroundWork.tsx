@@ -19,7 +19,7 @@ export default function GroundWork() {
         variants={variants.staggerContainer}
       >
         <motion.div variants={variants.fadeInUp} className="text-center mb-12">
-          <h2 className="text-xl md:text-2xl font-bold mb-4 text-primary">
+          <h2 className="font-noto text-xl md:text-2xl font-bold mb-4 text-primary">
             Laying the Groundwork: Year One Highlights
           </h2>
         </motion.div>
@@ -50,8 +50,8 @@ export default function GroundWork() {
                 <div className="w-16 h-16 rounded-full flex justify-center items-center mb-2 bg-primary/10">
                   <groundWork.icon className="w-8 h-8 text-primary-600" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-900">{groundWork.title}</h3>
-                <p className="text-gray-700 text-sm">{groundWork.description}</p>
+                <h3 className="font-noto text-lg font-semibold mb-2 text-gray-900">{groundWork.title}</h3>
+                <p className="font-roboto text-gray-700 text-sm">{groundWork.description}</p>
               </GlassCard>
             </motion.div>
           ))}

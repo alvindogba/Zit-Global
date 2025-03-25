@@ -9,10 +9,10 @@ const HowItWorks: React.FC = () => {
         
         {/* Left Column */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8">
+          <h2 className="font-noto text-3xl md:text-4xl font-bold text-primary mb-8">
             How It Works?
           </h2>
-          <p className="text-gray-600 mb-8">
+          <p className="font-roboto text-gray-600 mb-8">
             The Guiding Hands Program is a free tech school initiative in Liberia 
             that offers mentorship, tutorship, and teaching.
           </p>
@@ -26,8 +26,8 @@ const HowItWorks: React.FC = () => {
                 1
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">Apply</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="font-noto font-semibold text-gray-800">Apply</h3>
+                <p className="font-roboto text-gray-600 text-sm">
                   Fill out the application form.
                 </p>
               </div>
@@ -39,8 +39,8 @@ const HowItWorks: React.FC = () => {
             2
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">Get Matched</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="font-noto font-semibold text-gray-800">Get Matched</h3>
+                <p className="font-roboto text-gray-600 text-sm">
                   We pair you with a mentor, tutor, or course.
                 </p>
               </div>
@@ -52,8 +52,8 @@ const HowItWorks: React.FC = () => {
             3
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">Connect</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="font-noto font-semibold text-gray-800">Connect</h3>
+                <p className="font-roboto text-gray-600 text-sm">
                   Schedule your first meeting and start your journey.
                 </p>
               </div>
@@ -65,8 +65,8 @@ const HowItWorks: React.FC = () => {
             4
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">Start Learning</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="font-noto font-semibold text-gray-800">Start Learning</h3>
+                <p className="font-roboto text-gray-600 text-sm">
                   Begin your journey with personalized guidance.
                 </p>
               </div>

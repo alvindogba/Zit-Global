@@ -42,7 +42,7 @@ export default function WhatWeBelieve() {
 
             {/* Text Content */}
             <div className="md:ml-4 text-center md:text-left">
-              <h2 className="text-xl md:text-2xl font-bold text-primary w-[90%] mt-2">
+              <h2 className="font-noto text-xl md:text-2xl font-bold text-primary w-[90%] mt-2">
                 {belief.title}
               </h2>
               <p className="text-gray-700 mt-5 leading-relaxed md:w-[80%]">
