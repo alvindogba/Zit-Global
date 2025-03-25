@@ -12,14 +12,14 @@ export default function JoinUs() {
 
       {/* Right Side - Content */}
       <div className="text-white w-full md:w-[50%] text-center md:text-left mt-6 md:mt-0">
-        <h2 className=" font-lg text-white ">Join Us</h2>
-        <h2 className="text-2xl  md:text-2xl font-bold mt-4">Mentor Someone Today</h2>
-        <p className=" mt-10">
+        <h2 className=" font-lg font-noto text-white ">Join Us</h2>
+        <h2 className="text-2xl font-noto  md:text-2xl font-bold mt-4">Mentor Someone Today</h2>
+        <p className="font-roboto mt-10">
           At Zongea Institute of Technology, we believe in the power of education and mentorship. 
           By volunteering, you can make a significant impact in the lives of learners in the USA and Liberia. 
           Register now to be part of our mission and help shape the future.
         </p>
-        <button className="mt-10 px-6 py-2 border border-white bg-primary text-white  rounded-lg hover:bg-white hover:text-primary hover:font-extrabold transition-all w-full md:w-auto">
+        <button className="mt-10 px-6 font-sans py-2 border border-white bg-primary text-white  rounded-lg hover:bg-white hover:text-primary hover:font-extrabold transition-all w-full md:w-auto">
           Become a Teacher
         </button>
       </div>

@@ -4,6 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../asset/images/zongea-logo.png"; // Fixed path
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 const navigation = [
   {
@@ -81,12 +82,12 @@ const navigation = [
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-x-8">
           {!isHomePage && (
-            <Link to="/" className="text-md hover:text-primary-600 transition-colors">
+            <Link to="/" className="text-md font-roboto hover:text-primary-600 transition-colors">
               Home
             </Link>
           )}
 
-          <Link to="/motivation" className="text-md text-white hover:text-primary-600 transition-colors">
+          <Link to="/motivation" className="text-md font-semibold font-roboto text-white hover:text-primary-600 transition-colors">
             Motivation
           </Link>
 
@@ -94,7 +95,7 @@ const navigation = [
             <div key={item.name} className="relative group">
               <Link
                 to={item.href}
-                className={`text-md font-semibold transition-colors ${isActive(item.href) ? "text-primary-600" : "text-white hover:text-primary-600"
+                className={`text-md font-roboto font-semibold transition-colors ${isActive(item.href) ? "text-white" : "text-white hover:text-white"
                   }`}
               >
                 {item.name}
@@ -107,9 +108,9 @@ const navigation = [
                     <Link
                       key={dropdownItem.name}
                       to={dropdownItem.href}
-                      className={`block px-4 py-2 text-sm transition-colors ${isActive(dropdownItem.href)
+                      className={`block px-4 py-2 font-roboto text-sm transition-colors ${isActive(dropdownItem.href)
                         ? "bg-primary-50 text-primary"
-                        : "text-gray-700 hover:bg-primary-50 hover:text-primary-600"
+                        : "text-gray-700 hover:bg-primary-50 hover:text-yellow-500"
                         }`}
                     >
                       {dropdownItem.name}
@@ -123,7 +124,7 @@ const navigation = [
 
         {/* Donation Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/donate" className="border rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-600 transition">
+          <Link to="/donate" className="border font-sans rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-600 transition">
             Make A Donation
           </Link>
         </div>
@@ -154,28 +155,28 @@ const navigation = [
               {/* Modal Content */}
               <div className="p-6 md:px-8 text-gray-800 bg-white">
                 {/* About Section */}
-                <h2 className="text-lg font-bold text-primary">About ZIT</h2>
-                <p className="text-sm text-gray-600 mt-2 mr-20">
+                <h2 className="text-lg font-bold font-noto text-primary">About ZIT</h2>
+                <p className="text-sm font-roboto text-gray-600 mt-2 mr-20">
                   Tech careers within reach. Whether you’re in high school or have some college, we’ll get you job-ready—fast. All it takes is your drive to succeed.
                 </p>
                 <div className="flex justify-center gap-4 mt-6">
                   <Link
                     to="/donate"
-                    className="w-full inline-flex justify-center  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    className="w-full inline-flex  justify-center font-sans  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Teach
                   </Link>
                   <Link
                     to="/donate"
-                    className="w-full inline-flex justify-center  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    className="w-full inline-flex justify-center font-sans  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Tutor
                   </Link>
                   <Link
-                         to="/donate"
-                        className="w-full inline-flex justify-center  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                         to="/icc/mentor"
+                        className="w-full inline-flex justify-center font-sans bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                          onClick={() => setMobileMenuOpen(false)}
                        >
                          Mentor
@@ -187,26 +188,34 @@ const navigation = [
 
 
                 {/* Contact Section */}
-                <h3 className="mt-6 font-bold text-primary mb-2">Contact Information</h3>
-                <p className="text-sm text-gray-600 mb-2">📞 +23169865868986</p>
-                <p className="text-sm text-gray-600 mb-2">📧 info@zongeatech.com</p>
-                <p className="text-sm text-gray-600 mb-2">📍 Rehab Community Opposite Rehab Mansion</p>
+                <h3 className="mt-6 font-bold font-noto text-primary mb-2">Contact Information</h3>
+                <p className="text-sm font-roboto text-gray-600 mb-2">📞 +23169865868986</p>
+                <p className="text-sm font-roboto text-gray-600 mb-2">📧 info@zongeatech.com</p>
+                <p className="text-sm font-roboto text-gray-600 mb-2">📍 Rehab Community Opposite Rehab Mansion</p>
 
                 {/* Form */}
                 <h3 className="mt-6 font-bold text-primary">Ready To Get Started?</h3>
                 <div className="flex gap-4 my-6">
-                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                  <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
+                    <FaFacebookF size={20}/>
+                  </div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
+                    <FaFacebookF size={20}/>
+                  </div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
+                    <FaFacebookF size={20}/>
+                  </div>
+                  <div className="w-8 h-8 bg-gray-200 rounded-full flex justify-center items-center">
+                    <FaFacebookF size={20}/>
+                  </div>
                 </div>
                 <p>Leave A Messsage</p>
                 <form action="">
-                <input type="text" placeholder="Your Name" className="bg-white w-full mt-2 p-2 border rounded-md" />
-                <input type="phone" placeholder="Your Phone Number" className="bg-white w-full mt-2 p-2 border rounded-md" />
-                <input type="email" placeholder="Your Email" className="bg-white w-full mt-2 p-2 border rounded-md" />
-                <textarea name="message" placeholder="Message" className="bg-white w-full mt-2 p-2 border rounded-md"></textarea>
-                <button className=" bg-primary px-8 mt-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors">Submit</button>
+                <input type="text" placeholder="Your Name" className="bg-white w-full font-roboto mt-2 p-2 border rounded-md" />
+                <input type="phone" placeholder="Your Phone Number" className="bg-white w-full font-roboto mt-2 p-2 border rounded-md" />
+                <input type="email" placeholder="Your Email" className="bg-white w-full font-roboto mt-2 p-2 border rounded-md" />
+                <textarea name="message" placeholder="Message" className="bg-white w-full font-roboto mt-2 p-2 border rounded-md"></textarea>
+                <button className=" bg-primary px-8 mt-4 py-2 text-sm font-semibold text-white font-sans shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors">Submit</button>
                 </form>
                
               </div>
@@ -234,7 +243,7 @@ const navigation = [
             >
               <div className="flex items-center justify-between">
                 <Link to="/" className="-m-1.5 p-1" onClick={() => setMobileMenuOpen(false)}>
-                  <span className="text-2xl font-bold text-primary">Zit-Global</span>
+                  <span className="text-2xl font-bold font-noto text-primary">Zit-Global</span>
                 </Link>
                 <button className="p-1 bg-white text-primary hover:text-blue-600 outline-none " onClick={() => setMobileMenuOpen(false)}>
                   <XMarkIcon className="h-12 w-12" />
@@ -243,17 +252,17 @@ const navigation = [
 
               <div className="mt-6">
                 {!isHomePage && (
-                  <Link to="/" className="block py-2 text-base font-semibold text-primary hover:bg-primary-50 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>
+                  <Link to="/" className="block py-2 text-base font-roboto font-semibold text-primary hover:bg-primary-50 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>
                     Home
                   </Link>
                 )}
-                  <Link to="/motivation" className="block py-2 text-base font-semibold text-primary hover:bg-primary-50 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>
+                  <Link to="/motivation" className="block py-2 font-roboto text-base font-semibold text-primary hover:bg-primary-50 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>
                     Motivation
                   </Link>
                 {navigation.map((item) => (
                   <div key={item.name} className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <Link to={item.href} className="py-2 text-lg font-semibold text-gray-900 hover:text-primary" onClick={() => !item.dropdown && setMobileMenuOpen(false)}>
+                      <Link to={item.href} className="py-2 text-lg font-roboto font-semibold text-gray-900 hover:text-primary" onClick={() => !item.dropdown && setMobileMenuOpen(false)}>
                         {item.name}
                       </Link>
                       {item.dropdown && (
@@ -266,7 +275,7 @@ const navigation = [
                     {item.dropdown && openDropdowns.has(item.name) && (
                       <div className="ml-4">
                         {item.dropdown.map((dropdownItem) => (
-                          <Link key={dropdownItem.name} to={dropdownItem.href} className="block py-1.5 text-sm text-gray-600 hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                          <Link key={dropdownItem.name} to={dropdownItem.href} className="block font-roboto py-1.5 text-sm text-gray-600 hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                             {dropdownItem.name}
                           </Link>
                         ))}
@@ -277,7 +286,7 @@ const navigation = [
                 <div className="mt-4 px-3">
                   <Link
                     to="/donate"
-                    className="w-full inline-flex justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    className="w-full inline-flex justify-center font-sans rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Make A Donation

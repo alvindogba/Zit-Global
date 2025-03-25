@@ -26,10 +26,10 @@ const OurApproach = ()=>{
         variants={variants.staggerContainer}
       >
         <motion.div variants={variants.fadeInUp} className="text-center mb-12">
-          <h2 className="text-xl md:text-2xl font-bold mb-4 text-primary">
+          <h2 className="text-xl font-noto md:text-2xl font-bold mb-4 text-primary">
             Our Educational Approach
           </h2>
-          <p className="text-lg text-gray-800 max-w-2xl mx-auto">
+          <p className="text-lg font-roboto text-gray-800 max-w-2xl mx-auto">
           Revolutionizing tech education through mentorship, experiential learning, and a community-driven approach to impact.
           </p>
         </motion.div>
@@ -62,13 +62,13 @@ const OurApproach = ()=>{
               className="relative "
             > 
               <GlassCard
-                className="p-4 h-full w-72 bg-transparent backdrop-blur-md border  transition-all duration-300 hover:translate-y-1 "
+                className="p-4 h-full w-80 bg-transparent backdrop-blur-md border  transition-all duration-300 hover:translate-y-1 "
                 glowColor={`from-primary-${(index + 4) * 100}/20`}
               >
                 <approach.icon className="w-10 h-10 mx-auto text-primary-600 mb-4 group-hover:text-white" />
-                <h3 className="text-lg font-semibold mb-2 text-primary group-hover:text-white">{approach.title}</h3>
-                <h4 className="text-gray-900 text-md font-bold group-hover:text-white">{approach.description}</h4>
-                <p className='text-gray-700 mt-4'>{approach.note}</p>
+                <h3 className="text-lg font-noto font-semibold mb-2 text-primary group-hover:text-white">{approach.title}</h3>
+                <h4 className="text-gray-900 font-noto text-md font-bold group-hover:text-white">{approach.description}</h4>
+                <p className='text-gray-700 font-roboto mt-4'>{approach.note}</p>
               </GlassCard>
             </motion.div>
           ))}

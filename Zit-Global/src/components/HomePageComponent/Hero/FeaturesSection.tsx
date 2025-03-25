@@ -16,13 +16,13 @@ function FeaturesSection() {
     <div className="w-full h-auto bg-secondary px-0 py-32 md:px-28">
       <div className="container mx-auto">
         <AnimateOnScroll animation="slideDown">
-          <h2 className="text-2xl font-bold text-primary mb-4 md:text-left">
+          <h2 className="text-2xl font-noto font-bold text-primary mb-4 md:text-left">
             Study at ZIT
           </h2>
         </AnimateOnScroll>
         
         <AnimateOnScroll animation="fadeIn" delay={200}>
-          <p className="text-gray-600 mb-8 md:max-w-3xl md:text-left">
+          <p className="text-gray-600 font-roboto mb-8 md:max-w-3xl md:text-left">
             Unlock job-ready skills that open doors in today's tech landscape. No other
             program matches the depth and impact of our hands-on training in technology,
             design, and digital literacy — preparing you for success in the digital economy.
@@ -88,9 +88,9 @@ function HoverCard({ imgSrc, title, description, linkText, fullHeight }: CardPro
         className={`absolute w-full h-full top-0 bg-primary bg-opacity-60 text-white rounded-lg shadow-lg p-6 transition-all duration-300 transform flex flex-col justify-center items-center text-center space-y-4 
           ${isHovered ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"}`}
       >
-        <h3 className="text-lg text-secondary-yellow font-semibold transform transition-transform duration-300">{title}</h3>
-        <p className="text-sm transform transition-transform duration-300">{description}</p>
-        <a href="#" className="text-white border px-4 py-2 rounded-md hover:text-primary hover:bg-white font-semibold transition-all duration-300 hover:scale-105">
+        <h3 className="text-lg font-noto text-secondary-yellow font-semibold transform transition-transform duration-300">{title}</h3>
+        <p className="text-sm transform font-roboto transition-transform duration-300">{description}</p>
+        <a href="#" className="text-white font-sans border px-4 py-2 rounded-md hover:text-primary hover:bg-white font-semibold transition-all duration-300 hover:scale-105">
           {linkText}
         </a>
       </div>
@@ -110,14 +110,14 @@ function FeatureCard({ imgSrc, title, description, linkText }: CardProps) {
         />
       </div>
       <div className="flex flex-col flex-grow mt-4">
-        <h3 className="text-lg text-primary font-semibold mb-2 transition-colors duration-300 hover:text-secondary-yellow">{title}</h3>
-        <p className="text-gray-600 flex-grow">{description}</p>
+        <h3 className="text-lg text-primary font-noto font-semibold mb-2 transition-colors duration-300 hover:text-secondary-yellow">{title}</h3>
+        <p className="text-gray-600 font-roboto flex-grow">{description}</p>
       </div>
       <a 
         href="#" 
-        className="text-black hover:text-primary relative group mt-4 inline-block w-fit"
+        className="text-black hover:text-primary font-sans relative group mt-4 inline-block w-fit"
       >
-        <span className="font-semibold">{linkText}</span>
+        <span className="font-semibold font-sans">{linkText}</span>
         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
       </a>
     </div>

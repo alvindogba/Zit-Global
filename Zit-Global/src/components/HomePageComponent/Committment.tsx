@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Section } from '../Section';
 import { GlassCard } from '../GlassCard';
@@ -24,10 +23,10 @@ const commitment = ()=>{
         >
           <motion.div variants={variants.fadeInUp} className="text-center mb-16">
             <ChartBarIcon className="w-16 h-16 text-primary-300 mx-auto mb-6" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl font-noto md:text-5xl font-bold mb-4">
               Our Commitment to <GradientText className="text-white">Sustainability</GradientText>
             </h2>
-            <p className="text-xl text-primary-100 max-w-2xl mx-auto">
+            <p className="text-xl font-roboto text-primary-100 max-w-2xl mx-auto">
             We prioritize sustainability by integrating eco-friendly practices into our education, operations, and community initiatives. Through responsible innovation, resource efficiency, and environmental awareness, we strive to create a greener future.
 
 
@@ -60,8 +59,8 @@ const commitment = ()=>{
                   variant="light"
                   glowColor="from-primary-400/10"
                 >
-                  <h3 className="text-2xl font-semibold mb-4 text-white">{item.title}</h3>
-                  <p className="text-primary-100 mb-6">{item.description}</p>
+                  <h3 className="text-2xl font-noto font-semibold mb-4 text-white">{item.title}</h3>
+                  <p className="text-primary-100 font-roboto mb-6">{item.description}</p>
                   <AnimatedStat
                     value={item.stats.value}
                     suffix={item.stats.suffix}

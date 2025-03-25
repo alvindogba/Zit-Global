@@ -45,13 +45,13 @@ export default function HeroSection() {
       <AnimateOnScroll animation="slideUp">
         <div className="relative  text-white px-4 w-full md:w-[50%] lg:w-[55%] bg-primary opacity-[75%] rounded-tr-lg rounded-tl-lg h-fit md:ml-[8%] py-6 sm:py-6 md:py-6 md:mb-8">
           <AnimateOnScroll animation="fadeIn" delay={200}>
-            <h1 className="text-base text-noto sm:text-lg md:text-2xl font-semibold my-6 sm:my-5 sm:ml-6 md:ml-5 w-[85%]">
+            <h1 className="text-base font-noto sm:text-lg md:text-2xl font-semibold my-6 sm:my-5 sm:ml-6 md:ml-5 w-[85%]">
             Unleash Your Potential: Take the First Step Toward a Thriving Tech Career
             </h1>
           </AnimateOnScroll>
           <div className="w-full sm:ml-6 md:ml-5">
             <AnimateOnScroll animation="fadeIn" delay={400}>
-              <p className="text-xs text-roboto sm:text-sm mb-3 sm:mb-6 w-[90%] md:w-[75%]">
+              <p className="text-xs font-roboto sm:text-sm mb-3 sm:mb-6 w-[90%] md:w-[75%]">
               Opportunities in tech are within your reach. No matter your background or experience level, we provide the training and support to help you succeed. The path to a brighter future starts now; are you ready to take it?
               </p>
             </AnimateOnScroll>
@@ -61,15 +61,15 @@ export default function HeroSection() {
           <div className="relative z-20 md:px-6 flex flex-col mt-4 md:flex-row md:gap-8 md:items-center">
             <Link
               to="/courses"
-              className="bg-transparent z-50 text-base text-sans border border-white text-white hover:bg-white hover:text-primary hover:font-bold hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center mb-2"
+              className="bg-transparent font-sans z-50 text-base border border-white text-white hover:bg-white hover:text-primary hover:font-bold hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center mb-2"
             >
               Explore Courses 
-              <ArrowRight className="ml-1 md:ml-4 transform transition-transform" size={12} />
+              <ArrowRight className="ml-1 md:ml-4 transform transition-transform" size={16} />
             </Link>
 
             <Link
               to="/admission"
-              className="bg-white z-50 text-base text-sans border border-primary text-primary hover:bg-white hover:text-primary hover:font-bold hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center mb-2"
+              className="bg-white z-50 text-base font-sans border border-primary text-primary hover:bg-white hover:text-primary hover:font-bold hover:px-4 hover:py-2 px-3 py-2 rounded-md transition-all duration-300 inline-flex items-center justify-center mb-2"
             >
               Apply Now 
               <ArrowRight className="ml-1 md:ml-4 transform transition-transform" size={16} />

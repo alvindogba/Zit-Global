@@ -33,7 +33,7 @@ const DefaultSkeletonPage = () => {
             showLogo ? "opacity-100" : "opacity-20"
           }`}
         />
-        <h2 className="text-lg font-thin text-white">
+        <h2 className="text-lg font-roboto font-thin text-white">
           The School For Everyone
         </h2>
       </div>

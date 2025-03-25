@@ -39,11 +39,11 @@ export default function TutorshipSection() {
     <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 py-16 bg-white">
       {/* Left Side - 2x2 Image Grid */}
         <div className="w-full md:w-1/2 md:pr-8  md:mt-0 md:pl-10  md:text-left">
-            <h3 className="text-lg font-medium text-primary mb-4">Explore Our Tutorship Program</h3>
-            <h2 className="text-xl md:text-2xl font-bold text-primary mt-2">
+            <h3 className="text-lg font-noto font-medium text-primary mb-4">Explore Our Tutorship Program</h3>
+            <h2 className="text-xl font-noto md:text-2xl font-bold text-primary mt-2">
             At ZIT, we provide a supportive learning experience that gets results.
             </h2>
-            <p className="text-gray-700 my-4 leading-relaxed">
+            <p className="text-gray-700 font-roboto my-4 leading-relaxed">
             Are you looking to explore and learn more? Tell us about who is requesting tutoring.
             </p>
         </div>

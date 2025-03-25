@@ -108,11 +108,11 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
         <div className="relative max-w-6xl mx-auto px-8 sm:px-6 lg:px-8 py-24">
-          <h1 className="text-xl md:text-2xl font-bold mb-6 md:w-[28rem]">
+          <h1 className="text-xl font-noto md:text-2xl font-bold mb-6 md:w-[28rem]">
             Get More Information About Our School & Courses
           </h1>
           <div className="md:w-[40rem]">
-            <p className="text-md text-gray-200 max-w-2xl mb-8">
+            <p className="text-md text-gray-200 font-roboto max-w-2xl mb-8">
               Your donation helps provide free, high-quality education, mentorship and skill development to students in Liberia and beyond
             </p>
           </div>
@@ -120,15 +120,15 @@ export default function ContactPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:py-12">
-        <h2 className="text-primary text-2xl font-bold">Get In Touch</h2>
-        <p className="text-md max-w-2xl mb-8">Wether you have questions about our Programs, admissions, or mentorship opportunities</p>
+        <h2 className="text-primary text-2xl font-noto font-bold">Get In Touch</h2>
+        <p className="text-md max-w-2xl font-roboto mb-8">Wether you have questions about our Programs, admissions, or mentorship opportunities</p>
       </div>
 
       <div className='max-w-6xl mx-auto px-1 md:px-8 md:flex flex-wrap justify-between'>
         <div className='w-[40%] '>
           {/* Contact Form */}
           <div className="bg-white py-1 md:py-12">
-            <h2 className="text-primary ml-4 md:ml-0 text-2xl font-bold">Leave A Message</h2>
+            <h2 className="text-primary ml-4 font-noto md:ml-0 text-2xl font-bold">Leave A Message</h2>
             <form onSubmit={handleSubmit} className="p-4">
               <div className="mb-4">
                 <label className="block text-gray-700">Name</label>
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="w-72 md:w-80 p-2 border rounded-md bg-gray-100"
+                  className="w-72 md:w-80 p-2 border border-gray-300 font-roboto rounded-md bg-gray-100"
                   required
                 />
               </div>
@@ -149,7 +149,7 @@ export default function ContactPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-72 md:w-80 p-2 border rounded-md bg-gray-100"
+                  className="w-72 md:w-80 p-2 border border-gray-300 font-roboto rounded-md bg-gray-100"
                   required
                 />
               </div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-72 md:w-80 p-2 border rounded-md bg-gray-100"
+                  className="w-72 md:w-80 p-2 border border-gray-300 font-roboto rounded-md bg-gray-100"
                   required
                 />
               </div>
@@ -171,14 +171,14 @@ export default function ContactPage() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-72 md:w-80 h-36 p-2 border rounded-md bg-gray-100"
+                  className="w-72 md:w-80 h-36 p-2 border border-gray-300 font-roboto rounded-md bg-gray-100"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="border border-primary border-b-2 text-primary px-4 py-2 rounded-md flex justify-center items-center"
+                className="border border-primary font-sans border-b-2 text-primary px-4 py-2 rounded-md flex justify-center items-center"
               >
                 {isSubmitting ? (
                   <div className="spinner-border animate-spin h-5 w-5 border-b-2 border-white rounded-full"></div>
@@ -198,11 +198,11 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="text-xl font-bold mb-4">Thank You!</h2>
-                <p>Your message has been successfully sent. We will get back to you soon.</p>
+                <h2 className="text-xl font-noto font-bold mb-4">Thank You!</h2>
+                <p className='font-roboto'>Your message has been successfully sent. We will get back to you soon.</p>
                 <button
                   onClick={closeModal}
-                  className="mt-4 bg-primary text-white px-6 py-2 rounded-md"
+                  className="mt-4 bg-primary font-sans text-white px-6 py-2 rounded-md"
                 >
                   Close
                 </button>
@@ -213,26 +213,26 @@ export default function ContactPage() {
         {/* {Get in touch} */}
         <div className="w-full md:w-1/2 px-4">
           
-          <h2 className="text-primary text-2xl font-bold mb-2 md:mb-8">We're always eager to hear from you!</h2>
+          <h2 className="text-primary text-2xl font-noto font-bold mb-2 md:mb-8">We're always eager to hear from you!</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {contactInfoCard.map((card, index) => (
            <div key={index} className="bg-gray-100 p-4 border border-gray-200 hover:border-primary hover:shadow-lg rounded-lg text-center md:w-60">
            <div className="w-12 text-primary border border-primary h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3">
              {card.icon}
            </div>
-           <h4 className="text-md font-bold mb-3 text-primary">{card.label}</h4>
+           <h4 className="text-md font-noto font-bold mb-3 text-primary">{card.label}</h4>
            <div className="text-gray-600">
-             <p>{card.description1}</p>
-             <p>{card.description2}</p>
-             <p>{card.description3}</p>
-             <p>{card.description4}</p>
+             <p className='font-roboto'>{card.description1}</p>
+             <p className='font-roboto'>{card.description2}</p>
+             <p className='font-roboto'>{card.description3}</p>
+             <p className='font-roboto'>{card.description4}</p>
            </div>
            </div>
          ))}
           </div>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-1 pt-8">
-            <h2 className="text-primary text-2xl font-bold mb-4">Social Media</h2>
-            <p className="text-md max-w-2xl mb-4">At Zongea Institute of Technology (ZIT), we believe in a Liberia where everyone has the opportunity to unlock their potential, acquire</p>
+            <h2 className="text-primary font-noto text-2xl font-bold mb-4">Social Media</h2>
+            <p className="text-md font-roboto max-w-2xl mb-4">At Zongea Institute of Technology (ZIT), we believe in a Liberia where everyone has the opportunity to unlock their potential, acquire</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Link to="https://www.facebook.com/ZongeaInstituteOfTechnology/" target="_blank">
                 <FaFacebookF className="text-primary cursor-pointer" size={18} />
@@ -275,14 +275,14 @@ export default function ContactPage() {
         }}
       >
         <div className="container w-full text-center text-white">
-          <h2 className="text-base md:text-2xl md:w-[70%] md:mx-auto mb-4">
+          <h2 className="text-base font-noto md:text-2xl md:w-[70%] md:mx-auto mb-8">
             Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {/* Volunteer Button */}
             <Link
-              to="/guiding-hands-program"
-              className="w-full sm:w-fit border hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              to="/impact-connect-center"
+              className="w-full sm:w-fit border font-sans hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
             >
               Be A Volunteer <ArrowRight className="ml-2" size={16} />
             </Link>
@@ -290,7 +290,7 @@ export default function ContactPage() {
             {/* Donate Button */}
             <Link
               to="/donate"
-              className="w-full sm:w-fit bg-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="w-full sm:w-fit bg-white font-sans text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
             >
               Donate Today <ArrowRight className="ml-2" size={16} />
             </Link>

@@ -42,8 +42,8 @@ const UpcomingEvents: React.FC = () => {
   return (
     <section className="py-12 bg-gray-100">
       <div className="container mx-auto text-left">
-        <h2 className="text-3xl font-bold text-primary text-center">Our upcoming Events</h2>
-        <p className="text-gray-600 mt-2 mb-8 text-center">
+        <h2 className="text-3xl font-noto font-bold text-primary text-center">Our upcoming Events</h2>
+        <p className="text-gray-600 font-roboto mt-2 mb-8 text-center">
           Stay Informed: News & Insights from Zongea Institute of Technology
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:px-32">
@@ -58,12 +58,11 @@ const UpcomingEvents: React.FC = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <p className="text-gray-500 text-sm">{event.date}</p>
-                <h3 className="text-lg  text-primary font-medium mt-1">
+                <p className="text-gray-500 font-roboto text-sm">{event.date}</p>
+                <h3 className="text-lg font-noto text-primary font-medium mt-1">
                   {event.title}
                 </h3>
-                <p className="text-gray-600 mt-2 text-sm">{event.description}</p>
-               
+                <p className="text-gray-600 font-roboto mt-2 text-sm">{event.description}</p>
               </div>
             </div>
           ))}

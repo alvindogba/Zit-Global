@@ -71,10 +71,10 @@ const ProgramsWeOffer = () => {
       >
         {/* Heading */}
         <motion.div variants={variants.fadeInUp} className="text-center mb-12">
-          <h2 className="text-xl md:text-2xl font-bold mb-4 text-primary">
+          <h2 className="text-xl font-noto md:text-2xl font-bold mb-4 text-primary">
             Career Courses & Programs We Offer
           </h2>
-          <p className="text-lg text-gray-800 max-w-2xl mx-auto">
+          <p className="text-lg font-roboto text-gray-800 max-w-2xl mx-auto">
             Comprehensive tech education pathways for every aspiring individual
           </p>
         </motion.div>
@@ -87,10 +87,10 @@ const ProgramsWeOffer = () => {
                 <Link className="text-primary" to={program.href}>
                   <GlassCard className="p-6 h-full w-full bg-transparent backdrop-blur-md border border-gray-400 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group">
                     {program.icon}
-                    <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white">
+                    <h3 className="text-lg font-noto font-semibold mb-2 text-gray-900 group-hover:text-white">
                       {program.title}
                     </h3>
-                    <p className="text-gray-700 text-sm group-hover:text-white">
+                    <p className="text-gray-700 font-roboto text-sm group-hover:text-white">
                       {program.description}
                     </p>
                   </GlassCard>

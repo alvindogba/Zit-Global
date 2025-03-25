@@ -50,19 +50,19 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
                 transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
                 className="max-w-3xl"
               >
-                <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                <h2 className="text-4xl font-noto md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
                   {slides[currentIndex].title}
                 </h2>
-                <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white/90 drop-shadow-md">
+                <h3 className="text-xl md:text-2xl font-noto font-semibold mb-6 text-white/90 drop-shadow-md">
                   {slides[currentIndex].subtitle}
                 </h3>
-                <p className="text-lg md:text-xl mb-8 text-white/85 drop-shadow-md leading-relaxed">
+                <p className="text-lg md:text-xl mb-8 font-noto text-white/85 drop-shadow-md leading-relaxed">
                   {slides[currentIndex].description}
                 </p>
                 {slides[currentIndex].ctaText && slides[currentIndex].ctaLink && (
                   <a
                     href={slides[currentIndex].ctaLink}
-                    className="inline-flex items-center px-8 py-4 text-lg border font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-500 transition-colors shadow-lg hover:shadow-xl"
+                    className="inline-flex items-center font-sans px-8 py-4 text-lg border font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-500 transition-colors shadow-lg hover:shadow-xl"
                   >
                     {slides[currentIndex].ctaText}
                   </a>
@@ -82,7 +82,7 @@ export const Carousel = ({ slides, autoPlayInterval = 15000 }: CarouselProps) =>
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
+            className={`w-3 h-3 rounded-full  transition-colors ${
               index === currentIndex ? 'bg-primary-500' : 'bg-white/50 hover:bg-white/75'
             }`}
           />

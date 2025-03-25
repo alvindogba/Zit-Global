@@ -29,7 +29,7 @@ export default function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-4">
-      <h2 className="mb-2 text-lg">Subscribe To Our News Letter</h2>
+      <h2 className="mb-2 font-noto text-lg">Subscribe To Our News Letter</h2>
     
       <div className="flex">
         <input
@@ -38,11 +38,11 @@ export default function NewsletterForm() {
           placeholder="Enter your email"
           value={email} // Bind input value to state
           onChange={(e) => setEmail(e.target.value)} // Update state on input change
-          className="flex-1 px-6 py-2 text-md rounded-l-md focus:outline-none focus:ring-2 bg-primary-light shadow-sm shadow-gray-900 focus:ring-secondary-yellow text-black"
+          className="flex-1 px-6 py-2 text-md font-roboto rounded-l-md focus:outline-none focus:ring-2 bg-primary-light shadow-sm shadow-gray-900 focus:ring-secondary-yellow text-black"
         />
         <button
           type="submit"
-          className="bg-secondary text-primary px-4 py-[12px] text-sm rounded-r-md font-semibold transition-colors"
+          className="bg-secondary text-primary font-sans px-4 py-[12px] text-sm rounded-r-md font-semibold transition-colors"
           disabled={loading} // Disable button while loading
         >
           {loading ? "Sending..." : "Send"}

@@ -35,10 +35,10 @@ export default function TTM() {
   return (
     <section className=" bg-gray-100 h-auto px-4 md:px-28 py-20">
       {/* Heading Section */}
-      <h2 className="text-2xl font-bold text-primary">
+      <h2 className="text-2xl font-bold font-noto text-primary">
         Opportunities to Educate, Inspire, and Lead      
         </h2>
-      <p className="md:w-[60%] text-gray-700 mt-6">
+      <p className="md:w-[60%] text-gray-700 font-roboto mt-6">
       Join a dynamic community where you can enhance your skills, make a tangible impact, and inspire future leaders. Shape minds, foster growth, and lead with purpose.
       </p>
 
@@ -62,7 +62,7 @@ export default function TTM() {
             {["Teach", "Tutor", "Mentor"].map((tab) => (
               <p
                 key={tab}
-                className={`px-1 md:px-3 py-1 md:py-2 outline-none border-none active-none text-center cursor-pointer transition-all w-full rounded-none ${activeTab === tab
+                className={`px-1 md:px-3 py-1 md:py-2 font-roboto outline-none border-none active-none text-center cursor-pointer transition-all w-full rounded-none ${activeTab === tab
                   ? "bg-gray-200 font-bold  border-none outline-none text-gray-800"
                   : "text-gray-500 bg-white border-none outline-none font-light "
                   }`}
@@ -73,14 +73,14 @@ export default function TTM() {
             ))}
           </div>
 
-          <h3 className="mt-4 text-xl md:w-[60%]  font-bold text-gray-800">
+          <h3 className="mt-4 text-xl md:w-[60%] font-noto font-bold text-gray-800">
             {tabContent[activeTab].title}
           </h3>
-          <p className="text-gray-600 mt-4 sm:w-[60%]">{tabContent[activeTab].description}</p>
+          <p className="text-gray-600 mt-4 font-roboto sm:w-[60%]">{tabContent[activeTab].description}</p>
 
           {/* Buttons */}
           <div className="mt-4 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
-            <button className="w-full md:w-fit sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
+            <button className="w-full md:w-fit font-sans sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
               {tabContent[activeTab].primaryBtn}
             </button>
 

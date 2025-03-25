@@ -8,17 +8,17 @@ const StudySucceed = () => {
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <AnimateOnScroll animation="fadeIn" delay={200}>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Transformative Testimonials</h2>
+              <h2 className="text-2xl font-noto md:text-3xl font-bold mb-6 text-gray-800">Transformative Testimonials</h2>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fadeIn" delay={400}>
-              <p className="text-gray-600 mb-8 text-sm">
+              <p className="text-gray-600 font-roboto mb-8 text-sm">
                 Discover how our coding school has empowered individuals to embark on successful tech careers. Hear firsthand experiences from our alumni who have transformed their lives through coding education and unlocked exciting opportunities in the tech industry.
               </p>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fadeIn" delay={600}>
               <a
                 href="#success-stories"
-                className="bg-secondary-yellow font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+                className="bg-secondary-yellow font-sans font-bold text-xs hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
               >
                 LEARN MORE <ArrowRight className="ml-2" size={16} />
               </a>

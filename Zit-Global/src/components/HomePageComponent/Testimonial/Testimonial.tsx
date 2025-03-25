@@ -189,7 +189,7 @@ const Testimonial = () => {
       {/* Header Section */}
       <section className="text-center  bg-gray-50">
         <AnimateOnScroll animation="slideDown">
-          <h1 className="text-2xl md:text-3xl font-bold text-primary mb-8">
+          <h1 className="font-noto text-2xl md:text-3xl font-bold text-primary mb-8">
             YOUR BEST PATH TO A NEW TECH CAREER
           </h1>
         </AnimateOnScroll>
@@ -203,8 +203,8 @@ const Testimonial = () => {
               <div
                 className={`${card.bgColor} ${card.textColor} py-8 px-6 rounded-lg shadow-md text-left text-sm hover:scale-105 transition-transform`}
               >
-                <h3 className="text-lg font-semibold mb-2">{card.title}</h3>
-                <p className='text-sm'>{card.description}</p>
+                <h3 className="text-lg font-noto font-semibold mb-2">{card.title}</h3>
+                <p className='text-sm font-roboto'>{card.description}</p>
               </div>
             </AnimateOnScroll>
           ))}
@@ -215,10 +215,10 @@ const Testimonial = () => {
       <section className="bg-white py-10" id="success-stories">
         <div className="text-center mb-10">
           <AnimateOnScroll animation="slideDown">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Success Stories</h2>
+            <h2 className="text-2xl font-noto md:text-3xl font-bold mb-4">Success Stories</h2>
           </AnimateOnScroll>
           <AnimateOnScroll animation="fadeIn" delay={200}>
-            <p className="text-black mb-6 text-md">
+            <p className="text-black font-roboto mb-6 text-md">
               Our students have achieved incredible milestones. Hear their inspiring
               stories of transformation and growth.
             </p>
@@ -261,8 +261,8 @@ const Testimonial = () => {
                         className="w-12 h-12 rounded-full"
                       />
                       <div>
-                        <div className="font-semibold">{testimonial.name}</div>
-                        <div className="text-sm text-gray-200">
+                        <div className="font-semibold font-noto">{testimonial.name}</div>
+                        <div className="text-sm font-roboto  text-gray-200">
                           {testimonial.role}
                         </div>
                       </div>

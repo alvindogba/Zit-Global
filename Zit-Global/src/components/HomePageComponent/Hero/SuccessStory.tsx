@@ -49,10 +49,10 @@ const SuccessStory = () => {
     return (
         <div className="width-full bg-white mx-auto px-6 md:px-10 h-full py-20">
             <AnimateOnScroll animation="slideDown">
-                <h2 className="text-2xl font-bold text-primary text-center mb-2">Our Success Story</h2>
+                <h2 className="text-2xl font-noto font-bold text-primary text-center mb-2">Our Success Story</h2>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fadeIn" delay={200}>
-                <p className="text-lg text-black text-left md:text-center">
+                <p className="text-lg font-roboto text-black text-left md:text-center">
                     Listen to what some of our students have to say about the impact of our programs.
                 </p>
             </AnimateOnScroll>
@@ -64,13 +64,13 @@ const SuccessStory = () => {
                                 <div className="border rounded-lg p-2 md:p-6 bg-gray-300 transition-transform transform hover:scale-105 hover:shadow-lg h-full flex flex-col justify-between">
                                     <div className="text-center">
                                         <Quote className="mx-auto" />
-                                        <p className="text-left px-4">{student.message}</p>
+                                        <p className="text-left font-roboto px-4">{student.message}</p>
                                     </div>
                                     <div className="flex gap-4 md:gap-8 items-center mt-4">
                                         <img className="w-16 h-16 md:w-24 md:h-24 rounded-full" src={student.image} alt={student.name} />
                                         <div>
-                                            <h2 className="font-bold text-primary">{student.name}</h2>
-                                            <p className="text-gray-600">{student.role}</p>
+                                            <h2 className="font-bold font-noto text-primary">{student.name}</h2>
+                                            <p className="text-gray-600  font-roboto">{student.role}</p>
                                         </div>
                                     </div>
                                 </div>
