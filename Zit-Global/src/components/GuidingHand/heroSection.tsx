@@ -1,4 +1,5 @@
 import heroImage from "../../asset/images/Hero-guilding-hand.jpg";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
@@ -23,9 +24,9 @@ export default function HeroSection() {
         </p>
         <div className="flex mt-6 mb-8 space-x-4">
       
-          <button className="bg-primary px-3 md:px-6 py-2 rounded-lg text-white border border-primary ">
+          <Link to="/icc/mentor" className="bg-primary px-4 md:px-6 py-2 rounded-sm text-white border border-primary ">
             Get Involved 
-          </button>
+          </Link>
         </div>
       </div>
     </section>

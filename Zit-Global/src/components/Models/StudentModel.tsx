@@ -162,16 +162,14 @@ export default function StudentModel() {
               <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Academic Details</h2>
               <div className="space-y-3 sm:space-y-4">
                 <InputField label="Current School Name" name="schoolName" value={formData.schoolName} onChange={handleChange} required />
-                <SelectField label="Grade Level" name="gradeLevel" value={formData.gradeLevel} onChange={handleChange} 
-                           options={['7th', '8th', '9th', '10th', '11th', '12th', 'University']} required />
+                <SelectField label="Grade Level" name="gradeLevel" value={formData.gradeLevel} onChange={handleChange} options={['7th', '8th', '9th', '10th', '11th', '12th', 'University']} required />
                 <CheckboxGroup 
                   label="Subjects of Interest"
                   options={['Math', 'Science', 'English', 'Computer Science']}
                   selected={formData.subjects}
                   onChange={handleCheckboxChange}
                 />
-                <SelectField label="Preferred Learning Style" name="learningStyle" value={formData.learningStyle} 
-                            onChange={handleChange} options={['One-on-One', 'Group Learning', 'Online', 'In-Person']} required />
+                <SelectField label="Preferred Learning Style" name="learningStyle" value={formData.learningStyle} onChange={handleChange} options={['One-on-One', 'Group Learning', 'Online', 'In-Person']} required />
               </div>
             </div>
 
@@ -182,13 +180,10 @@ export default function StudentModel() {
                 <TextAreaField label="Tutoring Needs" name="tutoringNeeds" value={formData.tutoringNeeds} onChange={handleChange} required />
                 <TextAreaField label="Learning Objectives" name="objectives" value={formData.objectives} onChange={handleChange} required />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                  <SelectField label="Availability" name="availability" value={formData.availability} 
-                             onChange={handleChange} options={['Morning', 'Afternoon', 'Evening']} required />
-                  <SelectField label="Preferred Tutor Type" name="tutorType" value={formData.tutorType} 
-                             onChange={handleChange} options={['Professional Tutor', 'Peer Tutor', 'No Preference']} required />
+                  <SelectField label="Availability" name="availability" value={formData.availability} onChange={handleChange} options={['Morning', 'Afternoon', 'Evening']} required />
+                  <SelectField label="Preferred Tutor Type" name="tutorType" value={formData.tutorType} onChange={handleChange} options={['Professional Tutor', 'Peer Tutor', 'No Preference']} required />
                 </div>
-                <SelectField label="How did you hear about us?" name="referral" value={formData.referral} 
-                           onChange={handleChange} options={['Website', 'Friend', 'Social Media', 'Other']} required />
+                <SelectField label="How did you hear about us?" name="referral" value={formData.referral} onChange={handleChange} options={['Website', 'Friend', 'Social Media', 'Other']} required />
               </div>
             </div>
           </div>
@@ -237,7 +232,7 @@ export default function StudentModel() {
                     </button>
                   )}
                 </div>
-              </div>
+             </div>
         </div> 
         
       </form>

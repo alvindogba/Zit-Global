@@ -12,9 +12,6 @@ export default function CallToAction() {
         <Link to="/mentorship-program"> 
         <button className="bg-primary px-6 py-2 rounded-lg text-white hover:bg-lightBlue">Become a Mentor</button>
         </Link>
-        <Link to="/Admission">
-          <button className="bg-white px-6 py-2 rounded-lg text-primary border border-primary hover:bg-gray-100">Apply Now</button>
-        </Link>
         <Link to="/contact">
           <button className="bg-white px-6 py-2 rounded-lg text-primary border border-primary hover:bg-gray-100">Contact Us</button>
         </Link>

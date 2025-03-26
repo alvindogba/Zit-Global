@@ -1,19 +1,12 @@
 // src/components/Hero.tsx
 import React from "react";
 import img from "../../asset/images/Hero-guilding-hand.jpg"
+import { Link } from 'react-router-dom'
+
 const Hero: React.FC = () => {
   return (
     <section
-      className="
-        relative 
-        h-[400px] 
-        bg-cover 
-        bg-top 
-        flex 
-        items-center 
-        justify-start
-        md:px-20
-      "
+      className="relative h-[400px] bg-cover bg-top flex items-center justify-start md:px-20"
       // Replace this URL with the actual path to your background image
       style={{
         backgroundImage: `url(${img})`,
@@ -31,20 +24,11 @@ const Hero: React.FC = () => {
 
         <div className="flex flex-wrap gap-4">
     
-          <button
-            className="font-sans
-              bg-primary
-              text-white 
-              font-semibold 
-              px-6 
-              py-3 
-              rounded 
-              hover:bg-white
-              hover:text-primary
-            "
+          <Link to='/icc/mentor'
+            className="font-sans bg-primary text-white hover:font-semibold px-6 py-3 rounded-sm hover:bg-white hover:text-primary"
           >
             Apply Now and Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </section>

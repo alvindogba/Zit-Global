@@ -3,6 +3,7 @@ import { useState } from "react";
 import mentorImage from "../../../asset/images/tutoring-1.jpg";
 import tutorImage from "../../../asset/images/female-doctor-consoling-afro-american-patient.jpg";
 import teachImage from "../../../asset/images/close-up-happy-man-clapping.jpg";
+import { Link } from "react-router-dom";
 
 export default function TTM() {
   const [activeTab, setActiveTab] = useState<"Teach" | "Tutor" | "Mentor">("Tutor");
@@ -15,6 +16,7 @@ export default function TTM() {
         " Be a part of the movement to revolutionize education. Gain access to specialized training, collaborate with top educators, and equip the next generation with the skills they need to succeed.",
       image: teachImage,
       primaryBtn: "Become a Teacher",
+      btnHref: "/teaching-at-zit",
     },
     Tutor: {
       title: "Become a Tutor – Empower Students & Elevate Your Skills",
@@ -22,6 +24,7 @@ export default function TTM() {
         " Take your expertise to the next level by guiding students through their learning journey. Set your own schedule, gain hands-on experience, and shape the future—one lesson at a time.",
       image: tutorImage,
       primaryBtn: "Become a Tutor",
+      btnHref: "/tutorship-program",
     },
     Mentor: {
       title: "Become a Mentor – Inspire, Lead & Make a Difference",
@@ -29,6 +32,7 @@ export default function TTM() {
         " Your guidance can change lives! Help students navigate their academic and career paths while growing your leadership skills and expanding your professional network.",
       image: mentorImage,
       primaryBtn: "Become a Mentor",
+      btnHref: "/mentorship-program",
     },
   };
 
@@ -37,9 +41,9 @@ export default function TTM() {
       {/* Heading Section */}
       <h2 className="text-2xl font-bold font-noto text-primary">
         Opportunities to Educate, Inspire, and Lead      
-        </h2>
+      </h2>
       <p className="md:w-[60%] text-gray-700 font-roboto mt-6">
-      Join a dynamic community where you can enhance your skills, make a tangible impact, and inspire future leaders. Shape minds, foster growth, and lead with purpose.
+        Join a dynamic community where you can enhance your skills, make a tangible impact, and inspire future leaders. Shape minds, foster growth, and lead with purpose.
       </p>
 
       {/* Content Section - Dynamic Update */}
@@ -80,9 +84,9 @@ export default function TTM() {
 
           {/* Buttons */}
           <div className="mt-4 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
-            <button className="w-full md:w-fit font-sans sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
+            <Link to={tabContent[activeTab].btnHref} className="w-full md:w-fit font-sans sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
               {tabContent[activeTab].primaryBtn}
-            </button>
+            </Link>
 
           </div>
         </div>

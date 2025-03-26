@@ -19,12 +19,10 @@ const navigation = [
     name: "Make Impact",
     href: "/impact-connect-center",
     dropdown: [
-      { name: "Impact & Connect Center", href: "/impact-connect-center" }, // Fixed typo
+      { name: "Impact & Connect Center", href: "/impact-connect-center" }, 
       { name: "Mentorship Program", href: "/mentorship-program" },
       { name: "Tutorship Program", href: "/tutorship-program" },
-
-      // { name: "Tutorship Program", href: "/tutorship-program" }, // Fixed typo
-      { name: "Be A Donor", href: "/be-a-donor" },
+      //{ name: "Be A Donor", href: "/be-a-donor" },
     ],
   },
   {
@@ -109,8 +107,8 @@ const navigation = [
                       key={dropdownItem.name}
                       to={dropdownItem.href}
                       className={`block px-4 py-2 font-roboto text-sm transition-colors ${isActive(dropdownItem.href)
-                        ? "bg-primary-50 text-primary"
-                        : "text-gray-700 hover:bg-primary-50 hover:text-yellow-500"
+                        ? "bg-primary/50 text-primary"
+                        : "text-gray-700 hover:bg-primary/50 hover:text-white"
                         }`}
                     >
                       {dropdownItem.name}
@@ -124,7 +122,7 @@ const navigation = [
 
         {/* Donation Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/donate" className="border font-sans rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-600 transition">
+          <Link to="/donate" className="border font-sans rounded-sm bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm transition">
             Make A Donation
           </Link>
         </div>
@@ -161,29 +159,26 @@ const navigation = [
                 </p>
                 <div className="flex justify-center gap-4 mt-6">
                   <Link
-                    to="/donate"
+                    to="/teaching-at-zit"
                     className="w-full inline-flex  justify-center font-sans  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Teach
                   </Link>
                   <Link
-                    to="/donate"
+                    to="/tutorship-program"
                     className="w-full inline-flex justify-center font-sans  bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Tutor
                   </Link>
                   <Link
-                         to="/icc/mentor"
-                        className="w-full inline-flex justify-center font-sans bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
-                         onClick={() => setMobileMenuOpen(false)}
-                       >
-                         Mentor
-                       </Link>
-                
-
-
+                    to="/mentorship-program"
+                    className="w-full inline-flex justify-center font-sans bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Mentor
+                  </Link>
                 </div>
 
 

@@ -27,9 +27,7 @@ const HowItWorks: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-noto font-semibold text-gray-800">Apply</h3>
-                <p className="font-roboto text-gray-600 text-sm">
-                  Fill out the application form.
-                </p>
+                <p className="font-roboto text-gray-600 text-sm">Fill out the application form.</p>
               </div>
             </div>
 
@@ -40,35 +38,25 @@ const HowItWorks: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-noto font-semibold text-gray-800">Get Matched</h3>
-                <p className="font-roboto text-gray-600 text-sm">
-                  We pair you with a mentor, tutor, or course.
-                </p>
+                <p className="font-roboto text-gray-600 text-sm">We pair you with a mentor, tutor, or course.</p>
               </div>
             </div>
 
             {/* Step 3 */}
             <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
-            3
-              </div>
+            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">3</div>
               <div>
                 <h3 className="font-noto font-semibold text-gray-800">Connect</h3>
-                <p className="font-roboto text-gray-600 text-sm">
-                  Schedule your first meeting and start your journey.
-                </p>
+                <p className="font-roboto text-gray-600 text-sm">Schedule your first meeting and start your journey.</p>
               </div>
             </div>
 
             {/* Step 4 */}
             <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
-            4
-              </div>
+            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">4</div>
               <div>
                 <h3 className="font-noto font-semibold text-gray-800">Start Learning</h3>
-                <p className="font-roboto text-gray-600 text-sm">
-                  Begin your journey with personalized guidance.
-                </p>
+                <p className="font-roboto text-gray-600 text-sm">Begin your journey with personalized guidance.</p>
               </div>
             </div>
 
@@ -80,7 +68,7 @@ const HowItWorks: React.FC = () => {
           <img
             src={img}
             alt="How It Works Illustration"
-            className="md:w-60 h-full md:w-80"
+            className="h-full md:w-80"
           />
         </div>
       </div>

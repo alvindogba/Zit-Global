@@ -119,8 +119,8 @@ export default function Courses() {
       </div>
 
       {/* Courses Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:px-40">
+      <div className="max-w-9xl  px-4 sm:px-6 lg:px-8 py-16 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:px-4">
           {courses.map((course, index) => (
             <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:-translate-y-1">
               <div className="relative h-48">
@@ -138,7 +138,7 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="p-6">
+              <div className="px-4 py-2">
                 <p className="text-gray-600 font-roboto mb-4">
                   {course.description}
                 </p>

@@ -23,6 +23,7 @@ const Cohort = lazy(() => import('./pages/CohortPage'))
 const BeADonor = lazy(() => import('./pages/MakeImpact/BeADonor'))
 const Mentorship = lazy(() => import('./pages/MakeImpact/Mentorship'))
 const Tutorship = lazy(() => import('./pages/MakeImpact/Tutorship'))
+const TeachingAtZit = lazy(() => import('./pages/MakeImpact/TeachingAtZit'))
 const AdmissionSuccess = lazy(() => import('./pages/Admission/AdminssionSuccessPage'));
 const GuidingHandingProgram = lazy(() => import('./pages/MakeImpact/GuidingHandingProgram'))
 // const GuidingHand =lazy(() => import('./pages/MakeImpact/GuidingHand'))
@@ -40,6 +41,7 @@ import StudentModel from './components/Models/StudentModel';
 import ParentModel from './components/Models/ParentModel';
 import AdministrationModel from './components/Models/AdministrationModel'
 import MentorModel from './components/Models/MentorModel'
+import TeacherModel from './components/Models/TeacherModel'
 const IccSucessPage = lazy(() => import("../src/pages/IccSucessPage"))
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -115,6 +117,14 @@ function App() {
                   element={
                     <Suspense fallback={<DefaultSkeletion />}>
                       <Mentorship />
+                    </Suspense>
+                  }
+                />
+                 <Route
+                  path="/teaching-at-zit"
+                  element={
+                    <Suspense fallback={<DefaultSkeletion />}>
+                      <TeachingAtZit />
                     </Suspense>
                   }
                 />
@@ -237,6 +247,14 @@ function App() {
                   element={
                     <Suspense fallback={<DefaultSkeletion />}>
                       <StudentModel />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/icc/teacher"
+                  element={
+                    <Suspense fallback={<DefaultSkeletion />}>
+                      <TeacherModel />
                     </Suspense>
                   }
                 />

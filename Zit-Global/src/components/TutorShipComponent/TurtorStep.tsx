@@ -1,6 +1,8 @@
 // src/components/Steps.tsx
 import React from "react";
+import { Link } from 'react-router-dom'
 import img from "../../asset/images/Tutor Sample.png"
+
 const TutorSteps: React.FC = () => {
   return (
     <section className="bg-white py-12 md:px-40">
@@ -54,9 +56,11 @@ const TutorSteps: React.FC = () => {
           </div>
 
           {/* CTA Button */}
-          <button className="font-sans mt-8 px-6 py-3 bg-primary text-white font-semibold rounded hover:bg-indigo-700 transition">
-            Get Started Now
-          </button>
+          <div className="mt-8">
+            <Link to="/icc/mentor" className="font-sans mt-8 px-6 py-3 bg-primary text-white font-semibold rounded hover:bg-indigo-700 transition">
+              Get Started Now
+            </Link>
+          </div>
         </div>
 
         {/* Right Side: Image */}

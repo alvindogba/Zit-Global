@@ -92,23 +92,23 @@ const WhyJoin: React.FC = () => {
                     {/* Right side  */}
                     <div className=" flex flex-col  gap-2">
                      
-                        <Link to="/student">
+                        <Link to="/icc-student">
                             <button
-                                className="font-sans w-full bg-primary text-white font-semibold px-6 py-3 rounded  hover:bg-white hover:text-primary"
+                                className="font-sans w-full bg-primary text-white font-semibold px-6 py-3 rounded-md hover:border hover:border-primary  hover:bg-white hover:text-primary"
                             >
                             I'm a Student
                             </button>
                         </Link>                    
-                        <Link to="/student">
+                        <Link to="/icc/parent-guardian">
                             <button
-                                className="font-sans w-full bg-primary text-white font-semibold px-6 py-3 rounded  hover:bg-white hover:text-primary"
+                                className="font-sans w-full bg-primary text-white font-semibold px-6 py-3 rounded-md hover:border hover:border-primary  hover:bg-white hover:text-primary"
                             >
                                 I'm a Parent or Guardian
                             </button>
                         </Link>
-                        <Link to="/student">
+                        <Link to="/icc/administration">
                             <button
-                                className="font-sans w-full bg-primary text-white font-semibold px-6 py-3 rounded  hover:bg-white hover:text-primary"
+                                className="font-sans w-full bg-primary text-white font-semibold px-6 py-3 rounded-md hover:border hover:border-primary  hover:bg-white hover:text-primary"
                             >
                                 I'm a School Administration
                             </button>

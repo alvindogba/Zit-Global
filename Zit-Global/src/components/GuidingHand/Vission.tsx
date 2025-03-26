@@ -1,104 +1,60 @@
 import React from "react";
+import { FaGlobeAmericas, FaUsers, FaLightbulb, FaHandshake } from "react-icons/fa";
 
 const VisionSection: React.FC = () => {
+  const visionCards = [
+    {
+      icon: <FaGlobeAmericas className="w-8 h-8 text-white" />,
+      title: "Expanding Our Reach",
+      description: "We aim to bring mentorship opportunities to underserved communities worldwide, breaking down barriers to education and professional development."
+    },
+    {
+      icon: <FaUsers className="w-8 h-8 text-white" />,
+      title: "Building Communities",
+      description: "Creating lasting networks of educators that cross national identities and boundaries."
+    },
+    {
+      icon: <FaLightbulb className="w-8 h-8 text-white" />,
+      title: "Innovation in Learning",
+      description: "Implementing cutting-edge technology to expand mentorship access through AI-powered matching and virtual reality sessions."
+    },
+    {
+      icon: <FaHandshake className="w-8 h-8 text-white" />,
+      title: "Global Impact",
+      description: "Fostering cross-cultural exchange and understanding through international mentoring programs and cultural initiatives."
+    }
+  ];
+
   return (
     <section className="bg-white py-20 px-6 md:px-40">
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
-        <h2 className="font-noto text-3xl md:text-4xl font-bold text-blue-900">
+        <h2 className="font-noto text-3xl md:text-4xl font-bold text-primary">
           Our Vision for the Future
         </h2>
 
         {/* Subheading */}
         <p className="font-roboto mt-2 text-gray-700 max-w-2xl mx-auto">
-          The Guiding Hands Program is a free tech school initiative in Liberia that offers mentorship, tutorship, and teaching.
+          The Impact & Connect Center - TTM Program is a free tech school initiative in Liberia that offers mentorship, tutorship, and teaching.
         </p>
 
         {/* Cards Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-          {/* Card 1 */}
-          <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
-            {/* Icon (placeholder) */}
-            <div className="flex justify-center mb-4">
-              {/* Replace this SVG with your own icon or image */}
-              <svg
-                className="w-10 h-10 text-blue-900"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 0C18.627 0 24 5.372 24 12S18.627 24 12 24 0 18.628 0 12 5.372 0 12 0z" />
-              </svg>
+          {visionCards.map((card, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                  {card.icon}
+                </div>
+              </div>
+              <h3 className="font-noto text-lg font-bold text-primary">
+                {card.title}
+              </h3>
+              <p className="font-roboto mt-2 text-sm text-gray-600">
+                {card.description}
+              </p>
             </div>
-            <h3 className="font-noto text-lg font-bold text-primary">
-              Expanding Our Reach
-            </h3>
-            <p className="font-roboto mt-2 text-sm text-gray-600">
-              We aim to bring mentorship opportunities to underserved
-              communities worldwide, breaking down barriers to education
-              and professional development.
-            </p>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
-            <div className="flex justify-center mb-4">
-              {/* Icon placeholder */}
-              <svg
-                className="w-10 h-10 text-blue-900"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 0C18.627 0 24 5.372 24 12S18.627 24 12 24 0 18.628 0 12 5.372 0 12 0z" />
-              </svg>
-            </div>
-            <h3 className="font-noto text-lg font-bold text-primary">
-              Building Communities
-            </h3>
-            <p className="font-roboto mt-2 text-sm text-gray-600">
-              Creating lasting networks of educators that cross national 
-              identities and boundaries.
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
-            <div className="flex justify-center mb-4">
-              {/* Icon placeholder */}
-              <svg
-                className="w-10 h-10 text-blue-900"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 0C18.627 0 24 5.372 24 12S18.627 24 12 24 0 18.628 0 12 5.372 0 12 0z" />
-              </svg>
-            </div>
-            <h3 className="font-noto text-lg font-bold text-primary">
-              Innovation in Learning
-            </h3>
-            <p className="font-roboto mt-2 text-sm text-gray-600">
-              Implementing cutting-edge technology to expand mentorship 
-              access through AI-powered matching and virtual reality sessions.
-            </p>
-          </div>
-
-          {/* Card 4 */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex justify-center mb-4">
-              {/* Icon placeholder */}
-              <svg
-                className="w-10 h-10 text-blue-900"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 0C18.627 0 24 5.372 24 12S18.627 24 12 24 0 18.628 0 12 5.372 0 12 0z" />
-              </svg>
-            </div>
-            <h3 className="font-noto text-lg font-bold text-primary">Global Impact</h3>
-            <p className="font-roboto mt-2 text-sm text-gray-600">
-              Fostering cross-cultural exchange and understanding through 
-              international mentoring programs and cultural initiatives.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
