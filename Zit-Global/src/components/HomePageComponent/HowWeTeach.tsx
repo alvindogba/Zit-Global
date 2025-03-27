@@ -25,7 +25,7 @@ const HowWeTeach = ()=>{
             <h2 className="text-4xl font-noto md:text-5xl font-bold mb-4">
               How We <GradientText className='text-white'>Teach, Tutor & Mentor</GradientText>
             </h2>
-            <p className="text-xl font-roboto text-primary-100 max-w-2xl mx-auto">
+            <p className="text-xl font-roboto text-dparacolor max-w-2xl mx-auto">
               Education Beyond the Classroom, from Learning to Mastery - A Guided Approach
             </p>
           </motion.div>
@@ -63,13 +63,13 @@ const HowWeTeach = ()=>{
                   glowColor="from-primary-400/10"
                 >
                   <motion.div
-                    className="text-3xl font-bold text-primary-300 mb-2"
+                    className="text-3xl font-bold text-primary mb-2"
                     variants={variants.bounceIn}
                   >
                     {stat.stat}
                   </motion.div>
                   <h3 className="text-xl font-noto font-semibold mb-2 mt-8 text-white">{stat.label}</h3>
-                  <p className="text-primary-200 font-roboto">{stat.description}</p>
+                  <p className="text-dparacolor font-roboto">{stat.description}</p>
                 </GlassCard>
               </ParallaxSection>
             ))}

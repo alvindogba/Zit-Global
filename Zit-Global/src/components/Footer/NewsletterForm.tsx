@@ -42,7 +42,7 @@ export default function NewsletterForm() {
         />
         <button
           type="submit"
-          className="bg-secondary text-primary font-sans px-4 py-[12px] text-sm rounded-r-md font-semibold transition-colors"
+          className="bg-secondary text-white hover:bg-white hover:text-primary font-sans px-4 py-[12px] text-sm rounded-r-md font-semibold transition-colors"
           disabled={loading} // Disable button while loading
         >
           {loading ? "Sending..." : "Send"}

@@ -122,7 +122,7 @@ const navigation = [
 
         {/* Donation Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/donate" className="border font-sans rounded-sm bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm transition">
+          <Link to="/donate" className="font-sans rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-primary shadow-sm transition">
             Make A Donation
           </Link>
         </div>
@@ -281,7 +281,7 @@ const navigation = [
                 <div className="mt-4 px-3">
                   <Link
                     to="/donate"
-                    className="w-full inline-flex justify-center font-sans rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
+                    className="w-full inline-flex justify-center font-sans rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Make A Donation

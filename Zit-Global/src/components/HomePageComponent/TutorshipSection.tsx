@@ -43,13 +43,12 @@ export default function TutorshipSection() {
             <h2 className="text-xl font-noto md:text-2xl font-bold text-primary mt-2">
             At ZIT, we provide a supportive learning experience that gets results.
             </h2>
-            <p className="text-gray-700 font-roboto my-4 leading-relaxed">
+            <p className="text-dparacolor font-roboto my-4 leading-relaxed">
             Are you looking to explore and learn more? Tell us about who is requesting tutoring.
             </p>
         </div>
 
       {/* Right Side - Text Content */}
-
       <div className="grid grid-cols-2 gap-4 w-full md:w-1/2">
         {imgCard.map((card, index) => (
           <div key={index} className="relative rounded-lg shadow-lg group transition-transform duration-300">
@@ -60,9 +59,9 @@ export default function TutorshipSection() {
               className="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
             />
             {/* Overlay with Text */}
-            <div className="absolute inset-0 bg-primary/50 flex flex-col justify-center items-center p-2 text-center">
+            <div className="absolute inset-0 bg-primary/40 flex flex-col justify-end items-baseline pl-4  pb-4 text-center">
               <h3 className="text-sm font-semibold text-white">{card.label}</h3>
-              <Link  to={card.link} className="mt-2 text-xs font-bold border-l-white border-b-white text-white px-3 py-1 bg-transparent hover:bg-white hover:text-primary  transition">
+              <Link  to={card.link} className="mt-2 text-xs font-bold py-2 px-3 text-white bg-secondary rounded-md hover:bg-primary  transition">
                 {card.linkText}
               </Link>
             </div>

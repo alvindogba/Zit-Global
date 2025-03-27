@@ -2,6 +2,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa
 import NewsletterForm from "./NewsletterForm";
 import Logo from "../../asset/images/zongea-logo.png";
 import { Link, useLocation } from 'react-router-dom';
+import images from '../../asset/images/basic_earth_map_continents_Basic Earth Map Continents.svg'
 
 const Footer = () => {
 
@@ -10,7 +11,15 @@ const Footer = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <footer className="bg-primary text-white py-10 px-5 md:px-20 text-xs md:text-sm">
+    <footer className="text-white pt-10 px-5 md:px-20 text-xs md:text-sm"
+    style={{
+      backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.1), rgba(0, 0, 84, 0.1)), url(${images})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      transition: 'background-image 1s ease-in',
+    }}
+    >
       {/* Top Section - Logo & Subscribe Form */}
       <div className="flex flex-col md:flex-row justify-between md:items-center mb-8">
         {/* Logo */}
@@ -166,8 +175,8 @@ const Footer = () => {
             <li>
               <Link 
                 to="/courses/database-admin"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/courses/database-admin') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/courses/database-admin') ? 'text-secondary' : ''
                  }`}
               >
                 Database Administration
@@ -198,8 +207,8 @@ const Footer = () => {
       <div className="flex flex-col gap-1 text-primary">
         <Link
           to="/tutorship-program"
-          className={`bg-primary text-white border border-white  border-r-0 px-2 py-2 rounded-md hover:bg-white text-center font-sans hover:text-primary transition-colors ${
-            isActive('/tutorship') ? 'text-primary bg-white' : ''
+          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+            isActive('/tutorship-program') ? 'text-primary bg-white' : ''
           }`}
         >
           Tutorship
@@ -207,7 +216,7 @@ const Footer = () => {
         
         <Link 
           to="/admission"
-          className={`bg-primary text-white border border-white text-center border-r-0 px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
             isActive('/admission') ? 'text-primary bg-white' : ''
           }`}
         >
@@ -216,8 +225,8 @@ const Footer = () => {
         
         <Link 
           to="/mentorship-program"
-          className={`bg-primary text-white border border-white border-r-0 text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
-            isActive('/mentorship') ? 'text-primary bg-white' : ''
+          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+            isActive('/mentorship-program') ? 'text-primary bg-white' : ''
           }`}
         >
           Mentorship
@@ -225,7 +234,7 @@ const Footer = () => {
         
         <Link 
           to="/donate"
-          className={`bg-primary text-white border border-white border-r-0 text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
+          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
             isActive('/donate') ? 'text-primary bg-white' : ''
           }`}
         > 
@@ -239,13 +248,14 @@ const Footer = () => {
         </div>
 
       {/* Social Media Icons & Copyright */}
-      <div className="mt-8  flex flex-col gap-4 md:flex-row justify-between items-center border-t border-white pt-4">
-        <p className="font-roboto text-[15px]">Copyright Notice © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
+      <div className=" flex flex-col gap-4 md:flex-row justify-between items-center bg-primary py-4">
+        <p className="font-roboto text-[15px] text-white">Copyright Notice © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
         <div className="flex space-x-4 mt-4 md:mt-0">
-          <FaFacebookF className="text-white cursor-pointer" size={18} />
-          <FaInstagram className="text-white cursor-pointer" size={18} />
-          <FaLinkedinIn className="text-white cursor-pointer" size={18} />
-          <FaGithub className="text-white cursor-pointer" size={18} />
+          <p className="text-white">Follow Us On :</p>
+          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaFacebookF className="cursor-pointer" size={16} /></Link>
+          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaInstagram className=" cursor-pointer" size={16}  /></Link>
+          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaLinkedinIn className=" cursor-pointer" size={16}  /></Link>
+          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"  ><FaGithub className=" cursor-pointer" size={16}  /></Link>
         </div>
       </div>
     </footer>

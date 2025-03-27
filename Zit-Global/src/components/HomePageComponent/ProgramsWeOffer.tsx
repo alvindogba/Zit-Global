@@ -19,42 +19,42 @@ const ProgramsWeOffer = () => {
       title: "Graphic Design",
       description:
         "Transform your creative vision into professional designs. Master industry-standard tools and design principles.",
-      icon: <FaPaintBrush className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />,
+      icon: <FaPaintBrush className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/graphic-design",
     },
     {
       title: "Web Development",
       description:
         "Master modern web technologies and frameworks with hands-on projects and expert mentorship.",
-      icon: <FaLayerGroup className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />,
+      icon: <FaLayerGroup className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/full-stack-development",
     },
     {
       title: "CyberSecurity",
       description:
         "Learn to protect systems and data from cyber threats with hands-on training in security practices.",
-      icon: <FaShieldAlt className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />,
+      icon: <FaShieldAlt className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/cybersecurity",
     },
     {
       title: "UI/UX Design",
       description:
         "Design intuitive and engaging user interfaces and experiences with modern tools and techniques.",
-      icon: <FaPalette className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />,
+      icon: <FaPalette className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/ui-ux-design",
     },
     {
       title: "Database Administration",
       description:
         "Learn how to design, manage, and optimize databases using SQL and NoSQL technologies.",
-      icon: <FaServer className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />,
+      icon: <FaServer className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/database-admin",
     },
     {
       title: "Microsoft Office Suite",
       description:
         "Microsoft Word, Excel, PowerPoint, and Outlook for professional productivity.",
-      icon: <DocumentTextIcon className="w-10 h-10 text-primary-600 mb-4 group-hover:text-white" />,
+      icon: <DocumentTextIcon className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/microsoft-office",
     },
   ];
@@ -87,10 +87,10 @@ const ProgramsWeOffer = () => {
                 <Link className="text-primary" to={program.href}>
                   <GlassCard className="p-6 h-full w-full bg-transparent backdrop-blur-md border border-gray-400 transition-all duration-300 hover:translate-y-1 hover:cursor-pointer hover:bg-primary group">
                     {program.icon}
-                    <h3 className="text-lg font-noto font-semibold mb-2 text-gray-900 group-hover:text-white">
+                    <h3 className="text-lg font-noto font-semibold mb-2 text-primary group-hover:text-white">
                       {program.title}
                     </h3>
-                    <p className="text-gray-700 font-roboto text-sm group-hover:text-white">
+                    <p className="text-dparacolor font-roboto text-sm group-hover:text-white">
                       {program.description}
                     </p>
                   </GlassCard>
@@ -99,13 +99,6 @@ const ProgramsWeOffer = () => {
             ))}
           </div>
         </div>
-
-        {/* View More Button
-        <div className="text-right mt-8 md:px-40">
-          <Link to="/courses" className="btn btn-primary text-primary hover:text-primary-600">
-            View More Courses <ArrowRightIcon className="inline-block" size={20} />
-          </Link>
-        </div> */}
       </motion.div>
     </Section>
   );

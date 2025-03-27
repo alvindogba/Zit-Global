@@ -6,6 +6,7 @@ import CardImg3 from '../../asset/images/support-1.jpg';
 interface Event {
   image: string;
   date: string;
+  month: string;
   title: string;
   description: string;
   link: string;
@@ -14,7 +15,8 @@ interface Event {
 const events: Event[] = [
   {
     image: CardImg1,
-    date: "November 22, 2025",
+    date: "22",
+    month: 'Nov',
     title: "A Record-Breaking Year For Zongea Institute of Technology",
     description:
       "At ZIT, we are dedicated to empowering professionals through high-quality training and capacity-building programs....",
@@ -22,7 +24,8 @@ const events: Event[] = [
   },
   {
     image: CardImg2,
-    date: "June 28, 2025",
+    date: "28",
+    month: "Jun",
     title: "ZIT’s Coding Bootcamp: A Student’s Journey",
     description:
       "Follow a student’s experience through ZIT’s intensive coding bootcamp, learning how to build a real-world app.",
@@ -30,7 +33,8 @@ const events: Event[] = [
   },
   {
     image: CardImg3,
-    date: "April 21, 2025",
+    date: "2",
+    month: "Apr",
     title: "Spotlight on Madam Williams: Inspiring LeaderShip at ZIT Cohort 4 Graduation Ceremony",
     description:
       "At ZIT, we are dedicated to empowering professionals through high-quality training and capacity-building programs....",
@@ -43,7 +47,7 @@ const UpcomingEvents: React.FC = () => {
     <section className="py-12 bg-gray-100">
       <div className="container mx-auto text-left">
         <h2 className="text-3xl font-noto font-bold text-primary text-center">Our upcoming Events</h2>
-        <p className="text-gray-600 font-roboto mt-2 mb-8 text-center">
+        <p className="text-dparacolor font-roboto mt-2 mb-8 text-center">
           Stay Informed: News & Insights from Zongea Institute of Technology
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:px-32">
@@ -58,11 +62,14 @@ const UpcomingEvents: React.FC = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <p className="text-gray-500 font-roboto text-sm">{event.date}</p>
+                <div className="mb-2 relative bottom-14 text-dparacolor flex flex-col rounded-md justify-center items-center font-roboto text-sm shadow-lg w-12 h-14 bg-white">
+                  <p>{event.month}</p>
+                  <p className="text-secondary font-semibold">{event.date}</p>
+                </div>
                 <h3 className="text-lg font-noto text-primary font-medium mt-1">
                   {event.title}
                 </h3>
-                <p className="text-gray-600 font-roboto mt-2 text-sm">{event.description}</p>
+                <p className="text-dparacolor font-roboto mt-2 text-sm">{event.description}</p>
               </div>
             </div>
           ))}

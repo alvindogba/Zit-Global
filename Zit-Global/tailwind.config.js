@@ -11,8 +11,9 @@ export default {
     extend: {
       colors: {
         primary: '#000054',
-        secondary: '#EFEFEF',
+        secondary: '#E32845',
         accent: '#060657',
+        dparacolor: '1f2937',
       },
       fontFamily: {
         sans: ['Inter var', 'sans-serif'],

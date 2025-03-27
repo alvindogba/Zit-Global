@@ -19,9 +19,9 @@ export default function StudyAtZit() {
 
   return (
     <div className=" font-sans text-gray-900">
-      <section className="py-16 md:px-32 px-2 bg-gray-100 relative">
+      <section className="py-10 md:px-32 px-2 bg-gray-100 relative">
         <div className="flex flex-col justify-center text-center md:text-left">
-          <h2 className=" font-noto text-2xl font-bold text-primary">Study at ZIT</h2>
+          <h2 className="md:ml-5 font-noto text-2xl font-bold text-primary">Study at ZIT</h2>
           <p className="mt-2 font-roboto text-gray-700 md:w-[37rem]  px-6">
             Unlock job-ready skills that open doors in today's tech landscape. No other program matches the depth and impact of our hands-on training in technology.
           </p>
@@ -68,7 +68,7 @@ export default function StudyAtZit() {
                 <p className="mt-2 font-roboto text-sm">
                   We provide tailored support to ensure every learner thrives. From one-on-one tutoring sessions to small-group discussions, our tutors are dedicated to helping you understand even the most complex topics.
                 </p>
-                <Link to="/admission" className="flex font-sans justify-center items-center hover:text-primary hover:bg-white font-medium mt-4 text-white border border-1-white w-32 h-8 rounded-md">
+                <Link to="/admission" className="flex font-sans justify-center items-center hover:bg-white hover:text-primary font-medium mt-4 text-white bg-secondary hover:font-semibold w-32 h-8 rounded-md">
                   Apply Now
                 </Link>
               </div>

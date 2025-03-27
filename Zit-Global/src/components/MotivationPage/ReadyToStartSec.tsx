@@ -4,7 +4,7 @@ import MotivationBgImg from '../../asset/images/Graduation-Bg-Img.jpg'
 const ReadyToStartSec = () => {
   return (
     <div className="text-white py-16" style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.8), rgba(0, 0, 90, 0.8)), url(${MotivationBgImg})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
@@ -20,7 +20,7 @@ const ReadyToStartSec = () => {
         {/* Fixed Button */}
         <Link
           to="/admission"
-          className="font-sans border border-white font-bold text-xs text-white px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
+          className="font-sans text-xs bg-secondary hover:font-semibold text-white px-7 py-2 transition-colors rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
         >
           Apply Now
         </Link>

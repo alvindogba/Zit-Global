@@ -44,7 +44,7 @@ const AdmissionSuccess = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
       </div>
     );
   }
@@ -54,16 +54,16 @@ const AdmissionSuccess = () => {
       <>
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
-          <div className="text-red-500 mb-4">
+          <div className="text-secondary mb-4">
             <svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-noto font-bold text-gray-900 mb-4">Something went wrong</h2>
+          <h2 className="text-2xl font-noto font-bold text-dparacolor mb-4">Something went wrong</h2>
           <p className="text-gray-600 font-roboto mb-6">{error || 'Unable to load admission details'}</p>
           <Link
             to="/"
-            className="inline-block bg-primary font-sans text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors"
+            className="inline-block bg-secondary font-sans text-white px-3 py-2 rounded-md font-medium hover:bg-primary transition-colors"
           >
             Return Home
           </Link>
@@ -84,14 +84,14 @@ const AdmissionSuccess = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-                    <div className="text-center mt-4">
-                      <p className="text-sm font-roboto text-gray-600 mb-2">Application Photo:</p>
-                      <img
-                        src={`${import.meta.env.VITE_BACKEND_URL}/${admission.applicantImage}`}
-                        alt="Applicant"
-                        className="w-32 h-32 rounded-lg object-cover mx-auto border"
-                      />
-                    </div>
+            <div className="text-center mt-4">
+              <p className="text-sm font-roboto text-gray-600 mb-2">Application Photo:</p>
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${admission.applicantImage}`}
+                alt="Applicant"
+                className="w-32 h-32 rounded-lg object-cover mx-auto border"
+              />
+            </div>
             <h1 className="text-3xl font-bold font-noto text-gray-900 mb-2">Admission Submitted Successfully!</h1>
             <p className="text-gray-600 font-roboto">
               Congratulations, {admission.firstName}! Your application has been successfully received.

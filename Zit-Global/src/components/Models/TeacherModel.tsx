@@ -71,7 +71,7 @@ export default function TeachModel() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/teaching-applications`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/teachers`,
         formData
       );
 

@@ -42,7 +42,7 @@ export default function TTM() {
       <h2 className="text-2xl font-bold font-noto text-primary">
         Opportunities to Educate, Inspire, and Lead      
       </h2>
-      <p className="md:w-[60%] text-gray-700 font-roboto mt-6">
+      <p className="md:w-[60%] text-dparacolor font-roboto mt-6">
         Join a dynamic community where you can enhance your skills, make a tangible impact, and inspire future leaders. Shape minds, foster growth, and lead with purpose.
       </p>
 
@@ -84,7 +84,7 @@ export default function TTM() {
 
           {/* Buttons */}
           <div className="mt-4 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
-            <Link to={tabContent[activeTab].btnHref} className="w-full md:w-fit font-sans sm:w-fit px-4 py-1 border border-white text-white bg-primary rounded-lg hover:font-bold transition-all">
+            <Link to={tabContent[activeTab].btnHref} className="w-full md:w-fit font-sans sm:w-fit px-4 py-2 hover:bg-primary text-white bg-secondary rounded-lg hover:font-semibold transition-all">
               {tabContent[activeTab].primaryBtn}
             </Link>
 

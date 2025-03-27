@@ -70,7 +70,7 @@ const SuccessStory = () => {
                                         <img className="w-16 h-16 md:w-24 md:h-24 rounded-full" src={student.image} alt={student.name} />
                                         <div>
                                             <h2 className="font-bold font-noto text-primary">{student.name}</h2>
-                                            <p className="text-gray-600  font-roboto">{student.role}</p>
+                                            <p className="text-dparacolor  font-roboto">{student.role}</p>
                                         </div>
                                     </div>
                                 </div>
