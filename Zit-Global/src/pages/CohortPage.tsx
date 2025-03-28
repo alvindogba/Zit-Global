@@ -241,7 +241,7 @@ const CohortPage = () => {
                     {cohort.startDate} - {cohort.endDate}
                   </span>
                   <span className={`text-sm font-semibold font-roboto px-2 py-1 rounded ${
-                    cohort.status === 'current' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-800'
+                    cohort.status === 'current' ? 'bg-green-100 text-green-700' : 'bg-primary text-white'
                   }`}>
                     {cohort.status === 'current' ? 'Current' : 'Completed'}
                   </span>
@@ -266,8 +266,8 @@ const CohortPage = () => {
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                   }`}
                 >
-                  <div className="text-3xl mb-2">{program.icon}</div>
-                  <div className="text-sm font-noto font-semibold">{program.name}</div>
+                  <div className="text-3xl mb-2 text-secondary">{program.icon}</div>
+                  <div className="text-sm font-noto font-semibold text-primary">{program.name}</div>
                 </button>
               ))}
             </div>
@@ -277,32 +277,32 @@ const CohortPage = () => {
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <div className="text-5xl mb-4">{cohorts[activeCohort].programs[activeTrack].icon}</div>
-                    <h2 className="font-noto text-3xl font-bold mb-4">{cohorts[activeCohort].programs[activeTrack].name}</h2>
-                    <p className="font-roboto text-gray-600 mb-6">{cohorts[activeCohort].programs[activeTrack].description}</p>
+                    <div className="text-5xl mb-4 text-secondary">{cohorts[activeCohort].programs[activeTrack].icon}</div>
+                    <h2 className="font-noto text-2xl font-bold mb-4 text-primary">{cohorts[activeCohort].programs[activeTrack].name}</h2>
+                    <p className="font-roboto text-dparacolor mb-6">{cohorts[activeCohort].programs[activeTrack].description}</p>
                     
                     <div className="space-y-4">
                       <div className="flex font-roboto items-center">
-                        <span className="w-32  font-semibold">Duration:</span>
+                        <span className="w-32  font-semibold text-primary">Duration:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].duration}</span>
                       </div>
                       <div className="flex font-roboto items-center">
-                        <span className="w-32 font-semibold">Start Date:</span>
+                        <span className="w-32 font-semibold text-primary">Start Date:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].startDate}</span>
                       </div>
                       <div className="flex font-roboto items-center">
-                        <span className="w-32 font-semibold">End Date:</span>
+                        <span className="w-32 font-semibold text-primary">End Date:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].endDate}</span>
                       </div>
-                      <div className="flex font-roboto items-center">
-                        <span className="w-32 font-semibold">Instructor:</span>
+                      {/* <div className="flex font-roboto items-center">
+                        <span className="w-32 font-semibold text-primary">Instructor:</span>
                         <span>{cohorts[activeCohort].programs[activeTrack].instructor}</span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
                   <div>
-                    <div className="mb-6">
+                    {/* <div className="mb-6">
                       <h3 className="text-xl font-noto font-semibold mb-4">Enrollment Status</h3>
                       <div className="bg-gray-100 rounded-lg p-4">
                         <div className="flex font-roboto justify-between mb-2">
@@ -322,10 +322,10 @@ const CohortPage = () => {
                           ></div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div>
-                      <h3 className="font-noto text-xl font-semibold mb-4">Skills You'll Learn</h3>
+                      <h3 className="font-noto text-xl font-semibold mb-4 text-primary">Skills You'll Learn</h3>
                       <div className="grid grid-cols-2 gap-3">
                         {cohorts[activeCohort].programs[activeTrack].skills.map((skill, index) => (
                           <div
@@ -342,7 +342,7 @@ const CohortPage = () => {
 
                 {cohorts[activeCohort].status === 'current' && (
                   <div className="font-sans mt-8 flex justify-center">
-                    <Link to='/admission' className="bg-primary font-sans hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                    <Link to='/admission' className="bg-secondary font-sans hover:bg-primary text-white hover:font-semibold py-2 px-3 rounded-md transition-colors">
                       Apply Now
                     </Link>
                   </div>

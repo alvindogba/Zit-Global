@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../asset/images/Hero-guilding-hand.jpg"
+import img from "../../asset/images/Hero-guilding-hand.jpg";
 
 const HowItWorks: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const HowItWorks: React.FC = () => {
           <h2 className="font-noto text-3xl md:text-4xl font-bold text-primary mb-8">
             How It Works?
           </h2>
-          <p className="font-roboto text-gray-600 mb-8">
+          <p className="font-roboto text-dparacolor mb-8">
             The Guiding Hands Program is a free tech school initiative in Liberia 
             that offers mentorship, tutorship, and teaching.
           </p>
@@ -21,42 +21,54 @@ const HowItWorks: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             
             {/* Step 1 */}
-            <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
-                1
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
+                  <span className="flex items-center text-secondary justify-center w-full h-full">1</span>
+                </div>
               </div>
               <div>
-                <h3 className="font-noto font-semibold text-gray-800">Apply</h3>
-                <p className="font-roboto text-gray-600 text-sm">Fill out the application form.</p>
+                <h3 className="font-noto font-semibold text-primary">Apply</h3>
+                <p className="font-roboto text-dparacolor text-sm">Fill out the application form.</p>
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
-            2
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
+                  <span className="flex items-center text-secondary justify-center w-full h-full">2</span>
+                </div>
               </div>
               <div>
-                <h3 className="font-noto font-semibold text-gray-800">Get Matched</h3>
-                <p className="font-roboto text-gray-600 text-sm">We pair you with a mentor, tutor, or course.</p>
+                <h3 className="font-noto font-semibold text-primary">Get Matched</h3>
+                <p className="font-roboto text-dparacolor text-sm">We pair you with a mentor, tutor, or course.</p>
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">3</div>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
+                  <span className="flex items-center text-secondary justify-center w-full h-full">3</span>
+                </div>
+              </div>
               <div>
-                <h3 className="font-noto font-semibold text-gray-800">Connect</h3>
-                <p className="font-roboto text-gray-600 text-sm">Schedule your first meeting and start your journey.</p>
+                <h3 className="font-noto font-semibold text-primary">Connect</h3>
+                <p className="font-roboto text-dparacolor text-sm">Schedule your first meeting and start your journey.</p>
               </div>
             </div>
 
             {/* Step 4 */}
-            <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">4</div>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
+                  <span className="flex items-center text-secondary justify-center w-full h-full">4</span>
+                </div>
+              </div>
               <div>
-                <h3 className="font-noto font-semibold text-gray-800">Start Learning</h3>
-                <p className="font-roboto text-gray-600 text-sm">Begin your journey with personalized guidance.</p>
+                <h3 className="font-noto font-semibold text-primary">Start Learning</h3>
+                <p className="font-roboto text-dparacolor text-sm">Begin your journey with personalized guidance.</p>
               </div>
             </div>
 
@@ -64,11 +76,11 @@ const HowItWorks: React.FC = () => {
         </div>
 
         {/* Right Column: Illustration */}
-        <div className="flex h-full justify-center">
+        <div className="flex justify-center md:justify-end">
           <img
             src={img}
             alt="How It Works Illustration"
-            className="h-full md:w-80"
+            className="w-full max-w-md rounded-lg shadow-md"
           />
         </div>
       </div>
