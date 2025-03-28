@@ -19,21 +19,17 @@ export default function StudyAtZit() {
 
   return (
     <div className=" font-sans text-gray-900">
-      <section className="py-10 md:px-32 px-2 bg-gray-100 relative">
+      <section className="py-16 md:px-32 px-2 bg-gray-100 relative">
         <div className="flex flex-col justify-center text-center md:text-left">
-          <h2 className="md:ml-5 font-noto text-2xl font-bold text-primary">Study at ZIT</h2>
+          <h2 className="font-noto text-2xl font-bold text-primary">Study at ZIT</h2>
           <p className="mt-2 font-roboto text-gray-700 md:w-[37rem]  px-6">
             Unlock job-ready skills that open doors in today's tech landscape. No other program matches the depth and impact of our hands-on training in technology.
           </p>
 
           <div className="relative mt-8 md:w-[90%] max-w-full flex flex-col sm:flex-row sm:items-start gap-6">
             {/* Image Display */}
-            <div>
-              
-            </div>
             <img src={images[activeIndex]} alt="Study at ZIT" className="w-full sm:w-[40rem] h-[22rem] mt-8 object-cover"
- />
-
+          />
             {/* Right Content (Moves Below on Small Screens) */}
             <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
               {/* Navigation Controls */}

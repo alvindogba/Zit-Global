@@ -1,12 +1,11 @@
 import { BackgroundMesh } from '../BackgroundMesh';
 import { Section } from '../Section';
-import { GlassCard } from '../GlassCard';
 import { FaUserGraduate, FaPeoplePulling, FaBriefcase } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 import * as variants from '../../animations/variants';
 
 export default function GroundWork() {
-  const bgColors = ["bg-orange-200/40", "bg-white", "bg-green-200/40"]; 
+  const bgColors = ["bg-orange-200/50", "bg-white/50", "bg-green-200/50"]; 
 
   return (
     <Section id="approach" title="Our Approach" className="relative bg-gray-200 text-primary">
@@ -43,16 +42,15 @@ export default function GroundWork() {
             },
           ].map((groundWork, index) => (
             <motion.div key={groundWork.title} variants={variants.fadeInUp} className="relative">
-              <GlassCard
-                className={`p-4 h-full w-full max-w-[18rem] ${bgColors[index]} rounded-none backdrop-blur-md `}
-                glowColor={`from-primary-${(index + 4) * 100}/20`}
+              <div
+                className={`p-4 h-full w-full max-w-[18rem] ${bgColors[index]} rounded-md backdrop-blur-md `}
               >
                 <div className="w-16 h-16 rounded-full flex justify-center items-center mb-2 bg-primary/10">
-                  <groundWork.icon className="w-8 h-8 text-primary-600" />
+                  <groundWork.icon className="w-8 h-8 text-secondary" />
                 </div>
-                <h3 className="font-noto text-lg font-semibold mb-2 text-gray-900">{groundWork.title}</h3>
-                <p className="font-roboto text-gray-700 text-sm">{groundWork.description}</p>
-              </GlassCard>
+                <h3 className="font-noto text-lg font-semibold mb-2 text-primary">{groundWork.title}</h3>
+                <p className="font-roboto text-dparacolor text-sm">{groundWork.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>

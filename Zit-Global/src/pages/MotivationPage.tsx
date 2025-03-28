@@ -26,7 +26,7 @@ export default function MotivationPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative bg-navy-600 text-white">
+      <div className="relative bg-primary text-white">
         <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -43,27 +43,31 @@ export default function MotivationPage() {
       <GroundWork /> 
       <WhyZongea />
       <ReadyToStartSec />
-      <div className="bg-gray-200 relative sm:px-6 py-16">
-        <div className="flex flex-col md:flex-row max-w-6xl mx-auto justify-between items-center space-y-8 md:space-y-0">
+      <div className="bg-gray-200 relative sm:px-6 py-12">
+        <div className="flex flex-col md:flex-row max-w-6xl mx-auto justify-between items-center space-y-8 md:space-y-0 px-4">
           {/* Left Side - Title */}
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left md:w-[40%]">
             <h2 className="font-noto text-xl md:text-2xl font-bold mb-4 text-primary">
               We believe every <br /> Liberian should have:
             </h2>
           </div>
 
           {/* Right Side - Belief Cards */}
-          <div className="flex flex-col md:flex-col lg:flex-row justify-center items-center md:justify-between w-full md:w-[50%] gap-6">
+          <div className="flex flex-col md:flex-row justify-center items-center w-full md:w-[55%] gap-4">
             {believeExplanations.map((believe, index) => (
               <div
                 key={index}
-                className="w-[20rem] sm:w-[22rem] px-6 py-4 bg-white flex flex-col justify-center items-center shadow-md rounded-lg"
+                className="w-full min-w-[14rem] max-w-[16rem] h-[14rem] px-4 py-6 bg-white flex flex-col items-center shadow-md rounded-lg"
               >
-                <div className="w-12 h-12 rounded-full flex justify-center items-center mb-3 bg-primary/10">
-                  <believe.icon className="w-7 h-7 text-primary-600" />
+                <div className="w-10 h-10 rounded-full flex justify-center items-center mb-3 bg-primary/10">
+                  <believe.icon className="w-5 h-5 text-secondary" />
                 </div>
-                <h3 className="font-noto text-lg font-semibold mb-2 text-primary text-center">{believe.title}</h3>
-                <p className="font-roboto text-gray-700 text-sm text-center">{believe.description}</p>
+                <h3 className="font-noto text-base font-semibold mb-2 text-primary text-center">
+                  {believe.title}
+                </h3>
+                <p className="font-roboto text-dparacolor text-xs text-center">
+                  {believe.description}
+                </p>
               </div>
             ))}
           </div>
@@ -93,13 +97,13 @@ export default function MotivationPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             to="/admission"
-            className="bg-transparent border border-white font-bold text-xs text-white px-4 py-2 transition-all rounded-lg inline-flex items-center justify-center hover:bg-white hover:text-primary"
+            className="bg-transparent font-sans border border-white hover:font-semibold text-xs text-white px-3 py-2 transition-all rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
           >
             Be a Volunteer
           </Link>
           <Link
             to="/donate"
-            className="font-sans bg-white font-bold text-xs text-primary px-4 py-2 transition-all rounded-lg inline-flex items-center justify-center hover:bg-primary hover:text-white"
+            className="font-sans bg-secondary hover:font-semibold text-xs text-white px-3 py-2 transition-all rounded-md inline-flex items-center justify-center hover:text-primary hover:bg-white "
           >
             Donate Today
           </Link>

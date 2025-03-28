@@ -122,7 +122,7 @@ export default function Courses() {
       <div className="max-w-9xl  px-4 sm:px-6 lg:px-8 py-16 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:px-4">
           {courses.map((course, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:-translate-y-1">
+            <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:-translate-y-1">
               <div className="relative h-48">
                 <img 
                   src={course.image} 
@@ -139,7 +139,7 @@ export default function Courses() {
               </div>
 
               <div className="px-4 py-2">
-                <p className="text-gray-600 font-roboto mb-4">
+                <p className="text-dparacolor font-roboto mb-4">
                   {course.description}
                 </p>
 
@@ -147,7 +147,7 @@ export default function Courses() {
                   <h4 className="text-sm font-semibold text-primary mb-3">COURSE HIGHLIGHTS</h4>
                   <ul className="grid grid-cols-2 gap-2">
                     {course.highlights.map((highlight, idx) => (
-                      <li key={idx} className="flex items-center font-roboto text-sm text-gray-600">
+                      <li key={idx} className="flex items-center font-roboto text-sm text-dparacolor">
                         <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
                         {highlight}
                       </li>
@@ -157,7 +157,7 @@ export default function Courses() {
 
                 <Link 
                   to={course.path}
-                  className="inline-flex items-center font-sans justify-center w-max bg-primary text-white py-3 px-6 rounded-md hover:bg-navy-700 transition-colors font-semibold"
+                  className="inline-flex items-center font-sans justify-center w-max bg-secondary text-white py-2 px-3 rounded-md hover:bg-primary transition-colors font-semibold"
                 >
                   Learn More
                 </Link>

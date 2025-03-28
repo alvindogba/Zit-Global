@@ -1,65 +1,70 @@
 import image from '../../asset/images/Abel B. Winn.jpg';
+import { Link } from 'react-router-dom';
 
 export default function WorkForce() {
   return (
-    <section className="px-4 md:px-28 md:pt-20 pt-10 pb-4 md:pb-20 bg-white h-auto">
+    <section className="px-4 md:px-28 md:pt-20 pt-10 pb-4 md:pb-20 bg-white">
       {/* First Section */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8 h-auto">
-        <div className="w-full md:w-2/5 text-center md:text-left mb-8 md:mb-0">
-          <h3 className="font-noto text-base font-medium text-primary">Want to be part of this Journey?</h3>
-          <h2 className="font-noto text-xl md:text-2xl font-bold text-primary w-full md:w-[90%] mt-2">
-            Be a Teacher Today and Impact the Future Now!
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 h-auto">
+        <div className="w-full md:w-[45%] text-center md:text-left mb-8 md:mb-0">
+          <h3 className="font-noto text-base font-medium text-primary">Join Our Mission</h3>
+          <h2 className="font-noto text-xl md:text-2xl font-bold text-primary mt-2">
+            Empower Liberia Through Tech Education
           </h2>
-          <p className="font-roboto text-gray-700 mt-5 leading-relaxed md:w-[80%]">
-            At Zongea Institute of Technology, we offer a wide array of courses designed to
-            empower learners with the skills and knowledge needed for success. Our courses are
-            tailored to meet the needs of students in Liberia, ensuring a comprehensive and
-            inclusive educational experience.
+          <p className="font-roboto text-dparacolor my-5 leading-relaxed">
+            At ZIT, we're revolutionizing tech education in Liberia by providing free, high-quality training 
+            to aspiring professionals. Our hands-on curriculum bridges the gap between education and employment, 
+            creating opportunities for Liberia's digital future.
           </p>
-          <button className="font-sans w-fit md:w-fit mt-6 px-6 py-2 border border-primary text-base text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
-            Become a Teacher
-          </button>
+          <Link 
+            to='/icc/teacher' 
+            className="inline-block font-sans mt-6 px-3 py-2 text-base text-white bg-secondary rounded-md hover:bg-primary hover:font-semibold transition-all duration-300"
+          >
+            Teach With Us
+          </Link>
         </div>
 
-        {/* Image on Small Screens Below Text */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0">
-          <div className="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
+        {/* Image */}
+        <div className="w-full md:w-[50%] flex justify-center">
+          <div className="relative w-64 h-64 md:w-96 md:h-96">
             <img
               src={image}
-              alt="Mentor smiling"
-              className="md:w-[94%] md:h-[94%] w-full object-cover relative top-2 left-3"
+              alt="ZIT instructor teaching"
+              className="w-full h-full object-cover rounded-lg shadow-md"
             />
           </div>
         </div>
       </div>
 
-      {/* Second Section (Image on the Left, Text on the Right) */}
-      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 mt-12">
-        {/* Image on Small Screens Below Text */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-start mb-16 md:mb-0 ">
-          <div className="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
+      {/* Second Section */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 mt-16 md:mt-10">
+        {/* Image */}
+        <div className="w-full md:w-[50%] flex justify-center order-1 md:order-none">
+          <div className="relative w-64 h-64 md:w-96 md:h-96 mr-32">
             <img
               src={image}
-              alt="Mentor smiling"
-              className="md:w-[94%] md:h-[94%] w-full object-cover relative top-2 left-3"
+              alt="ZIT students learning"
+              className="w-full h-full object-cover rounded-md shadow-md"
             />
           </div>
         </div>
 
-        <div className="w-full md:w-2/5 text-center md:text-left mb-8 md:mb-0">
-          <h3 className="font-noto text-base font-medium text-primary ">Want to be part of this Journey?</h3>
-          <h2 className="font-noto text-xl md:text-2xl font-bold text-primary w-full md:w-[90%] mt-2">
-            Be a Teacher Today and Impact the Future Now!
+        <div className="w-full md:w-[45%] text-center md:text-left mb-8 md:mb-0 order-2 md:order-none">
+          <h3 className="font-noto text-base font-medium text-primary">Support Our Vision</h3>
+          <h2 className="font-noto text-xl md:text-2xl font-bold text-primary mt-2">
+            Invest in Tech Talent
           </h2>
-          <p className="font-roboto text-gray-700 mt-5 leading-relaxed md:w-[80%]">
-            At Zongea Institute of Technology, we offer a wide array of courses designed to
-            empower learners with the skills and knowledge needed for success. Our courses are
-            tailored to meet the needs of students in Liberia, ensuring a comprehensive and
-            inclusive educational experience.
+          <p className="font-roboto text-dparacolor my-5 leading-relaxed">
+            Your support helps us maintain free education for all. Whether through donations, 
+            equipment contributions, or partnerships, you can help build a skilled workforce that will 
+            drive digital transformation and economic growth.
           </p>
-          <button className="font-sans w-fit md:w-fit mt-6 px-6 py-2 border border-primary text-base text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
-            Become a Teacher
-          </button>
+          <Link 
+            to='/donate' 
+            className="inline-block font-sans mt-6 px-3 py-2 text-base text-white bg-secondary rounded-md hover:bg-primary hover:font-semibold transition-all duration-300"
+          >
+            Support Our Mission
+          </Link>
         </div>
       </div>
     </section>

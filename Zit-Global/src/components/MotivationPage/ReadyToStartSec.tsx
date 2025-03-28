@@ -20,7 +20,7 @@ const ReadyToStartSec = () => {
         {/* Fixed Button */}
         <Link
           to="/admission"
-          className="font-sans text-xs bg-secondary hover:font-semibold text-white px-7 py-2 transition-colors rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
+          className="font-sans text-xs bg-secondary hover:font-semibold text-white px-3 py-2 transition-colors rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
         >
           Apply Now
         </Link>

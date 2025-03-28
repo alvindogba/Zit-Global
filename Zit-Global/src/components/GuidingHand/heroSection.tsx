@@ -24,7 +24,7 @@ export default function HeroSection() {
         </p>
         <div className="flex mt-6 mb-8 space-x-4">
       
-          <Link to="/icc/mentor" className="bg-primary px-4 md:px-6 py-2 rounded-sm text-white border border-primary ">
+          <Link to="/icc/mentor" className="bg-primary px-4 md:px-3 py-2 rounded-md text-white hover:bg-secondary hover:font-semibold ">
             Get Involved 
           </Link>
         </div>

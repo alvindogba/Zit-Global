@@ -43,7 +43,7 @@ const VisionSection: React.FC = () => {
           {visionCards.map((card, index) => (
             <div key={index} className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
               <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-primary/10 text-secondary rounded-full flex items-center justify-center">
                   {card.icon}
                 </div>
               </div>

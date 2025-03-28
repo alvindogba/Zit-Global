@@ -26,7 +26,6 @@ const Tutorship = lazy(() => import('./pages/MakeImpact/Tutorship'))
 const TeachingAtZit = lazy(() => import('./pages/MakeImpact/TeachingAtZit'))
 const AdmissionSuccess = lazy(() => import('./pages/Admission/AdminssionSuccessPage'));
 const GuidingHandingProgram = lazy(() => import('./pages/MakeImpact/GuidingHandingProgram'))
-// const GuidingHand =lazy(() => import('./pages/MakeImpact/GuidingHand'))
 //Each course offer page
 const Fullstack = lazy(() => import('./pages/CoursesDetails/FullStackDevelopment'))
 const UIUXDesign = lazy(() => import('./pages/CoursesDetails/UIUXDesign'))
@@ -55,246 +54,49 @@ function App() {
     }}>
       <Elements stripe={stripePromise}>
         <BrowserRouter>
-          <div className="min-h-screen">
-            <Suspense fallback="">
+          <Suspense fallback={<DefaultSkeletion />}>
+            <div className="min-h-screen flex flex-col">
               <Header />
-            </Suspense>
-            <div className="pt-20">
-              <ScrollToTop />
+              
+              <main className="flex-grow pt-20">
+                <ScrollToTop />
 
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <HomePage />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/cohorts"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Cohort />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/how-to-apply"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <HowToApply />
-                    </Suspense>
-                  }
-                />
-
-                <Route
-                  path="/courses"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Courses />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/motivation"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Motivation />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/impact-connect-center"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <GuidingHandingProgram />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/mentorship-program"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Mentorship />
-                    </Suspense>
-                  }
-                />
-                 <Route
-                  path="/teaching-at-zit"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <TeachingAtZit />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/mentorship-dashboard"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <MentorshipDashboard />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/tutorship-program"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Tutorship />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/be-a-donor"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <BeADonor />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/admission"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Admission />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/admission-success"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <AdmissionSuccess />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/contact"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Contact />
-                    </Suspense>
-                  }
-                />
+                <Routes>
+                <Route path="/" element={ <HomePage />}/>
+                <Route path="/cohorts" element={<Cohort />}/>
+                <Route path="/how-to-apply"element={<HowToApply />}/>
+                <Route path="/courses"element={<Courses />}/>
+                <Route path="/motivation" element={<Motivation />}/>
+                <Route path="/impact-connect-center"element={<GuidingHandingProgram /> }/>
+                <Route path="/mentorship-program" element={<Mentorship />}/>
+                <Route path="/teaching-at-zit" element={<TeachingAtZit />}/>
+                <Route path="/mentorship-dashboard" element={<MentorshipDashboard />}/>
+                <Route path="/tutorship-program"element={<Tutorship />}/>
+                <Route path="/be-a-donor" element={<BeADonor /> }/>
+                <Route path="/admission"element={<Admission />} />
+                <Route path="/admission-success" element={<AdmissionSuccess />}/>
+                <Route path="/contact"element={ <Contact />}/>
                 {/* The Donation route */}
-                <Route
-                  path="/donate"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <DonationPage />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/success"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <DonationSuccess />
-                    </Suspense>
-                  }
-                />
+                <Route path="/donate" element={<DonationPage />} />
+                <Route path="/success" element={<DonationSuccess />}/>
                 {/* The Couses Page route */}
-                <Route
-                  path="/courses/ui-ux-design"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <UIUXDesign />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/courses/graphic-design"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <GraphicDesign />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/courses/cybersecurity"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <CyberSecurity />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/courses/full-stack-development"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <Fullstack />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/courses/microsoft-office"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <MicrosoftOffice />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/courses/database-admin"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <DatabaseAdmin />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/icc-student"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <StudentModel />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/icc/teacher"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <TeacherModel />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/icc/parent-guardian"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <ParentModel />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/icc/mentor"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <MentorModel />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/icc/administration"
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <AdministrationModel />
-                    </Suspense>
-                  }
-                />
-                <Route path='/icc-success'
-                  element={
-                    <Suspense fallback={<DefaultSkeletion />}>
-                      <IccSucessPage />
-                    </Suspense>
-                  } />
+                <Route path="/courses/ui-ux-design"element={<UIUXDesign />}/>
+                <Route path="/courses/graphic-design" element={<GraphicDesign />}/>
+                <Route path="/courses/cybersecurity" element={<CyberSecurity />}/>
+                <Route path="/courses/full-stack-development"element={<Fullstack />}/>
+                <Route path="/courses/microsoft-office"element={<MicrosoftOffice />}/>
+                <Route path="/courses/database-admin"element={<DatabaseAdmin />}/>
+                <Route path="/icc-student"element={<StudentModel />}/>
+                <Route path="/icc/teacher"element={<TeacherModel />}/>
+                <Route path="/icc/parent-guardian"element={<ParentModel />}/>
+                <Route path="/icc/mentor"element={<MentorModel />}/>
+                <Route path="/icc/administration"element={<AdministrationModel />}/>
+                <Route path='/icc-success'element={<IccSucessPage />} />
               </Routes>
+              </main>
 
+              <Footer />
             </div>
-
-          </div>
-          <Suspense fallback="">
-            <Footer />
           </Suspense>
         </BrowserRouter>
       </Elements>
@@ -303,3 +105,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

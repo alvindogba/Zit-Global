@@ -11,6 +11,7 @@ const TeachSomeone = lazy(() => import('../components/HomePageComponent/Hero/Tea
 const UpComingEvent = lazy(() => import('../components/HomePageComponent/UpComingEvent'));
 const TutorshipSection = lazy(() => import ('../components/HomePageComponent/TutorshipSection'))
 const ReadyToStartSec = lazy(() => import('../components/MotivationPage/ReadyToStartSec'));
+import SuccessStory from '../components/HomePageComponent/Hero/SuccessStory';
 
 const HomePage: React.FC = () => {
     return (
@@ -23,6 +24,7 @@ const HomePage: React.FC = () => {
                 <ReadyToStartSec />
                 <TeachSomeone />
                 <TTM />
+                <SuccessStory />
                 <UpComingEvent />
                 <ScrollToTopButton />
         </main>
