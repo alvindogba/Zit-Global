@@ -384,26 +384,26 @@ const CheckoutForm = () => {
 
             <div className="space-y-6">
               <h2 className="text-xl sm:text-2xl font-noto font-bold text-center">Donate with Card</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-2 sm:gap-4 mb-4 mx-0 sm:mx-20">
+              <div className="w-full flex justify-center gap-4 items-center mt-4">
                 <img
                   src={visa}
                   alt="Visa"
-                  className="h-12 md:h-16  w-full"
+                  className="w-16 h-12 rounded-md"
                 />
                 <img
                   src={master}
                   alt="Mastercard"
-                  className="h-12 md:h-16  w-full"
+                  className="w-16 h-12 rounded-md"
                 />
                 <img
                   src={express}
                   alt="American Express"
-                  className="h-12 md:h-16  w-full"
+                  className="w-16 h-12 rounded-md"
                 />
                 <img
                   src={paypal}
                   alt="Paypal"
-                  className="h-12 md:h-16  w-full"
+                  className="w-18 h-12 rounded-md"
                 />
               </div>
               <form onSubmit={handleStripeSubmit} className="space-y-4">
