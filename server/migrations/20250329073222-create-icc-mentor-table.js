@@ -51,7 +51,7 @@ export default (sequelize) => {
       },
     },
     {
-      tableName: 'mentors',
+      tableName: 'Mentors',
       timestamps: true, // createdAt and updatedAt will be added automatically
     }
   );

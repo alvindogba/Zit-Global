@@ -31,7 +31,7 @@ export default (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "contacts",
+      tableName: "Dontacts",
       timestamps: true,
     }
   );
