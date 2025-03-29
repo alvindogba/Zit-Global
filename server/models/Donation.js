@@ -55,7 +55,7 @@ export default (sequelize, DataTypes) => {
       allowNull: true,
     },
   }, {
-    tableName: 'Donations',
+    tableName: 'donations',
     timestamps: true,
   
   });
