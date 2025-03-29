@@ -125,7 +125,7 @@ export const createStudent = async (req, res) => {
       }
   
       // Create Student entry in the database
-      const student = await db.Student.create({
+      const student = await db.student.create({
         fullName,
         dob,
         email,
