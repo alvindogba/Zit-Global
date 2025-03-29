@@ -20,12 +20,10 @@ const Hero: React.FC = () => {
         <h1 className="font-noto text-3xl md:text-4xl font-bold text-white mb-8 md:w-[50%]">
           Empower Learners Through Personalized Tutoring
         </h1>
-        
-
         <div className="flex flex-wrap gap-4">
     
           <Link to='/icc/mentor'
-            className="font-sans bg-primary text-white hover:font-semibold px-6 py-3 rounded-sm hover:bg-white hover:text-primary"
+            className="font-sans bg-secondary text-white hover:font-semibold px-3 py-2 rounded-md hover:bg-primary"
           >
             Apply Now and Get Started
           </Link>

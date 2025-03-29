@@ -1,7 +1,7 @@
-import image1 from "../../asset/images/a mentor.jpg";
-import image2 from "../../asset/images/a parent.jpg";
+import image1 from "../../asset/images/l am a mentor.jpg";
+import image2 from "../../asset/images/l am a tutor.jpg";
 import image3 from "../../asset/images/a school amdin.jpg";
-import image4 from "../../asset/images/a student.jpg";
+import image4 from "../../asset/images/l am student copy.jpg";
 import { Link } from "react-router-dom";
 
 export default function TutorshipSection() {

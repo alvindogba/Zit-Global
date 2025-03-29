@@ -31,16 +31,16 @@ const Steps: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-8">
         {/* Left Side: Steps */}
         <div className="md:w-1/2">
-          <h2 className="font-noto text-3xl font-bold text-gray-900 mb-6">
+          <h2 className="font-noto text-3xl font-bold text-primary mb-6">
             Start Mentoring in Just 4 Steps
           </h2>
 
           {/* Steps List */}
-          <div className="space-y-6 text-gray-800">
+          <div className="space-y-6 text-dparacolor">
             {stepsData.map((step, index) => (
               <div key={index}>
-                <h3 className="font-noto font-semibold text-lg text-gray-900 mb-1">
-                  {step.number}. {step.title}
+                <h3 className="font-noto font-semibold text-lg text-primary mb-1">
+                 <span className="text-secondary"> {step.number}.</span> {step.title}
                 </h3>
                 <p className="font-roboto">
                   {step.description}
@@ -53,7 +53,7 @@ const Steps: React.FC = () => {
           <div className="mt-8">
             <Link 
               to='/icc/mentor' 
-              className="mt-8 md:mt-16 px-6 py-3 bg-primary text-white hover:font-semibold rounded-sm hover:border hover:border-primary hover:bg-white hover:text-primary transition"
+              className="mt-8 md:mt-16 md:px-3 sm:px-6 py-2 sm:py-2 bg-secondary text-white hover:font-semibold rounded-md hover:bg-primary transition"
             >
               Get Started Now
             </Link>

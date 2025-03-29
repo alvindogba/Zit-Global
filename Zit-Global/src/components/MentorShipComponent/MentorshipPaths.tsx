@@ -4,7 +4,7 @@ import img from "../../asset/images/Mentor Session image.png"
 const MentorshipPaths: React.FC = () => {
   return (
     <section className="bg-white py-12 min-h-[80vh] flex items-center">
-      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-52">
         {/* Left Side: Image */}
         <div className="md:w-1/2 h-auto flex justify-center md:justify-end">
         {/* Replace the src with your actual image URL */}
@@ -17,7 +17,7 @@ const MentorshipPaths: React.FC = () => {
 
         {/* Right Side: Content */}
         <div className="md:w-1/2 flex flex-col gap-6">
-          <h2 className="font-noto text-3xl font-bold text-gray-900 ">
+          <h2 className="font-noto text-3xl font-bold text-primary ">
             Find the Best Mentorship Path for You
           </h2>
 
@@ -26,7 +26,7 @@ const MentorshipPaths: React.FC = () => {
             <h3 className="font-noto text-xl font-semibold text-primary ">
               1-on-1 Mentorship
             </h3>
-            <p className="font-roboto text-gray-700">
+            <p className="font-roboto text-dparacolor">
               Get personalized guidance to help you navigate your career path.
             </p>
           </div>
@@ -36,7 +36,7 @@ const MentorshipPaths: React.FC = () => {
             <h3 className="font-noto text-xl font-semibold text-primary ">
               Group Mentorship
             </h3>
-            <p className="font-roboto text-gray-700">
+            <p className="font-roboto text-dparacolor">
               Join a community of learners, engage in discussions, and gain
               insights from multiple mentors.
             </p>
@@ -47,7 +47,7 @@ const MentorshipPaths: React.FC = () => {
             <h3 className="font-noto text-xl font-semibold text-primary ">
               Career Development Sessions
             </h3>
-            <p className="font-roboto text-gray-700">
+            <p className="font-roboto text-dparacolor">
               Access workshops, resume reviews, and career coaching sessions to
               level up your skills.
             </p>

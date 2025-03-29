@@ -15,12 +15,12 @@ export default function Courses() {
       title: "Full Stack Development",
       description:
         "Master both frontend and backend development. Learn to build complete, scalable web applications from scratch with modern technologies.",
-      icon: <Code className="w-12 h-12 text-secondary-yellow" />,
+      icon: <Code className="w-10 h-10 text-secondary" />,
       image: FullStack,
       path: "/courses/full-stack-development",
       highlights: [
         "Frontend & Backend Development",
-        "Database Management",
+        "Database Basic",
         "API Design",
         "Cloud Deployment",
       ],
@@ -29,7 +29,7 @@ export default function Courses() {
       title: "UI/UX Design",
       description:
         "Create beautiful and user-friendly digital experiences. Learn design principles, prototyping, and user research methods.",
-      icon: <Layout className="w-12 h-12 text-secondary-yellow" />,
+      icon: <Layout className="w-10 h-10 text-secondary" />,
       image: UIUXDesign,
       path: "/courses/ui-ux-design",
       highlights: [
@@ -43,7 +43,7 @@ export default function Courses() {
       title: "Cybersecurity",
       description:
         "Protect the digital world. Learn cybersecurity fundamentals, ethical hacking, and defense strategies against cyber threats.",
-      icon: <Shield className="w-12 h-12 text-secondary-yellow" />,
+      icon: <Shield className="w-10 h-10 text-secondary" />,
       image: CyberSecurity,
       path: "/courses/cybersecurity",
       highlights: [
@@ -57,7 +57,7 @@ export default function Courses() {
       title: "Graphic Design",
       description:
         "Transform your creative vision into professional designs. Master industry-standard tools and design principles.",
-      icon: <Palette className="w-12 h-12 text-secondary-yellow" />,
+      icon: <Palette className="w-10 h-10 text-secondary" />,
       image: GraphicDesign,
       path: "/courses/graphic-design",
       highlights: [
@@ -71,7 +71,7 @@ export default function Courses() {
       title: "Database Administration",
       description:
         "Manage and optimize databases efficiently. Learn SQL, data security, and performance tuning to ensure database reliability.",
-      icon: <Database className="w-12 h-12 text-secondary-yellow" />,
+      icon: <Database className="w-10 h-10 text-secondary" />,
       image: DatabaseImg, // Unsplash image for Database
       path: "/courses/database-admin",
       highlights: [
@@ -85,7 +85,7 @@ export default function Courses() {
       title: "Microsoft Office Suite",
       description:
         "Master essential Microsoft Office tools like Word, Excel, and PowerPoint. Gain efficiency in document creation, data analysis, and presentations.",
-      icon: <FileText className="w-12 h-12 text-secondary-yellow" />,
+      icon: <FileText className="w-10 h-10 text-secondary" />,
       image: Microsoft,
       path: "/courses/microsoft-office-suite",
       highlights: [
@@ -133,7 +133,7 @@ export default function Courses() {
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="flex items-center space-x-3">
                     {course.icon}
-                    <h3 className="text-2xl font-noto font-bold">{course.title}</h3>
+                    <h3 className="text-xl font-noto font-bold">{course.title}</h3>
                   </div>
                 </div>
               </div>
@@ -157,7 +157,7 @@ export default function Courses() {
 
                 <Link 
                   to={course.path}
-                  className="inline-flex items-center font-sans justify-center w-max bg-secondary text-white py-2 px-3 rounded-md hover:bg-primary transition-colors font-semibold"
+                  className="inline-flex items-center font-sans justify-center w-max bg-secondary text-white py-2 px-3 rounded-md hover:bg-primary transition-colors hover:font-semibold"
                 >
                   Learn More
                 </Link>
@@ -168,20 +168,14 @@ export default function Courses() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg- text-white py-16"   style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${HeroBgImg})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}
-    >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Start Learning?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
+      <div className="text-white py-16"   style={{backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.8), rgba(0, 0, 90, 0.8)), url(${HeroBgImg})`,backgroundRepeat: 'no-repeat',backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-noto font-bold mb-6">Ready to Start Learning?</h2>
+          <p className="text-md font-roboto mb-8 max-w-2xl mx-auto">
             Join our community of learners and kickstart your career in technology and design.
             All courses are free and designed to help you succeed.
           </p>
-            <Link to="/admission" className="bg-white text-primary py-3 px-6 rounded-md hover:bg-secondary-yellow transition-colors font-semibold">
+            <Link to="/admission" className="bg-secondary text-white py-2 px-3 rounded-md hover:text-primary hover:bg-white transition-colors hover:font-semibold">
              Apply Now
             </Link>
         </div>

@@ -70,7 +70,7 @@ export default function HowToApply() {
           </p>
           <Link
             to="/admission"
-            className="border border-white font-sans font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            className="hover:border hover:border-white font-sans hover:bg-transparent hover:font-semibold text-xs text-white px-3 sm:px-6 py-2 bg-secondary sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
             Apply Now<ArrowRight className="ml-2" size={16} />
           </Link>
@@ -84,7 +84,7 @@ export default function HowToApply() {
           <h2 className="text-xl md:text-2xl font-noto font-semibold text-primary mb-4">
             Application Overview
           </h2>
-          <p className="text-gray-700 font-roboto text-md leading-6">
+          <p className="text-dparacolor font-roboto text-md leading-6">
             Applying to Zongea Institute of Technology is simple and
             straightforward. Follow the steps below to kickstart your journey to
             a brighter future. Make sure to prepare the required documents and
@@ -101,13 +101,13 @@ export default function HowToApply() {
             {stepsToApply.map((step, index) => (
               <div key={index} className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-white">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-secondary">
                     {index + 1}
                   </div>
                 </div>
                 <div>
                   <h3 className="text-lg font-noto font-semibold text-primary">{step.title}</h3>
-                  <p className="text-gray-700 font-roboto text-sm mt-1">{step.description}</p>
+                  <p className="text-dparacolor font-roboto text-sm mt-1">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -123,7 +123,7 @@ export default function HowToApply() {
             {commonFAQs.map((faq, index) => (
                <div key={index} className="border border-gray-200 rounded-md p-4">
                  <h4 className="text-md font-noto font-semibold text-primary">{faq.question}</h4>
-                 <p className="text-gray-700 font-roboto text-sm mt-2">{faq.answer}</p>
+                 <p className="text-dparacolor font-roboto text-sm mt-2">{faq.answer}</p>
                </div>
             ))} 
           </div>

@@ -32,7 +32,7 @@ function Statics() {
                 </div>
                 <Link
                     to="/admission"
-                    className="border border-white font-bold text-xs hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+                    className="hover:border hover:border-white hover:font-semibold hover:bg-transparent text-xs bg-secondary text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
                 >
                     Apply Now
                 </Link>

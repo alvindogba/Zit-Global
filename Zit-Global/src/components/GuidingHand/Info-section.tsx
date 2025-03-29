@@ -14,18 +14,18 @@ export default function InfoSection() {
                     
                     <h2 className="font-noto text-2xl md:text-3xl font-bold text-primary mb-6">What is the Impact & Connect Center Program?</h2>
 
-                    <ul className="mt-4 text-gray-600">
+                    <ul className="mt-4 text-dparacolor w-full">
                         <li className="flex items-center space-x-4 mb-4">
-                            <div className="w-3 h-4 bg-gray-400"></div>
-                            <p>Our Impact & Connect Center Program bridges the education gap in Liberia.</p>
+                            <div className="w-3 h-3 bg-secondary rounded-full"></div>
+                            <p className="">Our Impact & Connect Center Program bridges the education gap in Liberia.</p>
                         </li>
                         <li className="flex items-center space-x-4 mb-4">
-                            <div className="w-3 h-4 bg-gray-400"></div>
-                            <p>It creates a culture of continuous learning.</p>
+                            <div className="w-3 h-3 bg-secondary rounded-full"></div>
+                            <p className="">It creates a culture of continuous learning.</p>
                         </li>
                         <li className="flex items-center space-x-4 ">
-                            <div className="w-3 h-4 bg-gray-400"></div>
-                            <p>Graduates pay it forward by becoming educators, tutors, or mentors.</p>
+                            <div className="w-3 h-3 bg-secondary rounded-full"></div>
+                            <p className="">Graduates pay it forward by becoming educators, tutors, or mentors.</p>
                             
                         </li>
                     </ul>

@@ -37,7 +37,7 @@ const Footer = () => {
       </div>
 
       {/* Main Content - Logo Description, Links, and Buttons in One Row */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-8">
+      <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 gap-8 py-8">
         {/* Logo Description */}
         <div className="col-span-2 flex flex-col items-center">
           <p className="mt-4 font-roboto">
@@ -201,9 +201,7 @@ const Footer = () => {
             </a>
           </p>
         </div>
-
-
-{/* Buttons Section */}
+      {/* Buttons Section */}
       <div className="flex flex-col gap-1 text-primary">
         <Link
           to="/tutorship-program"
@@ -249,7 +247,7 @@ const Footer = () => {
 
       {/* Social Media Icons & Copyright */}
       <div className=" flex flex-col gap-4 md:flex-row justify-between items-center bg-primary py-4">
-        <p className="font-roboto text-[15px] text-white">Copyright Notice © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
+        <p className="font-roboto text-[15px] text-white">Copyright © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
         <div className="flex space-x-4 mt-4 md:mt-0">
           <p className="text-white">Follow Us On :</p>
           <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaFacebookF className="cursor-pointer" size={16} /></Link>

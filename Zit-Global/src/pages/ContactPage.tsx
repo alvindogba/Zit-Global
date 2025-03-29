@@ -121,7 +121,7 @@ export default function ContactPage() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:py-12">
         <h2 className="text-primary text-2xl font-noto font-bold">Get In Touch</h2>
-        <p className="text-md max-w-2xl font-roboto mb-8">Wether you have questions about our Programs, admissions, or mentorship opportunities</p>
+        <p className="text-md max-w-2xl font-roboto text-dparacolor mb-8">Wether you have questions about our Programs, admissions, or mentorship opportunities</p>
       </div>
 
       <div className='max-w-6xl mx-auto px-1 md:px-8 md:flex flex-wrap justify-between'>
@@ -131,7 +131,7 @@ export default function ContactPage() {
             <h2 className="text-primary ml-4 font-noto md:ml-0 text-2xl font-bold">Leave A Message</h2>
             <form onSubmit={handleSubmit} className="p-4">
               <div className="mb-4">
-                <label className="block text-gray-700">Name</label>
+                <label className="block text-dparacolor">Name</label>
                 <input
                   type="text"
                   name="fullName"
@@ -143,7 +143,7 @@ export default function ContactPage() {
               </div>
               
               <div className="mb-4">
-                <label className="block text-gray-700">Email</label>
+                <label className="block text-dparacolor">Email</label>
                 <input
                   type="email"
                   name="email"
@@ -155,7 +155,7 @@ export default function ContactPage() {
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700">Subject</label>
+                <label className="block text-dparacolor">Subject</label>
                 <input
                   type="text"
                   name="subject"
@@ -166,7 +166,7 @@ export default function ContactPage() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700">Message</label>
+                <label className="block text-dparacolor">Message</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -198,11 +198,11 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="text-xl font-noto font-bold mb-4">Thank You!</h2>
-                <p className='font-roboto'>Your message has been successfully sent. We will get back to you soon.</p>
+                <h2 className="text-xl font-noto text-primary font-bold mb-4">Thank You!</h2>
+                <p className='font-roboto text-dparacolor'>Your message has been successfully sent. We will get back to you soon.</p>
                 <button
                   onClick={closeModal}
-                  className="mt-4 bg-primary font-sans text-white px-6 py-2 rounded-md"
+                  className="mt-4 bg-secondary hover: font-sans text-white px-3 py-2 rounded-md"
                 >
                   Close
                 </button>
@@ -217,11 +217,11 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {contactInfoCard.map((card, index) => (
            <div key={index} className="bg-gray-100 p-4 border border-gray-200 hover:border-primary hover:shadow-lg rounded-lg text-center md:w-60">
-           <div className="w-12 text-primary border border-primary h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3">
+           <div className="w-12 text-secondary border border-primary h-12 rounded-full bg-primary-light flex justify-center items-center mx-auto mb-3">
              {card.icon}
            </div>
            <h4 className="text-md font-noto font-bold mb-3 text-primary">{card.label}</h4>
-           <div className="text-gray-600">
+           <div className="text-dparacolor">
              <p className='font-roboto'>{card.description1}</p>
              <p className='font-roboto'>{card.description2}</p>
              <p className='font-roboto'>{card.description3}</p>
@@ -232,19 +232,19 @@ export default function ContactPage() {
           </div>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-1 pt-8">
             <h2 className="text-primary font-noto text-2xl font-bold mb-4">Social Media</h2>
-            <p className="text-md font-roboto max-w-2xl mb-4">At Zongea Institute of Technology (ZIT), we believe in a Liberia where everyone has the opportunity to unlock their potential, acquire</p>
+            <p className="text-md font-roboto text-dparacolor max-w-2xl mb-4">At Zongea Institute of Technology (ZIT), we believe in a Liberia where everyone has the opportunity to unlock their potential, acquire</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Link to="https://www.facebook.com/ZongeaInstituteOfTechnology/" target="_blank">
-                <FaFacebookF className="text-primary cursor-pointer" size={18} />
+                <FaFacebookF className="text-primary hover:text-secondary cursor-pointer" size={18} />
               </Link>
               <Link to="https://www.instagram.com/zongea_institute_of_technology/" target="_blank">
-                <FaInstagram className="text-primary cursor-pointer" size={18} />
+                <FaInstagram className="text-primary hover:text-secondary cursor-pointer" size={18} />
               </Link>
               <Link to="https://www.linkedin.com/school/zongea-institute-of-technology/" target="_blank">
-                <FaLinkedinIn className="text-primary cursor-pointer" size={18} />
+                <FaLinkedinIn className="text-primary hover:text-secondary cursor-pointer" size={18} />
               </Link>
               <Link to="https://github.com/zongea-institute-of-technology" target="_blank">
-                <FaGithub className="text-primary cursor-pointer" size={18} />
+                <FaGithub className="text-primary hover:text-secondary cursor-pointer" size={18} />
               </Link>
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function ContactPage() {
       <div
         className="text-white py-16"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.6), rgba(0, 0, 90, 0.6)), url(${MotivationBgImg})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 90, 0.8), rgba(0, 0, 90, 0.8)), url(${MotivationBgImg})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -290,7 +290,7 @@ export default function ContactPage() {
             {/* Donate Button */}
             <Link
               to="/donate"
-              className="w-full sm:w-fit bg-white font-sans text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="w-full sm:w-fit bg-white font-sans hover:bg-primary hover:text-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
             >
               Donate Today <ArrowRight className="ml-2" size={16} />
             </Link>

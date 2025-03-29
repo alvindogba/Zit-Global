@@ -85,15 +85,15 @@ const AdmissionSuccess = () => {
               </svg>
             </div>
             <div className="text-center mt-4">
-              <p className="text-sm font-roboto text-gray-600 mb-2">Application Photo:</p>
+              <p className="text-sm font-roboto text-dparacolor mb-2">Application Photo:</p>
               <img
                 src={`${import.meta.env.VITE_BACKEND_URL}/${admission.applicantImage}`}
                 alt="Applicant"
                 className="w-32 h-32 rounded-lg object-cover mx-auto border"
               />
             </div>
-            <h1 className="text-3xl font-bold font-noto text-gray-900 mb-2">Admission Submitted Successfully!</h1>
-            <p className="text-gray-600 font-roboto">
+            <h1 className="text-3xl font-bold font-noto text-primary mb-2">Admission Submitted Successfully!</h1>
+            <p className="text-dparacolor font-roboto">
               Congratulations, {admission.firstName}! Your application has been successfully received.
             </p>
           </div>
@@ -117,8 +117,8 @@ const AdmissionSuccess = () => {
               </div>
               <div className="ml-4">
              
-                <h3 className="text-lg font-noto font-semibold text-gray-900 mb-2">Next Steps</h3>
-                <ul className="list-disc pl-4 space-y-2 text-gray-700">
+                <h3 className="text-lg font-noto font-semibold text-primary mb-2">Next Steps</h3>
+                <ul className="list-disc pl-4 space-y-2 text-dparacolor">
                   <li className='font-roboto'>
                     We've sent a confirmation email to <span className="font-medium">{admission.email}</span>. 
                     Please check your inbox <strong>(including spam folder)</strong>.
@@ -139,25 +139,25 @@ const AdmissionSuccess = () => {
           <div className="border-t border-gray-200 pt-8">
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-medium font-noto text-gray-900 mb-2">Admission Details</h3>
+                <h3 className="text-lg font-medium font-noto text-primary mb-2">Admission Details</h3>
                 <div className="bg-gray-50 rounded-lg p-6 space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600 font-roboto">Applicant</span>
-                    <span className="text-gray-900 font-medium font-roboto">
+                    <span className="text-dparacolor font-medium font-roboto">
                       {admission.firstName} {admission.lastName}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 font-roboto">Application Number</span>
-                    <span className="text-gray-900 font-medium font-roboto">{admission.applicationNumber}</span>
+                    <span className="text-dparacolor font-medium font-roboto">{admission.applicationNumber}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 font-roboto">Program</span>
-                    <span className="text-gray-900 font-medium font-roboto">{admission.desiredProgram}</span>
+                    <span className="text-dparacolor font-medium font-roboto">{admission.desiredProgram}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 font-roboto">Date Applied</span>
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-dparacolor font-medium">
                       {new Date(admission.createdAt).toLocaleDateString()}
                     </span>
                   </div>
@@ -167,7 +167,7 @@ const AdmissionSuccess = () => {
               <div className="text-center pt-6">
                 <Link
                   to="/"
-                  className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                  className="inline-block bg-secondary text-white px-3 py-2 rounded-md font-sans font-medium hover:bg-primary transition-colors"
                 >
                   Go to Home Page
                 </Link>

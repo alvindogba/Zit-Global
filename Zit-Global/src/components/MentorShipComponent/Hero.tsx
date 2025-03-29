@@ -28,24 +28,11 @@ const Hero: React.FC = () => {
 
         <div className="flex flex-wrap gap-4">
           <Link to='/icc/mentor'
-            className="bg-transparent border-2 border-white  text-white font-semibold px-6 py-3 rounded hover:bg-white hover:text-primary"
+            className="bg-secondary font-sans hover:bg-primary hover:font-semibold text-xs text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
             Become a Mentor
           </Link>
-          {/* <button
-            className="
-              bg-primary
-              text-white 
-              font-semibold 
-              px-6 
-              py-3 
-              rounded 
-              hover:bg-white
-              hover:text-primary
-            "
-          >
-            Find a Mentor
-          </button> */}
+          
         </div>
       </div>
     </section>

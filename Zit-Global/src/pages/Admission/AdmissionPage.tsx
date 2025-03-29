@@ -188,7 +188,7 @@ function AdmissionPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Last Name</label>
+          <label className="block text-sm font-medium font-roboto text-primary">Last Name</label>
           <input
             type="text"
             name="lastName"
@@ -202,7 +202,7 @@ function AdmissionPage() {
 
       <div className='grid grid-cols-2 gap-4'>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Date of Birth</label>
+          <label className="block text-sm font-medium font-roboto text-primary">Date of Birth</label>
           <input
             type="date"
             name="dateOfBirth"
@@ -213,7 +213,7 @@ function AdmissionPage() {
           />
         </div>
         <div className=''>
-          <label className="block text-sm font-medium text-gray-700">Gender</label>
+          <label className="block text-sm font-medium font-roboto text-primary">Gender</label>
           <select
             name="gender"
             value={formData.gender}
@@ -230,7 +230,7 @@ function AdmissionPage() {
 
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-gray-700 text-sm font-medium mb-2">Identification Type</label>
+          <label className="block text-primary font-roboto text-sm font-medium mb-2">Identification Type</label>
           <select
             name="identificationType"
             value={formData.identificationType}
@@ -246,7 +246,7 @@ function AdmissionPage() {
           </select>
         </div>
         <div>
-          <label className="block text-gray-700 text-sm font-medium mb-2">Identification Number</label>
+          <label className="block text-primary font-roboto text-sm font-medium mb-2">Identification Number</label>
           <input
             type="text"
             name="identificationNumber"
@@ -259,7 +259,7 @@ function AdmissionPage() {
 
       <div className='grid grid-cols-2 gap-4'>
         <div>
-          <label className="block text-primary text-sm font-medium mb-2">Application Image</label>
+          <label className="block text-primary font-roboto text-sm font-medium mb-2">Application Image</label>
           <input
             type="file"
             name="applicantImage"
@@ -268,7 +268,7 @@ function AdmissionPage() {
           />
         </div>
         <div>
-          <label className="block text-primary text-sm font-medium mb-2">Nationality</label>
+          <label className="block text-primary font-roboto text-sm font-medium mb-2">Nationality</label>
           <input
             type="text"
             name="nationality"
@@ -281,7 +281,7 @@ function AdmissionPage() {
 
       <div className='grid grid-cols-2 gap-4'>
         <div>
-          <p className="block text-primary text-sm font-medium mb-2">Do you have a personal computer?</p>
+          <p className="block text-primary text-sm font-roboto font-medium mb-2">Do you have a personal computer?</p>
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
               <input
@@ -292,7 +292,7 @@ function AdmissionPage() {
                 onChange={handleInputChange}
                 className={`${checkboxClassName} rounded-full`}
               />
-              <span className="text-gray-700 text-sm">YES</span>
+              <span className="text-dparacolor text-sm">YES</span>
             </label>
             <label className="flex items-center space-x-2">
               <input
@@ -303,13 +303,13 @@ function AdmissionPage() {
                 onChange={handleInputChange}
                 className={`${checkboxClassName} rounded-full`}
               />
-              <span className="text-gray-700 text-sm">NO</span>
+              <span className="text-dparacolor text-sm">NO</span>
             </label>
           </div>
         </div>
 
         <div>
-          <label className="block text-gray-700 text-sm font-medium mb-2">Desired Program</label>
+          <label className="block text-primary text-sm font-medium mb-2">Desired Program</label>
           <select
             name="desiredProgram"
             value={formData.desiredProgram}
@@ -572,8 +572,8 @@ function AdmissionPage() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-8xl md:max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-noto font-bold text-gray-900">ZIT Student Admission Form</h2>
-          <p className="mt-2 text-sm font-roboto text-gray-600">
+          <h2 className="text-3xl font-noto font-bold text-primary">ZIT Student Admission Form</h2>
+          <p className="mt-2 text-sm font-roboto text-dparacolor">
             {step === 1 && "Step 1: Personal Information"}
             {step === 2 && "Step 2: Educational Background"}
             {step === 3 && "Step 3: Contact Information"}
@@ -592,7 +592,7 @@ function AdmissionPage() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="flex items-center font-sans px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                className="flex items-center font-sans px-3 py-2 border border-secondary rounded-md shadow-sm text-sm font-medium text-primary bg-white hover:bg-primary hover:text-white"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Previous
@@ -602,7 +602,7 @@ function AdmissionPage() {
               <button
                 type="button"
                 onClick={nextStep}
-                className="ml-auto flex items-center font-sans px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/80"
+                className="ml-auto flex items-center font-sans px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-secondary"
               >
                 Next
                 <ChevronRight className="ml-2 h-4 w-4" />

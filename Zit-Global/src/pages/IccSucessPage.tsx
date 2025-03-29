@@ -42,11 +42,11 @@ const SuccessPage = () => {
         <h1 className="text-2xl font-bold text-primary mt-4">
           Registration Successful!
         </h1>
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-dparacolor font-roboto">
           Thank you, <span className="font-medium">{student.fullName}</span>,
           for registering for our Tutoring Program.
         </p>
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-dparacolor font-roboto">
           A confirmation email has been sent to{' '}
           <span className="font-medium">{student.email}</span> for futher instructions.
         </p>
