@@ -63,7 +63,7 @@ export default (sequelize) => {
       },
     },
     {
-      tableName: 'parents',
+      tableName: 'Parents',
       timestamps: true, // adds createdAt and updatedAt
     }
   );

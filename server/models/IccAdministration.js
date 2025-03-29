@@ -59,7 +59,7 @@ export default (sequelize) => {
       },
     },
     {
-      tableName: 'schoolAdmins',
+      tableName: 'SchoolAdmins',
       timestamps: true, // Automatically adds createdAt and updatedAt fields
     }
   );

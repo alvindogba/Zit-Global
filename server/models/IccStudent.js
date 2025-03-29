@@ -64,7 +64,7 @@ export default (sequelize) => {
       },
     },
     {
-      tableName: 'students',
+      tableName: 'Students',
       timestamps: true, // adds createdAt and updatedAt
     }
   );
