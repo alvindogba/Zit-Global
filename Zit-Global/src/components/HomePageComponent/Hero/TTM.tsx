@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-import mentorImage from "../../../asset/images/tutoring-1.jpg";
+import mentorImage from "../../../asset/images/medium-shot-smiley-father-kid-home.jpg";
 import tutorImage from "../../../asset/images/female-doctor-consoling-afro-american-patient.jpg";
-import teachImage from "../../../asset/images/close-up-happy-man-clapping.jpg";
+import teachImage from "../../../asset/images/A teacher.jpg";
 import { Link } from "react-router-dom";
 
 export default function TTM() {

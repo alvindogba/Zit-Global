@@ -3,15 +3,15 @@ import { Section } from "../Section";
 import { GlassCard } from "../GlassCard";
 import { BackgroundMesh } from "../BackgroundMesh";
 import * as variants from "../../animations/variants";
-import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import {
   FaServer,
   FaLayerGroup,
-  FaPaintBrush,
   FaShieldAlt,
   FaPalette,
 } from "react-icons/fa";
+import { TiVendorMicrosoft } from "react-icons/ti";
+import { SiMaterialdesignicons } from "react-icons/si";
 
 const ProgramsWeOffer = () => {
   const programs = [
@@ -19,7 +19,7 @@ const ProgramsWeOffer = () => {
       title: "Graphic Design",
       description:
         "Transform your creative vision into professional designs. Master industry-standard tools and design principles.",
-      icon: <FaPaintBrush className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
+      icon: <FaPalette className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/graphic-design",
     },
     {
@@ -40,7 +40,7 @@ const ProgramsWeOffer = () => {
       title: "UI/UX Design",
       description:
         "Design intuitive and engaging user interfaces and experiences with modern tools and techniques.",
-      icon: <FaPalette className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
+      icon: <SiMaterialdesignicons className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/ui-ux-design",
     },
     {
@@ -54,7 +54,7 @@ const ProgramsWeOffer = () => {
       title: "Microsoft Office Suite",
       description:
         "Microsoft Word, Excel, PowerPoint, and Outlook for professional productivity.",
-      icon: <DocumentTextIcon className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
+      icon: <TiVendorMicrosoft className="w-10 h-10 text-secondary mb-4 group-hover:text-white" />,
       href: "/courses/microsoft-office",
     },
   ];

@@ -5,11 +5,11 @@ export default function StudyAtZit() {
  
 
   return (
-    <div className=" font-sans text-dparacolor">
-      <section className="py-16 md:px-32 px-2 bg-gray-100 relative">
-        <div className="flex flex-col justify-center text-center md:text-left">
+    <div className="max-w-8xl mx-auto font-sans bg-white text-dparacolor">
+      <section className="py-16 lg:px-32 md:px-60 px-2 bg-gray-100 relative">
+        <div className="flex flex-col justify-center text-center lg:text-left">
           <h2 className="font-noto text-2xl font-bold text-primary">Study at ZIT</h2>
-          <p className="mt-2 font-roboto text-dparacolor md:w-[37rem]  px-6">
+          <p className="mt-2 font-roboto text-dparacolor md:w-[44rem] md:px-0  px-6">
             Unlock job-ready skills that open doors in today's tech landscape. No other program matches the depth and impact of our hands-on training in technology.
           </p>
 
@@ -19,10 +19,8 @@ export default function StudyAtZit() {
           />
             {/* Right Content (Moves Below on Small Screens) */}
             <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
-              {/* Navigation Controls */}
-
               {/* Overlayed Content */}
-              <div className="flex flex-col justify-center gap-4 px-10 py-8 lg:absolute lg:left-[50%] lg:top-[20%] bg-primary text-white w-full h-auto sm:w-[30rem]   shadow-lg mt-6 sm:mt-0">
+              <div className="flex flex-col justify-center gap-4 px-10 py-8 lg:absolute md:left-[45%] lg:left-[60%] lg:top-[20%] bg-primary text-white w-full h-auto sm:w-[30rem]   shadow-lg mt-6 sm:mt-0">
                 <h3 className="font-semibold font-noto text-lg">Personalized Support</h3>
                 <p className="mt-2 font-roboto text-sm">
                   We provide tailored support to ensure every learner thrives. From one-on-one tutoring sessions to small-group discussions, our tutors are dedicated to helping you understand even the most complex topics.

@@ -5,14 +5,15 @@ import image1 from "../../../asset/images/Alfred.jpg";
 import image2 from "../../../asset/images/Abel B. Winn.jpg";
 import image3 from "../../../asset/images/Paulfina.jpg";
 import image4 from "../../../asset/images/Jarkuno.jpg";
+import image5 from "../../../asset/images/ZIT-LOGO-White.png"
 
 const SuccessStory = () => {
     const students = [
         { 
-            name: "Alfred Weah", 
-            message: "Learning starts with structured lessons led by experienced instructors. We focus on delivering hands-on, practical training in technology, ensuring students gain in-depth knowledge of essential tools and concepts.", 
-            role: "Graphic Design", 
-            image: image1 
+            name: "Omega B. Momo", 
+            message: "ZIT’s comprehensive Web Development program gave me a solid foundation in coding and web design. Being here made a difference…", 
+            role: "Web Development", 
+            image: image5 
         },
         { 
             name: "Abel B. Winn", 
@@ -22,27 +23,21 @@ const SuccessStory = () => {
         },
         { 
             name: "William Jarkuno", 
-            message: "The Software Development course was a game-changer for me! The practical approach helped me land my first developer job.", 
-            role: "Software Developer", 
+            message: "The Graphic Design program at ZIT provided me with the technical and creative skills", 
+            role: "Graphic Design", 
             image: image4 
         },
         { 
-            name: "Paulfina Neeo", 
-            message: "The Cyber Security course gave me a deep understanding of digital systems and how to protect them.", 
-            role: "Graphic Design", 
-            image: image3 
+            name: "Evelyn Yoko", 
+            message: "I can now use Microsoft Office Suite like a pro because of the ZIT program. I’m thankful to ZIT for the skills I gained.", 
+            role: "Microsoft Office Suite", 
+            image: image5
         },
         { 
             name: "Alfred Weah", 
             message: "Learning starts with structured lessons led by experienced instructors. We focus on delivering hands-on, practical training in technology, ensuring students gain in-depth knowledge of essential tools and concepts.", 
             role: "Graphic Design", 
             image: image1 
-        },
-        { 
-            name: "Abel B. Winn", 
-            message: "Learning starts with structured lessons led by experienced instructors. We focus on hands-on, practical training in tech, ensuring students gain in-depth knowledge and concepts.", 
-            role: "Graphic Design", 
-            image: image2 
         },
         { 
             name: "William Jarkuno", 
@@ -52,7 +47,7 @@ const SuccessStory = () => {
         },
         { 
             name: "Paulfina Neeo", 
-            message: "The Cyber Security course gave me a deep understanding of digital systems and how to protect them.", 
+            message: "ZIT’s Design program gave me the skills to create my own projects and collaborate with others. The practical approach and ongoing support helped me push my boundaries.", 
             role: "Graphic Design", 
             image: image3 
         },

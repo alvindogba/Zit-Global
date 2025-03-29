@@ -2,8 +2,8 @@ import { BackgroundMesh } from '../BackgroundMesh';
 import { Section } from '../Section';
 import { GlassCard } from '../GlassCard';
 import { FaArrowsDownToPeople } from "react-icons/fa6";
-  import { LiaChalkboardTeacherSolid } from "react-icons/lia";
-  import { FaPeoplePulling } from "react-icons/fa6";
+import { FaPeoplePulling } from "react-icons/fa6";
+import { GiTeacher } from "react-icons/gi";
 
 
 
@@ -39,7 +39,7 @@ const OurApproach = ()=>{
               title: 'Teach',
               description: 'Lay a Strong Foundation',
               note: "Deliver structured, high-quality tech education that empowers students with essential knowledge, critical thinking skills, and hands-on experience to excel in the digital world.",
-              icon: LiaChalkboardTeacherSolid,
+              icon: GiTeacher,
             },
             {
               title: 'Tutor',

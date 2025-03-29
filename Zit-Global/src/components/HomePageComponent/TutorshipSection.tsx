@@ -1,6 +1,6 @@
 import image1 from "../../asset/images/l am a mentor.jpg";
 import image2 from "../../asset/images/l am a tutor.jpg";
-import image3 from "../../asset/images/a school amdin.jpg";
+import image3 from "../../asset/images/I am a.jpg";
 import image4 from "../../asset/images/l am student copy.jpg";
 import { Link } from "react-router-dom";
 
@@ -56,7 +56,7 @@ export default function TutorshipSection() {
             <img
               src={card.img}
               alt={card.label}
-              className="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
             />
             {/* Overlay with Text */}
             <div className="absolute inset-0 bg-primary/40 flex flex-col justify-end items-baseline pl-4  pb-4 text-center">
