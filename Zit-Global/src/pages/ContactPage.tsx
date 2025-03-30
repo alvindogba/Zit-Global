@@ -230,7 +230,7 @@ export default function ContactPage() {
            </div>
          ))}
           </div>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-1 py-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <h2 className="text-primary font-noto text-2xl font-bold mb-4">Social Media</h2>
             <p className="text-md font-roboto text-dparacolor max-w-2xl mb-4">Zongea Institute of Technology (ZIT) is a forward-thinking educational institution dedicated to equipping individuals with the knowledge and skills needed to thrive in today’s fast-evolving world. Our mission is to Teach, Tutor, and Mentor (TTM) learners, empowering them to succeed in technology, business, and innovation.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
