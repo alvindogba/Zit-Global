@@ -56,7 +56,7 @@ export const createSchoolAdmin = async (req, res) => {
     });
 
     // Send confirmation email to user
-    await sendSchoolAdminConfirmation(email, fullName);
+    // await sendSchoolAdminConfirmation(email, fullName);
 
     // Send notification email to admin
     // await sendAdminNotification({
@@ -143,7 +143,7 @@ export const createStudent = async (req, res) => {
       });
   
       // Send confirmation email to user
-      await sendStudentConfirmation(email, fullName);
+      // await sendStudentConfirmation(email, fullName);
   
       // Send notification email to admin
     //   await sendAdminNotification({
@@ -229,7 +229,7 @@ export const createParent = async (req, res) => {
       });
   
       // Send confirmation email to user
-      await sendParentConfirmation(email, fullName);
+      // await sendParentConfirmation(email, fullName);
   
       // Send notification email to admin
     //   await sendAdminNotification({
@@ -307,7 +307,7 @@ export const createMentor = async (req, res) => {
       });
   
       // Send confirmation email to user
-      await sendMentorConfirmation(email, fullName);
+      // await sendMentorConfirmation(email, fullName);
   
       // Send notification email to admin
     //   await sendAdminNotification({
