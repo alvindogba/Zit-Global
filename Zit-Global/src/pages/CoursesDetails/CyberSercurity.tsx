@@ -203,7 +203,7 @@ export default function CyberSecurityDetailPage() {
              
               <Link
               to="/admission"
-              className="bg-secondary font-bold text-xs font-sans hover:px-6 hover:py-2 text-white px-2 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="bg-secondary hover:bg-primary hover:font-bold text-xs font-sans hover:px-6 hover:py-2 text-white px-2 sm:px-6 py-1 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
               >
               Apply Now 
               </Link>

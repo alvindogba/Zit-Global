@@ -116,7 +116,7 @@ export default function FullStackDetailPage() {
           {/* Left Column - Course Details */}
           <div className="lg:col-span-2 space-y-8">
             {/* About Section */}
-            <section className="bg-white rounded-lg shadow-md p-6">
+            <section className="bg-white rounded-lg p-6">
               <h2 className="text-xl font-bold text-primary mb-4">About This Course</h2>
               <p className="text-dparacolor text-sm">
                 Our Full Stack Development course provides comprehensive training in both frontend and backend technologies.
@@ -126,7 +126,7 @@ export default function FullStackDetailPage() {
             </section>
 
             {/* Certification Section */}
-            <section className="bg-white rounded-lg shadow-md p-6">
+            <section className="bg-white rounded-lg p-6">
               <h2 className="text-xl font-bold text-primary mb-4">Certification</h2>
               <p className="text-dparacolor text-sm">
                 Upon completion, you'll receive a Full Stack Developer Certification from Zonges Institute of Technology,
@@ -135,7 +135,7 @@ export default function FullStackDetailPage() {
             </section>
 
             {/* Requirements Section */}
-            <section className="bg-white rounded-lg shadow-md p-6">
+            <section className="bg-white rounded-lg p-6">
               <h2 className="text-xl font-bold text-primary mb-4">Requirements</h2>
               <ul className="space-y-3">
                 {requirements.map((req, index) => (
@@ -148,7 +148,7 @@ export default function FullStackDetailPage() {
             </section>
 
             {/* Curriculum Section */}
-            <section className="bg-white rounded-lg shadow-md p-6">
+            <section className="bg-white rounded-lg p-6">
               <h2 className="text-xl font-bold text-primary mb-6">Curriculum</h2>
               <div className="space-y-4">
                 {curriculumSections.map((section, index) => (
@@ -195,11 +195,11 @@ export default function FullStackDetailPage() {
 
           {/* Right Column - Course Info Card */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
+            <div className="bg-white rounded-lg p-6 sticky top-6">
               <h3 className="text-xl font-bold text-primary mb-6">This Course is Free</h3>
               <Link
               to="/admission"
-              className="bg-secondary hover:font-bold text-xs text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="bg-secondary hover:bg-primary hover:font-bold text-xs text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
               >
               Apply Now 
               </Link>

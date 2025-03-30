@@ -178,7 +178,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="border border-primary font-sans border-b-2 text-primary px-4 py-2 rounded-md flex justify-center items-center"
+                className="bg-secondary font-sans  text-white px-4 py-2 rounded-md flex justify-center items-center"
               >
                 {isSubmitting ? (
                   <div className="spinner-border animate-spin h-5 w-5 border-b-2 border-white rounded-full"></div>
@@ -230,7 +230,7 @@ export default function ContactPage() {
            </div>
          ))}
           </div>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-1 pt-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <h2 className="text-primary font-noto text-2xl font-bold mb-4">Social Media</h2>
             <p className="text-md font-roboto text-dparacolor max-w-2xl mb-4">Zongea Institute of Technology (ZIT) is a forward-thinking educational institution dedicated to equipping individuals with the knowledge and skills needed to thrive in today’s fast-evolving world. Our mission is to Teach, Tutor, and Mentor (TTM) learners, empowering them to succeed in technology, business, and innovation.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
