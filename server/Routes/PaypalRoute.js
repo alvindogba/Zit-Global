@@ -20,11 +20,12 @@ paypalRouter.post("/save-donation",  async(req, res) => {
   try {
     const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
     const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+    const PAYPAL_API= process.env.PAYPAL_API;
     const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_SECRET}`).toString("base64");
 
     // Step 1: Get PayPal Access Token
     const tokenResponse = await axios.post(
-      "https://www.paypal.com/v1/oauth2/token",
+    ` ${PAYPAL_API}/v1/oauth2/token`,
       "grant_type=client_credentials",
       {
         headers: {
@@ -38,7 +39,7 @@ paypalRouter.post("/save-donation",  async(req, res) => {
 console.log(accessToken)
     // Step 2: Verify PayPal Transaction
     const paypalResponse = await axios.get(
-      `https://www.paypal.com/v2/checkout/orders/${transactionId}`,
+      `${PAYPAL_API}/v2/checkout/orders/${transactionId}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
