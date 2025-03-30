@@ -8,17 +8,17 @@ export default function TeachSomeone() {
     {
       check: checkMark,
       title: "Breaking Down Barriers",
-      description: "We established ZIT with a transformative vision: to break down barriers and open doors for all Liberians through high-quality, accessible, and free education."
+      description: "We established ZIT with a bold vision: to remove obstacles and create opportunities through high-quality, tuition-free education for all regardless of background or circumstance."
     },
     {
       check: checkMark,
       title: "Empowering Through Education",
-      description: "Our unique approach—<span class='text-bold text-primary'>Teach, Tutor, Mentor (TTM)</span>— is designed to support students at every stage of their learning journey, empowering them to thrive in a world that is increasingly driven by technology and innovation."
+      description: "Our unique approach <span class='text-bold text-primary'>Teach, Tutor, Mentor (TTM)</span> is designed to support students at every stage of their learning journey, empowering them to thrive in a world that is increasingly driven by technology and innovation."
     },
     {
       check: checkMark,
       title: "Building a Prosperous Future",
-      description: "We established ZIT with a transformative vision: to break down barriers and open doors for all Liberians through high-quality, accessible, and free education."
+      description: "Education shouldn’t be a privilege. By making learning free and inclusive, we’re not just transforming individuals, we’re strengthening communities and economies worldwide."
     }
   ];
 
@@ -27,7 +27,7 @@ export default function TeachSomeone() {
     {/* Left Side */}
     <div className="w-full md:w-2/5 md:text-left">
       <h2 className="font-noto text-xl md:text-2xl font-bold text-primary md:w-[130%] w-[90%] md:my-2 mb-4">
-        Why Zongea Institute of Technology Exists & Why Education Is Free for All Liberians
+      Why Zongea Institute of Technology Exists & Our Commitment to Accessible Education
       </h2>
   
       {/* Loop through teachingPoints array */}

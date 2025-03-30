@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
-import LeftImg from '../../asset/images/herobg2.jpg'
+import LeftImg from '../../asset/images/I am a.jpg'
 import ScrollBackHome from "../Models/ScrollBackHome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -123,11 +123,11 @@ export default function AdministrationModel() {
               className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-auto mx-auto"
               alt="Parent"
             />
-            <h3 className="font-noto text-lg sm:text-xl md:text-2xl lg:text-h3 text-center lg:text-left">
-              Every Dollar Counts <br /> Toward changing Life
+            <h3 className="font-noto text-lg sm:text-xl md:text-2xl text-primary lg:text-h3 text-center lg:text-left">
+              Join Our Administrative Team <br /> Support Education Behind the Scenes
             </h3>
-            <p className="font-roboto text-xs sm:text-sm md:text-base text-center lg:text-left">
-              Your gifts help us provide free, life-changing tech education to students in Liberia, equipping them with the skills to secure meaningful employment and break the circle of poverty.
+            <p className="font-roboto text-xs text-dparacolor sm:text-sm md:text-base text-center lg:text-left">
+              Play a vital role in keeping our programs running smoothly. From coordination to student support, your contributions will help create an efficient and impactful learning environment.
             </p>
           </div>
 
@@ -187,7 +187,7 @@ export default function AdministrationModel() {
               </div>
 
               {/* Navigation Buttons */}
-              <div className="border-t pt-4 sm:pt-6 mt-4 sm:mt-6">
+              <div className=" md:pt-0 sm:pt-6 md:mt-0 sm:mt-6">
                 <div className="flex justify-between">
                   {currentStep > 1 && (
                     <button

@@ -46,7 +46,7 @@ const UpcomingEvents: React.FC = () => {
   return (
     <section className="py-12 bg-gray-100">
       <div className="container mx-auto text-left">
-        <h2 className="text-3xl font-noto font-bold text-primary text-center">Our upcoming Events</h2>
+        <h2 className="text-3xl font-noto font-bold text-primary text-center">Our News & Events</h2>
         <p className="text-dparacolor font-roboto mt-2 mb-8 text-center">
           Stay Informed: News & Insights from Zongea Institute of Technology
         </p>

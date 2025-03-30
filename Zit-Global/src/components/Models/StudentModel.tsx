@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
-import LeftImg from '../../asset/images/herobg2.jpg'
+import LeftImg from '../../asset/images/l am student copy.jpg'
 import ScrollBackHome from "../Models/ScrollBackHome";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -127,11 +127,11 @@ export default function StudentModel() {
         className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-auto mx-auto" 
         alt="Parent" 
       />
-      <h3 className="font-noto text-lg sm:text-xl md:text-2xl lg:text-h3 text-center lg:text-left">
-        Every Dollar Counts <br /> Toward changing Life
+      <h3 className="font-noto text-lg sm:text-xl md:text-2xl text-primary font-bold lg:text-h3 text-center lg:text-left">
+        Start Your Learning <br /> Journey Today
       </h3>
-      <p className="font-roboto text-xs sm:text-sm md:text-base text-center lg:text-left">
-        Your gifts help us provide free, life-changing tech education to students in Liberia, equipping them with the skills to secure meaningful employment and break the circle of poverty.
+      <p className="font-roboto text-xs text-dparacolor sm:text-sm md:text-base text-center lg:text-left">
+      Ready to gain new skills and grow your career? Apply as a student and access high quality education, expert guidance, and mentorship to help you reach your full potential.
       </p>
     </div>
 
@@ -150,7 +150,7 @@ export default function StudentModel() {
                 <InputField label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <InputField label="Date of Birth" name="dob" type="date" value={formData.dob} onChange={handleChange} required />
-                  <SelectField label="Gender" name="gender" value={formData.gender} onChange={handleChange} options={['Male', 'Female', 'Prefer not to say']} required />
+                  <SelectField label="Gender" name="gender" value={formData.gender} onChange={handleChange} options={['Male', 'Female']} required />
                 </div>
                 <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
                 <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} />
@@ -189,7 +189,7 @@ export default function StudentModel() {
           </div>
           
            {/* Navigation Buttons */}
-           <div className="border-t pt-4 sm:pt-6 mt-4 sm:mt-6">
+           <div className=" md:pt-0 sm:pt-6 md:mt-0 sm:mt-6">
                 <div className="flex justify-between">
                   {currentStep > 1 && (
                     <button
@@ -290,7 +290,7 @@ const CheckboxGroup = ({ label, options, selected, onChange }: any) => (
     <div className="flex flex-wrap gap-4">
       {options.map((option: string) => (
         <label key={option} className="flex items-center gap-2 cursor-pointer">
-          <input 
+          <input
             type="checkbox" 
             className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary" 
             value={option}

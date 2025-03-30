@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto px-4">
-        <h1 className="font-noto text-3xl md:text-4xl font-bold text-white mb-8 md:w-[50%]">
+        <h1 className="font-noto text-2xl md:text-3xl font-bold text-white mb-8 md:w-[50%]">
           Empower Learners Through Personalized Tutoring
         </h1>
         <div className="flex flex-wrap gap-4">

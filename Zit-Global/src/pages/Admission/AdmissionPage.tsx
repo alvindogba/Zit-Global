@@ -160,7 +160,7 @@ function AdmissionPage() {
     <div className="flex justify-center mb-8">
       {[1, 2, 3].map((num) => (
         <div key={num} className="flex items-center">
-          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= num ? 'bg-primary text-white' : 'bg-gray-200 text-gray-600'}`}>
+          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${step >= num ? 'bg-primary text-white' : 'bg-gray-200 text-secondary'}`}>
             {num === 1 && <User size={20} />}
             {num === 2 && <BookOpen size={20} />}
             {num === 3 && <Phone size={20} />}
@@ -177,7 +177,7 @@ function AdmissionPage() {
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-roboto font-medium text-gray-700">First Name</label>
+          <label className="block text-sm font-roboto font-medium text-dparacolor">First Name</label>
           <input
             type="text"
             name="firstName"
@@ -188,7 +188,7 @@ function AdmissionPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium font-roboto text-primary">Last Name</label>
+          <label className="block text-sm font-medium font-roboto text-dparacolor">Last Name</label>
           <input
             type="text"
             name="lastName"
@@ -202,7 +202,7 @@ function AdmissionPage() {
 
       <div className='grid grid-cols-2 gap-4'>
         <div>
-          <label className="block text-sm font-medium font-roboto text-primary">Date of Birth</label>
+          <label className="block text-sm font-medium font-roboto text-dparacolor">Date of Birth</label>
           <input
             type="date"
             name="dateOfBirth"
@@ -213,7 +213,7 @@ function AdmissionPage() {
           />
         </div>
         <div className=''>
-          <label className="block text-sm font-medium font-roboto text-primary">Gender</label>
+          <label className="block text-sm font-medium font-roboto text-dparacolor">Gender</label>
           <select
             name="gender"
             value={formData.gender}
@@ -230,12 +230,13 @@ function AdmissionPage() {
 
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-primary font-roboto text-sm font-medium mb-2">Identification Type</label>
+          <label className="block text-dparacolor font-roboto text-sm font-medium mb-2">Identification Type</label>
           <select
             name="identificationType"
             value={formData.identificationType}
             onChange={handleInputChange}
             className={inputClassName}
+            required
           >
             <option value="" disabled>Select type</option>
             <option value="birth-certificate">Birth Certificate</option>
@@ -246,35 +247,38 @@ function AdmissionPage() {
           </select>
         </div>
         <div>
-          <label className="block text-primary font-roboto text-sm font-medium mb-2">Identification Number</label>
+          <label className="block text-dparacolor font-roboto text-sm font-medium mb-2">Identification Number</label>
           <input
             type="text"
             name="identificationNumber"
             value={formData.identificationNumber}
             onChange={handleInputChange}
             className={inputClassName}
+            required
           />
         </div>
       </div>
 
       <div className='grid grid-cols-2 gap-4'>
         <div>
-          <label className="block text-primary font-roboto text-sm font-medium mb-2">Application Image</label>
+          <label className="block text-dparacolor font-roboto text-sm font-medium mb-2">Application Image</label>
           <input
             type="file"
             name="applicantImage"
             onChange={handleFileChange}
             className={inputClassName}
+            required
           />
         </div>
         <div>
-          <label className="block text-primary font-roboto text-sm font-medium mb-2">Nationality</label>
+          <label className="block text-dparacolor font-roboto text-sm font-medium mb-2">Nationality</label>
           <input
             type="text"
             name="nationality"
             value={formData.nationality}
             onChange={handleInputChange}
             className={inputClassName}
+            required
           />
         </div>
       </div>
@@ -291,6 +295,7 @@ function AdmissionPage() {
                 checked={formData.haveComputer === "YES"}
                 onChange={handleInputChange}
                 className={`${checkboxClassName} rounded-full`}
+                required
               />
               <span className="text-dparacolor text-sm">YES</span>
             </label>
@@ -302,6 +307,7 @@ function AdmissionPage() {
                 checked={formData.haveComputer === "NO"}
                 onChange={handleInputChange}
                 className={`${checkboxClassName} rounded-full`}
+                required
               />
               <span className="text-dparacolor text-sm">NO</span>
             </label>
@@ -315,6 +321,7 @@ function AdmissionPage() {
             value={formData.desiredProgram}
             onChange={handleInputChange}
             className={inputClassName}
+            required
           >
             <option value="">Select a program</option>
             <option value="microsoft-365">MicroSoft 365</option>
@@ -493,6 +500,7 @@ function AdmissionPage() {
               value={formData.emergencyContactNumber}
               onChange={handleInputChange}
               className={inputClassName}
+              required
             />
           </div>
         </div>
@@ -505,16 +513,18 @@ function AdmissionPage() {
               value={formData.emergencyPersonAddress}
               onChange={handleInputChange}
               className={inputClassName}
+              required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 text-sm font-medium mb-2">Relationship Type</label>
+            <label className="block text-dparacolor text-sm font-medium my-2"><sup className='text-lg text-secondary'>*</sup>Relationship Type</label>
             <select
               name="relationshipType"
               value={formData.relationshipType}
               onChange={handleInputChange}
               className={inputClassName}
+              required
             >
               <option value="" disabled>Select type</option>
               <option value="father">Father</option>
@@ -530,17 +540,7 @@ function AdmissionPage() {
           <h2 className="mt-6 mb-4 text-center">Supporting Documents</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 text-sm font-medium mb-2">Church Recommendation</label>
-              <input
-                type="file"
-                name="churchRecommendationLetter"
-                onChange={handleFileChange}
-                className={inputClassName}
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 text-sm font-medium mb-2">Community Recommendation</label>
+              <label className="block text-dparacolor text-sm font-medium mb-2">Community Recommendation</label>
               <input
                 type="file"
                 name="communityRecommendationLetter"
@@ -558,8 +558,9 @@ function AdmissionPage() {
             checked={formData.consented}
             onChange={(e) => setFormData({ ...formData, consented: e.target.checked })}
             className={checkboxClassName}
+            required
           />
-          <span className="text-gray-700 text-sm font-medium">I hereby declare that the information provided in this application is accurate to the best of my knowledge. I understand that providing false information may result in the cancellation of my admission.</span>
+          <span className="text-dparacolor text-sm font-medium">I hereby declare that the information provided in this application is accurate to the best of my knowledge. I understand that providing false information may result in the cancellation of my admission.</span>
             </label> 
 
       </div>
@@ -572,8 +573,8 @@ function AdmissionPage() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-8xl md:max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-noto font-bold text-primary">ZIT Student Admission Form</h2>
-          <p className="mt-2 text-sm font-roboto text-dparacolor">
+          <h2 className="text-3xl font-noto font-bold text-primary">Admission Form</h2>
+          <p className="mt-2 text-md font-roboto text-dparacolor">
             {step === 1 && "Step 1: Personal Information"}
             {step === 2 && "Step 2: Educational Background"}
             {step === 3 && "Step 3: Contact Information"}

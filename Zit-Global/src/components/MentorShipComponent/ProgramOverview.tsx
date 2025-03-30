@@ -8,7 +8,7 @@ const ProgramOverview: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-start">
         {/* Text Section */}
         <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8 md:mt-8">
-          <h2 className="font-noto text-3xl font-bold text-primary mb-4">
+          <h2 className="font-noto text-2xl font-bold text-primary w-[20rem] mb-4">
             What is the ICC Mentorship Program?
           </h2>
           <p className="font-roboto text-dparacolor text-lg leading-relaxed">

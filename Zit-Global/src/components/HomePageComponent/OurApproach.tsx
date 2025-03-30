@@ -27,7 +27,7 @@ const OurApproach = ()=>{
       >
         <motion.div variants={variants.fadeInUp} className="text-center mb-12">
           <h2 className="text-xl font-noto md:text-2xl font-bold mb-4 text-primary">
-            Our Educational Approach
+            Our Approach
           </h2>
           <p className="text-lg font-roboto text-dparacolor max-w-2xl mx-auto">
           Revolutionizing tech education through mentorship, experiential learning, and a community-driven approach to impact.

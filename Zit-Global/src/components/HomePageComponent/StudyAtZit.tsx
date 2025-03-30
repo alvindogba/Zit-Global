@@ -10,7 +10,7 @@ export default function StudyAtZit() {
         <div className="flex flex-col justify-center text-center lg:text-left">
           <h2 className="font-noto text-2xl font-bold text-primary">Study at ZIT</h2>
           <p className="mt-2 font-roboto text-dparacolor md:w-[44rem] md:px-0  px-6">
-            Unlock job-ready skills that open doors in today's tech landscape. No other program matches the depth and impact of our hands-on training in technology.
+          At Zongea Institute of Technology, we go beyond traditional education to ensure students learn, apply, and excel in real-world scenarios. Our Teach, Tutor, and Mentor (TTM) model provides a structured approach to hands-on learning, personalized support, and career-focused training to prepare you for success in the ever-evolving tech industry.
           </p>
 
           <div className="relative mt-8 md:w-[90%] max-w-full flex flex-col sm:flex-row sm:items-start gap-6">
@@ -21,9 +21,9 @@ export default function StudyAtZit() {
             <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
               {/* Overlayed Content */}
               <div className="flex flex-col justify-center gap-4 px-10 py-8 lg:absolute md:left-[45%] lg:left-[60%] lg:top-[20%] bg-primary text-white w-full h-auto sm:w-[30rem]   shadow-lg mt-6 sm:mt-0">
-                <h3 className="font-semibold font-noto text-lg">Personalized Support</h3>
+                <h3 className="font-semibold font-noto text-lg">Hands-On Learning Experience</h3>
                 <p className="mt-2 font-roboto text-sm">
-                  We provide tailored support to ensure every learner thrives. From one-on-one tutoring sessions to small-group discussions, our tutors are dedicated to helping you understand even the most complex topics.
+                  Our programs are designed to bridge the gap between knowledge and application with a real-world, project-based curriculum. Through interactive learning and problem-solving exercises, students gain the confidence and technical skills to tackle challenges, build solutions, and excel in their fields.
                 </p>
                 <Link to="/admission" className="flex font-sans justify-center items-center hover:bg-white hover:text-primary font-medium mt-4 text-white bg-secondary hover:font-semibold w-32 h-8 rounded-md">
                   Apply Now

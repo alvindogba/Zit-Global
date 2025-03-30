@@ -1,10 +1,10 @@
-import heroImage from "../../asset/images/Hero-guilding-hand.jpg";
+import heroImage from "../../asset/images/ICC hero image.jpg";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
     <section
-      className="relative h-[70vh] md:h-[85vh] flex items-end text-white pb-10 px-6 md:px-40"
+      className="relative h-[60vh] md:h-[55vh] flex items-end text-white pb-10 px-6 md:px-40"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundSize: "cover",
@@ -12,11 +12,11 @@ export default function HeroSection() {
       }}
     >
       {/* Background Overlay */}
-      <div className="absolute inset-0 bg-primary bg-opacity-30"></div>
+      <div className="absolute inset-0 bg-primary/40 "></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-[600px]">
-        <h1 className="font-noto md:text-4xl text-3xl font-bold mb-10" >
+        <h1 className="font-noto md:text-3xl text-2xl font-bold mb-10" >
           Empowering Futures Through Mentorship, Tutoring, and Teaching
         </h1>
         <p className="font-roboto mb-10 text-lg">
@@ -24,7 +24,7 @@ export default function HeroSection() {
         </p>
         <div className="flex mt-6 mb-8 space-x-4">
       
-          <Link to="/icc/mentor" className="bg-primary px-4 md:px-3 py-2 rounded-md text-white hover:bg-secondary hover:font-semibold ">
+          <Link to="/icc/mentor" className="bg-secondary px-4 md:px-3 py-2 rounded-md text-white hover:bg-white hover:text-primary hover:font-semibold ">
             Get Involved 
           </Link>
         </div>

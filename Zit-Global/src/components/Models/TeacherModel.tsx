@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
-import LeftImg from '../../asset/images/Hero-guilding-hand.jpg';
+import LeftImg from '../../asset/images/A teacher.jpg'
 import ScrollBackHome from "../Models/ScrollBackHome";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -102,7 +102,7 @@ export default function TeachModel() {
             </Link>
           </div>
           <div className="text-white md:mr-28 text-right sm:text-left">
-            <h3 className="font-noto text-xs sm:text-sm md:text-base lg:text-h3">ZIT Teaching Application</h3>
+            <h3 className="font-noto text-xs sm:text-sm md:text-base lg:text-h3">Teaching Application</h3>
             <p className="font-roboto text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-2">Join Our Educator Network</p>
           </div>
         </nav>
@@ -117,10 +117,10 @@ export default function TeachModel() {
               alt="Teaching at ZIT" 
             />
             <h3 className="font-noto text-lg sm:text-xl md:text-2xl lg:text-h3 text-center lg:text-left">
-              Shape Young Minds <br /> Build the Future
+              Become a Teacher <br /> Lead the Classroom
             </h3>
-            <p className="font-roboto text-xs sm:text-sm md:text-base text-center lg:text-left">
-              Join our network of passionate educators and make a lasting impact through innovative teaching at ZIT.
+            <p className="font-roboto text-xs text-dparacolor sm:text-sm md:text-base text-center lg:text-left">
+            Join our team of educators to deliver structured lessons and hands-on training. Help shape the future by equipping students with the knowledge and skills they need to succeed.
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export default function TeachModel() {
                           name="gender" 
                           value={formData.gender} 
                           onChange={handleChange} 
-                          options={['Male', 'Female', 'Non-binary', 'Prefer not to say']} 
+                          options={['Male', 'Female']} 
                           required 
                         />
                       </div>
@@ -241,7 +241,7 @@ export default function TeachModel() {
                 </div>
                 
                 {/* Navigation Buttons */}
-                <div className="border-t pt-4 sm:pt-6 mt-4 sm:mt-6">
+                <div className=" md:pt-0 sm:pt-6 md:mt-0 sm:mt-6">
                   <div className="flex justify-between">
                     {currentStep > 1 && (
                       <button

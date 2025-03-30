@@ -19,8 +19,8 @@ export default function MotivationPage() {
     },
     {
       icon: Earth,
-      title: "Real-World Skills",
-      description: "Our hands-on, industry-aligned curriculum prepares students for jobs in the tech sector, helping them build practical skills for the future."
+      title: "Real World Skills",
+      description: "Our hands-on, industry aligned curriculum prepares students for jobs in the tech sector, helping them build practical skills for the future."
     }
   ]
   return (
@@ -48,7 +48,9 @@ export default function MotivationPage() {
           {/* Left Side - Title */}
           <div className="text-center md:text-left md:w-[40%]">
             <h2 className="font-noto text-xl md:text-2xl font-bold mb-4 text-primary">
-              We believe every <br /> Liberian should have:
+            We believe every
+            <br />
+            Student should have:
             </h2>
           </div>
 
@@ -57,7 +59,7 @@ export default function MotivationPage() {
             {believeExplanations.map((believe, index) => (
               <div
                 key={index}
-                className="w-full min-w-[14rem] max-w-[16rem] h-[14rem] px-4 py-6 bg-white flex flex-col items-center shadow-md rounded-lg"
+                className="w-full min-w-[14rem] max-w-[16rem] h-[16rem] px-4 py-6 bg-white flex flex-col items-center shadow-md rounded-lg"
               >
                 <div className="w-10 h-10 rounded-full flex justify-center items-center mb-3 bg-primary/10">
                   <believe.icon className="w-5 h-5 text-secondary" />
@@ -65,7 +67,7 @@ export default function MotivationPage() {
                 <h3 className="font-noto text-base font-semibold mb-2 text-primary text-center">
                   {believe.title}
                 </h3>
-                <p className="font-roboto text-dparacolor text-xs text-center">
+                <p className="font-roboto text-dparacolor text-sm text-center">
                   {believe.description}
                 </p>
               </div>

@@ -39,15 +39,11 @@ const Footer = () => {
       {/* Main Content - Logo Description, Links, and Buttons in One Row */}
       <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 gap-8 py-8">
         {/* Logo Description */}
-        <div className="col-span-2 flex flex-col items-center">
+        <div className="col-span-2 flex flex-col items-start">
+          <h3 className="font-extrabold font-noto text-base mb-3 text-white">About ZIT</h3>
           <p className="mt-4 font-roboto">
-            Zongea Institute of Technology is a free tech school in Liberia, providing
-            accessible, high-quality education to empower students with the skills to
-            succeed in the tech industry.
-          </p>
-          <p className="mt-2 font-roboto">
-            Zongea Institute of Technology is a free tech school in Liberia, providing
-            accessible, high-quality education.
+          Zongea Institute of Technology (ZIT) is a forward-thinking educational institution dedicated to equipping individuals with the knowledge and skills needed to thrive in today’s fast-evolving world. Our mission is to <span className="font-semibold">Teach, Tutor, and Mentor (TTM)</span> learners, empowering them to succeed in technology, business, and innovation.
+
           </p>
         </div>
 
@@ -58,8 +54,8 @@ const Footer = () => {
             <li>
               <Link
                 to="/"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive('/') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive('/') ? 'text-secondary' : ''
                 }`}
               >
                 Home
@@ -68,8 +64,8 @@ const Footer = () => {
             <li>
               <Link
                 to="/motivation"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/motivation') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/motivation') ? 'text-secondary' : ''
                 }`}
               >
                Motivation
@@ -78,8 +74,8 @@ const Footer = () => {
             <li>
               <Link
                 to="/courses"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/courses') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/courses') ? 'text-secondary' : ''
                 }`}
               >
                Courses
@@ -88,8 +84,8 @@ const Footer = () => {
             <li>
               <Link
                 to="/admission"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                 isActive ('/admission') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                 isActive ('/admission') ? 'text-secondary' : ''
                 }`}
             >
              Admission
@@ -98,8 +94,8 @@ const Footer = () => {
             <li>
               <Link
                 to="/contact"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                 isActive ('/contact') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                 isActive ('/contact') ? 'text-secondary' : ''
                 }`}
             >
              Contact Us
@@ -108,8 +104,8 @@ const Footer = () => {
             <li>
               <Link
                 to="/donate"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                 isActive ('/donate') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                 isActive ('/donate') ? 'text-secondary' : ''
                 }`}
               >
                 Donation
@@ -125,8 +121,8 @@ const Footer = () => {
             <li>
               <Link 
                 to="/courses/ui-ux-design"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/courses/ui-ux-design') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/courses/ui-ux-design') ? 'text-secondary' : ''
                  }`}
               >
                 UI/UX Design
@@ -135,8 +131,8 @@ const Footer = () => {
             <li>
               <Link 
                 to="/courses/graphic-design"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/courses/graphic-design') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/courses/graphic-design') ? 'text-secondary' : ''
                  }`}
               >
                 Graphic Design 
@@ -145,8 +141,8 @@ const Footer = () => {
             <li>
               <Link 
                 to="/courses/full-stack-development"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/courses/full-stack-development') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/courses/full-stack-development') ? 'text-secondary' : ''
                  }`}
               >
                 Full Stack Development
@@ -155,8 +151,8 @@ const Footer = () => {
             <li>
               <Link 
                 to="/courses/cybersecurity"
-                className={`block text-white font-roboto hover:text-secondary-yellow ${
-                  isActive ('/courses/cybersecurity') ? 'text-secondary-yellow' : ''
+                className={`block text-white font-roboto hover:text-secondary ${
+                  isActive ('/courses/cybersecurity') ? 'text-secondary' : ''
                  }`}
               >
                 Cyber Security 
@@ -165,8 +161,8 @@ const Footer = () => {
             <li>
               <Link 
                 to="/courses/microsoft-office"
-                className={`block text-white hover:text-secondary-yellow ${
-                  isActive ('/courses/microsoft-office') ? 'text-secondary-yellow' : ''
+                className={`block text-white hover:text-secondary ${
+                  isActive ('/courses/microsoft-office') ? 'text-secondary' : ''
                  }`}
               >
                 Microsoft Office Seuite
@@ -188,57 +184,69 @@ const Footer = () => {
         {/* Contact Us */}
         <div className="flex flex-col">
           <h3 className="font-extrabold font-noto text-base mb-3 text-white">Contact Us</h3>
-          <p className="mb-2 font-roboto text-[14px]">Monrovia, Liberia RIA Rehab Community</p>
+          {/* <p className="mb-2 font-roboto text-[14px]">Monrovia, Liberia RIA Rehab Community</p> */}
           <p className="mb-2 font-roboto text-[14px]">US Address: 300 Southtown Circle, Roseville NC 27571</p>
           <p className="mb-2 font-roboto text-[14px]">
             <a href="mailto:info@zongetech.com" className=" text-[14px] font-roboto hover:underline">
               Email: info@zongetech.com
             </a>
           </p>
-          <p className="mb-2">
+          {/* <p className="mb-2">
             <a href="tel:+231-888-761-501" className=" text-[14px] font-roboto hover:underline">
               Phone: +231-888-761-501
             </a>
-          </p>
+          </p> */}
         </div>
       {/* Buttons Section */}
-      <div className="flex flex-col gap-1 text-primary">
-        <Link
-          to="/tutorship-program"
-          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
-            isActive('/tutorship-program') ? 'text-primary bg-white' : ''
-          }`}
-        >
-          Tutorship
-        </Link>
-        
-        <Link 
-          to="/admission"
-          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
-            isActive('/admission') ? 'text-primary bg-white' : ''
-          }`}
-        >
-          Application 
-        </Link>
-        
-        <Link 
-          to="/mentorship-program"
-          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
-            isActive('/mentorship-program') ? 'text-primary bg-white' : ''
-          }`}
-        >
-          Mentorship
-        </Link>
-        
-        <Link 
-          to="/donate"
-          className={`bg-secondary text-white hover:font-semibold text-center px-2 py-2 rounded-md hover:bg-white font-sans hover:text-primary transition-colors ${
-            isActive('/donate') ? 'text-primary bg-white' : ''
-          }`}
-        > 
-          Donate Today
-        </Link>
-      </div>
+      <div className="flex flex-col gap-1">
+  <Link
+    to="/tutorship-program"
+    className={`
+      bg-secondary text-white text-center px-2 py-2 rounded-md 
+      font-sans transition-colors
+      hover:bg-white hover:text-primary hover:font-semibold
+      ${isActive('/tutorship-program') ? '!bg-white !text-primary font-semibold' : ''}
+    `}
+  >
+    Tutoring  
+  </Link>
+  
+  <Link 
+    to="/admission"
+    className={`
+      bg-secondary text-white text-center px-2 py-2 rounded-md 
+      font-sans transition-colors
+      hover:bg-white hover:text-primary hover:font-semibold
+      ${isActive('/admission') ? '!bg-white !text-primary font-semibold' : ''}
+    `}
+  >
+    Application 
+  </Link>
+  
+  <Link 
+    to="/mentorship-program"
+    className={`
+      bg-secondary text-white text-center px-2 py-2 rounded-md 
+      font-sans transition-colors
+      hover:bg-white hover:text-primary hover:font-semibold
+      ${isActive('/mentorship-program') ? '!bg-white !text-primary font-semibold' : ''}
+    `}
+  >
+    Mentoring
+  </Link>
+  
+  <Link 
+    to="/donate"
+    className={`
+      bg-secondary text-white text-center px-2 py-2 rounded-md 
+      font-sans transition-colors
+      hover:bg-white hover:text-primary hover:font-semibold
+      ${isActive('/donate') ? '!bg-white !text-primary font-semibold' : ''}
+    `}
+  > 
+    Donate Today
+  </Link>
+</div>
       </div>
       <div className="md:hidden flex items-center gap-2 w-full md:w-auto">
         <NewsletterForm />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, ArrowRight, Clock3 } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, Clock3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ContactImg from '../asset/images/OT image .jpg';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
@@ -16,12 +16,12 @@ interface ContactFormData {
 export default function ContactPage() {
 
   const contactInfoCard = [
-    {
-      label: "Call Us",
-      description1: "Main: 878-7348-7853",
-      description2: "Admissions: 878-7348-7853",
-      icon: <Phone />,
-    },
+    // {
+    //   label: "Call Us",
+    //   description1: "Main: 878-7348-7853",
+    //   description2: "Admissions: 878-7348-7853",
+    //   icon: <Phone />,
+    // },
     {
       label: "Email Us",
       description1: "info@zongeatech.com",
@@ -30,8 +30,8 @@ export default function ContactPage() {
     },
     {
       label: "Visit Us",
-      description1: "Liberia, Monrovia",
-      description2: "RIA Rehab Community",
+      // description1: "Liberia, Monrovia",
+      // description2: "RIA Rehab Community",
       description3: "US Address: 300 Southtown",
       description4: "Circle Rolseville, NC 27571",
       icon: <MapPin />,
@@ -95,7 +95,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative bg-navy-600 text-white">
+      <div className="relative bg-primary  text-white">
         <div
           className="absolute inset-0"
           style={{
@@ -107,14 +107,14 @@ export default function ContactPage() {
         >
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:4px_4px]"></div>
         </div>
-        <div className="relative max-w-6xl mx-auto px-8 sm:px-6 lg:px-8 py-24">
+        <div className="relative max-w-6xl  mx-auto px-8 sm:px-6 lg:px-8 py-40">
           <h1 className="text-xl font-noto md:text-2xl font-bold mb-6 md:w-[28rem]">
             Get More Information About Our School & Courses
           </h1>
           <div className="md:w-[40rem]">
-            <p className="text-md text-gray-200 font-roboto max-w-2xl mb-8">
+            {/* <p className="text-md text-gray-200 font-roboto max-w-2xl mb-8">
               Your donation helps provide free, high-quality education, mentorship and skill development to students in Liberia and beyond
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
@@ -232,7 +232,7 @@ export default function ContactPage() {
           </div>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-1 pt-8">
             <h2 className="text-primary font-noto text-2xl font-bold mb-4">Social Media</h2>
-            <p className="text-md font-roboto text-dparacolor max-w-2xl mb-4">At Zongea Institute of Technology (ZIT), we believe in a Liberia where everyone has the opportunity to unlock their potential, acquire</p>
+            <p className="text-md font-roboto text-dparacolor max-w-2xl mb-4">Zongea Institute of Technology (ZIT) is a forward-thinking educational institution dedicated to equipping individuals with the knowledge and skills needed to thrive in today’s fast-evolving world. Our mission is to Teach, Tutor, and Mentor (TTM) learners, empowering them to succeed in technology, business, and innovation.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Link to="https://www.facebook.com/ZongeaInstituteOfTechnology/" target="_blank">
                 <FaFacebookF className="text-primary hover:text-secondary cursor-pointer" size={18} />
@@ -253,7 +253,7 @@ export default function ContactPage() {
       </div>
 
       {/* Google Map Section */}
-      <div className="max-w-9xl mx-auto my-12">
+      {/* <div className="max-w-9xl mx-auto my-12">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.141713744395!2d-10.68141762709806!3d6.2450482937433005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf0a01e1ee6989e5%3A0x9f69c5701826df74!2sRehab%20community!5e0!3m2!1sen!2s!4v1740578328299!5m2!1sen!2s"
           width="100%"
@@ -262,7 +262,7 @@ export default function ContactPage() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      </div>
+      </div> */}
 
       {/* CTA Section */}
       <div
@@ -276,7 +276,7 @@ export default function ContactPage() {
       >
         <div className="container w-full text-center text-white">
           <h2 className="text-base font-noto md:text-2xl md:w-[70%] md:mx-auto mb-8">
-            Make a difference today—your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
+            Make a difference today, your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {/* Volunteer Button */}
