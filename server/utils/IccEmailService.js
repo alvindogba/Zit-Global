@@ -122,6 +122,33 @@ export const sendSchoolAdminConfirmation = async (userEmail, fullName) => {
   }
 };
 
+// Send confirmation email to Teachers
+export const sendTeacherConfirmation = async (userEmail, fullName) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: userEmail,
+    subject: 'Thank You for Registering - Teacher Application Received',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>Thank You for Your Submission!</h2>
+        <p>Dear ${fullName},</p>
+        <p>We have successfully received your registration details as a teacher.</p>
+        <p>We will be in touch soon to discuss the next steps.</p>
+        <br/>
+        <p>Best regards,</p>
+        <p>The ZIT Team</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Error sending parent confirmation email:', error);
+    throw error;
+  }
+};
+
 // Send notification to admin for any new submission
 export const sendAdminNotification = async (submissionType, submissionData) => {
   let details = '';

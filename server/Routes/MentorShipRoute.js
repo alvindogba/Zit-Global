@@ -1,6 +1,6 @@
 // Mentorship Router Code:
 import express from 'express';
-import { createSchoolAdmin, createMentor, createParent, createStudent } from '../Controller/MentorshipController.js';
+import { createSchoolAdmin, createMentor, createParent, createStudent, createTeacher } from '../Controller/MentorshipController.js';
 
 const mentorshipRouter = express.Router();
 
@@ -9,6 +9,7 @@ mentorshipRouter.post('/students', createStudent);
 mentorshipRouter.post("/parents", createParent);
 mentorshipRouter.post("/schoolAdmins", createSchoolAdmin)
 mentorshipRouter.post("/mentors", createMentor)
+mentorshipRouter.post("/teachers", createTeacher)
 
 
 export default mentorshipRouter;

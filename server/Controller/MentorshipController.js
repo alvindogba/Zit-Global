@@ -1,4 +1,4 @@
-import {sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation  } from '../utils/IccEmailService.js';
+import {sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation, sendTeacherConfirmation  } from '../utils/IccEmailService.js';
 import db from "../models/index.js";
 
 export const createSchoolAdmin = async (req, res) => {
@@ -74,6 +74,84 @@ export const createSchoolAdmin = async (req, res) => {
     });
   } catch (error) {
     console.error('Error creating school admin entry:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your submission.',
+      error: error.message,
+    });
+  }
+};
+
+export const createTeacher = async (req, res) => {
+  console.log(req.body);
+  try {
+    const {
+      fullName,
+      dob,
+      email,
+      phone,
+      gender,
+      educationLevel,
+      teachingExperience,
+      subjects,
+      teachingStyle,
+      teachingPhilosophy,
+      objectives,
+      availability,
+      preferredLevel,
+      referral
+    } = req.body;
+
+    // Validate required fields
+    if (
+      !fullName ||
+      !dob ||
+      !email ||
+      !phone ||
+      !gender ||
+      !educationLevel ||
+      !teachingExperience ||
+      !subjects ||
+      !teachingStyle ||
+      !teachingPhilosophy ||
+      !objectives ||
+      !availability ||
+      !preferredLevel
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide all required fields.',
+      });
+    }
+
+    // Create Teacher entry in the database
+    const teacher = await db.Teacher.create({
+      fullName,
+      dob,
+      email,
+      phone,
+      gender,
+      educationLevel,
+      teachingExperience,
+      subjects,
+      teachingStyle,
+      teachingPhilosophy,
+      objectives,
+      availability,
+      preferredLevel,
+      referral
+    });
+
+    // Send confirmation email to user
+    await sendTeacherConfirmation(email, fullName);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Your submission has been received. A confirmation email has been sent.',
+      data: schoolAdmin,
+    });
+  } catch (error) {
+    console.error('Error creating teacher entry:', error);
     return res.status(500).json({
       success: false,
       message: 'An error occurred while processing your submission.',
