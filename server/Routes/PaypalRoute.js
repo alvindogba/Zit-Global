@@ -24,7 +24,7 @@ paypalRouter.post("/save-donation",  async(req, res) => {
 
     // Step 1: Get PayPal Access Token
     const tokenResponse = await axios.post(
-      "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+      "https://www.paypal.com/v1/oauth2/token",
       "grant_type=client_credentials",
       {
         headers: {
@@ -38,7 +38,7 @@ paypalRouter.post("/save-donation",  async(req, res) => {
 console.log(accessToken)
     // Step 2: Verify PayPal Transaction
     const paypalResponse = await axios.get(
-      `https://api-m.sandbox.paypal.com/v2/checkout/orders/${transactionId}`,
+      `https://www.paypal.com/v2/checkout/orders/${transactionId}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
