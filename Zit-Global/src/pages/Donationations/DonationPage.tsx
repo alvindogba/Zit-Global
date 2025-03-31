@@ -10,7 +10,6 @@ import master from '../../asset/images/Master card Logo.jpg'
 import express from '../../asset/images/American Express-03.png'
 import paypal from '../../asset/images/Paypal Logo.jpg'
 import ScrollToTopButton from '../../components/ScrollToTopButton';
-import WhyDonate from "./WhyDonate";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 

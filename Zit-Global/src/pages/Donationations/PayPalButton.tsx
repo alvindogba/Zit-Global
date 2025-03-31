@@ -38,7 +38,7 @@ const PayPalButton = ({
     <PayPalButtons
       style={{
         layout: "vertical",
-        color: "silver",
+        color: "gold",
         shape: "sharp",
         height: 45,
         label: "paypal",
