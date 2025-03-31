@@ -1,15 +1,49 @@
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useEffect, useState } from "react";
+
+interface PayPalOrderResponse {
+  id: string;
+  status: string;
+  payer?: {
+    name?: { given_name?: string; surname?: string };
+    email_address?: string;
+  };
+}
 
 interface PayPalButtonProps {
   amount: number;
+  currency?: string;
   onSuccess?: (transactionId: string) => void;
   onError?: (error: string) => void;
 }
 
-const PayPalButton = ({ amount, onSuccess, onError }: PayPalButtonProps) => {
+const PayPalButton = ({
+  amount,
+  currency = "USD",
+  onSuccess,
+  onError,
+}: PayPalButtonProps) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [{ isPending }] = usePayPalScriptReducer();
+
+  useEffect(() => {
+    if (isNaN(amount) || amount <= 0) {
+      onError?.("Invalid payment amount");
+    }
+  }, [amount]);
+
+  if (isPending) return <div>Loading PayPal...</div>;
+
   return (
     <PayPalButtons
-      style={{ layout: "vertical"}}
+      style={{
+        layout: "vertical",
+        color: "silver",
+        shape: "sharp",
+        height: 45,
+        label: "paypal",
+      }}
+      disabled={isProcessing}
       createOrder={(_data, actions) => {
         return actions.order.create({
           intent: "CAPTURE",
@@ -17,33 +51,35 @@ const PayPalButton = ({ amount, onSuccess, onError }: PayPalButtonProps) => {
             {
               amount: {
                 value: amount.toFixed(2),
-                currency_code: "USD"
-              }
-            }
-          ]
+                currency_code: currency,
+              },
+            },
+          ],
         });
       }}
       onApprove={async (_data, actions) => {
-        if (!actions.order) {
-          onError?.("Failed to process PayPal payment");
-          return;
-        }
-
+        setIsProcessing(true);
         try {
-          const order = await actions.order.capture();
+          if (!actions.order) {
+            throw new Error("PayPal order actions unavailable");
+          }
+
+          const order = await actions.order.capture() as PayPalOrderResponse;
           if (order?.id) {
             onSuccess?.(order.id);
           } else {
-            throw new Error("Failed to capture order");
+            throw new Error("Order capture failed");
           }
         } catch (err) {
-          console.error("PayPal capture failed:", err);
-          onError?.("Failed to process PayPal payment");
+          const errorMessage = err instanceof Error ? err.message : "Payment failed";
+          onError?.(errorMessage);
+        } finally {
+          setIsProcessing(false);
         }
       }}
-      onError={(err) => {
-        console.error("PayPal error:", err);
-        onError?.("PayPal payment failed");
+      onError={(err: Record<string, unknown>) => {
+        const errorMessage = err.message?.toString() || "Unknown PayPal error";
+        onError?.(errorMessage);
       }}
     />
   );

@@ -4,28 +4,27 @@ import dotenv from "dotenv";
 import db from "../models/index.js";
 import { sendDonationReceipt } from '../utils/donationEmailService.js';
 
-
 dotenv.config();
 
 const paypalRouter = express.Router();
 
-paypalRouter.post("/save-donation",  async(req, res) => {
+paypalRouter.post("/save-donation", async (req, res) => {
   console.log(req.body);
-    const { 
-      firstName, lastName, email, address, city, state, zip, 
-      amount, paymentMethod, transactionId, giftType 
-    } = req.body;
-
+  const { 
+    firstName, lastName, email, address, city, state, zip, 
+    amount, paymentMethod, transactionId, giftType 
+  } = req.body;
 
   try {
     const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
     const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET;
-    const PAYPAL_API= process.env.PAYPAL_API;
+    const PAYPAL_API = process.env.PAYPAL_API; // Ensure this is set in .env
+
     const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_SECRET}`).toString("base64");
 
     // Step 1: Get PayPal Access Token
     const tokenResponse = await axios.post(
-    ` ${PAYPAL_API}/v1/oauth2/token`,
+      `${PAYPAL_API}/v1/oauth2/token`,
       "grant_type=client_credentials",
       {
         headers: {
@@ -36,7 +35,8 @@ paypalRouter.post("/save-donation",  async(req, res) => {
     );
 
     const accessToken = tokenResponse.data.access_token;
-console.log(accessToken)
+    console.log("PayPal Access Token:", accessToken);
+
     // Step 2: Verify PayPal Transaction
     const paypalResponse = await axios.get(
       `${PAYPAL_API}/v2/checkout/orders/${transactionId}`,
@@ -48,7 +48,7 @@ console.log(accessToken)
       }
     );
 
-    console.log(paypalResponse.data);
+    console.log("PayPal Response:", paypalResponse.data);
 
     if (paypalResponse.data.status !== "COMPLETED") {
       return res.status(400).json({ message: "Payment not verified" });
@@ -70,22 +70,25 @@ console.log(accessToken)
       status: "completed",
     });
 
-  // Generate receipt
-  const generateReceipt = () => {
-    const year = new Date().getFullYear();
-    const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    return `DON-${year}-${random}`;
-  };
-  
-  const receiptBuffer = await generateReceipt(donation);
-  // Send confirmation email
-  console.log(donation, receiptBuffer);
-  await sendDonationReceipt(donation, receiptBuffer);
-  res.json({ success: true, donationId: donation._id });
-} catch (error) {
-  console.error("Error processing donation:", error.response?.data || error.message);
-  res.status(500).json({ message: "Internal server error" });
-}
+    // Generate receipt
+    const generateReceipt = () => {
+      const year = new Date().getFullYear();
+      const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+      return `DON-${year}-${random}`;
+    };
+
+    const receiptNumber = generateReceipt();
+
+    // Send confirmation email
+    console.log("Donation Data:", donation, "Receipt Number:", receiptNumber);
+    await sendDonationReceipt(donation, receiptNumber);
+
+    res.json({ success: true, donationId: donation._id });
+
+  } catch (error) {
+    console.error("Error processing donation:", error.response?.data || error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 export default paypalRouter;
