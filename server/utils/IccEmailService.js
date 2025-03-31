@@ -5,9 +5,9 @@ dotenv.config();
 
 // Create a transporter using SMTP
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+  host: process.env.EMAIL_HOST,
   port: process.env.EMAIL_PORT || 587,
-  secure: false,
+  secure: process.env.EMAIL_PORT === '465',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
@@ -19,10 +19,10 @@ export const sendStudentConfirmation = async (userEmail, fullName) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: userEmail,
-    subject: 'Welcome to ZIT - Student Registration Received',
+    subject: 'Welcome to ZIT - Impact and Connect Registration Received',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2>Thank You for Registering as a Student!</h2>
+        <h2>Thank You for Registering for our Impact and Connect Program!</h2>
         <p>Dear ${fullName},</p>
         <p>We have successfully received your registration details.</p>
         <p>Our team will review your information and reach out to you soon with further instructions.</p>
