@@ -181,7 +181,7 @@ const CheckoutForm = () => {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-32 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-40 py-8">
         <div className="bg-white rounded-lg shadow p-4 sm:p-8">
           <div className="text-center mb-8">
             <h2 className="text-xl font-noto sm:text-3xl font-bold mb-2">
@@ -509,12 +509,14 @@ const CheckoutForm = () => {
                   <span className="px-2 bg-white font-roboto text-gray-500">Or donate with</span>
                 </div>
               </div>
-              
+              <div className="w-[85%] z-10 relative mx-auto">
               <PayPalButton
                 amount={amount}
                 onSuccess={handlePayPalSuccess}
                 onError={setError}
               />
+              </div>
+            
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import paypal from '@paypal/checkout-server-sdk';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
+const FRONTEND_URL = process.env.FRONTEND_URL;
 export const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
 export const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
 
@@ -10,8 +10,7 @@ if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
   console.error('Missing PayPal Client ID or Secret');
   process.exit(1); // Stop server if credentials are missing
 }
-console.log(PAYPAL_CLIENT_ID)
-console.log(PAYPAL_CLIENT_SECRET)
+
 // Set up PayPal environment and client
 const environment = new paypal.core.SandboxEnvironment(PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET);
 const client = new paypal.core.PayPalHttpClient(environment);
@@ -30,8 +29,8 @@ export const createPaypalPayment = async (amount, currency) => {
       },
     ],
     application_context: {
-      return_url: 'http://localhost:4000/payment-success', // Redirect URL after approval
-      cancel_url: 'http://localhost:4000/payment-cancel',  // Cancel URL if payment is cancelled
+      return_url: `${FRONTEND_URL}/payment-success`, // Redirect URL after approval
+      cancel_url: `${FRONTEND_URL}/payment-cancel`,  // Cancel URL if payment is cancelled
     },
   });
 
