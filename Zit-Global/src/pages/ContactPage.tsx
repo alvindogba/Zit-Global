@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, MapPin, ArrowRight, Clock3 } from 'lucide-react';
+import { Mail,  ArrowRight,  } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ContactImg from '../asset/images/OT image .jpg';
 import MotivationBgImg from '../asset/images/Graduation-Bg-Img.jpg';
