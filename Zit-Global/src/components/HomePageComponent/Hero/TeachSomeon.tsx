@@ -7,7 +7,7 @@ export default function TeachSomeone() {
     <section className=" flex flex-col md:flex-row items-center justify-between px-4 md:px-40 pt-16 pb-4 md:pb-20 bg-white">
       {/* Left Side - Text Content */}
       <div className="w-full  md:w-2/7  md:text-left">
-        <h3 className="text-base font-medium font-noto text-primary">Be a Impact today that will better someone life tomorrow: </h3>
+       
         <h2 className="text-2xl font-noto md:text-2xl font-bold text-primary w-[90%] mt-2">
           Will You Step Up and Make a Difference?
         </h2>

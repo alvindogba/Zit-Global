@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import mentorImage from "../../../asset/images/medium-shot-smiley-father-kid-home.jpg";
-import tutorImage from "../../../asset/images/female-doctor-consoling-afro-american-patient.jpg";
+import tutorImage from "../../../asset/images/tutoing.jpg";
 import teachImage from "../../../asset/images/A teacher.jpg";
 import { Link } from "react-router-dom";
 
@@ -49,7 +49,7 @@ export default function TTM() {
       {/* Content Section - Dynamic Update */}
       <div className="flex flex-col md:flex-row items-center mt-10 gap-6">
         {/* Left - Image */}
-        <div className=" h-[40vh] w-full md:h-[50vh]  md:w-[40%] ">
+        <div className=" h-[40vh] w-full md:h-[55vh]  md:w-[40%] ">
           <img
             src={tabContent[activeTab].image}
             alt={`${activeTab} Image`}
@@ -59,7 +59,7 @@ export default function TTM() {
 
 
         {/* Right - Text */}
-        <div className="h-[50vh] max-h-[60vh] flex px-4 flex-col  md:gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
+        <div className="h-[50vh] md:h-[55vh] max-h-[60vh] flex px-4 flex-col  md:gap-4 bg-gray-200 rounded-tr-lg rounded-br-lg pb-4 w-full md:w-2/3 md:pl-10 relative md:-ml-6">
 
           {/* Tabs Section */}
           <div className="flex items-center transition-opacity duration-300 ease-in-out bg-white">
@@ -80,11 +80,11 @@ export default function TTM() {
           <h3 className="mt-4 text-xl md:w-[60%] font-noto font-bold text-gray-800">
             {tabContent[activeTab].title}
           </h3>
-          <p className="text-gray-600 mt-4 font-roboto sm:w-[60%]">{tabContent[activeTab].description}</p>
+          <p className="text-gray-600 mt-4 md:mt-3 font-roboto sm:w-[60%]">{tabContent[activeTab].description}</p>
 
           {/* Buttons */}
-          <div className="mt-4 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
-            <Link to={tabContent[activeTab].btnHref} className="w-full md:w-fit font-sans sm:w-fit px-4 py-2 hover:bg-primary text-white bg-secondary rounded-lg hover:font-semibold transition-all">
+          <div className="mt-4 md:mt-2 w-full flex flex-col md:flex-row gap-4 items-center md:w-[80%] space-x-4">
+            <Link to={tabContent[activeTab].btnHref} className="w-full md:w-fit font-sans sm:w-fit px-3 py-2 hover:bg-primary text-white bg-secondary rounded-md hover:font-semibold transition-all">
               {tabContent[activeTab].primaryBtn}
             </Link>
 

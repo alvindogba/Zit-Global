@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function HeroSection() {
   return (
     <section
-      className="relative h-[60vh] md:h-[55vh] flex items-end text-white pb-10 px-6 md:px-40"
+      className="relative flex items-end text-white py-10 px-6 md:px-40"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundSize: "cover",

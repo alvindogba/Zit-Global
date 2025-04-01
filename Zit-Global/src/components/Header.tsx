@@ -514,7 +514,7 @@
 // export default Header;
 
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
@@ -572,9 +572,9 @@ function Header() {
       <nav className="container mx-auto flex items-center justify-between py-2 px-6">
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <Link to="/" aria-label="Home">
+          <NavLink to="/" aria-label="Home">
             <img src={Logo} alt="Zongea Logo" className="w-26 h-20" />
-          </Link>
+          </NavLink>
         </div>
 
         {/* Mobile Menu Button */}
@@ -592,29 +592,31 @@ function Header() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-x-8 items-center">
           {!isHomePage && (
-            <Link 
-              to="/" 
-              className={`text-md font-roboto transition-colors ${
-                isActive("/") ? "text-secondary font-semibold" : "text-white hover:text-secondary"
-              }`}
-            >
-              Home
-            </Link>
+            <NavLink 
+            to="/"
+            className={({ isActive }) => 
+              `text-md font-roboto transition-colors ${
+                isActive ? "text-white font-semibold" : "text-white hover:text-secondary"
+              }`
+            }
+          >
+            Home
+          </NavLink> 
           )}
 
-          <Link 
+          <NavLink 
             to="/motivation" 
             className={`text-md font-roboto transition-colors ${
               isActive("/motivation") ? "text-secondary font-semibold" : "text-white hover:text-secondary"
             }`}
           >
             Motivation
-          </Link>
+          </NavLink>
 
           {navigation.map((item) => (
             <div key={item.name} className="relative group">
               <div className="flex items-center">
-                <Link
+                <NavLink
                   to={item.href}
                   className={`text-md font-roboto transition-colors ${
                     isActive(item.href) 
@@ -623,7 +625,7 @@ function Header() {
                   }`}
                 >
                   {item.name}
-                </Link>
+                </NavLink>
                 {item.dropdown && (
                   <ChevronDownIcon 
                     className={`ml-1 h-4 w-4 transition-transform ${
@@ -638,7 +640,7 @@ function Header() {
               {item.dropdown && (
                 <div className="absolute left-0 mt-2 w-48 rounded-md bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   {item.dropdown.map((dropdownItem) => (
-                    <Link
+                    <NavLink
                       key={dropdownItem.name}
                       to={dropdownItem.href}
                       className={`block px-4 py-2 font-roboto text-sm transition-colors ${
@@ -648,7 +650,7 @@ function Header() {
                       }`}
                     >
                       {dropdownItem.name}
-                    </Link>
+                    </NavLink>
                   ))}
                 </div>
               )}
@@ -658,17 +660,17 @@ function Header() {
 
         {/* Donation Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link 
+          <NavLink 
             to="/donate" 
             className="font-sans rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-primary shadow-sm transition"
           >
             Make A Donation
-          </Link>
+          </NavLink>
         </div>
 
         {/* Side Panel Trigger */}
         <button 
-          className="hidden ml-4 lg:block p-1 text-white hover:text-secondary"
+          className="hidden lg:block p-1 text-white hover:text-secondary"
           onClick={() => setLeftModalOpen(true)}
           aria-label="Open side panel"
         >
@@ -701,9 +703,9 @@ function Header() {
               className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm"
             >
               <div className="flex items-center justify-between">
-                <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+                <NavLink to="/" onClick={() => setMobileMenuOpen(false)}>
                   <img src={Logo} alt="Zongea Logo" className="h-16" />
-                </Link>
+                </NavLink>
                 <button 
                   className="p-1 text-gray-500 hover:text-gray-700"
                   onClick={() => setMobileMenuOpen(false)}
@@ -716,7 +718,7 @@ function Header() {
                 <div className="-my-6 divide-y divide-gray-500/10">
                   <div className="space-y-2 py-6">
                     {!isHomePage && (
-                      <Link
+                      <NavLink
                         to="/"
                         className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
                           isActive("/") 
@@ -726,10 +728,10 @@ function Header() {
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Home
-                      </Link>
+                      </NavLink>
                     )}
 
-                    <Link
+                    <NavLink
                       to="/motivation"
                       className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
                         isActive("/motivation")
@@ -739,12 +741,12 @@ function Header() {
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Motivation
-                    </Link>
+                    </NavLink>
 
                     {navigation.map((item) => (
                       <div key={item.name} className="space-y-1">
                         <div className="flex items-center justify-between">
-                          <Link
+                          <NavLink
                             to={item.href}
                             className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
                               isActive(item.href)
@@ -754,7 +756,7 @@ function Header() {
                             onClick={() => !item.dropdown && setMobileMenuOpen(false)}
                           >
                             {item.name}
-                          </Link>
+                          </NavLink>
                           {item.dropdown && (
                             <button 
                               onClick={() => toggleDropdown(item.name)}
@@ -772,7 +774,7 @@ function Header() {
                         {item.dropdown && openDropdowns.has(item.name) && (
                           <div className="ml-4 space-y-1">
                             {item.dropdown.map((dropdownItem) => (
-                              <Link
+                              <NavLink
                                 key={dropdownItem.name}
                                 to={dropdownItem.href}
                                 className={`block rounded-lg px-3 py-2 text-sm font-medium ${
@@ -783,7 +785,7 @@ function Header() {
                                 onClick={() => setMobileMenuOpen(false)}
                               >
                                 {dropdownItem.name}
-                              </Link>
+                              </NavLink>
                             ))}
                           </div>
                         )}
@@ -793,42 +795,42 @@ function Header() {
 
                   <div className="py-6">
                     <div className="flex flex-col space-y-4">
-                      <Link
+                      <NavLink
                         to="mailto:info@zongeatech.com"
                         className="flex items-center gap-x-2 text-sm font-medium text-gray-900 hover:text-primary"
                       >
                         <span className="text-gray-500">✉️</span>
                         info@zongeatech.com
-                      </Link>
-                      <Link
+                      </NavLink>
+                      {/* <NavLink
                         to="tel:+231886761501"
                         className="flex items-center gap-x-2 text-sm font-medium text-gray-900 hover:text-primary"
                       >
-                        <span className="text-gray-500">📞</span>
+                        <span className="text-gray-500"><FaPhone /></span>
                         +231 886 761 501
-                      </Link>
+                      </NavLink> */}
                     </div>
 
                     <div className="mt-6">
-                      <Link
+                      <NavLink
                         to="/donate"
                         className="w-full flex justify-center rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-secondary/90"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Make A Donation
-                      </Link>
+                      </NavLink>
                     </div>
 
                     <div className="mt-6 flex justify-center gap-4">
-                      <Link to="#" className="text-gray-400 hover:text-primary">
+                      <NavLink to="#" className="text-secondary hover:text-primary">
                         <FaFacebookF className="h-5 w-5" />
-                      </Link>
-                      <Link to="#" className="text-gray-400 hover:text-primary">
+                      </NavLink>
+                      <NavLink to="#" className="text-secondary hover:text-primary">
                         <FaLinkedinIn className="h-5 w-5" />
-                      </Link>
-                      <Link to="#" className="text-gray-400 hover:text-primary">
+                      </NavLink>
+                      <NavLink to="#" className="text-secondary hover:text-primary">
                         <FaInstagram className="h-5 w-5" />
-                      </Link>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
@@ -877,58 +879,61 @@ function Header() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-2">
-                  <Link
+                  <NavLink
                     to="/teaching-at-zit"
                     className="text-center bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-primary/90"
                     onClick={() => setLeftModalOpen(false)}
                   >
                     Teach
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/tutorship-program"
                     className="text-center bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-primary/90"
                     onClick={() => setLeftModalOpen(false)}
                   >
                     Tutor
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/mentorship-program"
                     className="text-center bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-primary/90"
                     onClick={() => setLeftModalOpen(false)}
                   >
                     Mentor
-                  </Link>
+                  </NavLink>
                 </div>
 
-                <div>
+                {/* <div>
                   <h3 className="text-lg font-bold text-primary">Contact Information</h3>
                   <div className="mt-2 space-y-2 text-sm">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <span>📞</span>
+                    <NavLink href='' className="flex items-center gap-2 text-gray-600">
+                      <span><FaPhone /></span>
                       <span>+231 886 761 501</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <span>✉️</span>
-                      <span>info@zongeatech.com</span>
-                    </div>
+                    </NavLink>
+                    <NavLink
+                      to="mailto:info@zongeatech.com"
+                      className="flex items-center gap-x-2 text-sm font-medium text-gray-900 hover:text-primary"
+                      >
+                      <span className="text-gray-500">✉️</span>
+                      info@zongeatech.com
+                    </NavLink>
                     <p className="text-gray-600">
                       Rehab Community Opposite Rehab Mansion
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <div>
                   <h3 className="text-lg font-bold text-primary">Follow Us</h3>
                   <div className="mt-2 flex gap-4">
-                    <Link to="#" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
+                    <NavLink to="#" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
                       <FaFacebookF className="h-5 w-5 text-gray-700" />
-                    </Link>
-                    <Link to="#" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
+                    </NavLink>
+                    <NavLink to="#" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
                       <FaInstagram className="h-5 w-5 text-gray-700" />
-                    </Link>
-                    <Link to="#" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
+                    </NavLink>
+                    <NavLink to="#" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
                       <FaLinkedinIn className="h-5 w-5 text-gray-700" />
-                    </Link>
+                    </NavLink>
                   </div>
                 </div>
 

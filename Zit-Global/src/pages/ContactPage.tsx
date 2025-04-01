@@ -28,22 +28,22 @@ export default function ContactPage() {
       
       icon: <Mail />,
     },
-    {
-      label: "Visit Us",
-      // description1: "Liberia, Monrovia",
-      // description2: "RIA Rehab Community",
-      description3: "US Address: 300 Southtown",
-      description4: "Circle Rolseville, NC 27571",
-      icon: <MapPin />,
-    },
+    // {
+    //   label: "Visit Us",
+    //   // description1: "Liberia, Monrovia",
+    //   // description2: "RIA Rehab Community",
+    //   description3: "US Address: 300 Southtown",
+    //   description4: "Circle Rolseville, NC 27571",
+    //   icon: <MapPin />,
+    // },
     
-    {
-      label: "Hours of Operation",
-      description1: "Monday - Friday: 9:00 AM - 5:00 PM",
-      description2: "Saturday: 10:00 AM - 4:00 PM",
-      description3: 'Sunday: Closed',
-      icon: <Clock3 />,
-    },
+    // {
+    //   label: "Hours of Operation",
+    //   description1: "Monday - Friday: 9:00 AM - 5:00 PM",
+    //   description2: "Saturday: 10:00 AM - 4:00 PM",
+    //   description3: 'Sunday: Closed',
+    //   icon: <Clock3 />,
+    // },
   ];
 
   const [formData, setFormData] = useState<ContactFormData>({
@@ -223,9 +223,9 @@ export default function ContactPage() {
            <h4 className="text-md font-noto font-bold mb-3 text-primary">{card.label}</h4>
            <div className="text-dparacolor">
              <p className='font-roboto'>{card.description1}</p>
-             <p className='font-roboto'>{card.description2}</p>
+             {/* <p className='font-roboto'>{card.description2}</p>
              <p className='font-roboto'>{card.description3}</p>
-             <p className='font-roboto'>{card.description4}</p>
+             <p className='font-roboto'>{card.description4}</p> */}
            </div>
            </div>
          ))}
