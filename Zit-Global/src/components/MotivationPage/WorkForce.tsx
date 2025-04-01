@@ -1,4 +1,5 @@
-import image from '../../asset/images/Abel B. Winn.jpg';
+import image from '../../asset/images/Impacted Student.jpg';
+import img2 from '../../asset/images/Donate.jpg'
 import { Link } from 'react-router-dom';
 
 export default function WorkForce() {
@@ -9,12 +10,10 @@ export default function WorkForce() {
         <div className="w-full md:w-[45%] text-center md:text-left mb-8 md:mb-0">
           <h3 className="font-noto text-base font-medium text-primary">Join Our Mission</h3>
           <h2 className="font-noto text-xl md:text-2xl font-bold text-primary mt-2">
-            Empower Liberia Through Tech Education
+            Empower Future Leaders Through Tech Education
           </h2>
           <p className="font-roboto text-dparacolor my-5 leading-relaxed">
-            At ZIT, we're revolutionizing tech education in Liberia by providing free, high-quality training 
-            to aspiring professionals. Our hands-on curriculum bridges the gap between education and employment, 
-            creating opportunities for Liberia's digital future.
+            We’re revolutionizing tech education by providing free, high-quality training to aspiring professionals. Our hands-on curriculum bridges the gap between learning and real-world careers, unlocking opportunities for a more inclusive digital future.
           </p>
           <Link 
             to='/icc/teacher' 
@@ -42,7 +41,7 @@ export default function WorkForce() {
         <div className="w-full md:w-[50%] flex justify-center order-1 md:order-none">
           <div className="relative w-64 h-64 md:w-96 md:h-96 mr-32">
             <img
-              src={image}
+              src={img2}
               alt="ZIT students learning"
               className="w-full h-full object-cover rounded-md shadow-md"
             />

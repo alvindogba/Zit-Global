@@ -1,4 +1,4 @@
-import image from '../../asset/images/Abel B. Winn.jpg';
+import image from '../../asset/images/Breaking Barriers.jpg';
 import { FaCheck } from 'react-icons/fa6';
 
 export default function TeachSomeone() {

@@ -155,7 +155,7 @@ function Header() {
 
         {/* Side Panel Trigger */}
         <button 
-          className="hidden lg:block p-1 text-white  hover:text-secondary"
+          className="hidden lg:block p-1 text-white hover:text-secondary"
           onClick={() => setLeftModalOpen(true)}
           aria-label="Open side panel"
         >
