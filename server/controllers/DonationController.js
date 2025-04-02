@@ -17,71 +17,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Create payment intent
-export const createPaymentIntent = async (req, res) => {
-  try {
-    const { amount } = req.body;
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 100), // Convert to cents
-      currency: 'usd',
-      automatic_payment_methods: {
-        enabled: true,
-      },
-    });
 
-    res.json({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    console.error('Error creating payment intent:', error);
-    res.status(500).json({ error: 'Failed to create payment intent' });
-  }
-};
-
-// Save donation
-export const saveDonation = async (req, res) => {
-  try {
-    const {
-      firstName,
-      lastName,
-      email,
-      address,
-      city,
-      state,
-      zip,
-      amount,
-      paymentMethod,
-      transactionId,
-      giftType,
-    } = req.body;
-
-    // Create donation record
-    const donation = await Donation.create({
-      firstName,
-      lastName,
-      email,
-      address,
-      city,
-      state,
-      zip,
-      amount,
-      paymentMethod,
-      transactionId,
-      giftType,
-      status: 'completed',
-    });
-
-    // Generate receipt
-    const receiptBuffer = await generateReceipt(donation);
-
-    // Send confirmation email
-    await sendConfirmationEmail(donation, receiptBuffer);
-
-    res.json({ success: true, donationId: donation._id });
-  } catch (error) {
-    console.error('Error saving donation:', error);
-    res.status(500).json({ error: 'Failed to save donation' });
-  }
-};
 
 // Handle Stripe webhook
 export const handleStripeWebhook = async (req, res) => {

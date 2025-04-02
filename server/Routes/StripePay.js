@@ -37,21 +37,11 @@ stripeRouter.post('/create-payment-intent', async (req, res) => {
 
 stripeRouter.post('/save-donation', async (req, res) => {
   try {
-    const { firstName, lastName, email, address, city, state, zip, amount, paymentMethod, transactionId, giftType } = req.body;
     console.log(req.body);
     // Create donation record
     const donation = await db.Donations.create({
-      firstName,
-      lastName,
-      email,
-      address,
-      city,
-      state,
-      zip,
-      amount,
-      paymentMethod,
-      transactionId,
-      giftType,
+    
+      ...req.body,
       status: 'completed',
     });
     // Generate receipt
@@ -88,6 +78,34 @@ stripeRouter.get('/get-success-donation/:transactionId', async (req, res) => {
   }
 });
 
+
+// The Strip Subscription End point 
+stripeRouter.post("/create-subscription-session", async (req, res) => {
+  try {
+    const { email, priceId } = req.body;
+    // Create a customer with the provided email
+    const customer = await stripe.customers.create({ email });
+    // Create a Checkout Session for a subscription
+    const session = await stripe.checkout.sessions.create({
+      customer: customer.id,
+      payment_method_types: ["card"],
+      mode: "subscription",
+      line_items: [
+        {
+          price: priceId, // Use your Stripe price ID configured for subscriptions
+          quantity: 1,
+        },
+      ],
+      // Replace FRONTEND_URL with your actual frontend URL
+      success_url: `${process.env.FRONTEND_URL}/donation-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/donation-cancel`,
+    });
+    res.json({ sessionId: session.id });
+  } catch (error) {
+    console.error("Error creating subscription session:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 

@@ -9,52 +9,62 @@ export default {
       },
       amount: {
         type: Sequelize.FLOAT,
-        allowNull: true,
+        allowNull: false,
       },
-    
       paymentMethod: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-    
       transactionId: {
         type: Sequelize.STRING,
         unique: true,
+        allowNull: true,
       },
-      
       firstName: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       lastName: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+      phone: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       address: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      address2: {
         type: Sequelize.STRING,
         allowNull: true,
       },
       city: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       state: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       zip: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+      country: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       giftType: {
         type: Sequelize.ENUM('one-time', 'monthly'),
-        allowNull: true,
+        allowNull: false,
       },
-    createdAt: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.fn('NOW'),
