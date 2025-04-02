@@ -17,27 +17,27 @@ const events: Event[] = [
     image: CardImg1,
     date: "22",
     month: 'Nov',
-    title: "A Record-Breaking Year For Zongea Institute of Technology",
+    title: "Coding Bootcamp Journey",
     description:
-      "At ZIT, we are dedicated to empowering professionals through high-quality training and capacity-building programs....",
+      "From novice to developer in 6 Months! Follow our students' bootcamp journey as they build real-world projects using industry tools. Our project-based curriculum gives students the skills employers demand.",
     link: "#",
   },
   {
     image: CardImg2,
-    date: "28",
-    month: "Jun",
-    title: "ZIT’s Coding Bootcamp: A Student’s Journey",
+    date: "24",
+    month: "20",
+    title: "A Record-breaking Year for Zongea Institute of Technology",
     description:
-      "Follow a student’s experience through ZIT’s intensive coding bootcamp, learning how to build a real-world app.",
+      "ZIT continues to break new ground, empowering professionals through high-quality training and capacity-building programs. With record enrollment ...",
     link: "#",
   },
   {
     image: CardImg3,
-    date: "2",
-    month: "Apr",
-    title: "Spotlight on Madam Williams: Inspiring LeaderShip at ZIT Cohort 4 Graduation Ceremony",
+    date: "going",
+    month: "On",
+    title: "Join the Next Generation of Innovators",
     description:
-      "At ZIT, we are dedicated to empowering professionals through high-quality training and capacity-building programs....",
+      "We are now accepting applications for our upcoming cohort! Gain hands-on training and real-world experience in Web Development, UI/UX Design, and Microsoft Office Suite.",
     link: "#",
   },
 ];
