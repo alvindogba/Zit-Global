@@ -42,6 +42,16 @@ function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
+  // Form state for the contact form in the side panel
+  const [formState, setFormState] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    submitted: false,
+    error: null as string | null
+  });
+
   const toggleDropdown = (name: string) => {
     setOpenDropdowns((prev) => {
       const updated = new Set(prev);
@@ -52,9 +62,52 @@ function Header() {
 
   const isActive = (href: string) => location.pathname.startsWith(href);
 
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormState(prev => ({
+      ...prev,
+      [name]: value,
+      error: null
+    }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Simple validation
+    if (!formState.name || !formState.email || !formState.message) {
+      setFormState(prev => ({
+        ...prev,
+        error: "Please fill in all required fields"
+      }));
+      return;
+    }
+    
+    // Here you would typically send the form data to your backend
+    console.log("Form submitted:", formState);
+    
+    // Reset form after submission
+    setFormState({
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      submitted: true,
+      error: null
+    });
+    
+    // Reset submission status after 3 seconds
+    setTimeout(() => {
+      setFormState(prev => ({
+        ...prev,
+        submitted: false
+      }));
+    }, 3000);
+  };
+
   return (
     <header className="h-fit fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
-      <nav className="container mx-auto flex items-center justify-between py-2 px-6 md:px-12">
+      <nav className="container mx-auto flex items-center justify-between py-2 px-6">
         {/* Logo */}
         <div className="flex lg:flex-1">
           <NavLink to="/" aria-label="Home">
@@ -155,7 +208,7 @@ function Header() {
 
         {/* Side Panel Trigger */}
         <button 
-          className="hidden lg:block p-1 md:ml-6 text-white hover:text-secondary"
+          className="hidden lg:block p-1 text-white hover:text-secondary"
           onClick={() => setLeftModalOpen(true)}
           aria-label="Open side panel"
         >
@@ -423,36 +476,60 @@ function Header() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-primary">Leave A Message</h3>
-                  <form className="mt-2 space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Your Phone Number"
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                    />
-                    <textarea
-                      placeholder="Message"
-                      rows={3}
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                    />
-                    <button
-                      type="submit"
-                      className="w-full bg-primary py-2 text-sm font-medium text-white rounded-md hover:bg-primary/90"
-                    >
-                      Submit
-                    </button>
-                  </form>
-                </div>
+            <h3 className="text-lg font-bold text-primary">Leave A Message</h3>
+            {formState.submitted ? (
+              <div className="mt-4 p-4 bg-green-100 text-green-700 rounded-md">
+                Thank you for your message! We'll get back to you soon.
+              </div>
+            ) : (
+              <form className="mt-2 space-y-3" onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name*"
+                  value={formState.name}
+                  onChange={handleFormChange}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  required
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Your Phone Number"
+                  value={formState.phone}
+                  onChange={handleFormChange}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email*"
+                  value={formState.email}
+                  onChange={handleFormChange}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  required
+                />
+                <textarea
+                  name="message"
+                  placeholder="Message*"
+                  rows={3}
+                  value={formState.message}
+                  onChange={handleFormChange}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  required
+                />
+                {formState.error && (
+                  <p className="text-red-500 text-sm">{formState.error}</p>
+                )}
+                <button
+                  type="submit"
+                  className="w-full bg-primary py-2 text-sm font-medium text-white rounded-md hover:bg-primary/90"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+          </div>
               </div>
             </motion.div>
           </>
