@@ -10,18 +10,14 @@ const paypalRouter = express.Router();
 
 paypalRouter.post("/save-donation", async (req, res) => {
   console.log(req.body);
-  const { 
-    firstName, lastName, email, address, city, state, zip, 
-    amount, paymentMethod, transactionId, giftType 
-  } = req.body;
-
   try {
     const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
     const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET;
     const PAYPAL_API = process.env.PAYPAL_API; // Ensure this is set in .env
 
     const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_SECRET}`).toString("base64");
-
+    // ✅ Extract transactionId from request body
+    const { transactionId } = req.body;
     // Step 1: Get PayPal Access Token
     const tokenResponse = await axios.post(
       `${PAYPAL_API}/v1/oauth2/token`,
@@ -56,17 +52,7 @@ paypalRouter.post("/save-donation", async (req, res) => {
 
     // Step 3: Save donation details to DB
     const donation = await db.Donations.create({
-      firstName,
-      lastName,
-      email,
-      address,
-      city,
-      state,
-      zip,
-      amount,
-      paymentMethod,
-      transactionId,
-      giftType,
+      ...req.body,
       status: "completed",
     });
 

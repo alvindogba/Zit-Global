@@ -91,7 +91,7 @@ const DonationSuccess = () => {
                 <div className="bg-gray-50 rounded-lg p-6 space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600 font-roboto">Amount</span>
-                    <span className="text-gray-900 font-roboto font-medium">${donation.amount.toFixed(2)}</span>
+                    <span className="text-gray-900 font-roboto font-medium">${donation.amount}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 font-roboto">Date</span>
