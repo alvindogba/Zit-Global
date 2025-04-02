@@ -2,6 +2,12 @@ import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
+import donor from '../../asset/images/Donors.jpg'
+import { RiSecurePaymentFill } from "react-icons/ri";
+import { IoIosHeart } from "react-icons/io";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { IoCard } from "react-icons/io5";
+import paypalImg from '../../asset/images/paypal.png'
 
 // Stripe imports
 import {
@@ -481,18 +487,56 @@ const DonationMultiStepForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" 
+    style={{
+      backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.1), rgba(0, 0, 84, 0.1)), url(${donor})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      transition: 'background-image 1s ease-in',
+    }}>
       <main className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-40 py-8">
         <div className="bg-white rounded-lg shadow p-4 sm:p-8 flex flex-col lg:flex-row gap-8">
           {/* Left Side: Visual/Image */}
-          <div className="text-primary mx-8 xl:mx-16 space-y-3 w-full lg:w-1/2">
-            <img src="your-donation-image.jpg" className="w-full rounded-lg" alt="Donation visual" />
-            <h3 className="font-noto text-xl sm:text-2xl font-bold text-center lg:text-left">
+          <div className="text-primary mx-8 xl:mx-6 space-y-3 lg:space-y-6 w-full lg:w-1/2">
+            
+            <h3 className="font-noto text-primary text-xl sm:text-2xl font-bold text-center lg:text-left">
               Empower Change, One Gift at a Time
             </h3>
-            <p className="font-roboto text-sm text-gray-600 text-center lg:text-left">
-              Your donation helps transform lives.
+          
+            <p className="font-roboto text-sm text-dparacolor text-left lg:text-left">
+            Your donation today fuels opportunity, connects talent, and transforms lives.
             </p>
+              <hr />
+            <p className="font-roboto text-sm text-dparacolor text-left lg:text-left">
+            At the Zongea Institute of Technology, we believe education should break barriers—not just for a few, 
+            but for all. The Impact and Connect Center (ICC) bridges the gap between learning and real-world impact
+             by providing students with mentorship, tools, and a platform to launch their careers. But we can’t do it alone.
+            </p>
+            <ul className="text-dparacolor">
+              <li className="text-primary font-semibold text-md">With your support, we can:
+                <ul className="text-dparacolor font-normal space-y-2 text-sm">
+                  <li className="flex items-center">
+                  <span className="mr-2 text-2xl text-secondary">•</span>
+                    Sponsor scholarships for underserved students.
+                  </li>
+                  <li className="flex items-center">
+                  <span className="mr-2 text-2xl text-secondary">•</span> Fund cutting-edge technology.</li>
+                  <li className="flex items-center">
+                  <span className="mr-2 text-2xl text-secondary">•</span> Expand mentorship programs with industry leaders.</li>
+                  <li className="flex items-center">
+                  <span className="mr-2 text-2xl text-secondary">•</span> Drive community projects that solve local and global challenges</li>
+                </ul>
+              </li>
+            </ul>
+            <hr />
+            <h5 className="text-primary font-semibold text-md">Every gift, big or small, makes a difference.</h5>
+            <div className="flex space-x-2 justify-center items-end h-32">
+              <RiSecurePaymentFill size={24} className="text-dparacolor"/>
+              <p className="font-roboto text-sm text-dparacolor">
+            Secured Donation
+            </p>
+            </div>
           </div>
 
           {/* Right Side: Multi-Step Form */}
@@ -521,23 +565,79 @@ const DonationMultiStepForm = () => {
                   <div className="min-w-full p-4">
                     <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Your Donation</h2>
                     <div className="flex gap-4 mb-6 flex-col sm:flex-row">
-                      <button type="button" onClick={() => setGiftType("one-time")} className={`w-full py-3 rounded-lg font-medium transition-colors ${giftType === "one-time" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>One-time Gift</button>
-                      <button type="button" onClick={() => setGiftType("monthly")} className={`w-full py-3 rounded-lg font-medium transition-colors ${giftType === "monthly" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Monthly Gift</button>
+                      <button type="button" onClick={() => setGiftType("one-time")} className={`w-full py-3 rounded-lg font-medium transition-colors ${giftType === "one-time" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>One-time </button>
+                      <button type="button" onClick={() => setGiftType("monthly")} className={`w-full py-3 rounded-lg font-medium flex justify-center items-center gap-3 transition-colors ${giftType === "monthly" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><IoIosHeart />Monthly</button>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mb-6">
-                      {[250, 125, 75, 50, 25].map((amt) => (
-                        <button key={amt} type="button" onClick={() => { setAmount(amt); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} className={`p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === amt ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>${amt}</button>
-                      ))}
-                      <div className="col-span-2 sm:col-span-1">
-                        <div className="relative">
-                          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                          <input type="text" placeholder="Other Amount" value={otherAmount} onChange={handleOtherAmountChange} className={`w-full p-2 pl-8 border rounded-lg ${formErrors.amount ? "border-red-500" : "border-gray-300"}`} />
-                        </div>
+                    {/* First row with 3 buttons */}
+                    <div className="col-span-1">
+                      <button 
+                        type="button" 
+                        onClick={() => { setAmount(250); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 250 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        $250
+                      </button>
+                    </div>
+                    <div className="col-span-1">
+                      <button 
+                        type="button" 
+                        onClick={() => { setAmount(125); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 125 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        $125
+                      </button>
+                    </div>
+                    <div className="col-span-1">
+                      <button 
+                        type="button" 
+                        onClick={() => { setAmount(75); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 75 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        $75
+                      </button>
+                    </div>
+
+                      {/* Second row with 2 buttons and empty space */}
+                      <div className="col-span-1">
+                        <button 
+                          type="button" 
+                          onClick={() => { setAmount(50); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 50 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        >
+                          $50
+                        </button>
                       </div>
-                      {formErrors.amount && (<p className="text-xs text-red-500">{formErrors.amount}</p>)}
+                      <div className="col-span-1">
+                        <button 
+                          type="button" 
+                          onClick={() => { setAmount(25); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 25 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        >
+                          $25
+                        </button>
+                      </div>
+                      <div className="col-span-1"></div> {/* Empty space to maintain grid */}
+
+                      {/* Third row - Other Amount input taking full width */}
+                      <div className="col-span-2 sm:col-span-3">
+                        <div className="relative">
+                          <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                          <input 
+                            type="text" 
+                            placeholder="Custom Amount" 
+                            value={otherAmount} 
+                            onChange={handleOtherAmountChange} 
+                            className={`w-full p-2 sm:p-4 border rounded-lg ${formErrors.amount ? "border-red-500" : "border-gray-300"}`} 
+                          />
+                        </div>
+                        {formErrors.amount && (
+                          <p className="text-xs text-red-500">{formErrors.amount}</p>
+                        )}
+                      </div>
                     </div>
                     <div className="flex justify-end mt-4">
-                      <button type="button" onClick={nextStep} className="px-4 py-2 bg-primary text-white rounded-lg">Next</button>
+                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
                     </div>
                   </div>
 
@@ -545,12 +645,12 @@ const DonationMultiStepForm = () => {
                   <div className="min-w-full p-4">
                     <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Payment Method</h2>
                     <div className="flex gap-4 mb-6">
-                      <button type="button" onClick={() => { setSelectedPaymentMethod("card"); nextStep(); }} className={`w-full py-3 rounded-lg font-medium transition-colors ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Card</button>
-                      <button type="button" onClick={() => { setSelectedPaymentMethod("paypal"); nextStep(); }} className={`w-full py-3 rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>PayPal</button>
+                      <button type="button" onClick={() => { setSelectedPaymentMethod("card"); nextStep(); }} className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><IoCard size={30}/>Credit Card</button>
+                      <button type="button" onClick={() => { setSelectedPaymentMethod("paypal"); nextStep(); }} className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><img src={paypalImg} className="h-6"/></button>
                     </div>
                     <div className="flex justify-between mt-4">
                       <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
-                      <button type="button" onClick={nextStep} className="px-4 py-2 bg-primary text-white rounded-lg">Next</button>
+                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
                     </div>
                   </div>
 
@@ -594,7 +694,7 @@ const DonationMultiStepForm = () => {
                     </div>
                     <div className="flex justify-between mt-4">
                       <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
-                      <button type="button" onClick={nextStep} className="px-4 py-2 bg-primary text-white rounded-lg">Next</button>
+                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
                     </div>
                   </div>
 

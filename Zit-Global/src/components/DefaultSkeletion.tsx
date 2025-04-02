@@ -30,7 +30,7 @@ const DefaultSkeletonPage = () => {
           <img
             src={Logo}
             alt="Loading Logo"
-            className={`w-60 h-20 transition-opacity duration-500 ${
+            className={`w-52 h-16 transition-opacity duration-500 ${
               showLogo ? "opacity-100" : "opacity-20"
             }`}
           />
