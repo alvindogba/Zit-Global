@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: process.env.EMAIL_PORT,
-  secure: process.env.EMAIL_PORT === '465',
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
@@ -25,7 +25,7 @@ const formatCurrency = (amount, currency = 'USD') => {
   }).format(amount);
 };
 
-export const sendDonationReceipt = async (donation, receiptBuffer) => {
+export const sendDonationReceipt = async (donation) => {
   const emailTemplate = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h2>Thank You for Your Donation!</h2>
@@ -34,11 +34,11 @@ export const sendDonationReceipt = async (donation, receiptBuffer) => {
       
       <div style="background-color: #f5f5f5; padding: 15px; margin: 20px 0; border-radius: 5px;">
         <h3>Donation Details:</h3>
-        <p>Receipt Number: ${receiptBuffer}</p>
+        <p>Receipt Number: ${donation.receiptNumber}</p>
         <p>Amount: ${formatCurrency(donation.amount, donation.currency)}</p>
         <p>Date: ${new Date(donation.createdAt).toLocaleDateString()}</p>
         <p>Payment Method: ${donation.paymentMethod}</p>
-        <p>Donation Type: ${donation.giftType}</p>
+        <p>Donation Type: ${donation.donationType}</p>
       </div>
 
       <p>This donation may be tax deductible. Please keep this receipt for your records.</p>
@@ -76,7 +76,7 @@ export const sendDonationNotificationToAdmin = async (donation) => {
         <p>Amount: ${formatCurrency(donation.amount, donation.currency)}</p>
         <p>Date: ${new Date(donation.createdAt).toLocaleDateString()}</p>
         <p>Payment Method: ${donation.paymentMethod}</p>
-        <p>Donation Type: ${donation.giftType}</p>
+        <p>Donation Type: ${donation.donationType}</p>
         
         <h3>Donor Information:</h3>
         <p>Name: ${donation.firstName} ${donation.lastName}</p>

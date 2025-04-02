@@ -14,16 +14,23 @@ const stripeRouter = express.Router();// Create an Express Router
 stripeRouter.post('/create-payment-intent', async (req, res) => {
   try {
     const { amount } = req.body;
-    console.log(amount);
+
+    // Validate and convert to cents
+    if (!amount || typeof amount !== 'number' || amount <= 0) {
+      return res.status(400).json({ error: 'Invalid amount' });
+    }
+    const amountInCents = Math.round(amount * 100); // Convert dollars to cents
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount,
+      amount: amountInCents, // Use converted value
       currency: 'usd',
       payment_method_types: ['card'],
     });
+
     res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error('Error creating payment intent:', error);
-    res.status(500).json({ error: 'Failed to create payment intent' });
+    res.status(500).json({ error: error.message }); // Send detailed error
   }
 });
 
