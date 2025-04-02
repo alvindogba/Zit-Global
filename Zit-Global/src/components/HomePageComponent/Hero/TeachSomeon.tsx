@@ -14,8 +14,8 @@ export default function TeachSomeone() {
         <p className="text-dparacolor font-roboto my-6 leading-relaxed md:w-[80%]">
           At Zongea Institute of Technology, we believe education is the key to transformation. Whether it’s helping young learners in underserved communities, supporting mid-career professionals rebuilding after setbacks, or equipping adults with new skills for a fresh start, your knowledge can create real opportunities.
         </p>
-        <p className='text-dparacolor font-roboto my-3 leading-relaxed md:[80%]'>Now more than ever, students need mentors, educators, and leaders who are ready to take action, not just observe. By becoming an instructor, you’ll play a crucial role in shaping futures and empowering others with the skills they need to succeed.</p>
-        <Link to="/icc/teacher" className="w-full md:w-fit font-sans px-6 py-2 bg-secondary text-white text-base rounded-lg hover:font-semibold hover:text-primary hover:border hover:border-primary hover:bg-white transition-all duration-300">
+        <p className='text-dparacolor font-roboto my-6 leading-relaxed md:[80%]'>Now more than ever, students need mentors, educators, and leaders who are ready to take action, not just observe. By becoming an instructor, you’ll play a crucial role in shaping futures and empowering others with the skills they need to succeed.</p>
+        <Link to="/icc/teacher" className="w-full md:w-fit font-sans px-3 py-2 bg-secondary text-white text-base rounded-lg hover:font-semibold hover:text-primary hover:border hover:border-primary hover:bg-white transition-all duration-300">
           Become a Teacher
         </Link>
 

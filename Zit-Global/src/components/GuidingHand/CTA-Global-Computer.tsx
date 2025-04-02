@@ -1,11 +1,11 @@
-import img from "../../asset/images/Vector 17.png"
+// import img from "../../asset/images/Vector 17.png"
 import { Link } from "react-router-dom";
 
 // src/components/CallToAction.tsx
 export default function CallToAction() {
     return (
       <section className="py-20 text-center flex flex-col items-center bg-gray-200">
-        <img src={img} alt="" className="mb-4" />
+        {/* <img src={img} alt="" className="mb-4" /> */}
         <h2 className="text-3xl font-bold text-primary mb-4">Join Our Global Community of Educators Today.</h2>
      
         <div className="mt-6 flex flex-col md:flex-row gap-4">

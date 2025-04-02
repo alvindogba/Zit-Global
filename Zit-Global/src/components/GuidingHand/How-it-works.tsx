@@ -13,8 +13,9 @@ const HowItWorks: React.FC = () => {
             How It Works?
           </h2>
           <p className="font-roboto text-dparacolor mb-8">
-            The Guiding Hands Program is a free tech school initiative in Liberia 
-            that offers mentorship, tutorship, and teaching.
+          The Impact and Connect Center (ICC) is the heartbeat of collaboration at Zongea Institute of Technology. Designed to bridge learning with real-world opportunities, the ICC empowers students, mentors, and industry leaders to connect, grow, and drive innovation together.
+          <br />
+          <br /><span>Here's how it works:</span>
           </p>
 
           {/* Four Steps (in two columns on medium screens) */}

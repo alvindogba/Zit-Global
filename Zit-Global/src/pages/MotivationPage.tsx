@@ -7,7 +7,7 @@ import WhyZongea from '../components/MotivationPage/WhyZongea'
 import WorkForce from '../components/MotivationPage/WorkForce'
 import { Link } from 'react-router-dom'
 import WhatWeBelieve from '../components/MotivationPage/WhatWeBelieve';
-import SeeAFuture from '../components/MotivationPage/SeeAFuture';
+// import SeeAFuture from '../components/MotivationPage/SeeAFuture';
 
 export default function MotivationPage() {
 
@@ -86,8 +86,8 @@ export default function MotivationPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className='flex justify-center items-center'>
-            <h2 className="font-noto text-lg md:text-2xl font-bold mb-6 text-white w-full text-center md:w-[30rem]">
-              Our Vision: Opportunity and Empowerment for Every Liberian
+            <h2 className="font-noto text-lg md:text-2xl font-bold mb-6 text-white w-full text-center md:w-[34rem]">
+              Our Vision: Opportunity and Empowerment for Everyone
             </h2>
           </div>
           
@@ -113,7 +113,7 @@ export default function MotivationPage() {
         </div>
       </div>
       <WhatWeBelieve />
-      <SeeAFuture />
+      {/* <SeeAFuture /> */}
       <ScrollToTopButton />
     </div>
   );

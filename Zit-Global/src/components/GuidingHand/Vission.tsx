@@ -35,7 +35,7 @@ const VisionSection: React.FC = () => {
 
         {/* Subheading */}
         <p className="font-roboto mt-2 text-dparacolor max-w-2xl mx-auto">
-          The Impact & Connect Center - TTM Program is a free tech school initiative in Liberia that offers mentorship, tutorship, and teaching.
+          The Impact & Connect Center - TTM Program is a free tech school initiatives that offers mentorship, tutorship, and teaching.
         </p>
 
         {/* Cards Container */}

@@ -54,7 +54,7 @@ function Header() {
 
   return (
     <header className="h-fit fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
-      <nav className="container mx-auto flex items-center justify-between py-2 px-6">
+      <nav className="container mx-auto flex items-center justify-between py-2 px-6 md:px-12">
         {/* Logo */}
         <div className="flex lg:flex-1">
           <NavLink to="/" aria-label="Home">
@@ -155,7 +155,7 @@ function Header() {
 
         {/* Side Panel Trigger */}
         <button 
-          className="hidden lg:block p-1 text-white hover:text-secondary"
+          className="hidden lg:block p-1 md:ml-6 text-white hover:text-secondary"
           onClick={() => setLeftModalOpen(true)}
           aria-label="Open side panel"
         >

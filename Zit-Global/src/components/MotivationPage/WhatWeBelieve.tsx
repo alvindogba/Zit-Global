@@ -22,7 +22,7 @@ export default function WhatWeBelieve() {
         </div>
 
         {/* Second Belief */}
-        <div className="flex flex-col md:flex-row p-6 bg-white rounded-lg md:shadow-md lg:shadow-md transition-all duration-300">
+        <div className="flex flex-col md:flex-row p-6 bg-white rounded-lg transition-all duration-300">
           <div className="flex-shrink-0 flex justify-center md:justify-start mb-4 md:mb-0">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
               <Users className="w-7 h-7 text-secondary" />
@@ -39,7 +39,7 @@ export default function WhatWeBelieve() {
         </div>
 
         {/* Third Belief */}
-        <div className="flex flex-col md:flex-row p-6 rounded-lg md:bg-gray-100 lg:bg-white lg:shadow-md transition-all duration-300">
+        <div className="flex flex-col md:flex-row p-6 rounded-lg md:bg-gray-100 lg:bg-white transition-all duration-300">
           <div className="flex-shrink-0 flex justify-center md:justify-start mb-4 md:mb-0">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
               <Backpack className="w-7 h-7 text-secondary" />
@@ -56,7 +56,7 @@ export default function WhatWeBelieve() {
         </div>
 
         {/* Fourth Belief */}
-        <div className="flex flex-col md:flex-row p-6 rounded-lg md:shadow-md  lg:bg-gray-100 transition-all duration-300">
+        <div className="flex flex-col md:flex-row p-6 rounded-lg lg:bg-gray-100 transition-all duration-300">
           <div className="flex-shrink-0 flex justify-center md:justify-start mb-4 md:mb-0">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
               <Target className="w-7 h-7 text-secondary" />
