@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon, Bars3BottomLeftIcon } from "@her
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../asset/images/zongea-logo.png";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import axios from "axios";
 
 const navigation = [
   {
@@ -44,7 +45,7 @@ function Header() {
 
   // Form state for the contact form in the side panel
   const [formState, setFormState] = useState({
-    name: "",
+    fullName: "",
     phone: "",
     email: "",
     message: "",
@@ -71,38 +72,42 @@ function Header() {
     }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+
+  const handleFormSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simple validation
-    if (!formState.name || !formState.email || !formState.message) {
+    try {
+         // Simple validation
+    if (!formState.fullName || !formState.email || !formState.message) {
       setFormState(prev => ({
         ...prev,
         error: "Please fill in all required fields"
       }));
       return;
     }
-    
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formState);
-    
+
+      // Here you would typically send the form data to your backend
+   const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/contact/submit`, formState)
     // Reset form after submission
+    console.log("Form submitted successfully:", response.data);
     setFormState({
-      name: "",
+      fullName: "",
       phone: "",
       email: "",
       message: "",
       submitted: true,
       error: null
     });
-    
-    // Reset submission status after 3 seconds
-    setTimeout(() => {
-      setFormState(prev => ({
-        ...prev,
-        submitted: false
-      }));
-    }, 3000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setFormState(prev => ({ ...prev, error: "An error occurred while submitting the form" }));
+    }
+    finally {
+      const timeout = setTimeout(() => {
+        setFormState(prev => ({ ...prev, submitted: false }));
+      }, 3000); // Reset submitted state after 3 seconds
+
+      return () => clearTimeout(timeout); // Cleanup timeout on component unmount
+    }
   };
 
   return (
@@ -479,7 +484,7 @@ function Header() {
             <h3 className="text-lg font-bold text-primary">Leave A Message</h3>
             {formState.submitted ? (
               <div className="mt-4 p-4 bg-green-100 text-green-700 rounded-md">
-                Thank you for your message! We'll get back to you soon.
+                Thank you for your message! We'll get back to you soon via email.
               </div>
             ) : (
               <form className="mt-2 space-y-3" onSubmit={handleFormSubmit}>

@@ -498,7 +498,7 @@ const DonationMultiStepForm = () => {
       <main className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-40 py-8">
         <div className="bg-white rounded-lg shadow p-4 sm:p-8 flex flex-col lg:flex-row gap-8">
           {/* Left Side: Visual/Image */}
-          <div className="text-primary mx-8 xl:mx-6 space-y-3 lg:space-y-6 w-full lg:w-1/2">
+          <div className="text-primary xl:mx-6 space-y-3 lg:space-y-6 w-full lg:w-1/2">
             
             <h3 className="font-noto text-primary text-xl sm:text-2xl font-bold text-center lg:text-left">
               Empower Change, One Gift at a Time
