@@ -345,7 +345,7 @@ const DonationMultiStepForm = () => {
     const errors: Record<string, string> = {};
     if (step === 1) {
       if (amount <= 0) errors.amount = "Amount must be greater than 0";
-      if (amount > 10000) errors.amount = "Amount cannot exceed $10,000";
+      if (amount > 500000) errors.amount = "Amount cannot exceed $50,000";
     }
     if (step === 3) {
       if (!donorInfo.firstName) errors.firstName = "First name is required";
@@ -370,7 +370,7 @@ const DonationMultiStepForm = () => {
       setError("Please correct the errors before continuing.");
       return;
     }
-    setError("");
+    setError("Please fill all the require fields.");
     setCurrentStep(currentStep + 1);
   };
 
@@ -380,7 +380,7 @@ const DonationMultiStepForm = () => {
 
   const handleOtherAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9.]/g, "");
-    if (value === "" || (Number(value) > 0 && Number(value) <= 10000)) {
+    if (value === "" || (Number(value) > 0 && Number(value) <= 50000)) {
       setOtherAmount(value);
       if (value !== "") setAmount(Number(value));
     }
@@ -397,7 +397,7 @@ const DonationMultiStepForm = () => {
     try {
       const { data: { clientSecret } } = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/stripe/create-payment-intent`,
-        { amount: amount * 100 }
+        { amount: amount } 
       );
       const cardElement = elements.getElement(CardNumberElement);
       if (!cardElement) throw new Error("Card element not found");
@@ -615,6 +615,14 @@ const DonationMultiStepForm = () => {
                           className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 25 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
                         >
                           $25
+                        </button>
+                        {/* Test amount  */}
+                        <button 
+                          type="button" 
+                          onClick={() => { setAmount(25); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 5 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        >
+                          $5
                         </button>
                       </div>
                       <div className="col-span-1"></div> {/* Empty space to maintain grid */}
