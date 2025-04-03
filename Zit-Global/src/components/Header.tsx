@@ -492,7 +492,7 @@ function Header() {
                   type="text"
                   name="name"
                   placeholder="Your Name*"
-                  value={formState.name}
+                  value={formState.fullName}
                   onChange={handleFormChange}
                   className="w-full p-2 border border-gray-300 rounded-md text-sm"
                   required
