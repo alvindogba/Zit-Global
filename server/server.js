@@ -36,12 +36,16 @@ app.use(helmet({
   crossOriginResourcePolicy: false // Disable Helmet's default CORP policy
 }));
 
+// Configure CORS first
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Frontend origin
-  methods: "GET,POST,PUT,DELETE",
+  origin: process.env.FRONTEND_URL, // Will be "https://zongeatech.com"
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
+
+// Explicitly handle OPTIONS for all routes
+app.options('*', cors());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

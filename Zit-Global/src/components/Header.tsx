@@ -490,7 +490,7 @@ function Header() {
               <form className="mt-2 space-y-3" onSubmit={handleFormSubmit}>
                 <input
                   type="text"
-                  name="name"
+                  name="fullName"
                   placeholder="Your Name*"
                   value={formState.fullName}
                   onChange={handleFormChange}
