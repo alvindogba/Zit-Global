@@ -397,7 +397,7 @@ const DonationMultiStepForm = () => {
     try {
       const { data: { clientSecret } } = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/stripe/create-payment-intent`,
-        { amount: amount } 
+        { amount: amount } // Amount in cents
       );
       const cardElement = elements.getElement(CardNumberElement);
       if (!cardElement) throw new Error("Card element not found");
@@ -444,20 +444,30 @@ const DonationMultiStepForm = () => {
       setError("Stripe has not been initialized");
       return;
     }
+    
     setProcessing(true);
     setError("");
+    
     try {
-      // Use your actual Stripe price ID configured for subscriptions
-      const stripePriceId = "price_123456789";
+      // Get donation amount from your form state
+      const amountInCents = Number(amount) * 100; // Convert dollars to cents
+      const interval = "month"; // Get this from your form's frequency selector
+  
+      // Call backend to create dynamic price and session
       const { data: { sessionId } } = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/stripe/create-subscription-session`,
         {
           email: donorInfo.email,
-          priceId: stripePriceId,
+          amount: amountInCents,
+          currency: 'usd', // Add currency selector if needed
+          interval: interval
         }
       );
+  
+      // Redirect to Stripe Checkout
       const { error } = await stripe.redirectToCheckout({ sessionId });
       if (error) throw error;
+  
     } catch (err) {
       console.error("Stripe subscription failed:", err);
       setError(err instanceof Error ? err.message : "Subscription failed");
@@ -579,6 +589,7 @@ const DonationMultiStepForm = () => {
                         $250
                       </button>
                     </div>
+
                     <div className="col-span-1">
                       <button 
                         type="button" 
@@ -616,10 +627,13 @@ const DonationMultiStepForm = () => {
                         >
                           $25
                         </button>
+                        </div>
+
                         {/* Test amount  */}
+                        <div className="col-span-1">
                         <button 
                           type="button" 
-                          onClick={() => { setAmount(25); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                          onClick={() => { setAmount(5); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
                           className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 5 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
                         >
                           $5
