@@ -30,7 +30,7 @@ export const sendDonationReceipt = async (donation) => {
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h2>Thank You for Your Donation!</h2>
       <p>Dear ${donation.firstName} ${donation.lastName},</p>
-      <p>Thank you for your generous donation to ZIT. Your support helps us continue our mission of providing free education and mentorship.</p>
+      <p>Thank you for your generous donation to the Zongea Institute Of Technology. Your support helps us continue our mission of providing free education and mentorship.</p>
       
       <div style="background-color: #f5f5f5; padding: 15px; margin: 20px 0; border-radius: 5px;">
         <h3>Donation Details:</h3>
@@ -40,8 +40,6 @@ export const sendDonationReceipt = async (donation) => {
         <p>Payment Method: ${donation.paymentMethod}</p>
         <p>Donation Type: ${donation.donationType}</p>
       </div>
-
-      <p>This donation may be tax deductible. Please keep this receipt for your records.</p>
       
       <div style="margin-top: 30px;">
         <p>Best regards,</p>
