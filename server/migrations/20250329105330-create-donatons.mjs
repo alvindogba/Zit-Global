@@ -64,6 +64,21 @@ export default {
         type: Sequelize.ENUM('one-time', 'monthly'),
         allowNull: false,
       },
+      status: {
+        type: Sequelize.ENUM('pending', 'completed', 'cancelled', 'failed'),
+        allowNull: false,
+        defaultValue: 'pending'
+      },
+      emailSent: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      receiptNumber: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        unique: true
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

@@ -62,6 +62,21 @@ export default (sequelize, DataTypes) => {
     giftType: {
       type: DataTypes.ENUM('one-time', 'monthly'),
       allowNull: false,
+    },
+    status: {
+      type: DataTypes.ENUM('pending', 'completed', 'cancelled', 'failed'),
+      allowNull: false,
+      defaultValue: 'pending'
+    },
+    emailSent: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    receiptNumber: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true
     }
   }, {
     tableName: 'Donations',

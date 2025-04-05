@@ -341,25 +341,127 @@ const DonationMultiStepForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const sanitizeInput = (input: string): string => {
+    // Remove HTML tags and special characters
+    return input.replace(/<[^>]*>?/gm, '').replace(/[<>"']/g, '').trim();
+  };
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const validateZip = (zip: string, country: string): boolean => {
+    const zipRegex = {
+      US: /^\d{5}(-\d{4})?$/,
+      CA: /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,
+      default: /^[A-Za-z0-9\s-]{3,10}$/
+    };
+    return (zipRegex[country as keyof typeof zipRegex] || zipRegex.default).test(zip);
+  };
+
   const validateStep = (step: number): boolean => {
     const errors: Record<string, string> = {};
+    
     if (step === 1) {
-      if (amount <= 0) errors.amount = "Amount must be greater than 0";
-      if (amount > 500000) errors.amount = "Amount cannot exceed $50,000";
+      if (amount <= 0) {
+        errors.amount = "Please enter a valid donation amount greater than $0";
+      } else if (amount > 50000) {
+        errors.amount = "Donation amount cannot exceed $50,000. Please contact us directly for larger donations";
+      }
     }
+
+    if (step === 2) {
+      // Sanitize and validate personal information
+      const sanitizedFirstName = sanitizeInput(donorInfo.firstName);
+      const sanitizedLastName = sanitizeInput(donorInfo.lastName);
+      const sanitizedEmail = sanitizeInput(donorInfo.email);
+      const sanitizedPhone = sanitizeInput(donorInfo.phone);
+
+      if (!sanitizedFirstName) {
+        errors.firstName = "First name is required";
+      } else if (sanitizedFirstName.length < 2) {
+        errors.firstName = "First name must be at least 2 characters long";
+      }
+
+      if (!sanitizedLastName) {
+        errors.lastName = "Last name is required";
+      } else if (sanitizedLastName.length < 2) {
+        errors.lastName = "Last name must be at least 2 characters long";
+      }
+
+      if (!sanitizedEmail) {
+        errors.email = "Email address is required";
+      } else if (!validateEmail(sanitizedEmail)) {
+        errors.email = "Please enter a valid email address";
+      }
+
+      if (!sanitizedPhone) {
+        errors.phone = "Phone number is required";
+      } else if (!validatePhone(sanitizedPhone)) {
+        errors.phone = "Please enter a valid phone number";
+      }
+
+      // Update sanitized values
+      setDonorInfo(prev => ({
+        ...prev,
+        firstName: sanitizedFirstName,
+        lastName: sanitizedLastName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone
+      }));
+    }
+
     if (step === 3) {
-      if (!donorInfo.firstName) errors.firstName = "First name is required";
-      if (!donorInfo.lastName) errors.lastName = "Last name is required";
-      if (!donorInfo.email) errors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(donorInfo.email))
-        errors.email = "Invalid email format";
-      if (!donorInfo.phone) errors.phone = "Phone number is required";
-      if (!donorInfo.address) errors.address = "Address is required";
-      if (!donorInfo.city) errors.city = "City is required";
-      if (!donorInfo.state) errors.state = "State/Region is required";
-      if (!donorInfo.zip) errors.zip = "ZIP/Postal code is required";
-      if (!donorInfo.country) errors.country = "Country is required";
+      // Sanitize and validate address information
+      const sanitizedAddress = sanitizeInput(donorInfo.address);
+      const sanitizedAddress2 = sanitizeInput(donorInfo.address2);
+      const sanitizedCity = sanitizeInput(donorInfo.city);
+      const sanitizedZip = sanitizeInput(donorInfo.zip);
+
+      if (!sanitizedAddress) {
+        errors.address = "Street address is required";
+      } else if (sanitizedAddress.length < 5) {
+        errors.address = "Please enter a complete street address";
+      }
+
+      if (!sanitizedCity) {
+        errors.city = "City is required";
+      }
+
+      if (!donorInfo.state) {
+        errors.state = donorInfo.country === "US" ? "State is required" : 
+                      donorInfo.country === "CA" ? "Province is required" : 
+                      "Region is required";
+      }
+
+      if (!sanitizedZip) {
+        errors.zip = "Postal code is required";
+      } else if (!validateZip(sanitizedZip, donorInfo.country)) {
+        errors.zip = donorInfo.country === "US" ? "Please enter a valid ZIP code" :
+                    donorInfo.country === "CA" ? "Please enter a valid postal code" :
+                    "Please enter a valid postal code";
+      }
+
+      if (!donorInfo.country) {
+        errors.country = "Country is required";
+      }
+
+      // Update sanitized values
+      setDonorInfo(prev => ({
+        ...prev,
+        address: sanitizedAddress,
+        address2: sanitizedAddress2,
+        city: sanitizedCity,
+        zip: sanitizedZip
+      }));
     }
+
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -370,7 +472,7 @@ const DonationMultiStepForm = () => {
       setError("Please correct the errors before continuing.");
       return;
     }
-    setError("Please fill all the require fields.");
+    setError(""); // Clear any previous errors
     setCurrentStep(currentStep + 1);
   };
 
@@ -397,7 +499,7 @@ const DonationMultiStepForm = () => {
     try {
       const { data: { clientSecret } } = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/stripe/create-payment-intent`,
-        { amount: amount } // Amount in cents
+        { amount: amount } 
       );
       const cardElement = elements.getElement(CardNumberElement);
       if (!cardElement) throw new Error("Card element not found");
@@ -436,41 +538,80 @@ const DonationMultiStepForm = () => {
     } finally {
       setProcessing(false);
     }
-  };
-
-  // Subscription submission for Card payments (Stripe Checkout)// Subscription submission for recurring donations via Stripe Checkout
+  };// Frontend Component
   const handleStripeSubscription = async () => {
     if (!stripe) {
-      setError("Stripe has not been initialized");
+      setError("Payment system is not ready. Please try again.");
       return;
     }
-    
+
     setProcessing(true);
     setError("");
-    
+
     try {
-      // Get donation amount from your form state
-      const amountInCents = Number(amount) * 100; // Convert dollars to cents
-      const interval = "month"; // Get this from your form's frequency selector
-  
-      // Call backend to create dynamic price and session
-      const { data: { sessionId } } = await axios.post(
+      // Validate amount
+      const numericAmount = Number(amount);
+      if (isNaN(numericAmount) || numericAmount <= 0) {
+        throw new Error("Please enter a valid donation amount");
+      }
+      if (numericAmount > 50000) {
+        throw new Error("Monthly donation amount cannot exceed $50,000. Please contact us directly.");
+      }
+
+      // Create subscription session
+      const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/stripe/create-subscription-session`,
         {
-          email: donorInfo.email,
-          amount: amountInCents,
-          currency: 'usd', // Add currency selector if needed
-          interval: interval
+          // Donor information
+          firstName: sanitizeInput(donorInfo.firstName),
+          lastName: sanitizeInput(donorInfo.lastName),
+          email: sanitizeInput(donorInfo.email),
+          phone: sanitizeInput(donorInfo.phone),
+          
+          // Address information
+          address: sanitizeInput(donorInfo.address),
+          address2: sanitizeInput(donorInfo.address2),
+          city: sanitizeInput(donorInfo.city),
+          state: donorInfo.state,
+          zip: sanitizeInput(donorInfo.zip),
+          country: donorInfo.country,
+          
+          // Payment information
+          amount: numericAmount,
+          currency: 'usd',
+          interval: 'month',
+          giftType: 'monthly'
         }
       );
-  
+
+      // Store receipt number in localStorage for success page
+      if (response.data.receiptNumber) {
+        localStorage.setItem('donationReceipt', response.data.receiptNumber);
+      }
+
       // Redirect to Stripe Checkout
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-      if (error) throw error;
-  
-    } catch (err) {
-      console.error("Stripe subscription failed:", err);
-      setError(err instanceof Error ? err.message : "Subscription failed");
+      const { error } = await stripe.redirectToCheckout({ 
+        sessionId: response.data.sessionId 
+      });
+      
+      if (error) {
+        throw new Error(error.message || "Unable to process subscription. Please try again.");
+      }
+
+    } catch (err: any) {
+      // Handle specific error types
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.message.includes('rate limit')) {
+        setError("Too many attempts. Please wait a moment and try again.");
+      } else if (err.message.includes('authentication')) {
+        setError("Payment authentication failed. Please check your card details.");
+      } else {
+        setError(err.message || "Unable to set up subscription. Please try again or contact support.");
+      }
+      
+      // Log error for monitoring
+      console.error("Subscription setup failed:", err);
     } finally {
       setProcessing(false);
     }
@@ -663,27 +804,26 @@ const DonationMultiStepForm = () => {
                     </div>
                   </div>
 
-                  {/* Step 2: Payment Method Selection */}
-                  <div className="min-w-full p-4">
-                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Payment Method</h2>
-                    <div className="flex gap-4 mb-6">
-                      <button type="button" onClick={() => { setSelectedPaymentMethod("card"); nextStep(); }} className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><IoCard size={30}/>Credit Card</button>
-                      <button type="button" onClick={() => { setSelectedPaymentMethod("paypal"); nextStep(); }} className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><img src={paypalImg} className="h-6"/></button>
-                    </div>
-                    <div className="flex justify-between mt-4">
-                      <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
-                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
-                    </div>
-                  </div>
-
-                  {/* Step 3: Donor & Billing Information */}
+                  {/* Step 2 Billing information*/}
                   <div className="min-w-full p-4">
                     <h2 className="text-xl font-bold mb-4 font-noto text-center">Donor & Billing Information</h2>
                     <div className="space-y-2">
-                      <input placeholder="First Name *" value={donorInfo.firstName} onChange={(e) => setDonorInfo({ ...donorInfo, firstName: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input placeholder="Last Name *" value={donorInfo.lastName} onChange={(e) => setDonorInfo({ ...donorInfo, lastName: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input type="email" placeholder="Email *" value={donorInfo.email} onChange={(e) => setDonorInfo({ ...donorInfo, email: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input placeholder="Phone *" value={donorInfo.phone} onChange={(e) => setDonorInfo({ ...donorInfo, phone: e.target.value })} className="w-full p-2 border rounded-lg" />
+                      <div>
+                        <input placeholder="First Name *" value={donorInfo.firstName} onChange={(e) => setDonorInfo({ ...donorInfo, firstName: e.target.value })} className={`w-full p-2 border rounded-lg ${formErrors.firstName ? 'border-red-500' : ''}`} />
+                        {formErrors.firstName && <p className="text-xs text-red-500 mt-1">{formErrors.firstName}</p>}
+                      </div>
+                      <div>
+                        <input placeholder="Last Name *" value={donorInfo.lastName} onChange={(e) => setDonorInfo({ ...donorInfo, lastName: e.target.value })} className={`w-full p-2 border rounded-lg ${formErrors.lastName ? 'border-red-500' : ''}`} />
+                        {formErrors.lastName && <p className="text-xs text-red-500 mt-1">{formErrors.lastName}</p>}
+                      </div>
+                      <div>
+                        <input type="email" placeholder="Email *" value={donorInfo.email} onChange={(e) => setDonorInfo({ ...donorInfo, email: e.target.value })} className={`w-full p-2 border rounded-lg ${formErrors.email ? 'border-red-500' : ''}`} />
+                        {formErrors.email && <p className="text-xs text-red-500 mt-1">{formErrors.email}</p>}
+                      </div>
+                      <div>
+                        <input placeholder="Phone * (e.g., 123-456-7890)" value={donorInfo.phone} onChange={(e) => setDonorInfo({ ...donorInfo, phone: e.target.value })} className={`w-full p-2 border rounded-lg ${formErrors.phone ? 'border-red-500' : ''}`} />
+                        {formErrors.phone && <p className="text-xs text-red-500 mt-1">{formErrors.phone}</p>}
+                      </div>
                       <input placeholder="Address *" value={donorInfo.address} onChange={(e) => setDonorInfo({ ...donorInfo, address: e.target.value })} className="w-full p-2 border rounded-lg" />
                       <input placeholder="Address Line 2 (Optional)" value={donorInfo.address2} onChange={(e) => setDonorInfo({ ...donorInfo, address2: e.target.value })} className="w-full p-2 border rounded-lg" />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -720,35 +860,79 @@ const DonationMultiStepForm = () => {
                     </div>
                   </div>
 
+                  {/* Step 3: Payment Method */}
+                  
+                  <div className="min-w-full p-4">
+                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Payment Method</h2>
+                    <div className="flex gap-4 mb-6">
+                      <button 
+                        type="button" 
+                        onClick={() => { setSelectedPaymentMethod("card"); nextStep(); }} 
+                        className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        <IoCard size={30}/>
+                        <div className="flex flex-col items-start">
+                          <span>Credit Card</span>
+                          <span className="text-xs opacity-75">{giftType === "one-time" ? "One-time payment" : "Monthly subscription"}</span>
+                        </div>
+                      </button>
+                      <button 
+                        type="button" 
+                        onClick={() => { setSelectedPaymentMethod("paypal"); nextStep(); }} 
+                        className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        <div className="flex flex-col items-center">
+                          <img src={paypalImg} className="h-6 mb-1"/>
+                          <span className="text-xs opacity-75">{giftType === "one-time" ? "One-time payment" : "Monthly subscription"}</span>
+                        </div>
+                      </button>
+                    </div>
+                    <div className="flex justify-between mt-4">
+                      <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
+                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
+                    </div>
+                  </div>
+
                   {/* Step 4: Payment Details */}
                   <div className="min-w-full p-4">
                     <h2 className="text-xl font-bold mb-4 font-noto text-center">Payment</h2>
                     {selectedPaymentMethod === "card" ? (
                       <div>
-                        <p className="mb-4 text-center">
-                          {giftType === "one-time" ? "Enter your card details for a one-time donation." 
-                          : "Enter your card details for your monthly subscription."}
-                        </p>
-                        <div className="mb-4">
-                          <label className="block mb-2 text-sm font-medium">Card Number *</label>
-                          <CardNumberElement id="card-number" className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                          <div>
-                            <label className="block mb-2 text-sm font-medium">Expiry *</label>
-                            <CardExpiryElement className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
-                          </div>
-                          <div>
-                            <label className="block mb-2 text-sm font-medium">CVC *</label>
-                            <CardCvcElement className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
-                          </div>
-                        </div>
-                        <button type="button"
-                          onClick={giftType === "one-time" ? handleStripeSubmit : handleStripeSubscription}
-                          disabled={processing}
-                          className={`px-4 py-2 rounded-lg text-white transition-colors w-full ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"}`}>
-                          {processing ? "Processing..." : (giftType === "one-time" ? "Submit Donation" : "Subscribe Monthly")}
-                        </button>
+                        {giftType === "one-time" ? (
+                          <>
+                            <p className="mb-4 text-center">Enter your card details for a one-time donation.</p>
+                            <div className="mb-4">
+                              <label className="block mb-2 text-sm font-medium">Card Number *</label>
+                              <CardNumberElement id="card-number" className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                              <div>
+                                <label className="block mb-2 text-sm font-medium">Expiry *</label>
+                                <CardExpiryElement className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
+                              </div>
+                              <div>
+                                <label className="block mb-2 text-sm font-medium">CVC *</label>
+                                <CardCvcElement className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
+                              </div>
+                            </div>
+                            <button type="button"
+                              onClick={handleStripeSubmit}
+                              disabled={processing}
+                              className={`px-4 py-2 rounded-lg text-white transition-colors w-full ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"}`}>
+                              {processing ? "Processing..." : "Submit Donation"}
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <p className="mb-4 text-center">You'll be redirected to Stripe's secure checkout to set up your monthly subscription.</p>
+                            <button type="button"
+                              onClick={handleStripeSubscription}
+                              disabled={processing}
+                              className={`px-4 py-2 rounded-lg text-white transition-colors w-full ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"}`}>
+                              {processing ? "Processing..." : "Set Up Monthly Donation"}
+                            </button>
+                          </>
+                        )}
                         <div className="flex justify-start mt-4">
                           <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
                         </div>

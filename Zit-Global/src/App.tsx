@@ -14,6 +14,7 @@ const Footer = lazy(() => import('./components/Footer/index'))
 const HomePage = lazy(() => import('./pages/HomePage'))
 const DonationPage = lazy(() => import('./pages/Donationations/DonationPage'));
 const DonationSuccess = lazy(() => import('./pages/Donationations/DonationSuccess'));
+const MonthlySuccess = lazy(() => import('./pages/Donationations/MonthlySucesss'));
 const Admission = lazy(() => import('./pages/Admission/AdmissionPage'));
 const HowToApply = lazy(() => import('./pages/Admission/HowToApply'));
 const Motivation = lazy(() => import('./pages/MotivationPage'));
@@ -79,6 +80,7 @@ function App() {
                 {/* The Donation route */}
                 <Route path="/donate" element={<DonationPage />} />
                 <Route path="/success" element={<DonationSuccess />}/>
+                <Route path="/monthly-success" element={<MonthlySuccess />}/>
                 {/* The Couses Page route */}
                 <Route path="/courses/ui-ux-design"element={<UIUXDesign />}/>
                 <Route path="/courses/graphic-design" element={<GraphicDesign />}/>

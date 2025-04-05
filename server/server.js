@@ -38,9 +38,9 @@ app.use(helmet({
 
 // Configure CORS first
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Will be "https://zongeatech.com"
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: [process.env.FRONTEND_URL, 'http://localhost:4000'], // Allow both production and development URLs
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
   credentials: true
 }));
 
