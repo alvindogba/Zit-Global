@@ -346,8 +346,9 @@ const DonationMultiStepForm = () => {
     if (step === 1) {
       if (amount <= 0) errors.amount = "Amount must be greater than 0";
       if (amount > 500000) errors.amount = "Amount cannot exceed $50,000";
+      if (!giftType) errors.giftType = "Please select a gift type";
     }
-    if (step === 3) {
+    if (step === 2) {
       if (!donorInfo.firstName) errors.firstName = "First name is required";
       if (!donorInfo.lastName) errors.lastName = "Last name is required";
       if (!donorInfo.email) errors.email = "Email is required";
@@ -360,6 +361,9 @@ const DonationMultiStepForm = () => {
       if (!donorInfo.zip) errors.zip = "ZIP/Postal code is required";
       if (!donorInfo.country) errors.country = "Country is required";
     }
+    if (step === 3) {
+      if (!selectedPaymentMethod) errors.paymentMethod = "Please select a payment method";
+    }
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -367,10 +371,9 @@ const DonationMultiStepForm = () => {
   const nextStep = (e?: FormEvent) => {
     if (e) e.preventDefault();
     if (!validateStep(currentStep)) {
-      setError("Please correct the errors before continuing.");
       return;
     }
-    setError("Please fill all the require fields.");
+    setError("");
     setCurrentStep(currentStep + 1);
   };
 
@@ -378,11 +381,26 @@ const DonationMultiStepForm = () => {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
+  const handleDonorInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setDonorInfo(prev => ({ ...prev, [name]: value }));
+    // Clear error for this field when user starts typing
+    if (formErrors[name]) {
+      setFormErrors(prev => ({ ...prev, [name]: "" }));
+    }
+  };
+
   const handleOtherAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9.]/g, "");
     if (value === "" || (Number(value) > 0 && Number(value) <= 50000)) {
       setOtherAmount(value);
-      if (value !== "") setAmount(Number(value));
+      if (value !== "") {
+        setAmount(Number(value));
+        // Clear amount error when valid amount is entered
+        if (formErrors.amount) {
+          setFormErrors(prev => ({ ...prev, amount: "" }));
+        }
+      }
     }
   };
 
@@ -593,19 +611,19 @@ const DonationMultiStepForm = () => {
                     <div className="col-span-1">
                       <button 
                         type="button" 
-                        onClick={() => { setAmount(125); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 125 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        onClick={() => { setAmount(150); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 150 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
                       >
-                        $125
+                        $150
                       </button>
                     </div>
                     <div className="col-span-1">
                       <button 
                         type="button" 
-                        onClick={() => { setAmount(75); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 75 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        onClick={() => { setAmount(100); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
+                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 100 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
                       >
-                        $75
+                        $100
                       </button>
                     </div>
 
@@ -630,15 +648,7 @@ const DonationMultiStepForm = () => {
                         </div>
 
                         {/* Test amount  */}
-                        <div className="col-span-1">
-                        <button 
-                          type="button" 
-                          onClick={() => { setAmount(5); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 5 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                        >
-                          $5
-                        </button>
-                      </div>
+                        
                       <div className="col-span-1"></div> {/* Empty space to maintain grid */}
 
                       {/* Third row - Other Amount input taking full width */}
@@ -650,7 +660,7 @@ const DonationMultiStepForm = () => {
                             placeholder="Custom Amount" 
                             value={otherAmount} 
                             onChange={handleOtherAmountChange} 
-                            className={`w-full p-2 sm:p-4 border rounded-lg ${formErrors.amount ? "border-red-500" : "border-gray-300"}`} 
+                            className={`w-full p-2 pl-8 border rounded-lg ${formErrors.amount ? "border-red-500" : "border-gray-300"}`} 
                           />
                         </div>
                         {formErrors.amount && (
@@ -663,12 +673,140 @@ const DonationMultiStepForm = () => {
                     </div>
                   </div>
 
-                  {/* Step 2: Payment Method Selection */}
+                  {/* Step 2: Donor & Billing Information */}
                   <div className="min-w-full p-4">
-                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Payment Method</h2>
-                    <div className="flex gap-4 mb-6">
-                      <button type="button" onClick={() => { setSelectedPaymentMethod("card"); nextStep(); }} className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><IoCard size={30}/>Credit Card</button>
-                      <button type="button" onClick={() => { setSelectedPaymentMethod("paypal"); nextStep(); }} className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><img src={paypalImg} className="h-6"/></button>
+                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Donor & Billing Information</h2>
+                    <div className="space-y-2">
+                      <div>
+                        <input 
+                          placeholder="First Name *" 
+                          value={donorInfo.firstName} 
+                          onChange={handleDonorInfoChange}
+                          name="firstName"
+                          className={`w-full p-2 border rounded-lg ${formErrors.firstName ? 'border-red-500' : 'border-gray-300'}`} 
+                        />
+                        {formErrors.firstName && <p className="text-xs text-red-500 mt-1">{formErrors.firstName}</p>}
+                      </div>
+                      <div>
+                        <input 
+                          placeholder="Last Name *" 
+                          value={donorInfo.lastName} 
+                          onChange={handleDonorInfoChange}
+                          name="lastName"
+                          className={`w-full p-2 border rounded-lg ${formErrors.lastName ? 'border-red-500' : 'border-gray-300'}`} 
+                        />
+                        {formErrors.lastName && <p className="text-xs text-red-500 mt-1">{formErrors.lastName}</p>}
+                      </div>
+                      <div>
+                        <input 
+                          type="email" 
+                          placeholder="Email *" 
+                          value={donorInfo.email} 
+                          onChange={handleDonorInfoChange}
+                          name="email"
+                          className={`w-full p-2 border rounded-lg ${formErrors.email ? 'border-red-500' : 'border-gray-300'}`} 
+                        />
+                        {formErrors.email && <p className="text-xs text-red-500 mt-1">{formErrors.email}</p>}
+                      </div>
+                      <div>
+                        <input 
+                          placeholder="Phone *" 
+                          value={donorInfo.phone} 
+                          onChange={handleDonorInfoChange}
+                          name="phone"
+                          className={`w-full p-2 border rounded-lg ${formErrors.phone ? 'border-red-500' : 'border-gray-300'}`} 
+                        />
+                        {formErrors.phone && <p className="text-xs text-red-500 mt-1">{formErrors.phone}</p>}
+                      </div>
+                      <div>
+                        <input 
+                          placeholder="Address *" 
+                          value={donorInfo.address} 
+                          onChange={handleDonorInfoChange}
+                          name="address"
+                          className={`w-full p-2 border rounded-lg ${formErrors.address ? 'border-red-500' : 'border-gray-300'}`} 
+                        />
+                        {formErrors.address && <p className="text-xs text-red-500 mt-1">{formErrors.address}</p>}
+                      </div>
+                      <input 
+                        placeholder="Address Line 2 (Optional)" 
+                        value={donorInfo.address2} 
+                        onChange={handleDonorInfoChange}
+                        name="address2"
+                        className="w-full p-2 border rounded-lg border-gray-300" 
+                      />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div>
+                          <input 
+                            placeholder="City *" 
+                            value={donorInfo.city} 
+                            onChange={handleDonorInfoChange}
+                            name="city"
+                            className={`w-full p-2 border rounded-lg ${formErrors.city ? 'border-red-500' : 'border-gray-300'}`} 
+                          />
+                          {formErrors.city && <p className="text-xs text-red-500 mt-1">{formErrors.city}</p>}
+                        </div>
+                        <div>
+                          {donorInfo.country === "US" ? (
+                            <select 
+                              value={donorInfo.state} 
+                              onChange={handleDonorInfoChange} 
+                              name="state"
+                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? 'border-red-500' : 'border-gray-300'}`}
+                            >
+                              <option value="">State *</option>
+                              {US_STATES.map((state) => (
+                                <option key={state.code} value={state.code}>{state.name}</option>
+                              ))}
+                            </select>
+                          ) : donorInfo.country === "CA" ? (
+                            <select 
+                              value={donorInfo.state} 
+                              onChange={handleDonorInfoChange} 
+                              name="state"
+                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? 'border-red-500' : 'border-gray-300'}`}
+                            >
+                              <option value="">Province *</option>
+                              {CA_PROVINCES.map((prov) => (
+                                <option key={prov.code} value={prov.code}>{prov.name}</option>
+                              ))}
+                            </select>
+                          ) : (
+                            <input 
+                              placeholder="Region *" 
+                              value={donorInfo.state} 
+                              onChange={handleDonorInfoChange}
+                              name="state"
+                              className={`w-full p-2 border rounded-lg ${formErrors.state ? 'border-red-500' : 'border-gray-300'}`} 
+                            />
+                          )}
+                          {formErrors.state && <p className="text-xs text-red-500 mt-1">{formErrors.state}</p>}
+                        </div>
+                      </div>
+                      <div>
+                        <input 
+                          placeholder="ZIP / Postal Code *" 
+                          value={donorInfo.zip} 
+                          onChange={handleDonorInfoChange}
+                          name="zip"
+                          className={`w-full p-2 border rounded-lg ${formErrors.zip ? 'border-red-500' : 'border-gray-300'}`} 
+                        />
+                        {formErrors.zip && <p className="text-xs text-red-500 mt-1">{formErrors.zip}</p>}
+                      </div>
+                      <div>
+                        <select 
+                          value={donorInfo.country} 
+                          onChange={handleDonorInfoChange} 
+                          name="country"
+                          className={`w-full p-2 border rounded-lg bg-white ${formErrors.country ? 'border-red-500' : 'border-gray-300'}`}
+                        >
+                          <option value="">Country *</option>
+                          {COUNTRIES.map((c) => (
+                            <option key={c.code} value={c.code}>{c.name}</option>
+                          ))}
+                        </select>
+                        {formErrors.country && <p className="text-xs text-red-500 mt-1">{formErrors.country}</p>}
+                      </div>
                     </div>
                     <div className="flex justify-between mt-4">
                       <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
@@ -676,44 +814,28 @@ const DonationMultiStepForm = () => {
                     </div>
                   </div>
 
-                  {/* Step 3: Donor & Billing Information */}
+                  {/* Step 3: Payment Method Selection */}
                   <div className="min-w-full p-4">
-                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Donor & Billing Information</h2>
-                    <div className="space-y-2">
-                      <input placeholder="First Name *" value={donorInfo.firstName} onChange={(e) => setDonorInfo({ ...donorInfo, firstName: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input placeholder="Last Name *" value={donorInfo.lastName} onChange={(e) => setDonorInfo({ ...donorInfo, lastName: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input type="email" placeholder="Email *" value={donorInfo.email} onChange={(e) => setDonorInfo({ ...donorInfo, email: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input placeholder="Phone *" value={donorInfo.phone} onChange={(e) => setDonorInfo({ ...donorInfo, phone: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input placeholder="Address *" value={donorInfo.address} onChange={(e) => setDonorInfo({ ...donorInfo, address: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <input placeholder="Address Line 2 (Optional)" value={donorInfo.address2} onChange={(e) => setDonorInfo({ ...donorInfo, address2: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        <input placeholder="City *" value={donorInfo.city} onChange={(e) => setDonorInfo({ ...donorInfo, city: e.target.value })} className="w-full p-2 border rounded-lg" />
-                        {donorInfo.country === "US" ? (
-                          <select value={donorInfo.state} onChange={(e) => setDonorInfo({ ...donorInfo, state: e.target.value })} className="w-full p-2 border rounded-lg bg-white">
-                            <option value="">State *</option>
-                            {US_STATES.map((state) => (
-                              <option key={state.code} value={state.code}>{state.name}</option>
-                            ))}
-                          </select>
-                        ) : donorInfo.country === "CA" ? (
-                          <select value={donorInfo.state} onChange={(e) => setDonorInfo({ ...donorInfo, state: e.target.value })} className="w-full p-2 border rounded-lg bg-white">
-                            <option value="">Province *</option>
-                            {CA_PROVINCES.map((prov) => (
-                              <option key={prov.code} value={prov.code}>{prov.name}</option>
-                            ))}
-                          </select>
-                        ) : (
-                          <input placeholder="Region *" value={donorInfo.state} onChange={(e) => setDonorInfo({ ...donorInfo, state: e.target.value })} className="w-full p-2 border rounded-lg" />
-                        )}
-                      </div>
-                      <input placeholder="ZIP / Postal Code *" value={donorInfo.zip} onChange={(e) => setDonorInfo({ ...donorInfo, zip: e.target.value })} className="w-full p-2 border rounded-lg" />
-                      <select value={donorInfo.country} onChange={(e) => setDonorInfo({ ...donorInfo, country: e.target.value, state: "" })} className="w-full p-2 border rounded-lg bg-white">
-                        <option value="">Country *</option>
-                        {COUNTRIES.map((c) => (
-                          <option key={c.code} value={c.code}>{c.name}</option>
-                        ))}
-                      </select>
+                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Payment Method</h2>
+                    <div className="flex gap-4 mb-6">
+                      <button 
+                        type="button" 
+                        onClick={() => { setSelectedPaymentMethod("card"); setFormErrors(prev => ({ ...prev, paymentMethod: "" })); }} 
+                        className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        <IoCard size={30}/>Credit Card
+                      </button>
+                      <button 
+                        type="button" 
+                        onClick={() => { setSelectedPaymentMethod("paypal"); setFormErrors(prev => ({ ...prev, paymentMethod: "" })); }} 
+                        className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      >
+                        <img src={paypalImg} className="h-6"/>
+                      </button>
                     </div>
+                    {formErrors.paymentMethod && (
+                      <p className="text-xs text-red-500 text-center mb-4">{formErrors.paymentMethod}</p>
+                    )}
                     <div className="flex justify-between mt-4">
                       <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
                       <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
@@ -792,24 +914,65 @@ const DonationMultiStepForm = () => {
                             <div className="flex flex-col gap-4">
                               <PayPalButtons
                                 style={{ layout: "vertical" }}
-                                createSubscription={(actions: any) => {
+                                createSubscription={(_data, actions) => {
                                   return actions.subscription.create({
-                                    plan_id: "YOUR_PAYPAL_MONTHLY_PLAN_ID"
-                                  });
-                                }}
-                                onApprove={(data) => {
-                                  return new Promise<void>((resolve, reject) => {
-                                    if (data.subscriptionID) {
-                                      handlePayPalSuccess(data.subscriptionID)
-                                        .then(resolve)
-                                        .catch(reject);
-                                    } else {
-                                      setError("Subscription ID is missing.");
-                                      reject(new Error("Subscription ID is missing."));
+                                    'plan_id': import.meta.env.VITE_PAYPAL_MONTHLY_PLAN_ID,
+                                    'application_context': {
+                                      'shipping_preference': 'NO_SHIPPING',
+                                      'return_url': `${window.location.origin}/success`,
+                                      'cancel_url': `${window.location.origin}/donate`
+                                    },
+                                    'subscriber': {
+                                      'name': {
+                                        'given_name': donorInfo.firstName,
+                                        'surname': donorInfo.lastName
+                                      },
+                                      'email_address': donorInfo.email,
+                                      'shipping_address': {
+                                        'name': {
+                                          'full_name': `${donorInfo.firstName} ${donorInfo.lastName}`
+                                        },
+                                        'address': {
+                                          'address_line_1': donorInfo.address,
+                                          'address_line_2': donorInfo.address2,
+                                          'admin_area_2': donorInfo.city,
+                                          'admin_area_1': donorInfo.state,
+                                          'postal_code': donorInfo.zip,
+                                          'country_code': donorInfo.country
+                                        }
+                                      }
                                     }
                                   });
                                 }}
-                                onError={(err) => { setError("PayPal subscription failed: " + (err instanceof Error ? err.message : "Unknown error")); }}
+                                onApprove={async (data) => {
+                                  try {
+                                    if (!data.subscriptionID) {
+                                      throw new Error("Subscription ID is missing");
+                                    }
+
+                                    // Save subscription details to backend
+                                    await axios.post(
+                                      `${import.meta.env.VITE_BACKEND_URL}/api/paypal/save-subscription`,
+                                      {
+                                        subscriptionId: data.subscriptionID,
+                                        donorInfo,
+                                        amount,
+                                        giftType: "monthly"
+                                      }
+                                    );
+
+                                    // Redirect to success page
+                                    navigate(`/success?subscriptionId=${data.subscriptionID}&email=${encodeURIComponent(donorInfo.email)}`);
+                                  } catch (err) {
+                                    console.error("Error saving subscription:", err);
+                                    setError(err instanceof Error ? err.message : "Failed to process subscription");
+                                    throw err;
+                                  }
+                                }}
+                                onError={(err) => { 
+                                  console.error("PayPal subscription error:", err);
+                                  setError("PayPal subscription failed: " + (err instanceof Error ? err.message : "Unknown error")); 
+                                }}
                               />
                             </div>
                           )}
@@ -831,16 +994,21 @@ const DonationMultiStepForm = () => {
           </div>
         </div>
       </main>
-      <ScrollToTopButton />
     </div>
   );
 };
 
 const DonationPage = () => (
   <Elements stripe={stripePromise}>
-    <PayPalScriptProvider options={{ clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "your-paypal-client-id", currency: "USD", intent: "capture" }}>
+    <PayPalScriptProvider options={{
+      clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "your-paypal-client-id",
+      currency: "USD",
+      vault: true
+    }}>
       <DonationMultiStepForm />
+
     </PayPalScriptProvider>
+    <ScrollToTopButton />
   </Elements>
 );
 
