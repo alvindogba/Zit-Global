@@ -19,308 +19,28 @@ import {
   CardCvcElement
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
 // PayPal imports
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-
 // Import your US states list
-import { US_STATES } from "../../utils/states";
-
+import { US_STATES, COUNTRIES, CA_PROVINCES } from "../../utils/states"
 // Load Stripe with your public key
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
-// Canadian provinces array
-const CA_PROVINCES = [
-  { code: "AB", name: "Alberta" },
-  { code: "BC", name: "British Columbia" },
-  { code: "MB", name: "Manitoba" },
-  { code: "NB", name: "New Brunswick" },
-  { code: "NL", name: "Newfoundland and Labrador" },
-  { code: "NS", name: "Nova Scotia" },
-  { code: "ON", name: "Ontario" },
-  { code: "PE", name: "Prince Edward Island" },
-  { code: "QC", name: "Quebec" },
-  { code: "SK", name: "Saskatchewan" },
-  { code: "NT", name: "Northwest Territories" },
-  { code: "NU", name: "Nunavut" },
-  { code: "YT", name: "Yukon" }
-];
-
-// Complete list of countries (ISO 3166‑1 alpha‑2)
-const COUNTRIES = [
-  { code: "AF", name: "Afghanistan" },
-  { code: "AX", name: "Åland Islands" },
-  { code: "AL", name: "Albania" },
-  { code: "DZ", name: "Algeria" },
-  { code: "AS", name: "American Samoa" },
-  { code: "AD", name: "Andorra" },
-  { code: "AO", name: "Angola" },
-  { code: "AI", name: "Anguilla" },
-  { code: "AQ", name: "Antarctica" },
-  { code: "AG", name: "Antigua and Barbuda" },
-  { code: "AR", name: "Argentina" },
-  { code: "AM", name: "Armenia" },
-  { code: "AW", name: "Aruba" },
-  { code: "AU", name: "Australia" },
-  { code: "AT", name: "Austria" },
-  { code: "AZ", name: "Azerbaijan" },
-  { code: "BS", name: "Bahamas" },
-  { code: "BH", name: "Bahrain" },
-  { code: "BD", name: "Bangladesh" },
-  { code: "BB", name: "Barbados" },
-  { code: "BY", name: "Belarus" },
-  { code: "BE", name: "Belgium" },
-  { code: "BZ", name: "Belize" },
-  { code: "BJ", name: "Benin" },
-  { code: "BM", name: "Bermuda" },
-  { code: "BT", name: "Bhutan" },
-  { code: "BO", name: "Bolivia" },
-  { code: "BQ", name: "Bonaire, Sint Eustatius and Saba" },
-  { code: "BA", name: "Bosnia and Herzegovina" },
-  { code: "BW", name: "Botswana" },
-  { code: "BV", name: "Bouvet Island" },
-  { code: "BR", name: "Brazil" },
-  { code: "IO", name: "British Indian Ocean Territory" },
-  { code: "BN", name: "Brunei Darussalam" },
-  { code: "BG", name: "Bulgaria" },
-  { code: "BF", name: "Burkina Faso" },
-  { code: "BI", name: "Burundi" },
-  { code: "CV", name: "Cabo Verde" },
-  { code: "KH", name: "Cambodia" },
-  { code: "CM", name: "Cameroon" },
-  { code: "CA", name: "Canada" },
-  { code: "KY", name: "Cayman Islands" },
-  { code: "CF", name: "Central African Republic" },
-  { code: "TD", name: "Chad" },
-  { code: "CL", name: "Chile" },
-  { code: "CN", name: "China" },
-  { code: "CX", name: "Christmas Island" },
-  { code: "CC", name: "Cocos (Keeling) Islands" },
-  { code: "CO", name: "Colombia" },
-  { code: "KM", name: "Comoros" },
-  { code: "CG", name: "Congo" },
-  { code: "CD", name: "Congo, Democratic Republic of the" },
-  { code: "CK", name: "Cook Islands" },
-  { code: "CR", name: "Costa Rica" },
-  { code: "CI", name: "Côte d'Ivoire" },
-  { code: "HR", name: "Croatia" },
-  { code: "CU", name: "Cuba" },
-  { code: "CW", name: "Curaçao" },
-  { code: "CY", name: "Cyprus" },
-  { code: "CZ", name: "Czechia" },
-  { code: "DK", name: "Denmark" },
-  { code: "DJ", name: "Djibouti" },
-  { code: "DM", name: "Dominica" },
-  { code: "DO", name: "Dominican Republic" },
-  { code: "EC", name: "Ecuador" },
-  { code: "EG", name: "Egypt" },
-  { code: "SV", name: "El Salvador" },
-  { code: "GQ", name: "Equatorial Guinea" },
-  { code: "ER", name: "Eritrea" },
-  { code: "EE", name: "Estonia" },
-  { code: "SZ", name: "Eswatini" },
-  { code: "ET", name: "Ethiopia" },
-  { code: "FK", name: "Falkland Islands (Malvinas)" },
-  { code: "FO", name: "Faroe Islands" },
-  { code: "FJ", name: "Fiji" },
-  { code: "FI", name: "Finland" },
-  { code: "FR", name: "France" },
-  { code: "GF", name: "French Guiana" },
-  { code: "PF", name: "French Polynesia" },
-  { code: "TF", name: "French Southern Territories" },
-  { code: "GA", name: "Gabon" },
-  { code: "GM", name: "Gambia" },
-  { code: "GE", name: "Georgia" },
-  { code: "DE", name: "Germany" },
-  { code: "GH", name: "Ghana" },
-  { code: "GI", name: "Gibraltar" },
-  { code: "GR", name: "Greece" },
-  { code: "GL", name: "Greenland" },
-  { code: "GD", name: "Grenada" },
-  { code: "GP", name: "Guadeloupe" },
-  { code: "GU", name: "Guam" },
-  { code: "GT", name: "Guatemala" },
-  { code: "GG", name: "Guernsey" },
-  { code: "GN", name: "Guinea" },
-  { code: "GW", name: "Guinea-Bissau" },
-  { code: "GY", name: "Guyana" },
-  { code: "HT", name: "Haiti" },
-  { code: "HM", name: "Heard Island and McDonald Islands" },
-  { code: "VA", name: "Holy See" },
-  { code: "HN", name: "Honduras" },
-  { code: "HK", name: "Hong Kong" },
-  { code: "HU", name: "Hungary" },
-  { code: "IS", name: "Iceland" },
-  { code: "IN", name: "India" },
-  { code: "ID", name: "Indonesia" },
-  { code: "IR", name: "Iran, Islamic Republic of" },
-  { code: "IQ", name: "Iraq" },
-  { code: "IE", name: "Ireland" },
-  { code: "IM", name: "Isle of Man" },
-  { code: "IL", name: "Israel" },
-  { code: "IT", name: "Italy" },
-  { code: "JM", name: "Jamaica" },
-  { code: "JP", name: "Japan" },
-  { code: "JE", name: "Jersey" },
-  { code: "JO", name: "Jordan" },
-  { code: "KZ", name: "Kazakhstan" },
-  { code: "KE", name: "Kenya" },
-  { code: "KI", name: "Kiribati" },
-  { code: "KP", name: "Korea, Democratic People's Republic of" },
-  { code: "KR", name: "Korea, Republic of" },
-  { code: "KW", name: "Kuwait" },
-  { code: "KG", name: "Kyrgyzstan" },
-  { code: "LA", name: "Lao People's Democratic Republic" },
-  { code: "LV", name: "Latvia" },
-  { code: "LB", name: "Lebanon" },
-  { code: "LS", name: "Lesotho" },
-  { code: "LR", name: "Liberia" },
-  { code: "LY", name: "Libya" },
-  { code: "LI", name: "Liechtenstein" },
-  { code: "LT", name: "Lithuania" },
-  { code: "LU", name: "Luxembourg" },
-  { code: "MO", name: "Macao" },
-  { code: "MG", name: "Madagascar" },
-  { code: "MW", name: "Malawi" },
-  { code: "MY", name: "Malaysia" },
-  { code: "MV", name: "Maldives" },
-  { code: "ML", name: "Mali" },
-  { code: "MT", name: "Malta" },
-  { code: "MH", name: "Marshall Islands" },
-  { code: "MQ", name: "Martinique" },
-  { code: "MR", name: "Mauritania" },
-  { code: "MU", name: "Mauritius" },
-  { code: "YT", name: "Mayotte" },
-  { code: "MX", name: "Mexico" },
-  { code: "FM", name: "Micronesia, Federated States of" },
-  { code: "MD", name: "Moldova, Republic of" },
-  { code: "MC", name: "Monaco" },
-  { code: "MN", name: "Mongolia" },
-  { code: "ME", name: "Montenegro" },
-  { code: "MS", name: "Montserrat" },
-  { code: "MA", name: "Morocco" },
-  { code: "MZ", name: "Mozambique" },
-  { code: "MM", name: "Myanmar" },
-  { code: "NA", name: "Namibia" },
-  { code: "NR", name: "Nauru" },
-  { code: "NP", name: "Nepal" },
-  { code: "NL", name: "Netherlands" },
-  { code: "NC", name: "New Caledonia" },
-  { code: "NZ", name: "New Zealand" },
-  { code: "NI", name: "Nicaragua" },
-  { code: "NE", name: "Niger" },
-  { code: "NG", name: "Nigeria" },
-  { code: "NU", name: "Niue" },
-  { code: "NF", name: "Norfolk Island" },
-  { code: "MP", name: "Northern Mariana Islands" },
-  { code: "NO", name: "Norway" },
-  { code: "OM", name: "Oman" },
-  { code: "PK", name: "Pakistan" },
-  { code: "PW", name: "Palau" },
-  { code: "PS", name: "Palestine, State of" },
-  { code: "PA", name: "Panama" },
-  { code: "PG", name: "Papua New Guinea" },
-  { code: "PY", name: "Paraguay" },
-  { code: "PE", name: "Peru" },
-  { code: "PH", name: "Philippines" },
-  { code: "PN", name: "Pitcairn" },
-  { code: "PL", name: "Poland" },
-  { code: "PT", name: "Portugal" },
-  { code: "PR", name: "Puerto Rico" },
-  { code: "QA", name: "Qatar" },
-  { code: "RE", name: "Réunion" },
-  { code: "RO", name: "Romania" },
-  { code: "RU", name: "Russian Federation" },
-  { code: "RW", name: "Rwanda" },
-  { code: "BL", name: "Saint Barthélemy" },
-  { code: "SH", name: "Saint Helena, Ascension and Tristan da Cunha" },
-  { code: "KN", name: "Saint Kitts and Nevis" },
-  { code: "LC", name: "Saint Lucia" },
-  { code: "MF", name: "Saint Martin (French part)" },
-  { code: "PM", name: "Saint Pierre and Miquelon" },
-  { code: "VC", name: "Saint Vincent and the Grenadines" },
-  { code: "WS", name: "Samoa" },
-  { code: "SM", name: "San Marino" },
-  { code: "ST", name: "Sao Tome and Principe" },
-  { code: "SA", name: "Saudi Arabia" },
-  { code: "SN", name: "Senegal" },
-  { code: "RS", name: "Serbia" },
-  { code: "SC", name: "Seychelles" },
-  { code: "SL", name: "Sierra Leone" },
-  { code: "SG", name: "Singapore" },
-  { code: "SX", name: "Sint Maarten (Dutch part)" },
-  { code: "SK", name: "Slovakia" },
-  { code: "SI", name: "Slovenia" },
-  { code: "SB", name: "Solomon Islands" },
-  { code: "SO", name: "Somalia" },
-  { code: "ZA", name: "South Africa" },
-  { code: "GS", name: "South Georgia and the South Sandwich Islands" },
-  { code: "SS", name: "South Sudan" },
-  { code: "ES", name: "Spain" },
-  { code: "LK", name: "Sri Lanka" },
-  { code: "SD", name: "Sudan" },
-  { code: "SR", name: "Suriname" },
-  { code: "SJ", name: "Svalbard and Jan Mayen" },
-  { code: "SE", name: "Sweden" },
-  { code: "CH", name: "Switzerland" },
-  { code: "SY", name: "Syrian Arab Republic" },
-  { code: "TW", name: "Taiwan, Province of China" },
-  { code: "TJ", name: "Tajikistan" },
-  { code: "TZ", name: "Tanzania, United Republic of" },
-  { code: "TH", name: "Thailand" },
-  { code: "TL", name: "Timor-Leste" },
-  { code: "TG", name: "Togo" },
-  { code: "TK", name: "Tokelau" },
-  { code: "TO", name: "Tonga" },
-  { code: "TT", name: "Trinidad and Tobago" },
-  { code: "TN", name: "Tunisia" },
-  { code: "TR", name: "Turkey" },
-  { code: "TM", name: "Turkmenistan" },
-  { code: "TC", name: "Turks and Caicos Islands" },
-  { code: "TV", name: "Tuvalu" },
-  { code: "UG", name: "Uganda" },
-  { code: "UA", name: "Ukraine" },
-  { code: "AE", name: "United Arab Emirates" },
-  { code: "GB", name: "United Kingdom" },
-  { code: "US", name: "United States" },
-  { code: "UM", name: "United States Minor Outlying Islands" },
-  { code: "UY", name: "Uruguay" },
-  { code: "UZ", name: "Uzbekistan" },
-  { code: "VU", name: "Vanuatu" },
-  { code: "VE", name: "Venezuela" },
-  { code: "VN", name: "Viet Nam" },
-  { code: "VG", name: "Virgin Islands, British" },
-  { code: "VI", name: "Virgin Islands, U.S." },
-  { code: "WF", name: "Wallis and Futuna" },
-  { code: "EH", name: "Western Sahara" },
-  { code: "YE", name: "Yemen" },
-  { code: "ZM", name: "Zambia" },
-  { code: "ZW", name: "Zimbabwe" }
-];
 
 interface DonorInfoType {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  address: string;
-  address2: string;
-  city: string;
   state: string;
-  zip: string;
   country: string;
-}
+};
 
 const initialDonorInfo: DonorInfoType = {
   firstName: "",
   lastName: "",
   email: "",
   phone: "",
-  address: "",
-  address2: "",
-  city: "",
   state: "",
-  zip: "",
   country: "US"
 };
 
@@ -348,20 +68,17 @@ const DonationMultiStepForm = () => {
       if (amount > 500000) errors.amount = "Amount cannot exceed $50,000";
       if (!giftType) errors.giftType = "Please select a gift type";
     }
-    if (step === 2) {
+    if (step === 3) {
       if (!donorInfo.firstName) errors.firstName = "First name is required";
       if (!donorInfo.lastName) errors.lastName = "Last name is required";
       if (!donorInfo.email) errors.email = "Email is required";
       else if (!/\S+@\S+\.\S+/.test(donorInfo.email))
         errors.email = "Invalid email format";
       if (!donorInfo.phone) errors.phone = "Phone number is required";
-      if (!donorInfo.address) errors.address = "Address is required";
-      if (!donorInfo.city) errors.city = "City is required";
       if (!donorInfo.state) errors.state = "State/Region is required";
-      if (!donorInfo.zip) errors.zip = "ZIP/Postal code is required";
       if (!donorInfo.country) errors.country = "Country is required";
     }
-    if (step === 3) {
+    if (step === 2) {
       if (!selectedPaymentMethod) errors.paymentMethod = "Please select a payment method";
     }
     setFormErrors(errors);
@@ -426,11 +143,7 @@ const DonationMultiStepForm = () => {
             name: `${donorInfo.firstName} ${donorInfo.lastName}`,
             email: donorInfo.email,
             address: {
-              line1: donorInfo.address,
-              line2: donorInfo.address2,
-              city: donorInfo.city,
               state: donorInfo.state,
-              postal_code: donorInfo.zip,
               country: donorInfo.country
             }
           }
@@ -455,22 +168,21 @@ const DonationMultiStepForm = () => {
       setProcessing(false);
     }
   };
-
-  // Subscription submission for Card payments (Stripe Checkout)// Subscription submission for recurring donations via Stripe Checkout
+  // Subscription submission for recurring donations via Stripe Checkout
   const handleStripeSubscription = async () => {
     if (!stripe) {
       setError("Stripe has not been initialized");
       return;
     }
-    
+
     setProcessing(true);
     setError("");
-    
+
     try {
       // Get donation amount from your form state
       const amountInCents = Number(amount) * 100; // Convert dollars to cents
       const interval = "month"; // Get this from your form's frequency selector
-  
+
       // Call backend to create dynamic price and session
       const { data: { sessionId } } = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/stripe/create-subscription-session`,
@@ -481,11 +193,11 @@ const DonationMultiStepForm = () => {
           interval: interval
         }
       );
-  
+
       // Redirect to Stripe Checkout
       const { error } = await stripe.redirectToCheckout({ sessionId });
       if (error) throw error;
-  
+
     } catch (err) {
       console.error("Stripe subscription failed:", err);
       setError(err instanceof Error ? err.message : "Subscription failed");
@@ -494,7 +206,46 @@ const DonationMultiStepForm = () => {
     }
   };
 
-  // PayPal payment success handler
+  // PayPal payment 
+  const handlePaypalSubscription = async () => {
+    setProcessing(true);
+  
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/paypal/create-Paypalsubscription`,
+        {
+          amount,
+          currency: "USD",
+          donorInfo,
+          giftType,
+        }
+      );
+  
+      if (response.status !== 200) {
+        throw new Error("Failed to create PayPal subscription");
+      }
+  
+      console.log(response.data);
+      console.log("Subscription ID:", response.data.id);
+      console.log("Subscriber Email:", response.data.subscriber.email_address);
+  
+      // Find the approval URL from the response links array.
+      const approveLink = response.data.links.find((link: { rel: string; href: string }) => link.rel === 'approve');
+      if (approveLink && approveLink.href) {
+        // Redirect the user to the PayPal approval page.
+        window.location.href = approveLink.href;
+      } else {
+        throw new Error("Approval link not found in the PayPal subscription response.");
+      }
+    } catch (error) {
+      console.error("PayPal subscription failed:", error);
+      setError(error instanceof Error ? error.message : "Subscription failed");
+    } finally {
+      setProcessing(false);
+    }
+  };
+  
+
   const handlePayPalSuccess = async (transactionId: string) => {
     try {
       await axios.post(
@@ -515,55 +266,64 @@ const DonationMultiStepForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50" 
-    style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.1), rgba(0, 0, 84, 0.1)), url(${donor})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      transition: 'background-image 1s ease-in',
-    }}>
+    <div
+      className="min-h-screen bg-gray-50"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.1), rgba(0, 0, 84, 0.1)), url(${donor})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        transition: "background-image 1s ease-in",
+      }}
+    >
       <main className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-40 py-8">
         <div className="bg-white rounded-lg shadow p-4 sm:p-8 flex flex-col lg:flex-row gap-8">
           {/* Left Side: Visual/Image */}
           <div className="text-primary xl:mx-6 space-y-3 lg:space-y-6 w-full lg:w-1/2">
-            
             <h3 className="font-noto text-primary text-xl sm:text-2xl font-bold text-center lg:text-left">
               Empower Change, One Gift at a Time
             </h3>
-          
             <p className="font-roboto text-sm text-dparacolor text-left lg:text-left">
-            Your donation today fuels opportunity, connects talent, and transforms lives.
+              Your donation today fuels opportunity, connects talent, and transforms lives.
             </p>
-              <hr />
+            <hr />
             <p className="font-roboto text-sm text-dparacolor text-left lg:text-left">
-            At the Zongea Institute of Technology, we believe education should break barriers—not just for a few, 
-            but for all. The Impact and Connect Center (ICC) bridges the gap between learning and real-world impact
-             by providing students with mentorship, tools, and a platform to launch their careers. But we can’t do it alone.
+              At the Zongea Institute of Technology, we believe education should break barriers—not just for a few,
+              but for all. The Impact and Connect Center (ICC) bridges the gap between learning and real-world impact
+              by providing students with mentorship, tools, and a platform to launch their careers. But we can’t do it alone.
             </p>
             <ul className="text-dparacolor">
-              <li className="text-primary font-semibold text-md">With your support, we can:
+              <li className="text-primary font-semibold text-md">
+                With your support, we can:
                 <ul className="text-dparacolor font-normal space-y-2 text-sm">
                   <li className="flex items-center">
-                  <span className="mr-2 text-2xl text-secondary">•</span>
+                    <span className="mr-2 text-2xl text-secondary">•</span>
                     Sponsor scholarships for underserved students.
                   </li>
                   <li className="flex items-center">
-                  <span className="mr-2 text-2xl text-secondary">•</span> Fund cutting-edge technology.</li>
+                    <span className="mr-2 text-2xl text-secondary">•</span>
+                    Fund cutting-edge technology.
+                  </li>
                   <li className="flex items-center">
-                  <span className="mr-2 text-2xl text-secondary">•</span> Expand mentorship programs with industry leaders.</li>
+                    <span className="mr-2 text-2xl text-secondary">•</span>
+                    Expand mentorship programs with industry leaders.
+                  </li>
                   <li className="flex items-center">
-                  <span className="mr-2 text-2xl text-secondary">•</span> Drive community projects that solve local and global challenges</li>
+                    <span className="mr-2 text-2xl text-secondary">•</span>
+                    Drive community projects that solve local and global challenges
+                  </li>
                 </ul>
               </li>
             </ul>
             <hr />
-            <h5 className="text-primary font-semibold text-md">Every gift, big or small, makes a difference.</h5>
+            <h5 className="text-primary font-semibold text-md">
+              Every gift, big or small, makes a difference.
+            </h5>
             <div className="flex space-x-2 justify-center items-end h-32">
-              <RiSecurePaymentFill size={24} className="text-dparacolor"/>
+              <RiSecurePaymentFill size={24} className="text-dparacolor" />
               <p className="font-roboto text-sm text-dparacolor">
-            Secured Donation
-            </p>
+                Secured Donation
+              </p>
             </div>
           </div>
 
@@ -575,11 +335,17 @@ const DonationMultiStepForm = () => {
                 const stepNum = index + 1;
                 return (
                   <div key={stepNum} className="flex items-center">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= stepNum ? "bg-primary text-white" : "bg-gray-200"}`}>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= stepNum ? "bg-primary text-white" : "bg-gray-200"
+                        }`}
+                    >
                       {stepNum}
                     </div>
                     {stepNum < totalSteps && (
-                      <div className={`w-16 h-1 ${currentStep > stepNum ? "bg-primary" : "bg-gray-200"}`}></div>
+                      <div
+                        className={`w-16 h-1 ${currentStep > stepNum ? "bg-primary" : "bg-gray-200"
+                          }`}
+                      ></div>
                     )}
                   </div>
                 );
@@ -588,79 +354,102 @@ const DonationMultiStepForm = () => {
 
             <form onSubmit={nextStep}>
               <div className="overflow-hidden">
-                <div className="flex transition-transform duration-300" style={{ transform: `translateX(-${(currentStep - 1) * 100}%)` }}>
+                <div
+                  className="flex transition-transform duration-300"
+                  style={{ transform: `translateX(-${(currentStep - 1) * 100}%)` }}
+                >
                   {/* Step 1: Donation Details */}
                   <div className="min-w-full p-4">
-                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Your Donation</h2>
+                    <h2 className="text-xl font-bold mb-4 font-noto text-center">
+                      Choose Your Donation
+                    </h2>
                     <div className="flex gap-4 mb-6 flex-col sm:flex-row">
-                      <button type="button" onClick={() => setGiftType("one-time")} className={`w-full py-3 rounded-lg font-medium transition-colors ${giftType === "one-time" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>One-time </button>
-                      <button type="button" onClick={() => setGiftType("monthly")} className={`w-full py-3 rounded-lg font-medium flex justify-center items-center gap-3 transition-colors ${giftType === "monthly" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}><IoIosHeart />Monthly</button>
+                      <button
+                        type="button"
+                        onClick={() => setGiftType("one-time")}
+                        className={`w-full py-3 rounded-lg font-medium transition-colors ${giftType === "one-time" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                      >
+                        One-time
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setGiftType("monthly")}
+                        className={`w-full py-3 rounded-lg font-medium flex justify-center items-center gap-3 transition-colors ${giftType === "monthly" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                      >
+                        <IoIosHeart />Monthly
+                      </button>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mb-6">
-                    {/* First row with 3 buttons */}
-                    <div className="col-span-1">
-                      <button 
-                        type="button" 
-                        onClick={() => { setAmount(250); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 250 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                      >
-                        $250
-                      </button>
-                    </div>
-
-                    <div className="col-span-1">
-                      <button 
-                        type="button" 
-                        onClick={() => { setAmount(150); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 150 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                      >
-                        $150
-                      </button>
-                    </div>
-                    <div className="col-span-1">
-                      <button 
-                        type="button" 
-                        onClick={() => { setAmount(100); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                        className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 100 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                      >
-                        $100
-                      </button>
-                    </div>
-
-                      {/* Second row with 2 buttons and empty space */}
+                      {/* Donation Amount Buttons */}
                       <div className="col-span-1">
-                        <button 
-                          type="button" 
-                          onClick={() => { setAmount(50); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 50 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAmount(250);
+                            setOtherAmount("");
+                            setFormErrors({ ...formErrors, amount: "" });
+                          }}
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 250 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            }`}
+                        >
+                          $250
+                        </button>
+                      </div>
+                      <div className="col-span-1">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAmount(100);
+                            setOtherAmount("");
+                            setFormErrors({ ...formErrors, amount: "" });
+                          }}
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 100 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            }`}
+                        >
+                          $100
+                        </button>
+                      </div>
+                      <div className="col-span-1">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAmount(50);
+                            setOtherAmount("");
+                            setFormErrors({ ...formErrors, amount: "" });
+                          }}
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 50 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            }`}
                         >
                           $50
                         </button>
                       </div>
                       <div className="col-span-1">
-                        <button 
-                          type="button" 
-                          onClick={() => { setAmount(25); setOtherAmount(""); setFormErrors({ ...formErrors, amount: "" }); }} 
-                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 25 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAmount(25);
+                            setOtherAmount("");
+                            setFormErrors({ ...formErrors, amount: "" });
+                          }}
+                          className={`w-full p-2 sm:p-4 rounded-lg font-medium transition-colors ${amount === 25 ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            }`}
                         >
                           $25
                         </button>
-                        </div>
-
-                        {/* Test amount  */}
-                        
-                      <div className="col-span-1"></div> {/* Empty space to maintain grid */}
-
-                      {/* Third row - Other Amount input taking full width */}
+                      </div>
+                      <div className="col-span-1"></div>
                       <div className="col-span-2 sm:col-span-3">
                         <div className="relative">
                           <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                          <input 
-                            type="text" 
-                            placeholder="Custom Amount" 
-                            value={otherAmount} 
-                            onChange={handleOtherAmountChange} 
-                            className={`w-full p-2 pl-8 border rounded-lg ${formErrors.amount ? "border-red-500" : "border-gray-300"}`} 
+                          <input
+                            type="text"
+                            placeholder="Custom Amount"
+                            value={otherAmount}
+                            onChange={handleOtherAmountChange}
+                            className={`w-full p-2 pl-8 border rounded-lg ${formErrors.amount ? "border-red-500" : "border-gray-300"
+                              }`}
                           />
                         </div>
                         {formErrors.amount && (
@@ -669,176 +458,174 @@ const DonationMultiStepForm = () => {
                       </div>
                     </div>
                     <div className="flex justify-end mt-4">
-                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                        className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg"
+                      >
+                        Next <FaArrowRightLong />
+                      </button>
                     </div>
                   </div>
 
-                  {/* Step 2: Donor & Billing Information */}
+                  {/* Step 2: Payment Method Selection */}
                   <div className="min-w-full p-4">
-                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Donor & Billing Information</h2>
+                    <h2 className="text-xl font-bold mb-4 font-noto text-center">
+                      Choose Payment Method
+                    </h2>
+                    <div className="flex gap-4 mb-6">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          nextStep();
+                          setSelectedPaymentMethod("card");
+                          setFormErrors((prev) => ({ ...prev, paymentMethod: "" }));
+                        }}
+                        className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                      >
+                        <IoCard size={30} />Credit Card
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          nextStep();
+                          setSelectedPaymentMethod("paypal");
+                          setFormErrors((prev) => ({ ...prev, paymentMethod: "" }));
+                        }}
+                        className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                      >
+                        <img src={paypalImg} className="h-6" />
+                      </button>
+                    </div>
+                    {formErrors.paymentMethod && (
+                      <p className="text-xs text-red-500 text-center mb-4">
+                        {formErrors.paymentMethod}
+                      </p>
+                    )}
+                    <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">
+                      Back
+                    </button>
+                  </div>
+
+                  {/* Step 3: Donor & Billing Information */}
+                  <div className="min-w-full p-4">
+                    <h2 className="text-xl font-bold mb-4 font-noto text-center">
+                      Donor & Billing Information
+                    </h2>
                     <div className="space-y-2">
                       <div>
-                        <input 
-                          placeholder="First Name *" 
-                          value={donorInfo.firstName} 
+                        <input
+                          placeholder="First Name *"
+                          value={donorInfo.firstName}
                           onChange={handleDonorInfoChange}
                           name="firstName"
-                          className={`w-full p-2 border rounded-lg ${formErrors.firstName ? 'border-red-500' : 'border-gray-300'}`} 
+                          className={`w-full p-2 border rounded-lg ${formErrors.firstName ? "border-red-500" : "border-gray-300"}`}
                         />
                         {formErrors.firstName && <p className="text-xs text-red-500 mt-1">{formErrors.firstName}</p>}
                       </div>
                       <div>
-                        <input 
-                          placeholder="Last Name *" 
-                          value={donorInfo.lastName} 
+                        <input
+                          placeholder="Last Name *"
+                          value={donorInfo.lastName}
                           onChange={handleDonorInfoChange}
                           name="lastName"
-                          className={`w-full p-2 border rounded-lg ${formErrors.lastName ? 'border-red-500' : 'border-gray-300'}`} 
+                          className={`w-full p-2 border rounded-lg ${formErrors.lastName ? "border-red-500" : "border-gray-300"}`}
                         />
                         {formErrors.lastName && <p className="text-xs text-red-500 mt-1">{formErrors.lastName}</p>}
                       </div>
                       <div>
-                        <input 
-                          type="email" 
-                          placeholder="Email *" 
-                          value={donorInfo.email} 
+                        <input
+                          type="email"
+                          placeholder="Email *"
+                          value={donorInfo.email}
                           onChange={handleDonorInfoChange}
                           name="email"
-                          className={`w-full p-2 border rounded-lg ${formErrors.email ? 'border-red-500' : 'border-gray-300'}`} 
+                          className={`w-full p-2 border rounded-lg ${formErrors.email ? "border-red-500" : "border-gray-300"}`}
                         />
                         {formErrors.email && <p className="text-xs text-red-500 mt-1">{formErrors.email}</p>}
                       </div>
                       <div>
-                        <input 
-                          placeholder="Phone *" 
-                          value={donorInfo.phone} 
+                        <input
+                          placeholder="Phone *"
+                          value={donorInfo.phone}
                           onChange={handleDonorInfoChange}
                           name="phone"
-                          className={`w-full p-2 border rounded-lg ${formErrors.phone ? 'border-red-500' : 'border-gray-300'}`} 
+                          className={`w-full p-2 border rounded-lg ${formErrors.phone ? "border-red-500" : "border-gray-300"}`}
                         />
                         {formErrors.phone && <p className="text-xs text-red-500 mt-1">{formErrors.phone}</p>}
                       </div>
-                      <div>
-                        <input 
-                          placeholder="Address *" 
-                          value={donorInfo.address} 
-                          onChange={handleDonorInfoChange}
-                          name="address"
-                          className={`w-full p-2 border rounded-lg ${formErrors.address ? 'border-red-500' : 'border-gray-300'}`} 
-                        />
-                        {formErrors.address && <p className="text-xs text-red-500 mt-1">{formErrors.address}</p>}
-                      </div>
-                      <input 
-                        placeholder="Address Line 2 (Optional)" 
-                        value={donorInfo.address2} 
-                        onChange={handleDonorInfoChange}
-                        name="address2"
-                        className="w-full p-2 border rounded-lg border-gray-300" 
-                      />
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        <div>
-                          <input 
-                            placeholder="City *" 
-                            value={donorInfo.city} 
-                            onChange={handleDonorInfoChange}
-                            name="city"
-                            className={`w-full p-2 border rounded-lg ${formErrors.city ? 'border-red-500' : 'border-gray-300'}`} 
-                          />
-                          {formErrors.city && <p className="text-xs text-red-500 mt-1">{formErrors.city}</p>}
-                        </div>
+
                         <div>
                           {donorInfo.country === "US" ? (
-                            <select 
-                              value={donorInfo.state} 
-                              onChange={handleDonorInfoChange} 
+                            <select
+                              value={donorInfo.state}
+                              onChange={handleDonorInfoChange}
                               name="state"
-                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? 'border-red-500' : 'border-gray-300'}`}
+                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
                             >
                               <option value="">State *</option>
                               {US_STATES.map((state) => (
-                                <option key={state.code} value={state.code}>{state.name}</option>
+                                <option key={state.code} value={state.code}>
+                                  {state.name}
+                                </option>
                               ))}
                             </select>
                           ) : donorInfo.country === "CA" ? (
-                            <select 
-                              value={donorInfo.state} 
-                              onChange={handleDonorInfoChange} 
+                            <select
+                              value={donorInfo.state}
+                              onChange={handleDonorInfoChange}
                               name="state"
-                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? 'border-red-500' : 'border-gray-300'}`}
+                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
                             >
                               <option value="">Province *</option>
                               {CA_PROVINCES.map((prov) => (
-                                <option key={prov.code} value={prov.code}>{prov.name}</option>
+                                <option key={prov.code} value={prov.code}>
+                                  {prov.name}
+                                </option>
                               ))}
                             </select>
                           ) : (
-                            <input 
-                              placeholder="Region *" 
-                              value={donorInfo.state} 
+                            <input
+                              placeholder="Region *"
+                              value={donorInfo.state}
                               onChange={handleDonorInfoChange}
                               name="state"
-                              className={`w-full p-2 border rounded-lg ${formErrors.state ? 'border-red-500' : 'border-gray-300'}`} 
+                              className={`w-full p-2 border rounded-lg ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
                             />
                           )}
                           {formErrors.state && <p className="text-xs text-red-500 mt-1">{formErrors.state}</p>}
                         </div>
                       </div>
+
                       <div>
-                        <input 
-                          placeholder="ZIP / Postal Code *" 
-                          value={donorInfo.zip} 
+                        <select
+                          value={donorInfo.country}
                           onChange={handleDonorInfoChange}
-                          name="zip"
-                          className={`w-full p-2 border rounded-lg ${formErrors.zip ? 'border-red-500' : 'border-gray-300'}`} 
-                        />
-                        {formErrors.zip && <p className="text-xs text-red-500 mt-1">{formErrors.zip}</p>}
-                      </div>
-                      <div>
-                        <select 
-                          value={donorInfo.country} 
-                          onChange={handleDonorInfoChange} 
                           name="country"
-                          className={`w-full p-2 border rounded-lg bg-white ${formErrors.country ? 'border-red-500' : 'border-gray-300'}`}
+                          className={`w-full p-2 border rounded-lg bg-white ${formErrors.country ? "border-red-500" : "border-gray-300"
+                            }`}
                         >
                           <option value="">Country *</option>
                           {COUNTRIES.map((c) => (
-                            <option key={c.code} value={c.code}>{c.name}</option>
+                            <option key={c.code} value={c.code}>
+                              {c.name}
+                            </option>
                           ))}
                         </select>
                         {formErrors.country && <p className="text-xs text-red-500 mt-1">{formErrors.country}</p>}
                       </div>
                     </div>
                     <div className="flex justify-between mt-4">
-                      <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
-                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
-                    </div>
-                  </div>
-
-                  {/* Step 3: Payment Method Selection */}
-                  <div className="min-w-full p-4">
-                    <h2 className="text-xl font-bold mb-4 font-noto text-center">Choose Payment Method</h2>
-                    <div className="flex gap-4 mb-6">
-                      <button 
-                        type="button" 
-                        onClick={() => { setSelectedPaymentMethod("card"); setFormErrors(prev => ({ ...prev, paymentMethod: "" })); }} 
-                        className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                      >
-                        <IoCard size={30}/>Credit Card
+                      <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">
+                        Back
                       </button>
-                      <button 
-                        type="button" 
-                        onClick={() => { setSelectedPaymentMethod("paypal"); setFormErrors(prev => ({ ...prev, paymentMethod: "" })); }} 
-                        className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                      >
-                        <img src={paypalImg} className="h-6"/>
+                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">
+                        Next <FaArrowRightLong />
                       </button>
-                    </div>
-                    {formErrors.paymentMethod && (
-                      <p className="text-xs text-red-500 text-center mb-4">{formErrors.paymentMethod}</p>
-                    )}
-                    <div className="flex justify-between mt-4">
-                      <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
-                      <button type="button" onClick={nextStep} className="px-3 py-2 bg-secondary flex items-center gap-2 text-white rounded-lg">Next <FaArrowRightLong/></button>
                     </div>
                   </div>
 
@@ -848,137 +635,147 @@ const DonationMultiStepForm = () => {
                     {selectedPaymentMethod === "card" ? (
                       <div>
                         <p className="mb-4 text-center">
-                          {giftType === "one-time" ? "Enter your card details for a one-time donation." 
-                          : "Enter your card details for your monthly subscription."}
+                          {giftType === "one-time"
+                            ? "Enter your card details for a one-time donation."
+                            : "Enter your card details for your monthly subscription."}
                         </p>
                         <div className="mb-4">
                           <label className="block mb-2 text-sm font-medium">Card Number *</label>
-                          <CardNumberElement id="card-number" className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
+                          <CardNumberElement
+                            id="card-number"
+                            className="p-2 border rounded-lg"
+                            options={{
+                              style: {
+                                base: {
+                                  fontSize: "16px",
+                                  color: "#424770",
+                                  "::placeholder": { color: "#aab7c4" },
+                                },
+                                invalid: { color: "#9e2146" },
+                              },
+                            }}
+                          />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
                           <div>
                             <label className="block mb-2 text-sm font-medium">Expiry *</label>
-                            <CardExpiryElement className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
+                            <CardExpiryElement
+                              className="p-2 border rounded-lg"
+                              options={{
+                                style: {
+                                  base: {
+                                    fontSize: "16px",
+                                    color: "#424770",
+                                    "::placeholder": { color: "#aab7c4" },
+                                  },
+                                  invalid: { color: "#9e2146" },
+                                },
+                              }}
+                            />
                           </div>
                           <div>
                             <label className="block mb-2 text-sm font-medium">CVC *</label>
-                            <CardCvcElement className="p-2 border rounded-lg" options={{ style: { base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } }, invalid: { color: "#9e2146" } } }} />
+                            <CardCvcElement
+                              className="p-2 border rounded-lg"
+                              options={{
+                                style: {
+                                  base: {
+                                    fontSize: "16px",
+                                    color: "#424770",
+                                    "::placeholder": { color: "#aab7c4" },
+                                  },
+                                  invalid: { color: "#9e2146" },
+                                },
+                              }}
+                            />
                           </div>
                         </div>
-                        <button type="button"
-                          onClick={giftType === "one-time" ? handleStripeSubmit : handleStripeSubscription}
+                        <button
+                          type="button"
+                          onClick={
+                            giftType === "one-time" ? handleStripeSubmit : handleStripeSubscription
+                          }
                           disabled={processing}
-                          className={`px-4 py-2 rounded-lg text-white transition-colors w-full ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"}`}>
-                          {processing ? "Processing..." : (giftType === "one-time" ? "Submit Donation" : "Subscribe Monthly")}
+                          className={`px-4 py-2 rounded-lg text-white transition-colors w-full ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"
+                            }`}
+                        >
+                          {processing
+                            ? "Processing..."
+                            : giftType === "one-time"
+                              ? "Submit Donation"
+                              : "Subscribe Monthly"}
                         </button>
                         <div className="flex justify-start mt-4">
-                          <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
+                          <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">
+                            Back
+                          </button>
                         </div>
                       </div>
                     ) : (
                       <div>
                         <p className="mb-4 text-center">
-                          {giftType === "one-time" ? "Complete your donation using PayPal." 
-                          : "Subscribe monthly using PayPal."}
+                          {giftType === "one-time"
+                            ? "Complete your donation using PayPal."
+                            : "Subscribe monthly using PayPal."}
                         </p>
-                        <PayPalScriptProvider options={{ clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "your-paypal-client-id", currency: "USD", intent: giftType === "one-time" ? "capture" : "subscription" }}>
-                          {giftType === "one-time" ? (
-                            <div className="flex flex-col gap-4">
-                              <PayPalButtons
-                                forceReRender={[amount]}
-                                fundingSource="paypal"
-                                style={{ layout: "vertical" }}
-                                createOrder={(data, actions) => {
-                                  return actions.order.create({ 
-                                    intent: "CAPTURE", 
-                                    purchase_units: [{ amount: { currency_code: "USD", value: amount.toString() } }] 
-                                  });
-                                  {data}
-                                }}
-                                onApprove={(data, actions) => {
-                                  if (!actions.order) {
-                                    setError("PayPal order actions are undefined.");
-                                    return Promise.reject(new Error("PayPal order actions are undefined."));
-                                  }
-                                  return actions.order.capture().then(() => {
-                                    return handlePayPalSuccess(data.orderID);
-                                  }).catch((err) => {
-                                    setError("PayPal payment failed: " + (err instanceof Error ? err.message : "Unknown error"));
+                        {/* Remove nested PayPalScriptProvider here */}
+                        {giftType === "one-time" ? (
+                          <div className="flex flex-col gap-4">
+                            <PayPalButtons
+                              forceReRender={[amount]}
+                              fundingSource="paypal"
+                              style={{ layout: "vertical" }}
+                              createOrder={(_data, actions) => {
+                                return actions.order.create({
+                                  intent: "CAPTURE",
+                                  purchase_units: [
+                                    { amount: { currency_code: "USD", value: amount.toString() } },
+                                  ],
+                                });
+                              }}
+                              onApprove={(_data, actions) => {
+                                if (!actions.order) {
+                                  setError("PayPal order actions are undefined.");
+                                  return Promise.reject(new Error("PayPal order actions are undefined."));
+                                }
+                                return actions.order
+                                  .capture()
+                                  .then(() => handlePayPalSuccess(_data.orderID))
+                                  .catch((err) => {
+                                    setError(
+                                      "PayPal payment failed: " +
+                                      (err instanceof Error ? err.message : "Unknown error")
+                                    );
                                     return Promise.reject(err);
                                   });
-                                }}
-                                onError={(err) => { setError("PayPal payment failed: " + (err instanceof Error ? err.message : "Unknown error")); }}
-                              />
-                            </div>
-                          ) : (
-                            <div className="flex flex-col gap-4">
-                              <PayPalButtons
-                                style={{ layout: "vertical" }}
-                                createSubscription={(_data, actions) => {
-                                  return actions.subscription.create({
-                                    'plan_id': import.meta.env.VITE_PAYPAL_MONTHLY_PLAN_ID,
-                                    'application_context': {
-                                      'shipping_preference': 'NO_SHIPPING',
-                                      'return_url': `${window.location.origin}/success`,
-                                      'cancel_url': `${window.location.origin}/donate`
-                                    },
-                                    'subscriber': {
-                                      'name': {
-                                        'given_name': donorInfo.firstName,
-                                        'surname': donorInfo.lastName
-                                      },
-                                      'email_address': donorInfo.email,
-                                      'shipping_address': {
-                                        'name': {
-                                          'full_name': `${donorInfo.firstName} ${donorInfo.lastName}`
-                                        },
-                                        'address': {
-                                          'address_line_1': donorInfo.address,
-                                          'address_line_2': donorInfo.address2,
-                                          'admin_area_2': donorInfo.city,
-                                          'admin_area_1': donorInfo.state,
-                                          'postal_code': donorInfo.zip,
-                                          'country_code': donorInfo.country
-                                        }
-                                      }
-                                    }
-                                  });
-                                }}
-                                onApprove={async (data) => {
-                                  try {
-                                    if (!data.subscriptionID) {
-                                      throw new Error("Subscription ID is missing");
-                                    }
-
-                                    // Save subscription details to backend
-                                    await axios.post(
-                                      `${import.meta.env.VITE_BACKEND_URL}/api/paypal/save-subscription`,
-                                      {
-                                        subscriptionId: data.subscriptionID,
-                                        donorInfo,
-                                        amount,
-                                        giftType: "monthly"
-                                      }
-                                    );
-
-                                    // Redirect to success page
-                                    navigate(`/success?subscriptionId=${data.subscriptionID}&email=${encodeURIComponent(donorInfo.email)}`);
-                                  } catch (err) {
-                                    console.error("Error saving subscription:", err);
-                                    setError(err instanceof Error ? err.message : "Failed to process subscription");
-                                    throw err;
-                                  }
-                                }}
-                                onError={(err) => { 
-                                  console.error("PayPal subscription error:", err);
-                                  setError("PayPal subscription failed: " + (err instanceof Error ? err.message : "Unknown error")); 
-                                }}
-                              />
-                            </div>
-                          )}
-                        </PayPalScriptProvider>
+                              }}
+                              onError={(err) => {
+                                setError(
+                                  "PayPal payment failed: " +
+                                  (err instanceof Error ? err.message : "Unknown error")
+                                );
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex flex-col gap-4">
+                            <button
+                              type="button"
+                              onClick={handlePaypalSubscription}
+                              disabled={processing}
+                              className={`px-4 py-2 rounded-lg text-white transition-colors w-full ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary/80"
+                                }`}
+                            >
+                              {processing
+                                ? "Processing..."
+                                : "Subscribe Monthly with Paypal"}
+                            </button>
+                          </div>
+                        )}
                         <div className="flex justify-start mt-4">
-                          <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">Back</button>
+                          <button type="button" onClick={prevStep} className="px-4 py-2 bg-gray-200 rounded-lg">
+                            Back
+                          </button>
                         </div>
                       </div>
                     )}
@@ -1000,15 +797,16 @@ const DonationMultiStepForm = () => {
 
 const DonationPage = () => (
   <Elements stripe={stripePromise}>
-    <PayPalScriptProvider options={{
-      clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "your-paypal-client-id",
-      currency: "USD",
-      vault: true
-    }}>
+    <PayPalScriptProvider
+      options={{
+        clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "your-paypal-client-id",
+        currency: "USD",
+        vault: true
+      }}
+    >
       <DonationMultiStepForm />
-
+      <ScrollToTopButton />
     </PayPalScriptProvider>
-    <ScrollToTopButton />
   </Elements>
 );
 
