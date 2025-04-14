@@ -8,7 +8,7 @@ dotenv.config();
 
 const paypalRouter = express.Router();
 const PAYPAL_API = process.env.PAYPAL_API;
-const FRONTEND_URL=process.env.FRONTEND_URL;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 
 // Helper function to get PayPal access token
@@ -83,13 +83,13 @@ paypalRouter.post("/save-donation", async (req, res) => {
 });
 
 // Handle subscription donations
-paypalRouter.post("/create-Paypalsubscription", async (req, res) => {
+paypalRouter.post("/create-paypalsubscription", async (req, res) => {
   try {
-    // Extract donor's details from the request body.
-    const { firstName, lastName, email, phone, state, country,} = req.body.donorInfo;
-    const { amount } = req.body; // Extract donation amount from the request body.
+    // Extract donor's details and donation amount from the request body.
+    const { firstName, lastName, email, phone, state, country } = req.body.donorInfo;
+    const { amount } = req.body;
 
-  console.log(`user firstname:, ${firstName}, lastname ${lastName}, ${email}, userphone ${phone}, state ${state}, Ammount ${amount}, `)
+    console.log(`User details - First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Phone: ${phone}, State: ${state}, Country: ${country}, Amount: ${amount}`);
 
     // Step 1: Retrieve PayPal OAuth 2.0 Access Token.
     const credentials = `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`;
@@ -97,83 +97,122 @@ paypalRouter.post("/create-Paypalsubscription", async (req, res) => {
 
     const tokenResponse = await axios({
       method: 'post',
-      url: `${PAYPAL_API}/v1/oauth2/token`,
+      url: `${process.env.PAYPAL_API}/v1/oauth2/token`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': `Basic ${base64Credentials}`,
       },
       data: 'grant_type=client_credentials',
     });
+
     const accessToken = tokenResponse.data.access_token;
 
-    // Step 2: Build the subscription payload (without shipping_address).
-    const subscriptionPayload = {
-      plan_id: process.env.PAYPAL_MONTHLY_PLAN_ID, // Pre-configured billing plan ID
-      plan_overridden: true,              // Signal that pricing from the plan will be overridden.
-      start_time: "2025-11-01T00:00:00Z",  // Set the start time accordingly
-      subscriber: {
-        name: {
-          given_name: firstName,
-          surname: lastName,
-        },
-        email_address: email,
-        phone: {
-          phone_number: {
-            national_number: phone,
-          },
-        },
-        adress:{
-          country_code: country,
-          adress_line_1: state
-        }
-      },
-        // Override the billing cycle pricing with the user selected donation amount.
-        billing_cycles: [
-          {
-            pricing_scheme: {
-              fixed_price: {
-                value: String(amount),  // Ensure the value is a string.
-                currency_code: "USD"
-              }
-            }
-          }
-        ],
-      
-      application_context: {
-        brand_name: "Zongea Institute of Technology",          // Adjust to your brand name
-        locale: "en-US",
-        shipping_preference: "NO_SHIPPING",        // No shipping information
-        user_action: "SUBSCRIBE_NOW",
-        payment_method: {
-          payer_selected: "PAYPAL",
-          payee_preferred: "IMMEDIATE_PAYMENT_REQUIRED",
-        },
-        return_url: `${FRONTEND_URL}/paypal-success`, // Your success URL
-        cancel_url: `${FRONTEND_URL}`, // Your cancel URL
-      },
-
-      
-      // Use custom_id to store the donationAmount or any metadata you need.
-      custom_id: `donation_${amount}`,
-      note: "Monthly subscription for donation",
+    // Step 2: Create a Product (if not already created).
+    const productPayload = {
+      name: "Donation",
+      description: "Custom donation product",
+      type: "SERVICE",
+      category: "CHARITY",
     };
 
-    // Step 3: Call the PayPal Subscriptions API using Axios.
-    const subscriptionResponse = await axios({
+    const productResponse = await axios({
       method: 'post',
-      url: `${PAYPAL_API}/v1/billing/subscriptions`, // Use production URL for live deployment.
+      url: `${process.env.PAYPAL_API}/v1/catalogs/products`,
       headers: {
         'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'PayPal-Request-Id': 'SUBSCRIPTION-' + new Date().toISOString(), // Ensure uniqueness per request.
-        'Prefer': 'return=representation',
+      },
+      data: productPayload,
+    });
+
+    const productId = productResponse.data.id;
+
+    // Step 3: Create a Plan with the donor's specified amount.
+    const planPayload = {
+      product_id: productId,
+      name: `Donation Plan - $${amount}`,
+      description: `Monthly donation plan for $${amount}`,
+      billing_cycles: [
+        {
+          frequency: {
+            interval_unit: "MONTH",
+            interval_count: 1,
+          },
+          tenure_type: "REGULAR",
+          sequence: 1,
+          total_cycles: 0, // Infinite billing cycles
+          pricing_scheme: {
+            fixed_price: {
+              value: amount.toFixed(2),
+              currency_code: "USD",
+            },
+          },
+        },
+      ],
+      payment_preferences: {
+        auto_bill_outstanding: true,
+        setup_fee_failure_action: "CONTINUE",
+        payment_failure_threshold: 3,
+      },
+    };
+
+    const planResponse = await axios({
+      method: 'post',
+      url: `${process.env.PAYPAL_API}/v1/billing/plans`,
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      data: planPayload,
+    });
+
+    const planId = planResponse.data.id;
+
+    // Step 4: Activate the Plan if its status is "CREATED" or "INACTIVE".
+    if (
+      planResponse.data.status === "CREATED" ||
+      planResponse.data.status === "INACTIVE"
+    ) {
+      await axios({
+        method: 'post',
+        url: `${process.env.PAYPAL_API}/v1/billing/plans/${planId}/activate`,
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+    } else {
+      console.log("Plan is already active or in a status that doesn't require activation.");
+    }
+
+    // Step 5: Create a Subscription using the plan.
+    const subscriptionPayload = {
+      plan_id: planId,
+      custom_id: `donation_${amount}`, // <-- Include your donation amount as custom metadata
+      application_context: {
+        brand_name: "Zongea Institute of Technology",
+        locale: "en-US",
+        shipping_preference: "NO_SHIPPING",
+        user_action: "SUBSCRIBE_NOW",
+        return_url: `${process.env.FRONTEND_URL}/paypal-success`,
+        cancel_url: `${process.env.FRONTEND_URL}`,
+      },
+    };
+
+
+    const subscriptionResponse = await axios({
+      method: 'post',
+      url: `${process.env.PAYPAL_API}/v1/billing/subscriptions`,
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
       data: subscriptionPayload,
     });
 
-    // Step 4: Return the PayPal subscription response to the frontend.
-    res.status(200).json(subscriptionResponse.data);
+    // Step 6: Return the subscription approval URL to the frontend.
+    const approvalUrl = subscriptionResponse.data.links.find(link => link.rel === 'approve').href;
+    res.status(200).json({ approvalUrl });
   } catch (error) {
     console.error("Error creating subscription:", error.response?.data || error.message);
     res.status(500).json({ error: 'Error creating subscription' });
@@ -183,7 +222,7 @@ paypalRouter.post("/create-Paypalsubscription", async (req, res) => {
 
 // The confirm Route
 paypalRouter.post('/confirm-subscription', async (req, res) => {
-  const{ subscriptionId, baToken, token } = req.body;
+  const { subscriptionId, baToken, token } = req.body;
 
   if (!subscriptionId) {
     return res.status(400).json({ error: 'Subscription ID is required' });
@@ -234,7 +273,7 @@ paypalRouter.post('/confirm-subscription', async (req, res) => {
     const lastName = subscriptionData.subscriber.name?.surname || '';
 
     // Step 5: Record the donation details in the database.
-    const donation = {
+    const donationData = {
       subscriptionId: subscriptionData.id,
       email: donorEmail,
       donationAmount,
@@ -242,15 +281,14 @@ paypalRouter.post('/confirm-subscription', async (req, res) => {
       lastName,
       status: subscriptionData.status,
     }
-    
 
-    // const receiptNumber = generateReceipt();
-    // await sendDonationReceipt(donation, receiptNumber);  
+ 
+
 
     // Step 6: Return the stored donation record.
     res.status(200).json({
       message: 'Subscription confirmed and donation recorded.',
-      });
+    });
   } catch (error) {
     console.error("Error confirming subscription:", error.response?.data || error.message);
     res.status(500).json({ error: 'Failed to confirm subscription.' });

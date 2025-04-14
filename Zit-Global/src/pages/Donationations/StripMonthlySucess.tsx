@@ -123,9 +123,9 @@ const StripMonthlyDonationSuccess = () => {
               </div>
 
               <div>
-                <h3 className="text-lg font-medium text-gray-900 font-noto mb-2">Receipt</h3>
+                <h3 className="text-lg font-medium text-gray-900 font-noto mb-2">Manage Your Subscription</h3>
                 <p className="text-gray-600 font-roboto mb-4">
-                  A receipt has been sent to <strong>{donation.email}</strong>. Please check your inbox.
+                  You can manage your subscription at any time from your account dashboard.
                 </p>
               </div>
 

@@ -69,10 +69,10 @@ const DonationMultiStepForm = () => {
       if (!giftType) errors.giftType = "Please select a gift type";
     }
     if (step === 3) {
-      if (!donorInfo.email) errors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(donorInfo.email))
+      // if (!donorInfo.email) errors.email = "Email is required";
+      if(donorInfo.email && !/\S+@\S+\.\S+/.test(donorInfo.email)) {
         errors.email = "Invalid email format";
-    }
+      }}
     if (step === 2) {
       if (!selectedPaymentMethod) errors.paymentMethod = "Please select a payment method";
     }
@@ -157,7 +157,6 @@ const DonationMultiStepForm = () => {
       );
       navigate(`/success?transactionId=${paymentIntent!.id}&email=${donorInfo.email}`);
     } catch (err) {
-      console.error("Stripe payment failed:", err);
       setError(err instanceof Error ? err.message : "Payment failed");
     } finally {
       setProcessing(false);
@@ -194,7 +193,6 @@ const DonationMultiStepForm = () => {
       if (error) throw error;
 
     } catch (err) {
-      console.error("Stripe subscription failed:", err);
       setError(err instanceof Error ? err.message : "Subscription failed");
     } finally {
       setProcessing(false);
@@ -220,20 +218,15 @@ const DonationMultiStepForm = () => {
         throw new Error("Failed to create PayPal subscription");
       }
 
-      console.log(response.data);
-      console.log("Subscription ID:", response.data.id);
-      console.log("Subscriber Email:", response.data.subscriber.email_address);
-
-      // Find the approval URL from the response links array.
-      const approveLink = response.data.links.find((link: { rel: string; href: string }) => link.rel === 'approve');
-      if (approveLink && approveLink.href) {
-        // Redirect the user to the PayPal approval page.
-        window.location.href = approveLink.href;
-      } else {
-        throw new Error("Approval link not found in the PayPal subscription response.");
-      }
+      //  Find the approval URL from the response 
+      const approveLink =response.data.approvalUrl;
+       if (approveLink) {
+        //  Redirect the user to the PayPal approval page.
+         window.location.href = approveLink;
+       } else {
+         throw new Error("Approval link not found in the PayPal subscription response.");
+       }
     } catch (error) {
-      console.error("PayPal subscription failed:", error);
       setError(error instanceof Error ? error.message : "Subscription failed");
     } finally {
       setProcessing(false);
@@ -255,7 +248,6 @@ const DonationMultiStepForm = () => {
       );
       navigate(`/success?transactionId=${transactionId}&email=${encodeURIComponent(donorInfo.email)}`);
     } catch (err) {
-      console.error("PayPal payment failed:", err);
       setError(err instanceof Error ? err.message : "Payment failed");
     }
   };
@@ -326,10 +318,10 @@ const DonationMultiStepForm = () => {
           <div className="lg:border-l border-gray-200 bg-white p-4 sm:p-6 w-full lg:w-1/2">
             {/* Step Indicator */}
             <div className="flex justify-center mb-8">
-              {Array.from({ length: totalSteps }, (_, index) => {
+              {Array.from({ length: giftType === "one-time" ? totalSteps : 3 }, (_, index) => {
                 const stepNum = index + 1;
                 return (
-                  <div key={stepNum} className="flex items-center">
+                  <div key={stepNum} className="flex items-center ">
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= stepNum ? "bg-primary text-white" : "bg-gray-200"
                         }`}
@@ -338,7 +330,7 @@ const DonationMultiStepForm = () => {
                     </div>
                     {stepNum < totalSteps && (
                       <div
-                        className={`w-16 h-1 ${currentStep > stepNum ? "bg-primary" : "bg-gray-200"
+                        className={`w-20 h-1 ${currentStep > stepNum ? "bg-primary" : "bg-gray-200"
                           }`}
                       ></div>
                     )}
@@ -472,9 +464,10 @@ const DonationMultiStepForm = () => {
                       <button
                         type="button"
                         onClick={() => {
-                          nextStep();
                           setSelectedPaymentMethod("card");
+                          nextStep();
                           setFormErrors((prev) => ({ ...prev, paymentMethod: "" }));
+
                         }}
                         className={`w-full py-2 rounded-lg font-medium transition-colors flex justify-center items-center gap-2 ${selectedPaymentMethod === "card" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                           }`}
@@ -484,9 +477,10 @@ const DonationMultiStepForm = () => {
                       <button
                         type="button"
                         onClick={() => {
-                          nextStep();
                           setSelectedPaymentMethod("paypal");
+                          nextStep();
                           setFormErrors((prev) => ({ ...prev, paymentMethod: "" }));
+
                         }}
                         className={`w-full py-2 flex justify-center items-center rounded-lg font-medium transition-colors ${selectedPaymentMethod === "paypal" ? "bg-primary/10 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                           }`}
@@ -505,7 +499,7 @@ const DonationMultiStepForm = () => {
                   </div>
 
                   {/* Step 3: Donor & Billing Information */}
-                  <div className="min-w-full p-4">
+                  <div className={`${giftType !== "one-time" ? "hidden" : "min-w-full p-4"}`}>
                     <h2 className="text-xl font-bold mb-4 font-noto text-center">
                       Donor & Billing Information
                     </h2>

@@ -21,7 +21,7 @@ stripeRouter.post('/create-payment-intent', async (req, res) => {
       return res.status(400).json({ error: 'Invalid amount' });
     }
     const amountInCents = Math.round(amount * 100); // Convert dollars to cents
-
+console.log("Creating Payment Intent", amountInCents);
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents, // Use converted value
       currency: 'usd',
@@ -87,7 +87,7 @@ stripeRouter.post("/create-subscription-session", async (req, res) => {
 
     // 1. Create Stripe Customer
     const customer = await stripe.customers.create({
-      email: email,
+
       metadata: {
         // Add any additional donor info here
       ...req.body
@@ -134,6 +134,7 @@ stripeRouter.get("/get-subscription-success/:sessionId", async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
     const customer = await stripe.customers.retrieve(session.customer);
     const subscription = await stripe.subscriptions.retrieve(session.subscription);
+
 
     res.json({
       email: customer.email,
