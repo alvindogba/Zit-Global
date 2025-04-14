@@ -111,8 +111,8 @@ stripeRouter.post("/create-subscription-session", async (req, res) => {
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: `${process.env.FRONTEND_URL}/success`,
-      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+      success_url: `${process.env.FRONTEND_URL}/stripe-monthly-success?sessionId={CHECKOUT_SESSION_ID}`, // optional: you can replace with transaction id later
+      cancel_url: `${process.env.FRONTEND_URL}/donate`,
       subscription_data: {
         metadata: {
           // Store any relevant subscription metadata
@@ -125,6 +125,26 @@ stripeRouter.post("/create-subscription-session", async (req, res) => {
   } catch (err) {
     console.error('Subscription error:', err);
     res.status(500).json({ error: err.message });
+  }
+});
+
+// Sucess page route 
+stripeRouter.get("/get-subscription-success/:sessionId", async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+    const customer = await stripe.customers.retrieve(session.customer);
+    const subscription = await stripe.subscriptions.retrieve(session.subscription);
+
+    res.json({
+      email: customer.email,
+      amount: session.amount_total / 100,
+      interval: subscription.items.data[0].price.recurring.interval,
+      createdAt: session.created * 1000, // Convert from Unix to JS date
+      subscriptionId: subscription.id,
+    });
+  } catch (err) {
+    console.error('Error fetching subscription success data:', err);
+    res.status(500).json({ error: 'Failed to fetch subscription details' });
   }
 });
 

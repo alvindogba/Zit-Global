@@ -69,14 +69,9 @@ const DonationMultiStepForm = () => {
       if (!giftType) errors.giftType = "Please select a gift type";
     }
     if (step === 3) {
-      if (!donorInfo.firstName) errors.firstName = "First name is required";
-      if (!donorInfo.lastName) errors.lastName = "Last name is required";
       if (!donorInfo.email) errors.email = "Email is required";
       else if (!/\S+@\S+\.\S+/.test(donorInfo.email))
         errors.email = "Invalid email format";
-      if (!donorInfo.phone) errors.phone = "Phone number is required";
-      if (!donorInfo.state) errors.state = "State/Region is required";
-      if (!donorInfo.country) errors.country = "Country is required";
     }
     if (step === 2) {
       if (!selectedPaymentMethod) errors.paymentMethod = "Please select a payment method";
@@ -195,7 +190,7 @@ const DonationMultiStepForm = () => {
       );
 
       // Redirect to Stripe Checkout
-      const { error } = await stripe.redirectToCheckout({ sessionId });
+      const { error } = await stripe.redirectToCheckout({ sessionId});
       if (error) throw error;
 
     } catch (err) {
@@ -209,7 +204,7 @@ const DonationMultiStepForm = () => {
   // PayPal payment 
   const handlePaypalSubscription = async () => {
     setProcessing(true);
-  
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/paypal/create-Paypalsubscription`,
@@ -220,15 +215,15 @@ const DonationMultiStepForm = () => {
           giftType,
         }
       );
-  
+
       if (response.status !== 200) {
         throw new Error("Failed to create PayPal subscription");
       }
-  
+
       console.log(response.data);
       console.log("Subscription ID:", response.data.id);
       console.log("Subscriber Email:", response.data.subscriber.email_address);
-  
+
       // Find the approval URL from the response links array.
       const approveLink = response.data.links.find((link: { rel: string; href: string }) => link.rel === 'approve');
       if (approveLink && approveLink.href) {
@@ -244,7 +239,7 @@ const DonationMultiStepForm = () => {
       setProcessing(false);
     }
   };
-  
+
 
   const handlePayPalSuccess = async (transactionId: string) => {
     try {
@@ -521,8 +516,8 @@ const DonationMultiStepForm = () => {
                           value={donorInfo.firstName}
                           onChange={handleDonorInfoChange}
                           name="firstName"
-                          className={`w-full p-2 border rounded-lg ${formErrors.firstName ? "border-red-500" : "border-gray-300"}`}
-                        />
+                          className={`${giftType !== "one-time" ? "hidden" : "w-full p-2 border rounded-lg"} ${formErrors.firstName ? "border-red-500" : "border-gray-300"}`}
+                          />
                         {formErrors.firstName && <p className="text-xs text-red-500 mt-1">{formErrors.firstName}</p>}
                       </div>
                       <div>
@@ -531,7 +526,7 @@ const DonationMultiStepForm = () => {
                           value={donorInfo.lastName}
                           onChange={handleDonorInfoChange}
                           name="lastName"
-                          className={`w-full p-2 border rounded-lg ${formErrors.lastName ? "border-red-500" : "border-gray-300"}`}
+                          className={`${giftType !== "one-time" ? "hidden" : "w-full p-2 border rounded-lg "} ${formErrors.lastName ? "border-red-500" : "border-gray-300"}`}
                         />
                         {formErrors.lastName && <p className="text-xs text-red-500 mt-1">{formErrors.lastName}</p>}
                       </div>
@@ -552,7 +547,7 @@ const DonationMultiStepForm = () => {
                           value={donorInfo.phone}
                           onChange={handleDonorInfoChange}
                           name="phone"
-                          className={`w-full p-2 border rounded-lg ${formErrors.phone ? "border-red-500" : "border-gray-300"}`}
+                          className={`${giftType !== "one-time" ? "hidden" :  "w-full p-2 border rounded-lg"} ${formErrors.phone ? "border-red-500" : "border-gray-300"}`}
                         />
                         {formErrors.phone && <p className="text-xs text-red-500 mt-1">{formErrors.phone}</p>}
                       </div>
@@ -565,7 +560,7 @@ const DonationMultiStepForm = () => {
                               value={donorInfo.state}
                               onChange={handleDonorInfoChange}
                               name="state"
-                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
+                              className={`${giftType !== 'one-time' ? "hidden" : "w-full p-2 border rounded-lg bg-white"} ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
                             >
                               <option value="">State *</option>
                               {US_STATES.map((state) => (
@@ -579,7 +574,7 @@ const DonationMultiStepForm = () => {
                               value={donorInfo.state}
                               onChange={handleDonorInfoChange}
                               name="state"
-                              className={`w-full p-2 border rounded-lg bg-white ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
+                              className={`${giftType !== "one-time" ? "hidden" : "w-full p-2 border rounded-lg bg-white"} ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
                             >
                               <option value="">Province *</option>
                               {CA_PROVINCES.map((prov) => (
@@ -594,7 +589,7 @@ const DonationMultiStepForm = () => {
                               value={donorInfo.state}
                               onChange={handleDonorInfoChange}
                               name="state"
-                              className={`w-full p-2 border rounded-lg ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
+                              className={`${giftType !== "one-time" ? "hidden" :  "w-full p-2 border rounded-lg"} ${formErrors.state ? "border-red-500" : "border-gray-300"}`}
                             />
                           )}
                           {formErrors.state && <p className="text-xs text-red-500 mt-1">{formErrors.state}</p>}
@@ -606,7 +601,7 @@ const DonationMultiStepForm = () => {
                           value={donorInfo.country}
                           onChange={handleDonorInfoChange}
                           name="country"
-                          className={`w-full p-2 border rounded-lg bg-white ${formErrors.country ? "border-red-500" : "border-gray-300"
+                          className={`${giftType !== "one-time" ? "hidden": "w-full p-2 border rounded-lg bg-white"} ${formErrors.country ? "border-red-500" : "border-gray-300"
                             }`}
                         >
                           <option value="">Country *</option>
@@ -637,9 +632,9 @@ const DonationMultiStepForm = () => {
                         <p className="mb-4 text-center">
                           {giftType === "one-time"
                             ? "Enter your card details for a one-time donation."
-                            : "Enter your card details for your monthly subscription."}
+                            : "Proceed to Zongea Monthly Donation Checkout Page."}
                         </p>
-                        <div className="mb-4">
+                        <div className={`${giftType === "one-time" ? "mb-4" : "hidden"}`}>
                           <label className="block mb-2 text-sm font-medium">Card Number *</label>
                           <CardNumberElement
                             id="card-number"
@@ -656,8 +651,8 @@ const DonationMultiStepForm = () => {
                             }}
                           />
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                          <div>
+                        <div className={`${giftType === "one-time" ? "grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4" : "hidden"}`}>
+                          <div className="">
                             <label className="block mb-2 text-sm font-medium">Expiry *</label>
                             <CardExpiryElement
                               className="p-2 border rounded-lg"
