@@ -220,7 +220,6 @@ paypalRouter.post("/create-paypalsubscription", async (req, res) => {
 });
 
 
-// The confirm Route
 paypalRouter.post('/confirm-subscription', async (req, res) => {
   const { subscriptionId, baToken, token } = req.body;
 
@@ -234,7 +233,7 @@ paypalRouter.post('/confirm-subscription', async (req, res) => {
     const base64Credentials = Buffer.from(credentials).toString('base64');
 
     const tokenResponse = await axios.post(
-      `${PAYPAL_API}/v1/oauth2/token`,
+      `${process.env.PAYPAL_API}/v1/oauth2/token`,
       'grant_type=client_credentials',
       {
         headers: {
@@ -247,7 +246,7 @@ paypalRouter.post('/confirm-subscription', async (req, res) => {
 
     // Step 2: Retrieve subscription details from PayPal.
     const subscriptionResponse = await axios.get(
-      `${PAYPAL_API}/v1/billing/subscriptions/${subscriptionId}`,
+      `${process.env.PAYPAL_API}/v1/billing/subscriptions/${subscriptionId}`,
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -256,42 +255,58 @@ paypalRouter.post('/confirm-subscription', async (req, res) => {
       }
     );
     const subscriptionData = subscriptionResponse.data;
-    console.log(subscriptionData)
+    console.log("Subscription Data:", subscriptionData);
 
-    // Step 3: Ensure the subscription is approved.
-    // In a successful flow, you expect the status to be something like ACTIVE.
+    // Step 3: Ensure the subscription is approved (i.e. not still pending).
+    // You might want to adjust this check if live subscriptions use a different status name.
     if (subscriptionData.status === 'APPROVAL_PENDING') {
       return res.status(400).json({ error: 'Subscription not yet approved.' });
     }
 
     // Step 4: Extract donation and subscriber details.
-    // The custom_id field should be in the format "donation_<amount>"
-    const donationAmountString = subscriptionData.custom_id.replace('donation_', '');
-    const donationAmount = parseFloat(donationAmountString);
+    // Try to use custom_id if available, otherwise fallback (for example, using the outstanding_balance value).
+    let donationAmount = 0;
+    if (subscriptionData.custom_id && typeof subscriptionData.custom_id === 'string') {
+      // Expecting custom_id in the format "donation_<amount>"
+      const donationAmountString = subscriptionData.custom_id.replace('donation_', '');
+      donationAmount = parseFloat(donationAmountString);
+    } else if (
+      subscriptionData.billing_info &&
+      subscriptionData.billing_info.outstanding_balance &&
+      subscriptionData.billing_info.outstanding_balance.value
+    ) {
+      // Fallback to the outstanding balance value
+      donationAmount = parseFloat(subscriptionData.billing_info.outstanding_balance.value) || 0;
+    } else {
+      // If you cannot determine the donation amount, you may choose to throw an error or set a default value.
+      console.warn('Donation amount not found in subscription data.');
+    }
+
     const donorEmail = subscriptionData.subscriber.email_address;
     const firstName = subscriptionData.subscriber.name?.given_name || '';
     const lastName = subscriptionData.subscriber.name?.surname || '';
 
-    // Step 5: Record the donation details in the database.
+    // Step 5: Record the donation details in your database (omitted for brevity)
     const donationData = {
       subscriptionId: subscriptionData.id,
       email: donorEmail,
-      donationAmount,
+      donationAmount, // the extracted or fallback value
       firstName,
       lastName,
       status: subscriptionData.status,
-    }
+    };
 
- 
+    // Here you’d store donationData (e.g., insert into your database)
 
-
-    // Step 6: Return the stored donation record.
+    // Step 6: Return a successful response.
     res.status(200).json({
       message: 'Subscription confirmed and donation recorded.',
+      donation: donationData, // optionally return the record for verification
     });
   } catch (error) {
     console.error("Error confirming subscription:", error.response?.data || error.message);
     res.status(500).json({ error: 'Failed to confirm subscription.' });
   }
 });
+
 export default paypalRouter;
