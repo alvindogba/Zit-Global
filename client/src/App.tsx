@@ -43,7 +43,7 @@ import ParentModel from './components/Models/ParentModel';
 import AdministrationModel from './components/Models/AdministrationModel'
 import MentorModel from './components/Models/MentorModel'
 import TeacherModel from './components/Models/TeacherModel'
-const IccSucessPage = lazy(() => import("../src/pages/IccSucessPage"))
+const IccSucessPage = lazy(() => import("./pages/IccSucessPage"))
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
 import LeftImg from '../../asset/images/A teacher.jpg'
-import ScrollBackHome from "../Models/ScrollBackHome";
+import ScrollBackHome from "./ScrollBackHome";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

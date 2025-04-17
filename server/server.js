@@ -15,6 +15,9 @@ import paypalRouter from './Routes/PaypalRoute.js';
 import contactRouter from './Routes/ContactRoute.js';
 import mentorshipRouter from './Routes/MentorShipRoute.js';
 
+// the port router 
+import portalRouter from './Routes/PortalRoute.js';
+
 const app = express();
 const PORT = process.env.PORT ; // Match the port in your image URL
 
@@ -56,6 +59,10 @@ app.use('/uploads', express.static(uploadDir, {
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin'); // Explicitly allow cross-origin
   }
 }));
+
+// The Dashboard Routes
+app.use("/api/portal", portalRouter) 
+
 
 // Routes
 app.use("/api/icc", mentorshipRouter)

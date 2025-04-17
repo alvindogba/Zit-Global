@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { href, NavLink, useLocation } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
@@ -33,6 +33,16 @@ const navigation = [
       { name: "Application Form", href: "/admission" },
     ],
   },
+  {
+    name: "Portal",
+    href: "http://localhost:5000/api/portal/auth",
+    dropdown: [
+      {name: "Tutor Portal", href: "http://localhost:5000/api/portal/tutor"},
+      {name: "Tutee Portal", href: "http://localhost:5000/api/portal/tutee"},
+
+    ],
+  },
+
   { name: "Contact", href: "/contact" },
 ];
 
@@ -133,7 +143,7 @@ function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:gap-x-8 items-center">
+        <div className="hidden lg:flex lg:gap-x-4 items-center">
           {!isHomePage && (
             <NavLink 
             to="/"

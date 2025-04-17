@@ -1,32 +1,34 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
-import LeftImg from '../../asset/images/l am a mentor.jpg'
-import ScrollBackHome from "../Models/ScrollBackHome";
+import LeftImg from '../../asset/images/I am a.jpg'
+import ScrollBackHome from "./ScrollBackHome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 
 interface FormData {
-  // Step 1: Personal Information
+  // Step 1: Personal & School Info
   fullName: string;
   email: string;
   phone: string;
-  profession: string;
+  schoolName: string;
+  schoolLocation: string;
 
-  // Step 2: Mentorship Areas & Experience
-  mentorshipAreas: string[];
-  priorExperience: string;
-  experienceDetails: string;
+  // Step 2: School Needs & Partnership Goals
+  services: string[];
+  gradeLevels: string;
+  supportMode: string;
+  challenges: string;
 
-  // Step 3: Availability & Preferences
-  mentorshipFormat: string;
-  availability: string;
-  motivation: string;
+  // Step 3: Availability & Additional Information
+  contactMethod: string;
+  bestTime: string;
+  additionalComments: string;
   referral: string;
 }
 
-export default function MentorModel() {
+export default function AdministrationModel() {
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
@@ -36,13 +38,15 @@ export default function MentorModel() {
     fullName: '',
     email: '',
     phone: '',
-    profession: '',
-    mentorshipAreas: [],
-    priorExperience: '',
-    experienceDetails: '',
-    mentorshipFormat: '',
-    availability: '',
-    motivation: '',
+    schoolName: '',
+    schoolLocation: '',
+    services: [],
+    gradeLevels: '',
+    supportMode: '',
+    challenges: '',
+    contactMethod: '',
+    bestTime: '',
+    additionalComments: '',
     referral: ''
   });
 
@@ -55,11 +59,12 @@ export default function MentorModel() {
     const { value, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      mentorshipAreas: checked
-        ? [...prev.mentorshipAreas, value]
-        : prev.mentorshipAreas.filter(area => area !== value)
+      services: checked
+        ? [...prev.services, value]
+        : prev.services.filter(service => service !== value)
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
@@ -67,11 +72,11 @@ export default function MentorModel() {
     try {
       console.log(formData);
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/icc/mentors`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/icc/schoolAdmins`,
         formData
       );
 
-    
+
       if (response.status === 201) {
         // Redirect using navigate hook
         navigate('/icc-success', { state: { student: response.data.data } });
@@ -86,23 +91,25 @@ export default function MentorModel() {
       setIsLoading(false); // Stop loading
     }
   };
+
   return (
-    <>  
+    <>
+
       <header className="h-max md:py-0 py-4 fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
         <nav className="container mx-auto flex items-center justify-between py-2 px-4 sm:px-6">
           {/* Logo */}
           <div className="flex lg:flex-1">
             <Link to="/" aria-label="Home">
-              <img 
-                src={Logo} 
-                alt="Zongea Logo" 
+              <img
+                src={Logo}
+                alt="Zongea Logo"
                 className="w-24 h-12 sm:w-28 sm:h-14 md:w-40 md:h-16 lg:w-48 lg:h-20"
               />
             </Link>
           </div>
           <div className="text-white md:mr-28 text-right sm:text-left">
             <h3 className="font-noto text-xs sm:text-sm md:text-base lg:text-h3">Impact and Connect Center</h3>
-            <p className="font-roboto text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-2">Mentor Application</p>
+            <p className="font-roboto text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-2">School Application</p>
           </div>
         </nav>
       </header>
@@ -111,16 +118,16 @@ export default function MentorModel() {
         <div className="container sm:mx-auto flex flex-col lg:flex-row items-center gap-20 lg:items-start pt-4 md:pt-8 lg:pt-20">
           {/* Image and text section - appears below form on mobile */}
           <div className="text-primary mx-8 xl:mx-16 space-y-3 w-[90%] lg:w-[38%] lg:mr-52 mt-24">
-            <img 
-              src={LeftImg} 
-              className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-auto mx-auto" 
-              alt="Parent" 
+            <img
+              src={LeftImg}
+              className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-auto mx-auto"
+              alt="Parent"
             />
-            <h3 className="font-noto text-lg sm:text-xl md:text-2xl font-semibold lg:text-h3 text-center lg:text-left">
-              Become a Mentor <br /> Inspire the Next Generation
+            <h3 className="font-noto text-lg sm:text-xl md:text-2xl text-primary lg:text-h3 text-center lg:text-left">
+              Join Our Administrative Team <br /> Support Education Behind the Scenes
             </h3>
             <p className="font-roboto text-xs text-dparacolor sm:text-sm md:text-base text-center lg:text-left">
-            Support and guide students by sharing your experiences and insights. Help aspiring professionals navigate their career paths, develop key skills, and achieve their goals.
+              Play a vital role in keeping our programs running smoothly. From coordination to student support, your contributions will help create an efficient and impactful learning environment.
             </p>
           </div>
 
@@ -132,45 +139,46 @@ export default function MentorModel() {
               <div className="overflow-hidden">
                 <div className="flex transition-transform duration-300"
                   style={{ transform: `translateX(-${(currentStep - 1) * 100}%)` }}>
-                  
-                  {/* Step 1: Personal Information */}
+
+                  {/* Step 1: Personal & School Information */}
                   <div className="min-w-full p-2 sm:p-4">
-                    <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Personal Information</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Personal & School Information</h2>
                     <div className="space-y-3 sm:space-y-4">
                       <InputField label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required />
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
-                      <InputField label="Current Profession" name="profession" value={formData.profession} onChange={handleChange} required />
+                      <InputField label="School Name" name="schoolName" value={formData.schoolName} onChange={handleChange} required />
+                      <InputField label="School Location (City & Country)" name="schoolLocation" value={formData.schoolLocation} onChange={handleChange} required />
                     </div>
                   </div>
 
-                  {/* Step 2: Mentorship Areas & Experience */}
+                  {/* Step 2: School Needs & Partnership Goals */}
                   <div className="min-w-full p-2 sm:p-4">
-                    <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Mentorship Areas & Experience</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">School Needs & Partnership Goals</h2>
                     <div className="space-y-3 sm:space-y-4">
                       <CheckboxGroup
-                        label="What subjects or skills can you mentor in?"
-                        options={['Technology (Coding, UI/UX, Cybersecurity)', 'Business & Leadership', 'Science & Engineering', 'Soft Skills & Career Development', 'Other (Specify)']}
-                        selected={formData.mentorshipAreas}
+                        label="What services are you interested in?"
+                        options={['Tutoring Support for Students', 'Teacher Training', 'Digital Learning Integration', 'Mentorship for Students']}
+                        selected={formData.services}
                         onChange={handleCheckboxChange}
                       />
-                      <SelectField label="Do you have prior mentorship experience?" name="priorExperience" value={formData.priorExperience} onChange={handleChange}
-                        options={['Yes', 'No']} required />
-                      {formData.priorExperience === 'Yes' && (
-                        <TextAreaField label="If yes, describe your experience" name="experienceDetails" value={formData.experienceDetails} onChange={handleChange} required />
-                      )}
+                      <SelectField label="Grade Levels at Your School" name="gradeLevels" value={formData.gradeLevels} onChange={handleChange}
+                        options={['Primary', 'Secondary', 'Higher Ed']} required />
+                      <SelectField label="Preferred Mode of Support" name="supportMode" value={formData.supportMode} onChange={handleChange}
+                        options={['Online', 'In-Person', 'Both']} required />
+                      <TextAreaField label="Challenges Your School Faces in Student Learning" name="challenges" value={formData.challenges} onChange={handleChange} required />
                     </div>
                   </div>
 
-                  {/* Step 3: Availability & Preferences */}
+                  {/* Step 3: Availability & Additional Information */}
                   <div className="min-w-full p-2 sm:p-4">
-                    <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Availability & Preferences</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Availability & Additional Information</h2>
                     <div className="space-y-3 sm:space-y-4">
-                      <SelectField label="Preferred Mentorship Format" name="mentorshipFormat" value={formData.mentorshipFormat} onChange={handleChange}
-                        options={['Online', 'In-Person', 'Hybrid']} required />
-                      <SelectField label="Availability for Mentorship Sessions" name="availability" value={formData.availability} onChange={handleChange}
-                        options={['Morning', 'Afternoon', 'Evening', 'Flexible']} required />
-                      <TextAreaField label="Why do you want to be a mentor?" name="motivation" value={formData.motivation} onChange={handleChange} required />
+                      <SelectField label="Preferred Contact Method" name="contactMethod" value={formData.contactMethod} onChange={handleChange}
+                        options={['Email', 'Phone', 'WhatsApp']} required />
+                      <SelectField label="Best Time to Contact You" name="bestTime" value={formData.bestTime} onChange={handleChange}
+                        options={['Morning', 'Afternoon', 'Evening']} required />
+                      <TextAreaField label="Additional Comments or Requests" name="additionalComments" value={formData.additionalComments} onChange={handleChange} />
                       <SelectField label="How did you hear about us?" name="referral" value={formData.referral} onChange={handleChange}
                         options={['Website', 'Referral', 'Social Media', 'Other']} required />
                     </div>
@@ -223,11 +231,14 @@ export default function MentorModel() {
                   )}
                 </div>
               </div>
+
             </form>
           </div>
         </div>
       </div>
+
       <ScrollBackHome />
+
     </>
   );
 }
@@ -235,13 +246,12 @@ export default function MentorModel() {
 // Step Indicator Component
 const StepIndicator = ({ currentStep }: { currentStep: number }) => (
   <div className="flex justify-center mb-8">
-    {[1, 2, 3].map(step => (
+    {['Information', 'Needs', 'Availability'].map((step, index) => (
       <div key={step} className="flex items-center">
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center 
-          ${currentStep >= step ? 'bg-primary text-white' : 'bg-gray-200'}`}>
-          {step}
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= index + 1 ? "bg-primary text-white" : "bg-gray-200"}`}>
+          {index + 1}
         </div>
-        {step < 3 && <div className={`w-16 h-1 ${currentStep > step ? 'bg-primary' : 'bg-gray-200'}`} />}
+        {index < 2 && <div className={`w-16 h-1 ${currentStep > index + 1 ? "bg-primary" : "bg-gray-200"}`} />}
       </div>
     ))}
   </div>
@@ -262,7 +272,7 @@ const SelectField = ({ label, options, ...props }: any) => (
     <label className="label">
       <span className="label-text font-medium">{label}</span>
     </label>
-    <select {...props} className="select select-bordered  w-full rounded-lg focus:ring-2 focus:ring-primary">
+    <select {...props} className="select select-bordered w-full rounded-lg focus:ring-2 focus:ring-primary">
       <option value="">Select...</option>
       {options.map((option: string) => (
         <option key={option} value={option}>{option}</option>
@@ -279,9 +289,9 @@ const CheckboxGroup = ({ label, options, selected, onChange }: any) => (
     <div className="flex flex-wrap gap-4">
       {options.map((option: string) => (
         <label key={option} className="flex items-center gap-2 cursor-pointer">
-          <input 
-            type="checkbox" 
-            className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary" 
+          <input
+            type="checkbox"
+            className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary"
             value={option}
             checked={selected.includes(option)}
             onChange={onChange}
@@ -298,6 +308,6 @@ const TextAreaField = ({ label, ...props }: any) => (
     <label className="label">
       <span className="label-text font-medium">{label}</span>
     </label>
-    <textarea {...props} className="textarea textarea-bordered border-gray-300 h-24 w-full rounded-lg focus:ring-2 focus:ring-primary" />
+    <textarea {...props} className="textarea textarea-bordered h-24 w-full rounded-lg focus:ring-2 focus:ring-primary" />
   </div>
 );
