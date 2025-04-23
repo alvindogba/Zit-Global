@@ -19,9 +19,9 @@ const WhyJoin: React.FC = () => {
                     <div className="w-full flex flex-col md:flex-row mt-6 gap-4">
                         {/* Card: For Students */}
                         <div className="flex-1 bg-yellow-50 p-6 rounded shadow">
-                            <FaGraduationCap className="text-6xl text-secondary mx-auto mb-2" />
+                            <FaGraduationCap className="text-6xl text-secondary  mb-2" />
 
-                            <h3 className="font-noto text-xl font-semibold text-primary text-center mb-4">
+                            <h3 className="font-noto text-xl font-semibold text-primary  mb-4">
                                 For Students
                             </h3>
                             <div className="space-y-2 text-dparacolor">
@@ -33,9 +33,9 @@ const WhyJoin: React.FC = () => {
 
                         {/* Card: For Mentor */}
                         <div className="flex-1 bg-green-50 p-6 rounded shadow">
-                            <FaChalkboardTeacher className="text-6xl text-secondary text-center mx-auto mb-2" />
+                            <FaChalkboardTeacher className="text-6xl text-secondary text-center mb-2" />
 
-                            <h3 className="font-noto text-xl font-semibold text-primary text-center mb-4">
+                            <h3 className="font-noto text-xl font-semibold text-primary  mb-4">
                                 For Mentor
                             </h3>
                             <div className="space-y-2 text-dparacolor">
@@ -45,31 +45,31 @@ const WhyJoin: React.FC = () => {
                             </div>
                         </div>
                         {/* Last two cards ================================= */}
-                        {/* Card: For Students */}
+                        {/* Card: For Parents  */}
                         <div className="flex-1 bg-yellow-50 p-6 rounded shadow">
-                            <FaGraduationCap className="text-6xl text-secondary mx-auto mb-2" />
+                            <FaGraduationCap className="text-6xl text-secondary  mb-2" />
 
-                            <h3 className="font-noto text-xl font-semibold text-primary text-center mb-4">
-                                For Students
+                            <h3 className="font-noto text-xl font-semibold text-primary mb-4">
+                                For Parents / Guardians
                             </h3>
                             <div className="space-y-2 text-dparacolor">
-                                <p className="font-roboto mb-2">Learn directly from industry experts</p>
-                                <p className="font-roboto mb-2">Get career advice and networking opportunities</p>
-                                <p className="font-roboto mb-2">Gain confidence and clarity about your future</p>
+                                <p className="font-roboto mb-2">Understand how to support your child's growth</p>
+                                <p className="font-roboto mb-2">Access resources to guide their career path</p>
+                                <p className="font-roboto mb-2">Connect with other families and experts</p>
                             </div>
                         </div>
 
-                        {/* Card: For Mentor */}
+                        {/* Card: For School Admin */}
                         <div className="flex-1 bg-green-50 p-6 rounded shadow">
-                            <FaChalkboardTeacher className="text-6xl text-secondary text-center mx-auto mb-2" />
+                            <FaChalkboardTeacher className="text-6xl text-secondary   mb-2" />
 
-                            <h3 className="font-noto text-xl font-semibold text-primary text-center mb-4">
-                                For Mentor
+                            <h3 className="font-noto text-xl font-semibold text-primary  mb-4">
+                                For School Administration
                             </h3>
                             <div className="space-y-2 text-dparacolor">
-                                <p className="font-roboto mb-2">Make an impact by guiding young professionals</p>
-                                <p className="font-roboto mb-2">Expand your leadership and coaching skills</p>
-                                <p className="font-roboto mb-2">Give back to the next generation of talent</p>
+                                <p className="font-roboto mb-2">Align programs with curriculum goals</p>
+                                <p className="font-roboto mb-2">Monitor students progress and outcomes</p>
+                                <p className="font-roboto mb-2">Foster partnerships with industry leaders</p>
                             </div>
                         </div>
                     </div>

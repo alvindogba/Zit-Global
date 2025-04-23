@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function TutorshipSection() {
   const imgCard = [
     {
-      label: "I am a Student",
+      label: "I need a Tutor",
       linkText: "Get Started",
       img: image4,
       link: "/icc-student"
@@ -27,10 +27,10 @@ export default function TutorshipSection() {
 
     },
     {
-      label: "I’d Like to Mentor Someone",
+      label: "I’d Like to Tutor someone",
       linkText: "Get Started",
       img: image1,
-      link: "/icc/mentor"
+      link: "/icc/tutor"
 
     },
   ];

@@ -1,9 +1,18 @@
 import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
-  const Student = sequelize.define(
-    'Student',
-    {
+  const Tutees = sequelize.define(
+    'Tutees',
+    {     id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,        // ensures 1:1
+    },
       fullName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -19,7 +28,7 @@ export default (sequelize) => {
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       gender: {
         type: DataTypes.STRING,
@@ -64,10 +73,17 @@ export default (sequelize) => {
       },
     },
     {
-      tableName: 'Students',
+      tableName: 'Tutees',
       timestamps: true, // adds createdAt and updatedAt
     }
   );
-
-  return Student;
+  Tutees.associate = (models) => {
+    Tutees.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+  };
+  return Tutees;
 };

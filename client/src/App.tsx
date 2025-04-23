@@ -24,7 +24,7 @@ const Courses = lazy(() => import('./pages/CoursesPage'))
 const Cohort = lazy(() => import('./pages/CohortPage'))
 const BeADonor = lazy(() => import('./pages/MakeImpact/BeADonor'))
 const Mentorship = lazy(() => import('./pages/MakeImpact/Mentorship'))
-const Tutorship = lazy(() => import('./pages/MakeImpact/Tutorship'))
+const GetTutorShip = lazy(() => import('./pages/MakeImpact/Tutorship'))
 const TeachingAtZit = lazy(() => import('./pages/MakeImpact/TeachingAtZit'))
 const AdmissionSuccess = lazy(() => import('./pages/Admission/AdminssionSuccessPage'));
 const GuidingHandingProgram = lazy(() => import('./pages/MakeImpact/GuidingHandingProgram'))
@@ -35,13 +35,13 @@ const GraphicDesign = lazy(() => import('./pages/CoursesDetails/GraphicDesign'))
 const CyberSecurity = lazy(() => import('./pages/CoursesDetails/CyberSercurity'))
 const MicrosoftOffice = lazy(() => import('./pages/CoursesDetails/MicrosoftOfficeDetailPage'))
 const DatabaseAdmin = lazy(() => import('./pages/CoursesDetails/DatabaseAdminDetailPage'))
-const MentorshipDashboard = lazy(() => import('./pages/Dashboards/MentorshipDashboard'))
 
 //form Models 
 import StudentModel from './components/Models/StudentModel';
 import ParentModel from './components/Models/ParentModel';
 import AdministrationModel from './components/Models/AdministrationModel'
 import MentorModel from './components/Models/MentorModel'
+import TutorModel from './components/Models/TutorModel';
 import TeacherModel from './components/Models/TeacherModel'
 const IccSucessPage = lazy(() => import("./pages/IccSucessPage"))
 // Initialize Stripe
@@ -72,8 +72,7 @@ function App() {
                 <Route path="/impact-connect-center"element={<GuidingHandingProgram /> }/>
                 <Route path="/mentorship-program" element={<Mentorship />}/>
                 <Route path="/teaching-at-zit" element={<TeachingAtZit />}/>
-                <Route path="/mentorship-dashboard" element={<MentorshipDashboard />}/>
-                <Route path="/tutorship-program"element={<Tutorship />}/>
+                <Route path="/tutorship-program"element={<GetTutorShip />}/>
                 <Route path="/be-a-donor" element={<BeADonor /> }/>
                 <Route path="/admission"element={<Admission />} />
                 <Route path="/admission-success" element={<AdmissionSuccess />}/>
@@ -90,10 +89,13 @@ function App() {
                 <Route path="/courses/full-stack-development"element={<Fullstack />}/>
                 <Route path="/courses/microsoft-office"element={<MicrosoftOffice />}/>
                 <Route path="/courses/database-admin"element={<DatabaseAdmin />}/>
+                
+                {/* The impact and connect center route */}
                 <Route path="/icc-student"element={<StudentModel />}/>
                 <Route path="/icc/teacher"element={<TeacherModel />}/>
                 <Route path="/icc/parent-guardian"element={<ParentModel />}/>
                 <Route path="/icc/mentor"element={<MentorModel />}/>
+                <Route path="/icc/tutor"element={<TutorModel />}/>
                 <Route path="/icc/administration"element={<AdministrationModel />}/>
                 <Route path='/icc-success'element={<IccSucessPage />} />
               </Routes>

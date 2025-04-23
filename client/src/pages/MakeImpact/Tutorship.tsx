@@ -5,7 +5,7 @@ import TutorSteps from "../../components/TutorShipComponent/TurtorStep";
 import CTA from "../../components/MentorShipComponent/CTA";
 import TProgramOverview from "../../components/TutorShipComponent/TProgramOverview";
 
-const GetMentorShip = () => {
+const GetTutorShip = () => {
 return(
         <div>
             <Hero />
@@ -18,4 +18,4 @@ return(
 )
 };
 
-export default GetMentorShip;
+export default GetTutorShip;

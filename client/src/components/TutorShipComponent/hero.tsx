@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
         </h1>
         <div className="flex flex-wrap gap-4">
     
-          <Link to='/icc/mentor'
+          <Link to='/icc/tutor'
             className="font-sans bg-secondary text-white hover:font-semibold px-3 py-2 rounded-md hover:bg-primary"
           >
             Apply Now and Get Started

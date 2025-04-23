@@ -13,7 +13,7 @@ import router from './Routes/AdmissionRoute.js';
 import stripeRouter from './Routes/StripePay.js';
 import paypalRouter from './Routes/PaypalRoute.js';
 import contactRouter from './Routes/ContactRoute.js';
-import mentorshipRouter from './Routes/MentorShipRoute.js';
+import tutorRoute from './Routes/TutorShipRoute.js';
 
 // the port router 
 import portalRouter from './Routes/PortalRoute.js';
@@ -41,7 +41,7 @@ app.use(helmet({
 
 // Configure CORS first
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Will be "https://zongeatech.com"
+  origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],// Will be "https://zongeatech.com"
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
@@ -65,7 +65,7 @@ app.use("/api/portal", portalRouter)
 
 
 // Routes
-app.use("/api/icc", mentorshipRouter)
+app.use("/api/icc", tutorRoute)
 app.use("/admission", router);
 app.use('/api/stripe', stripeRouter);
 app.use('/api/paypal', paypalRouter);

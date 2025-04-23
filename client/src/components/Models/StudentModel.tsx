@@ -72,17 +72,17 @@ export default function StudentModel() {
     e.preventDefault();
     setIsLoading(true); // Start loading
 
+    console.log(`Form Data to be submitted: ${formData}`)
+
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/icc/students`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/icc/tutees`,
         formData
       );
-      console.log(response.data);
-      console.log(response.status);
-      console.log(response.data.data)
+ 
 
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // Redirect using navigate hook
         navigate('/icc-success', { state: { student: response.data.data } });
       } else {
@@ -113,7 +113,7 @@ export default function StudentModel() {
     </div>
     <div className="text-white md:mr-28 text-right sm:text-left">
       <h3 className="font-noto text-xs sm:text-sm md:text-base lg:text-h3">Impact and Connect Center</h3>
-      <p className="font-roboto text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-2">Student Application</p>
+      <p className="font-roboto text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-2">Tutees Application</p>
     </div>
   </nav>
 </header>
