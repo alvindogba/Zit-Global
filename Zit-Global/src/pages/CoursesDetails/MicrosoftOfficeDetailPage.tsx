@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Laptop, Clock, Award, ChevronDown, ChevronRight, FileText, File, BarChart, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
+import ScrollToTopButton from '../../components/ScrollToTopButton'
 
 import HeroBgImg from "../../asset/images/microsoft-365.jpeg"; // Update with actual image
 
@@ -190,6 +191,7 @@ export default function MicrosoftOfficeDetailPage() {
           </div>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

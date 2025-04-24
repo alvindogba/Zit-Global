@@ -275,14 +275,14 @@ export default function ContactPage() {
         }}
       >
         <div className="container w-full text-center text-white">
-          <h2 className="text-base font-noto md:text-2xl md:w-[70%] md:mx-auto mb-8">
+          <h2 className="text-base font-noto md:text-xl md:w-[70%] md:mx-auto mb-8">
             Make a difference today, your donation, no matter the size, brings us one step closer to transforming lives and creating lasting impact!
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {/* Volunteer Button */}
             <Link
               to="/impact-connect-center"
-              className="w-full sm:w-fit border font-sans hover:bg-white hover:text-primary text-lg hover:px-6 hover:py-2 text-white px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="w-full sm:w-fit border font-sans hover:bg-white hover:text-primary text-lg  text-white px-2 py-1 transition-colors rounded-md inline-flex items-center justify-center"
             >
               Be A Volunteer <ArrowRight className="ml-2" size={16} />
             </Link>
@@ -290,7 +290,7 @@ export default function ContactPage() {
             {/* Donate Button */}
             <Link
               to="/donate"
-              className="w-full sm:w-fit bg-white font-sans hover:bg-primary hover:text-white text-lg hover:px-6 hover:py-2 text-primary px-3 sm:px-6 py-2 transition-colors rounded-md inline-flex items-center justify-center"
+              className="w-full sm:w-fit bg-secondary font-sans hover:bg-white hover:text-primary text-lg text-white px-2  py-1 transition-colors rounded-md inline-flex items-center justify-center"
             >
               Donate Today <ArrowRight className="ml-2" size={16} />
             </Link>

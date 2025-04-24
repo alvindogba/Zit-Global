@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Laptop, Clock, Award, ChevronDown, ChevronRight, Palette, Layout, Users, Lightbulb, Layers, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HeroBgImg from '../../asset/images/ui-ux-design.jpeg';
+import ScrollToTopButton from '../../components/ScrollToTopButton'
 
 export default function UIUXDetailPage() {
   const courseIncludes = [
@@ -219,6 +220,7 @@ export default function UIUXDetailPage() {
           </div>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

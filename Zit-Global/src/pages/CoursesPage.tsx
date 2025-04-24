@@ -1,4 +1,4 @@
-import HeroBgImg from '../asset/images/Graduation-Bg-Img.jpg';
+import HeroBgImg from '../asset/images/Courses Hero.jpg';
 import { Link } from 'react-router-dom';
 import { Code, Palette, Shield, Layout, Database, FileText } from "lucide-react";
 import FullStack from '../asset/images/full-stack-development.jpeg';
@@ -87,7 +87,7 @@ export default function Courses() {
         "Master essential Microsoft Office tools like Word, Excel, and PowerPoint. Gain efficiency in document creation, data analysis, and presentations.",
       icon: <FileText className="w-10 h-10 text-secondary" />,
       image: Microsoft,
-      path: "/courses/microsoft-office-suite",
+      path: "/courses/microsoft-office",
       highlights: [
         "Microsoft Word",
         "Microsoft Excel",

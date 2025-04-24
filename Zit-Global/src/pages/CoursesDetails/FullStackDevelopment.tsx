@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Laptop, Clock, Award, ChevronDown, ChevronRight, Code, Database, Globe, Puzzle, Terminal, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import HeroBgImg from "../../asset/images/full-stack-development.jpeg";
+import HeroBgImg from "../../asset/images/Web Dev.jpg";
+import ScrollToTopButton from '../../components/ScrollToTopButton'
 
 export default function FullStackDetailPage() {
   const courseIncludes = [
@@ -219,6 +220,7 @@ export default function FullStackDetailPage() {
           </div>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

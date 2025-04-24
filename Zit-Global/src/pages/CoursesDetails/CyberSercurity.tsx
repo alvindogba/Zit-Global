@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Laptop, Clock, Award, ChevronDown, ChevronRight, Shield, Network, Terminal, FileKey, AlertCircle, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 import HeroBgImg from "../../asset/images/cyber-security.jpeg";
 
@@ -223,6 +224,7 @@ export default function CyberSecurityDetailPage() {
           </div>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

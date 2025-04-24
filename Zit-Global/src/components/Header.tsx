@@ -360,13 +360,13 @@ function Header() {
                     </div>
 
                     <div className="mt-6 flex justify-center gap-4">
-                      <NavLink to="#" className="text-secondary hover:text-primary">
+                      <NavLink to="https://www.facebook.com/ZongeaInstituteOfTechnology/" target="_blank" className="text-secondary hover:text-primary">
                         <FaFacebookF className="h-5 w-5" />
                       </NavLink>
-                      <NavLink to="#" className="text-secondary hover:text-primary">
+                      <NavLink to="https://www.linkedin.com/school/zongea-institute-of-technology/" target="_blank" className="text-secondary hover:text-primary">
                         <FaLinkedinIn className="h-5 w-5" />
                       </NavLink>
-                      <NavLink to="#" className="text-secondary hover:text-primary">
+                      <NavLink to="https://www.instagram.com/zongea_institute_of_technology/" target="_blank" className="text-secondary hover:text-primary">
                         <FaInstagram className="h-5 w-5" />
                       </NavLink>
                     </div>
