@@ -7,6 +7,11 @@ export default (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,        // ensures 1:1
+    },
     applicationNumber: {
       type: DataTypes.STRING,
       unique: true,
@@ -88,5 +93,13 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
+  Admission.associate = (models) => {
+    Admission.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+  };
   return Admission;
 };

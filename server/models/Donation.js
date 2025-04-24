@@ -11,7 +11,7 @@ export default (sequelize, DataTypes) => {
     },
     paymentMethod: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     transactionId: {
       type: DataTypes.STRING,
@@ -35,33 +35,19 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    address2: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+    
     },
-    zip: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+   
     country: {
       type: DataTypes.STRING,
-      allowNull: false,
+    
     },
     giftType: {
       type: DataTypes.ENUM('one-time', 'monthly'),
-      allowNull: false,
+    
     }
   }, {
     tableName: 'Donations',

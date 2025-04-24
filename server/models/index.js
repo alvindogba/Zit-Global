@@ -23,28 +23,44 @@ if (dbConfig.use_env_variable) {
 }
 
 // Dynamically import models
+// … above is unchanged …
+
 const loadModels = async () => {
-  const files = fs.readdirSync(__dirname).filter((file) => {
-    return (
-      file.indexOf(".") !== 0 &&
-      file !== basename &&
-      file.endsWith(".js") &&
-      !file.endsWith(".test.js")
+  const files = fs
+    .readdirSync(__dirname)
+    .filter(
+      (file) =>
+        file.indexOf('.') !== 0 &&
+        file !== basename &&
+        file.endsWith('.js') &&
+        !file.endsWith('.test.js')
     );
-  });
 
   for (const file of files) {
     try {
       const modelModule = await import(`file://${path.join(__dirname, file)}`);
       if (modelModule.default) {
-        const model = await modelModule.default(sequelize, DataTypes);
-        if (model.name) {
+        const model = modelModule.default(sequelize, DataTypes); // no await here
+        if (model && model.name) {
           db[model.name] = model;
+          console.log(`→ Loaded model: ${model.name}`);    // ← log it
         }
       }
     } catch (error) {
       console.error(`Error loading model ${file}:`, error);
     }
+  }
+};
+
+const initializeDatabase = async () => {
+  try {
+    await loadModels();
+    console.log('💡 Models in db:', Object.keys(db));
+    establishAssociations();
+    console.log('✅ Models loaded and associated successfully.');
+  } catch (error) {
+    console.error('Error loading models:', error);
+    throw error;
   }
 };
 
@@ -57,17 +73,7 @@ const establishAssociations = () => {
   });
 };
 
-// Initialize models and associations
-const initializeDatabase = async () => {
-  try {
-    await loadModels();
-    establishAssociations();
-    console.log("Models loaded successfully.");
-  } catch (error) {
-    console.error("Error loading models:", error);
-    throw error;
-  }
-};
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

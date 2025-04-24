@@ -8,6 +8,7 @@ import { sendDonationReceipt } from '../utils/donationEmailService.js';
 dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+
 const stripeRouter = express.Router();// Create an Express Router
 
 // Create payment intent
@@ -20,7 +21,7 @@ stripeRouter.post('/create-payment-intent', async (req, res) => {
       return res.status(400).json({ error: 'Invalid amount' });
     }
     const amountInCents = Math.round(amount * 100); // Convert dollars to cents
-
+console.log("Creating Payment Intent", amountInCents);
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents, // Use converted value
       currency: 'usd',
@@ -37,7 +38,7 @@ stripeRouter.post('/create-payment-intent', async (req, res) => {
 
 stripeRouter.post('/save-donation', async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("Saving Donation Donation Record", req.body);
     // Create donation record
     const donation = await db.Donations.create({
     
@@ -82,28 +83,69 @@ stripeRouter.get('/get-success-donation/:transactionId', async (req, res) => {
 // The Strip Subscription End point 
 stripeRouter.post("/create-subscription-session", async (req, res) => {
   try {
-    const { email, priceId } = req.body;
-    // Create a customer with the provided email
-    const customer = await stripe.customers.create({ email });
-    // Create a Checkout Session for a subscription
-    const session = await stripe.checkout.sessions.create({
-      customer: customer.id,
-      payment_method_types: ["card"],
-      mode: "subscription",
-      line_items: [
-        {
-          price: priceId, // Use your Stripe price ID configured for subscriptions
-          quantity: 1,
-        },
-      ],
-      // Replace FRONTEND_URL with your actual frontend URL
-      success_url: `${process.env.FRONTEND_URL}/donation-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/donation-cancel`,
+    const { email, amount, currency, interval } = req.body;
+
+    // 1. Create Stripe Customer
+    const customer = await stripe.customers.create({
+
+      metadata: {
+        // Add any additional donor info here
+      ...req.body
+      }
     });
+
+    // 2. Create Dynamic Price
+    const price = await stripe.prices.create({
+      unit_amount: amount,
+      currency: currency || 'usd',
+      recurring: { interval: interval || 'month' },
+      product: process.env.STRIPE_PRODUCT_ID, // Your donation product ID
+    });
+
+    // 3. Create Checkout Session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      customer: customer.id,
+      line_items: [{
+        price: price.id,
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: `${process.env.FRONTEND_URL}/stripe-monthly-success?sessionId={CHECKOUT_SESSION_ID}`, // optional: you can replace with transaction id later
+      cancel_url: `${process.env.FRONTEND_URL}/donate`,
+      subscription_data: {
+        metadata: {
+          // Store any relevant subscription metadata
+        }
+      }
+    });
+
     res.json({ sessionId: session.id });
-  } catch (error) {
-    console.error("Error creating subscription session:", error);
-    res.status(500).json({ error: error.message });
+
+  } catch (err) {
+    console.error('Subscription error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Sucess page route 
+stripeRouter.get("/get-subscription-success/:sessionId", async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+    const customer = await stripe.customers.retrieve(session.customer);
+    const subscription = await stripe.subscriptions.retrieve(session.subscription);
+
+
+    res.json({
+      email: customer.email,
+      amount: session.amount_total / 100,
+      interval: subscription.items.data[0].price.recurring.interval,
+      createdAt: session.created * 1000, // Convert from Unix to JS date
+      subscriptionId: subscription.id,
+    });
+  } catch (err) {
+    console.error('Error fetching subscription success data:', err);
+    res.status(500).json({ error: 'Failed to fetch subscription details' });
   }
 });
 
