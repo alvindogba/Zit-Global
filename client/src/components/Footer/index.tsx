@@ -258,10 +258,18 @@ const Footer = () => {
         <p className="font-roboto text-[15px] text-white">Copyright © {new Date().getFullYear()} Zongea Institute of Technology. All rights reserved.</p>
         <div className="flex space-x-4 mt-4 md:mt-0">
           <p className="text-white">Follow Us On :</p>
-          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaFacebookF className="cursor-pointer" size={16} /></Link>
-          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaInstagram className=" cursor-pointer" size={16}  /></Link>
-          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"><FaLinkedinIn className=" cursor-pointer" size={16}  /></Link>
-          <Link to="#" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary"  ><FaGithub className=" cursor-pointer" size={16}  /></Link>
+          <Link to="https://www.facebook.com/ZongeaInstituteOfTechnology/" target="_blank" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary">
+            <FaFacebookF className="cursor-pointer" size={16} />
+          </Link>
+          <Link to="https://www.instagram.com/zongea_institute_of_technology/" target="_blank" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary">
+            <FaInstagram className=" cursor-pointer" size={16}  />
+          </Link>
+          <Link to="https://www.linkedin.com/school/zongea-institute-of-technology/" target="_blank" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary">
+            <FaLinkedinIn className=" cursor-pointer" size={16}  />
+          </Link>
+          <Link to="https://github.com/zongea-institute-of-technology" target="_blank" className="w-6 h-6 rounded-full bg-white hover:bg-secondary hover:text-white flex justify-center items-center text-primary">
+            <FaGithub className=" cursor-pointer" size={16}  />
+          </Link>
         </div>
       </div>
     </footer>

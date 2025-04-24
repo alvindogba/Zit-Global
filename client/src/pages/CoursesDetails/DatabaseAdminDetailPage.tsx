@@ -190,6 +190,7 @@ export default function DatabaseAdminDetailPage() {
         </div>
         <ScrollToTopButton />
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

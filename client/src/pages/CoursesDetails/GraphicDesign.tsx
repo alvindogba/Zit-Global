@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Laptop, Clock, Award, ChevronDown, ChevronRight, Palette, Image, PenTool, Layers, Brush, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ScrollToTopButton from '../../components/ScrollToTopButton'
 
 import HeroBgImg from "../../asset/images/graphic-design.jpeg";
 
@@ -220,6 +221,7 @@ export default function GraphicDesignDetailPage() {
           </div>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }
