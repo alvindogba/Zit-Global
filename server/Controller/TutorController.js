@@ -1,6 +1,9 @@
 import {sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation, sendTeacherConfirmation  } from '../utils/IccEmailService.js';
 import { sendAdminNotification } from '../utils/IccEmailService.js';
 import db from "../models/index.js";
+import bcrypt from 'bcryptjs';
+
+const saltRounds = 12;
 
 export const createSchoolAdmin = async (req, res) => {
   console.log(req.body);
@@ -289,14 +292,17 @@ export const createParent = async (req, res) => {
           message: 'Please provide all required fields for student registration.',
         });
       }
-  
+   
+      // creating the password hash for the user
+      const password = 'zit_tutees'; // Replace with actual password
+      const hash= await bcrypt.hash(password, saltRounds);
       // Create a new user
       const newUser = await db.User.create({
         full_name: fullName,
         email,
         phone_number: phone,
-        password_hash: 'zit_tutees', // Replace with actual hashed password
-        role: 'tutee', // Assuming 'tutee' is a valid role in your system
+        password_hash: hash, 
+        role: 'tutee',
         is_active: false,
       });
 
@@ -381,12 +387,16 @@ export const createTutor = async (req, res) => {
         });
       }
 
+      // Creating the password hash for the user
+      const password = 'zit_tutor'; // Replace with actual password
+      const hash= await bcrypt.hash(password, saltRounds);
+
      // Create a new user
       const newUser = await db.User.create({
         full_name: fullName,
         email,
         phone_number: phone,
-        password_hash: 'zit_tutor', // Replace with actual hashed password
+        password_hash: hash, 
         role: 'tutor', 
         is_active: false,
       });

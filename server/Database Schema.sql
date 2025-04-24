@@ -1,4 +1,39 @@
 -- The tutees table
+-- enable UUID generation
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+-- create Tutees table with camelCase columns
+CREATE TABLE "Tutees" (
+  "id" UUID PRIMARY KEY
+    DEFAULT gen_random_uuid(),
+
+  "user_id" UUID NOT NULL UNIQUE
+    REFERENCES "Users"("id")
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
+  "fullName"      VARCHAR(255) NOT NULL,
+  "dob"           DATE          NOT NULL,
+  "email"         VARCHAR(255) NOT NULL UNIQUE,
+  "phone"         VARCHAR(50),
+  "gender"        VARCHAR(50)   NOT NULL,
+  "schoolName"    VARCHAR(255)  NOT NULL,
+  "gradeLevel"    VARCHAR(50)   NOT NULL,
+  "subjects"      TEXT[],
+
+  "learningStyle" VARCHAR(100)  NOT NULL,
+  "tutoringNeeds" TEXT          NOT NULL,
+  "objectives"    TEXT,
+  "availability"  VARCHAR(50)   NOT NULL,
+  "tutorType"     VARCHAR(100)  NOT NULL,
+  "referral"      VARCHAR(255),
+
+  "createdAt" TIMESTAMP WITH TIME ZONE
+    DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP WITH TIME ZONE
+    DEFAULT CURRENT_TIMESTAMP
+);
+
 -- 2. Create the tutor table
 CREATE TABLE "Tutors" (
     "id" SERIAL PRIMARY KEY,

@@ -10,7 +10,6 @@
     "migrate": "npx sequelize-cli db:migrate",
     "migrate-create": "npx sequelize-cli migration:generate --name"
   },
-  
   "author": "",
   "license": "ISC",
   "description": "",
@@ -18,6 +17,8 @@
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@paypal/checkout-server-sdk": "^1.0.3",
     "axios": "^1.8.3",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
