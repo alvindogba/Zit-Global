@@ -35,10 +35,10 @@ const navigation = [
   },
   {
     name: "Portal",
-    href: "http://localhost:5000/api/portal/auth",
+    href: `${import.meta.env.VITE_PORTAL_URL}`,
     dropdown: [
-      {name: "Tutor Portal", href: "http://localhost:5000/api/portal/tutor"},
-      {name: "Tutee Portal", href: "http://localhost:5000/api/portal/tutee"},
+      {name: "Tutor Portal", href: `${import.meta.env.VITE_PORTAL_URL}/tutor`},
+      {name: "Tutee Portal", href: `${import.meta.env.VITE_PORTAL_URL}/tutee`},
 
     ],
   },

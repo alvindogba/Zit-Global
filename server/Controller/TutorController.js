@@ -63,13 +63,15 @@ export const createSchoolAdmin = async (req, res) => {
     // await sendSchoolAdminConfirmation(email, fullName);
 
     // Send notification email to admin
-    // await sendAdminNotification({
-    //   fullName,
-    //   email,
-    //   phone,
-    //   schoolName,
-    //   schoolLocation,
-    // });
+    await sendAdminNotification(
+      'School Admin',
+      {
+      fullName,
+      email,
+      phone,
+      schoolName,
+      schoolLocation,
+    });
 
     return res.status(201).json({
       success: true,
@@ -87,6 +89,7 @@ export const createSchoolAdmin = async (req, res) => {
 };
 
 export const createTeacher = async (req, res) => {
+  
   console.log(req.body);
   try {
     const {
@@ -147,7 +150,17 @@ export const createTeacher = async (req, res) => {
     });
 
 //     // Send confirmation email to user
-//     await sendTeacherConfirmation(email, fullName);
+    await sendTeacherConfirmation(email, fullName);
+
+    //     // Send notification email to admin
+    await sendAdminNotification(
+      'Teacher',
+      { fullName: newTutees.fullName,
+        email:    newTutees.email,
+        phone:    newTutees.phone,
+        
+      }                                   // ← submissionData
+    );
 
     return res.status(201).json({
       success: true,
@@ -226,16 +239,18 @@ export const createParent = async (req, res) => {
       });
   
       // Send confirmation email to user
-      // await sendParentConfirmation(email, fullName);
+      await sendParentConfirmation(email, fullName);
   
       // Send notification email to admin
-    //   await sendAdminNotification({
-    //     fullName,
-    //     email,
-    //     phone,
-    //     schoolName,
-    //     gradeLevel,
-    //   });
+      await sendAdminNotification(
+        'Parent',                            // ← submissionType
+        {
+        fullName,
+        email,
+        phone,
+        schoolName,
+        gradeLevel,
+      });
   
       return res.status(201).json({
         success: true,
