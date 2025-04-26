@@ -98,7 +98,7 @@ export default function MotivationPage() {
         {/* Buttons Section */}
         <div className="flex flex-wrap justify-center gap-4">
           <Link
-            to="/admission"
+            to="/impact-connect-center"
             className="bg-transparent font-sans border border-white hover:font-semibold text-xs text-white px-3 py-2 transition-all rounded-md inline-flex items-center justify-center hover:bg-white hover:text-primary"
           >
             Be a Volunteer

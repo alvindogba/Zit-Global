@@ -12,7 +12,7 @@ const SeeAFuture = () => {
       <div className="text-white md:py-16 py-8">
         <div className="max-w-7xl mx-16 sm:px-6 lg:px-8 text-center">
           <h2 className="font-noto text-xl md:text-2xl font-bold mb-6 text-primary">
-            Our Vision: Opportunity and Empowerment<br />  for Every Liberian
+            Our Vision: Opportunity and Empowerment<br />  for Everyone
           </h2>
           <p className="font-roboto text-sm md:text-md text-dparacolor mb-8 max-w-2xl mx-auto">
             At ZIT, we see a Future Where

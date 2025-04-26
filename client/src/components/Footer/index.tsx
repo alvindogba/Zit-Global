@@ -165,7 +165,7 @@ const Footer = () => {
                   isActive ('/courses/microsoft-office') ? 'text-secondary' : ''
                  }`}
               >
-                Microsoft Office Seuite
+                Microsoft Office Suite
               </Link>
             </li>
             <li>
