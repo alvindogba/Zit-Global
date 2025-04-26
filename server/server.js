@@ -35,22 +35,31 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Middleware
+// Parse allowed origins from .env
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : [];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman) or if origin is in allowed list
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+
 app.use(helmet({
   crossOriginResourcePolicy: false // Disable Helmet's default CORP policy
 }));
-
-// Configure CORS first
-const corsOptions = {
-  origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: false
-};
-
-app.use(cors(corsOptions)); // Handle everything with this
-app.options('*', cors(corsOptions)); // Pre-flight requests also use same options
-
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
