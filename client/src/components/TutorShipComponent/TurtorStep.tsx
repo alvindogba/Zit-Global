@@ -57,7 +57,7 @@ const TutorSteps: React.FC = () => {
 
           {/* CTA Button */}
           <div className="mt-8">
-            <Link to="/icc/mentor" className="font-sans mt-8 px-3 py-2 bg-secondary text-white hover:font-semibold rounded-md hover:bg-primary transition">
+            <Link to="/icc/tutor" className="font-sans mt-8 px-3 py-2 bg-secondary text-white hover:font-semibold rounded-md hover:bg-primary transition">
               Get Started Now
             </Link>
           </div>

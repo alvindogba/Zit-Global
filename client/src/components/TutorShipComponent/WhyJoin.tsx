@@ -36,7 +36,7 @@ const WhyJoin: React.FC = () => {
                             <FaChalkboardTeacher className="text-6xl text-secondary text-center mb-2" />
 
                             <h3 className="font-noto text-xl font-semibold text-primary  mb-4">
-                                For Mentor
+                                For Tutor
                             </h3>
                             <div className="space-y-2 text-dparacolor">
                                 <p className="font-roboto mb-2">Make an impact by guiding young professionals</p>

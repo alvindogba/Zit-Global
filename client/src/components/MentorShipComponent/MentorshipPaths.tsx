@@ -1,6 +1,6 @@
 // src/components/MentorshipPaths.tsx
 import React from "react";
-import img from "../../asset/images/Mentor Session image.png"
+import img from "../../asset/images/a mentor.jpg"
 const MentorshipPaths: React.FC = () => {
   return (
     <section className="bg-white py-12 min-h-[80vh] flex items-center">
@@ -10,7 +10,7 @@ const MentorshipPaths: React.FC = () => {
         {/* Replace the src with your actual image URL */}
           <img
             src={img}
-            alt="Mentorship Speaker"
+            alt="Mentoring Speaker"
             className="w-full max-w-md  object-cover rounded shadow"
           />
         </div>
@@ -18,23 +18,23 @@ const MentorshipPaths: React.FC = () => {
         {/* Right Side: Content */}
         <div className="md:w-1/2 flex flex-col gap-6">
           <h2 className="font-noto text-3xl font-bold text-primary ">
-            Find the Best Mentorship Path for You
+            Find the Best Mentoring Path for You
           </h2>
 
-          {/* 1-on-1 Mentorship */}
+          {/* 1-on-1 Mentoring */}
           <div className="mb-6">
             <h3 className="font-noto text-xl font-semibold text-primary ">
-              1-on-1 Mentorship
+              1-on-1 Mentoring
             </h3>
             <p className="font-roboto text-dparacolor">
               Get personalized guidance to help you navigate your career path.
             </p>
           </div>
 
-          {/* Group Mentorship */}
+          {/* Group Mentoring */}
           <div className="mb-6">
             <h3 className="font-noto text-xl font-semibold text-primary ">
-              Group Mentorship
+              Group Mentoring
             </h3>
             <p className="font-roboto text-dparacolor">
               Join a community of learners, engage in discussions, and gain
