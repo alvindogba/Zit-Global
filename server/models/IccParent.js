@@ -8,6 +8,10 @@ export default (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      user_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -68,5 +72,13 @@ export default (sequelize) => {
     }
   );
 
+  Parent.associate = (models) => {
+    Parent.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+  };
   return Parent;
 };

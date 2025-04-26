@@ -8,6 +8,11 @@ export default (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      user_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        unique: true,        // ensures 1:1
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -64,5 +69,13 @@ export default (sequelize) => {
     }
   );
 
+SchoolAdmin.associate = (models) => {
+    SchoolAdmin.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+  };
   return SchoolAdmin;
 };

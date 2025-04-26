@@ -105,7 +105,7 @@ export default function TutorModel() {
       <div className="text-primary mx-8 xl:mx-16 space-y-3 w-[90%] lg:w-[38%] lg:mr-52 mt-24">
         <img 
               src={LeftImg} 
-              className="lg:w-[30rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-[22rem] mx-auto" 
+              className="lg:w-[22rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-[22rem] mx-auto" 
               alt="Tutor" 
             />
             <h3 className="font-noto text-lg sm:text-xl md:text-2xl font-semibold lg:text-h3 text-center lg:text-left">

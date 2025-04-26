@@ -36,7 +36,7 @@ CREATE TABLE "Tutees" (
 
 -- 2. Create the tutor table
 CREATE TABLE "Tutors" (
-    "id" SERIAL PRIMARY KEY,
+    "id" UUID PRIMARY KEY,
       "user_id" UUID NOT NULL UNIQUE
     REFERENCES "Users"("id")
     ON DELETE CASCADE
@@ -62,7 +62,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 -- Create the 'Users' table with a CHECK constraint for the 'role' column
 CREATE TABLE IF NOT EXISTS "Users" (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL,
     password_hash TEXT NOT NULL,
     full_name VARCHAR(255),
     phone_number VARCHAR(50),
@@ -72,14 +72,76 @@ CREATE TABLE IF NOT EXISTS "Users" (
         'tutee',
         'mentor',
         'mentee',
+        'parent',
         'admin',
-        'administrator'
+        'administrator',
+        'teacher'
     )),
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 2. Create the Parents table with camel-case columns
+CREATE TABLE "Parents" (
+  "id" UUID PRIMARY KEY
+    DEFAULT gen_random_uuid(),
+
+  "user_id" UUID NOT NULL UNIQUE
+    REFERENCES "Users"("id")
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
+  "fullName"           TEXT    NOT NULL,
+  "email"              TEXT    NOT NULL,
+  "phone"              TEXT    NOT NULL,
+  "relationToStudent"  TEXT    NOT NULL,
+  "studentName"        TEXT    NOT NULL,
+  "studentAge"         TEXT    NOT NULL,
+  "schoolName"         TEXT    NOT NULL,
+  "gradeLevel"         TEXT    NOT NULL,
+  "subjects"           TEXT[],         -- array of subjects
+  "tutoringStyle"      TEXT    NOT NULL,
+  "learningGoals"      TEXT    NOT NULL,
+  "availability"       TEXT    NOT NULL,
+  "comments"           TEXT,
+  "referral"           TEXT,
+
+  "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL
+    DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL
+    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Create the SchoolAdmin table
+CREATE TABLE "SchoolAdmins" (
+  "id" UUID PRIMARY KEY
+    DEFAULT gen_random_uuid(),
+
+  "user_id" UUID NOT NULL UNIQUE
+    REFERENCES "Users"("id")
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
+  "fullName"          TEXT    NOT NULL,
+  "email"             TEXT    NOT NULL,
+  "phone"             TEXT    NOT NULL,
+  "schoolName"        TEXT    NOT NULL,
+  "schoolLocation"    TEXT    NOT NULL,
+  "services"          TEXT[],       -- array of service offerings
+  "gradeLevels"       TEXT    NOT NULL,
+  "supportMode"       TEXT    NOT NULL,
+  "challenges"        TEXT    NOT NULL,
+  "contactMethod"     TEXT    NOT NULL,
+  "bestTime"          TEXT    NOT NULL,
+  "additionalComments" TEXT,
+  "referral"          TEXT,
+
+  "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL
+    DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL
+    DEFAULT CURRENT_TIMESTAMP
+);
 -- Donation table 
 CREATE TABLE "Donations" (
   id SERIAL PRIMARY KEY,
