@@ -20,7 +20,7 @@ import authRouter from './Routes/portalAuthRouter.js'; // the auth router
 import portalRouter from './Routes/PortalRoute.js';
 
 const app = express();
-const PORT = process.env.PORT ; // Match the port in your image URL
+const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not set
 
 // Ensure uploads directory exists
 const uploadDir = path.join(process.cwd(), 'uploads');
@@ -56,13 +56,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Handle OPTIONS preflight requests
+app.options('*', cors(corsOptions));  // Ensure all OPTIONS requests are handled properly
 
 app.use(helmet({
   crossOriginResourcePolicy: false // Disable Helmet's default CORP policy
 }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 // Serve static files with proper headers
 app.use('/uploads', express.static(uploadDir, {
@@ -72,12 +73,11 @@ app.use('/uploads', express.static(uploadDir, {
 }));
 
 // The Dashboard Routes
-app.use("/portal/auth", authRouter) // Auth routes for the dashboard
-app.use("/api/portal", portalRouter) 
-
+app.use("/portal/auth", authRouter); // Auth routes for the dashboard
+app.use("/api/portal", portalRouter); 
 
 // Routes
-app.use("/api/icc", tutorRoute)
+app.use("/api/icc", tutorRoute);
 app.use("/admission", router);
 app.use('/api/stripe', stripeRouter);
 app.use('/api/paypal', paypalRouter);
