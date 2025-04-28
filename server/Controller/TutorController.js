@@ -187,7 +187,7 @@ export const createTeacher = async (req, res) => {
         email:    teacher.email,
         phone:    teacher.phone,
         
-      }                                   // ← submissionData
+      }                                   
     );
 
     return res.status(201).json({
