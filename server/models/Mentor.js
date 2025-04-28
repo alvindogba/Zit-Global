@@ -8,6 +8,11 @@ export default (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      user_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        unique: true,        // ensures 1:1
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -55,6 +60,12 @@ export default (sequelize) => {
       timestamps: true, // createdAt and updatedAt will be added automatically
     }
   );
+  Mentor.associate = (models) => {
+    Mentor.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user', // Alias for the association
+    });
+  }
 
   return Mentor;
 };

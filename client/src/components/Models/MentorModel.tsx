@@ -67,7 +67,7 @@ export default function MentorModel() {
     try {
       console.log(formData);
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/icc/mentors`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/mentor/create`,
         formData
    
       );

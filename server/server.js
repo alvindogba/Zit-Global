@@ -15,9 +15,8 @@ import paypalRouter from './Routes/PaypalRoute.js';
 import contactRouter from './Routes/ContactRoute.js';
 import tutorRoute from './Routes/TutorShipRoute.js';
 import authRouter from './Routes/portalAuthRouter.js'; // the auth router
+import mentoringRouter from "./Routes/mentorRoute.js"
 
-// the port router 
-import portalRouter from './Routes/PortalRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not set
@@ -74,9 +73,9 @@ app.use('/uploads', express.static(uploadDir, {
 
 // The Dashboard Routes
 app.use("/portal/auth", authRouter); // Auth routes for the dashboard
-app.use("/api/portal", portalRouter); 
 
 // Routes
+app.use('/api/mentor', mentoringRouter)
 app.use("/api/icc", tutorRoute);
 app.use("/admission", router);
 app.use('/api/stripe', stripeRouter);

@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import { NewAdmission, getApplicationStatus, updateApplicationStatus } from '../Controller/AdmissionController.js';
 import { isAdmin } from '../middleware/authMiddleware.js';
+import {createTeacher } from '../Controller/TutorController.js';
 
 // Create an Express Router
 const router = express.Router();
@@ -45,4 +46,7 @@ router.get('/status/:id', getApplicationStatus);
 // Update application status (admin only)
 router.put('/status/:id', isAdmin, updateApplicationStatus);
 
+
+// Teachers Registration 
+router.post('/teachers', createTeacher)
 export default router;

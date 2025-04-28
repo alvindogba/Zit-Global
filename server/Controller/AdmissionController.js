@@ -5,7 +5,9 @@ import {
   sendAdmissionDecision,
   sendStatusUpdateNotification,
 } from '../utils/admissionEmailService.js';
+import bcrypt from 'bcryptjs';
 
+const saltRounds = 12;
 // Creating the New Admission controller
 export const NewAdmission = async (req, res) => {
     // Handle file paths
@@ -17,11 +19,25 @@ export const NewAdmission = async (req, res) => {
     };
 
     try {
+      // Creating the password hash for the user
+      const password = 'zit_student'; // Replace with actual password
+      const hash= await bcrypt.hash(password, saltRounds);
+      const fullName = req.body.firstName + ' ' + req.body.lastName;
+     // Create a new user
+      const newUser = await db.User.create({
+        full_name: fullName,
+        email: req.body.email,
+        phone_number: req.body.phone,
+        password_hash: hash, 
+        role: 'student', 
+        is_active: false,
+      });
       // Create application record
       const application = {
         ...req.body,
+        user_id: newUser.id,
         ...filePaths,
-        consented: req.body.consented === 'true'
+        consented: req.body.consented
       };
 
       console.log("application", application)
