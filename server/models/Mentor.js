@@ -1,12 +1,17 @@
 import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
-  const Parent = sequelize.define(
-    'Parent',
+  const Mentor = sequelize.define(
+    'Mentor',
     {
       fullName: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      user_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        unique: true,        // ensures 1:1
       },
       email: {
         type: DataTypes.STRING,
@@ -16,44 +21,32 @@ export default (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      relationToStudent: {
+      profession: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      studentName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      studentAge: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      schoolName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      gradeLevel: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      subjects: {
-        // For PostgreSQL use ARRAY; for other dialects consider DataTypes.JSON
+      mentorshipAreas: {
+        // For PostgreSQL; for other dialects consider using DataTypes.JSON
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      tutoringStyle: {
+      priorExperience: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      learningGoals: {
+      experienceDetails: {
         type: DataTypes.TEXT,
         allowNull: true,
+      },
+      mentorshipFormat: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       availability: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      comments: {
+      motivation: {
         type: DataTypes.TEXT,
         allowNull: true,
       },
@@ -63,10 +56,16 @@ export default (sequelize) => {
       },
     },
     {
-      tableName: 'Parents',
-      timestamps: true, // adds createdAt and updatedAt
+      tableName: 'Mentors',
+      timestamps: true, // createdAt and updatedAt will be added automatically
     }
   );
+  Mentor.associate = (models) => {
+    Mentor.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user', // Alias for the association
+    });
+  }
 
-  return Parent;
+  return Mentor;
 };

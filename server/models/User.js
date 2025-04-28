@@ -54,7 +54,7 @@ export default (sequelize, DataTypes) => {
       User.hasOne(models.Admission, { foreignKey: "user_id", as: "admission" });
       User.hasOne(models.Tutor, { foreignKey: "user_id", as: "tutor" });
       User.hasOne(models.Tutees, { foreignKey: "user_id", as: "tutee" });
-
+      User.hasOne(models.Admin, { foreignKey: "user_id", as: "admin" });
     };
   
     return User;

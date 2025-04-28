@@ -15,7 +15,7 @@ type FormData = {
   identificationNumber: string;
   applicantImage: File | null;
   nationality: string;
-  haveComputer: string;
+  haveComputer: boolean;
   desiredProgram: string;
 
   // Academic Details
@@ -56,7 +56,7 @@ const initialFormData: FormData = {
   identificationNumber: "",
   applicantImage: null,
   nationality: "",
-  haveComputer: "",
+  haveComputer: false,
   desiredProgram: "",
 
   // Academic Details
@@ -292,7 +292,7 @@ function AdmissionPage() {
                 type="radio"
                 name="haveComputer"
                 value="YES"
-                checked={formData.haveComputer === "YES"}
+                checked={formData.haveComputer === true}
                 onChange={handleInputChange}
                 className={`${checkboxClassName} rounded-full`}
                 required
@@ -304,7 +304,7 @@ function AdmissionPage() {
                 type="radio"
                 name="haveComputer"
                 value="NO"
-                checked={formData.haveComputer === "NO"}
+                checked={formData.haveComputer === true}
                 onChange={handleInputChange}
                 className={`${checkboxClassName} rounded-full`}
                 required

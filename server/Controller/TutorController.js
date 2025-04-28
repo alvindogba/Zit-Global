@@ -41,10 +41,23 @@ export const createSchoolAdmin = async (req, res) => {
         message: 'Please provide all required fields.',
       });
     }
+      // creating the password hash for the user
+      const password = 'zit_schoolAdmin'; // Replace with actual password
+      const hash= await bcrypt.hash(password, saltRounds);
+      // Create a new user
+      const newUser = await db.User.create({
+        full_name: fullName,
+        email,
+        phone_number: phone,
+        password_hash: hash, 
+        role: 'administrator',
+        is_active: false,
+      });
 
     // Create School Admin entry in the database
     const schoolAdmin = await db.SchoolAdmin.create({
       fullName,
+      user_id: newUser.id, // Assuming you have a user_id field in your SchoolAdmin model
       email,
       phone,
       schoolName,
@@ -60,7 +73,7 @@ export const createSchoolAdmin = async (req, res) => {
     });
 
     // Send confirmation email to user
-    // await sendSchoolAdminConfirmation(email, fullName);
+    await sendSchoolAdminConfirmation(email, fullName);
 
     // Send notification email to admin
     await sendAdminNotification(
@@ -131,9 +144,24 @@ export const createTeacher = async (req, res) => {
       });
     }
 
+          // creating the password hash for the user
+          const password = 'zit_teacher'; // Replace with actual password
+          const hash= await bcrypt.hash(password, saltRounds);
+          // Create a new user
+          const newUser = await db.User.create({
+            full_name: fullName,
+            email,
+            phone_number: phone,
+            password_hash: hash, 
+            role: 'teacher',
+            is_active: false,
+          });
+    
+
 //     // Create Teacher entry in the database
     const teacher = await db.Teacher.create({
       fullName,
+      user_id: newUser.id,
       dob,
       email,
       phone,
@@ -219,10 +247,25 @@ export const createParent = async (req, res) => {
           message: 'Please provide all required fields for parent registration.',
         });
       }
+
+            // creating the password hash for the user
+            const password = 'zit_parent'; // Replace with actual password
+            const hash= await bcrypt.hash(password, saltRounds);
+            // Create a new user
+            const newUser = await db.User.create({
+              full_name: fullName,
+              email,
+              phone_number: phone,
+              password_hash: hash, 
+              role: 'parent',
+              is_active: false,
+            });
+      
   
       // Create Parent entry in the database
       const parent = await db.Parent.create({
         fullName,
+        user_id: newUser.id, // Assuming you have a user_id field in your Parent model
         email,
         phone,
         relationToStudent,

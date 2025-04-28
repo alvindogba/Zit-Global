@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0" version="26.1.0">
+  <diagram name="Page-1" id="gERxmWsKmlwJ8GLaJO7c">
+    <mxGraphModel dx="815" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=52.5;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-1" target="Vi_O83hT3v0oqdIvdw4n-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-1" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="80" y="565" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-2" target="Vi_O83hT3v0oqdIvdw4n-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-2" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="370" y="590" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-3" value="Front End" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="535" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-4" value="Back-End" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="560" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-5" target="Vi_O83hT3v0oqdIvdw4n-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-5" value="SignUp" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="585" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-6" target="Vi_O83hT3v0oqdIvdw4n-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-6" value="view" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="535" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-13" target="Vi_O83hT3v0oqdIvdw4n-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-13" target="Vi_O83hT3v0oqdIvdw4n-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-13" value="Routes" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="750" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-15" target="Vi_O83hT3v0oqdIvdw4n-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-15" value="/login" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-17" target="Vi_O83hT3v0oqdIvdw4n-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-17" value="/signup" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-19" target="Vi_O83hT3v0oqdIvdw4n-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-19" value="Sign up Controller" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="890" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Vi_O83hT3v0oqdIvdw4n-21" target="Vi_O83hT3v0oqdIvdw4n-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-21" value="Log in Controller" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="890" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-23" value="Save Data to model" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1060" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vi_O83hT3v0oqdIvdw4n-25" value="Retrieve Data from table and Authenticate user" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1060" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

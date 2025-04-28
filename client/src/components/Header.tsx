@@ -36,11 +36,7 @@ const navigation = [
   {
     name: "Portal",
     href: `${import.meta.env.VITE_PORTAL_URL}`,
-    dropdown: [
-      {name: "Tutor Portal", href: `${import.meta.env.VITE_PORTAL_URL}/tutor`},
-      {name: "Tutee Portal", href: `${import.meta.env.VITE_PORTAL_URL}/tutee`},
 
-    ],
   },
 
   { name: "Contact", href: "/contact" },

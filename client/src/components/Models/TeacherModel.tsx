@@ -71,8 +71,9 @@ export default function TeachModel() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/teachers`,
+        `${import.meta.env.VITE_BACKEND_URL}/admission/teachers`,
         formData
+      
       );
 
       if (response.status === 201) {

@@ -10,6 +10,7 @@ const User = db.User;
 
 export async function logInController(req, res) {
   const { email, password, role } = req.body;
+  console.log(req.body)
 
   try {
     // 1. Properly filter by email and role
@@ -20,10 +21,10 @@ export async function logInController(req, res) {
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
-
+    console.log("found the user with the given email", user);
     // 2. Use the correct hash property
     const hash = user.password_hash;  // or user.passwordHash
-
+    
     // 3. Compare plaintext password against hash
     const match = await bcrypt.compare(password, hash);
     if (!match) {
