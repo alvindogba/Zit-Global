@@ -40,6 +40,32 @@ export const sendStudentConfirmation = async (userEmail, fullName) => {
     throw error;
   }
 };
+// Send tutor 
+export const sendTutorConfirmation = async (userEmail, fullName) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: userEmail,
+    subject: 'Thank You for Signing Up as a Mentor',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>Thank You for Signing Up!</h2>
+        <p>Dear ${fullName},</p>
+        <p>We appreciate your willingness to Tutor and guide students.</p>
+        <p>We have received your application and will reach out soon regarding the next steps.</p>
+        <br/>
+        <p>Best regards,</p>
+        <p>The ZIT Team</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Error sending mentor confirmation email:', error);
+    throw error;
+  }
+};
 
 // Send confirmation email to Parents
 export const sendParentConfirmation = async (userEmail, fullName) => {
@@ -176,3 +202,4 @@ export const sendAdminNotification = async (submissionType, submissionData) => {
     throw error;
   }
 };
+

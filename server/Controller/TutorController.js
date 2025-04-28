@@ -1,4 +1,4 @@
-import {sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation, sendTeacherConfirmation  } from '../utils/IccEmailService.js';
+import {sendTutorConfirmation, sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation, sendTeacherConfirmation  } from '../utils/IccEmailService.js';
 import { sendAdminNotification } from '../utils/IccEmailService.js';
 import db from "../models/index.js";
 import bcrypt from 'bcryptjs';
@@ -475,7 +475,7 @@ export const createTutor = async (req, res) => {
       });
   
       // Send confirmation email to user
-      await sendMentorConfirmation(newTutor.email, newTutor.fullName);
+      await sendTutorConfirmation(newTutor.email, newTutor.fullName);
   
       // Send notification email to admin
       await sendAdminNotification(
