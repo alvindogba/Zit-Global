@@ -193,7 +193,7 @@ export const createTeacher = async (req, res) => {
     return res.status(201).json({
       success: true,
       message: 'Your submission has been received. A confirmation email has been sent.',
-      data: schoolAdmin,
+      data: teacher,
     });
   } catch (error) {
     console.error('Error creating teacher entry:', error);
