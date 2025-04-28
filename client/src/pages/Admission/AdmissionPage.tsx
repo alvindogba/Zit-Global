@@ -593,7 +593,7 @@ function AdmissionPage() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="flex items-center font-sans px-3 py-2 border border-secondary rounded-md shadow-sm text-sm font-medium text-primary bg-white hover:bg-primary hover:text-white"
+                className="flex items-center font-sans px-3 py-2 border border-secondary rounded-md shadow-sm text-sm font-medium text-secondary bg-white hover:bg-primary hover:border-none hover:text-white"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Previous

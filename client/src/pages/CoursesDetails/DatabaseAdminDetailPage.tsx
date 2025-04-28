@@ -3,7 +3,7 @@ import { Laptop, Clock, Award, ChevronDown, ChevronRight, Database, Server, File
 import { Link } from 'react-router-dom';
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 
-import HeroBgImg from "../../asset/images/database.jfif"; // Update with an actual image
+import HeroBgImg from "../../asset/images/database-computer-system.jpg"; // Update with an actual image
 
 export default function DatabaseAdminDetailPage() {
   const courseIncludes = [

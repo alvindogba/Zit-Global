@@ -31,7 +31,7 @@ const WhyJoin: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Card: For Mentor */}
+                        {/* Card: For Tutor */}
                         <div className="flex-1 bg-green-50 p-6 rounded shadow">
                             <FaChalkboardTeacher className="text-6xl text-secondary text-center mb-2" />
 

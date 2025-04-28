@@ -6,7 +6,7 @@ import CyberSecurity from '../asset/images/cyber-security.jpeg';
 import GraphicDesign from '../asset/images/graphic-design.jpeg';
 import UIUXDesign from '../asset/images/ui-ux-design.jpeg';
 import Microsoft from '../asset/images/microsoft-365.jpeg'
-import DatabaseImg from '../asset/images/database.jfif'
+import DatabaseImg from '../asset/images/database-computer-system.jpg'
 import ScrollToTopButton from '../components/ScrollToTopButton';
 
 export default function Courses() {

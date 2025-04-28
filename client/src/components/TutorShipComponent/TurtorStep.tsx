@@ -46,7 +46,7 @@ const TutorSteps: React.FC = () => {
 
             <div>
               <h3 className="font-noto font-semibold text-lg text-primary mb-1">
-                <span className="text-secondary">4.</span> Start Mentoring
+                <span className="text-secondary">4.</span> Start Tutoring
               </h3>
               <p className="font-roboto text-dparacolor">
                 Get matched with students and begin earning while making a
