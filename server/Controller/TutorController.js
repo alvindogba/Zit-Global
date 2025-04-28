@@ -183,9 +183,9 @@ export const createTeacher = async (req, res) => {
     //     // Send notification email to admin
     await sendAdminNotification(
       'Teacher',
-      { fullName: newTutees.fullName,
-        email:    newTutees.email,
-        phone:    newTutees.phone,
+      { fullName: teacher.fullName,
+        email:    teacher.email,
+        phone:    teacher.phone,
         
       }                                   // ← submissionData
     );
