@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Logo from '../../asset/images/zongea-logo.png';
 import { Link } from "react-router-dom";
-import LeftImg from '../../asset/images/A tutor.jpg'; // Update with tutor-specific image
+import LeftImg from '../../asset/images/study-group-learning-library.jpg'; // Update with tutor-specific image
 import ScrollBackHome from "./ScrollBackHome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
