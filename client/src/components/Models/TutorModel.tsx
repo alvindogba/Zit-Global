@@ -26,6 +26,7 @@ interface FormData {
 }
 
 export default function TutorModel() {
+  const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -62,19 +63,29 @@ export default function TutorModel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null); // Clear previous error
 
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/icc/tutor`,
         formData
-  
+
       );
 
       if (response.status === 201) {
         navigate('/icc-success', { state: { student: response.data.data } });
       }
       setIsOpen(false);
-    } catch (error) {
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          setError(error.response.data.error || 'Email already exists.');
+        } else {
+          setError('Something went wrong. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.error('Error submitting form:', error);
     } finally {
       setIsLoading(false);
@@ -82,14 +93,14 @@ export default function TutorModel() {
   };
 
   return (
-    <>  
+    <>
       <header className="h-max md:py-0 py-4 fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
-      <nav className="container mx-auto flex items-center justify-between py-2 px-4 sm:px-6">
-      <div className="flex lg:flex-1">
-      <Link to="/" aria-label="Home">
-              <img 
-                src={Logo} 
-                alt="Zongea Logo" 
+        <nav className="container mx-auto flex items-center justify-between py-2 px-4 sm:px-6">
+          <div className="flex lg:flex-1">
+            <Link to="/" aria-label="Home">
+              <img
+                src={Logo}
+                alt="Zongea Logo"
                 className="w-24 h-12 sm:w-28 sm:h-14 md:w-40 md:h-16 lg:w-48 lg:h-20"
               />
             </Link>
@@ -102,12 +113,12 @@ export default function TutorModel() {
       </header>
 
       <div className={`fixed inset-0 bg-white z-30 ${isOpen ? "block" : "hidden"} overflow-y-auto`}>
-      <div className="container sm:mx-auto flex flex-col lg:flex-row items-center gap-20 lg:items-start pt-4 md:pt-8 lg:pt-20">
-      <div className="text-primary mx-8 xl:mx-16 space-y-3 w-[90%] lg:w-[38%] lg:mr-52 mt-24">
-        <img 
-              src={LeftImg} 
-              className="lg:w-[22rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-[22rem] mx-auto" 
-              alt="Tutor" 
+        <div className="container sm:mx-auto flex flex-col lg:flex-row items-center gap-20 lg:items-start pt-4 md:pt-8 lg:pt-20">
+          <div className="text-primary mx-8 xl:mx-16 space-y-3 w-[90%] lg:w-[38%] lg:mr-52 mt-24">
+            <img
+              src={LeftImg}
+              className="lg:w-[22rem] w-full lg:max-w-[60rem] md:max-w-[40rem] sm:max-w-[28rem] h-[22rem] mx-auto"
+              alt="Tutor"
             />
             <h3 className="font-noto text-lg sm:text-xl md:text-2xl font-semibold lg:text-h3 text-center lg:text-left">
               Become a Tutor <br /> Empower Student Success
@@ -124,13 +135,18 @@ export default function TutorModel() {
               <div className="overflow-hidden">
                 <div className="flex transition-transform duration-300"
                   style={{ transform: `translateX(-${(currentStep - 1) * 100}%)` }}>
-                  
+
                   {/* Step 1: Personal Information */}
                   <div className="min-w-full p-2 sm:p-4">
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Personal Information</h2>
                     <div className="space-y-3 sm:space-y-4">
                       <InputField label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required />
+                 
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
                       <InputField label="Current Role/Position" name="currentRole" value={formData.currentRole} onChange={handleChange} required />
                     </div>
@@ -153,21 +169,21 @@ export default function TutorModel() {
                         selected={formData.subjects}
                         onChange={handleCheckboxChange}
                       />
-                      <SelectField 
-                        label="Prior teaching/tutoring experience?" 
-                        name="priorTeachingExperience" 
-                        value={formData.priorTeachingExperience} 
+                      <SelectField
+                        label="Prior teaching/tutoring experience?"
+                        name="priorTeachingExperience"
+                        value={formData.priorTeachingExperience}
                         onChange={handleChange}
-                        options={['Yes', 'No']} 
-                        required 
+                        options={['Yes', 'No']}
+                        required
                       />
                       {formData.priorTeachingExperience === 'Yes' && (
-                        <TextAreaField 
-                          label="Describe your teaching experience" 
-                          name="experienceDetails" 
-                          value={formData.experienceDetails} 
-                          onChange={handleChange} 
-                          required 
+                        <TextAreaField
+                          label="Describe your teaching experience"
+                          name="experienceDetails"
+                          value={formData.experienceDetails}
+                          onChange={handleChange}
+                          required
                         />
                       )}
                     </div>
@@ -177,37 +193,42 @@ export default function TutorModel() {
                   <div className="min-w-full p-2 sm:p-4">
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Availability & Background</h2>
                     <div className="space-y-3 sm:space-y-4">
-                      <SelectField 
-                        label="Preferred Tutoring Format" 
-                        name="tutoringFormat" 
-                        value={formData.tutoringFormat} 
+                      <SelectField
+                        label="Preferred Tutoring Format"
+                        name="tutoringFormat"
+                        value={formData.tutoringFormat}
                         onChange={handleChange}
-                        options={['Online Only', 'In-Person', 'Hybrid']} 
-                        required 
+                        options={['Online Only', 'In-Person', 'Hybrid']}
+                        required
                       />
-                      <SelectField 
-                        label="Weekly Availability" 
-                        name="availability" 
-                        value={formData.availability} 
+                      <SelectField
+                        label="Weekly Availability"
+                        name="availability"
+                        value={formData.availability}
                         onChange={handleChange}
-                        options={['Weekdays', 'Weekends', 'Flexible Schedule']} 
-                        required 
+                        options={['Weekdays', 'Weekends', 'Flexible Schedule']}
+                        required
                       />
-                      <TextAreaField 
-                        label="Educational Background & Qualifications" 
-                        name="educationalBackground" 
-                        value={formData.educationalBackground} 
-                        onChange={handleChange} 
-                        required 
-                      />
-                      <SelectField 
-                        label="How did you hear about us?" 
-                        name="referral" 
-                        value={formData.referral} 
+                      <TextAreaField
+                        label="Educational Background & Qualifications"
+                        name="educationalBackground"
+                        value={formData.educationalBackground}
                         onChange={handleChange}
-                        options={['University Website', 'Friend Referral', 'Social Media', 'Career Center']} 
-                        required 
+                        required
                       />
+                      <SelectField
+                        label="How did you hear about us?"
+                        name="referral"
+                        value={formData.referral}
+                        onChange={handleChange}
+                        options={['University Website', 'Friend Referral', 'Social Media', 'Career Center']}
+                        required
+                      />
+                           {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -238,11 +259,10 @@ export default function TutorModel() {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className={`px-4 py-2 sm:py-4 text-sm sm:text-base text-white font-medium rounded-lg transition-colors ${
-                        isLoading
+                      className={`px-4 py-2 sm:py-4 text-sm sm:text-base text-white font-medium rounded-lg transition-colors ${isLoading
                           ? "bg-gray-400 cursor-not-allowed"
                           : "bg-primary hover:bg-primary/80"
-                      }`}
+                        }`}
                     >
                       {isLoading ? (
                         <span className="flex items-center justify-center">
@@ -317,9 +337,9 @@ const CheckboxGroup = ({ label, options, selected, onChange }: any) => (
     <div className="flex flex-wrap gap-4">
       {options.map((option: string) => (
         <label key={option} className="flex items-center gap-2 cursor-pointer">
-          <input 
-            type="checkbox" 
-            className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary" 
+          <input
+            type="checkbox"
+            className="checkbox checkbox-sm rounded border-gray-300 focus:ring-primary"
             value={option}
             checked={selected.includes(option)}
             onChange={onChange}

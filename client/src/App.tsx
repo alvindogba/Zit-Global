@@ -39,7 +39,7 @@ const DatabaseAdmin = lazy(() => import('./pages/CoursesDetails/DatabaseAdminDet
 //form Models 
 import StudentModel from './components/Models/StudentModel';
 import ParentModel from './components/Models/ParentModel';
-import AdministrationModel from './components/Models/AdministrationModel'
+import AdministrationModel from './components/Models/AdministrationModel';
 import MentorModel from './components/Models/MentorModel'
 import TutorModel from './components/Models/TutorModel';
 import TeacherModel from './components/Models/TeacherModel'

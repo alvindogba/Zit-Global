@@ -29,6 +29,7 @@ interface FormData {
 }
 
 export default function TeachModel() {
+  const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ export default function TeachModel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null); // Clear previous error
 
     try {
       const response = await axios.post(
@@ -77,18 +79,26 @@ export default function TeachModel() {
       );
 
       if (response.status === 201) {
-        navigate('/teaching-success', { state: { application: response.data.data } });
+        navigate('/icc-success', { state: { student: response.data.data } });
       } else {
         console.error('Submission failed with status:', response.status);
       }
       setIsOpen(false);
-    } catch (error) {
+    }  catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          setError(error.response.data.error || 'Email already exists.');
+        } else {
+          setError('Something went wrong. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.error('Error submitting form:', error);
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <>
       <header className="h-max md:py-0 py-4 fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
@@ -150,6 +160,10 @@ export default function TeachModel() {
                         />
                       </div>
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
                     </div>
                   </div>
@@ -237,6 +251,10 @@ export default function TeachModel() {
                         options={['Website', 'Social Media', 'Friend/Colleague', 'Job Board', 'Other']} 
                         required 
                       />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                     </div>
                   </div>
                 </div>
@@ -295,7 +313,7 @@ export default function TeachModel() {
       <ScrollBackHome />    
     </>
   );
-}
+};
 
 // Reusable components remain the same as in your original code
 const StepIndicator = ({ currentStep }: { currentStep: number }) => (

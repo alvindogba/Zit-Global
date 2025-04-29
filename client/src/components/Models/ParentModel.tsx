@@ -29,6 +29,7 @@ interface FormData {
 }
 
 export default function ParentModel() {
+  const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
@@ -65,6 +66,8 @@ export default function ParentModel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true)
+    setError(null); // Clear previous error
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/icc/parents`,
@@ -81,13 +84,22 @@ export default function ParentModel() {
         console.error('Submission failed with status:', response.status);
       }
       setIsOpen(false);
-    } catch (error) {
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          setError(error.response.data.error || 'Email already exists.');
+        } else {
+          setError('Something went wrong. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.error('Error submitting form:', error);
+    } finally {
+      setIsLoading(false);
     }
-    finally {
-        setIsLoading(false)
-    } 
-  };
+  }
+
 
   return (
     <> 
@@ -141,6 +153,10 @@ export default function ParentModel() {
                     <div className="space-y-3 sm:space-y-4">
                       <InputField label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required />
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
                       <SelectField label="Relation to Student" name="relationToStudent" value={formData.relationToStudent} onChange={handleChange} options={["Parent", "Guardian"]} required />
                     </div>
@@ -168,6 +184,10 @@ export default function ParentModel() {
                       <TextAreaField label="Additional Comments" name="comments" value={formData.comments} onChange={handleChange} />
                       <SelectField label="How did you hear about us?" name="referral" value={formData.referral} onChange={handleChange} options={["Website", "Friend", "Social Media", "Other"]} required />
                     </div>
+                    {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                   </div>
                 </div>
         </div>
@@ -224,7 +244,7 @@ export default function ParentModel() {
       <ScrollBackHome />
     </>
   );
-}
+};
 
 // Step Indicator Component
 const StepIndicator = ({ currentStep }: { currentStep: number }) => (

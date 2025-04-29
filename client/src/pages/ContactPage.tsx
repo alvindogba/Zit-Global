@@ -9,7 +9,6 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa
 interface ContactFormData {
   fullName: string;
   email: string;
-  subject: string;
   message: string;
 }
 
@@ -49,7 +48,6 @@ export default function ContactPage() {
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     email: '',
-    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,7 +73,7 @@ export default function ContactPage() {
       const data = await response.json();
       if (data.success) {
         toast.success('Message sent successfully! We will contact you soon.');
-        setFormData({ fullName: '', email: '', subject: '', message: '' });
+        setFormData({ fullName: '', email: '', message: '' });
         setShowModal(true); // Show modal on success
       } else {
         toast.error(data.message || 'Failed to send message. Please try again.');
@@ -154,17 +152,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="mb-4">
-                <label className="block text-dparacolor">Subject</label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-72 md:w-80 p-2 border border-gray-300 font-roboto rounded-md bg-gray-100"
-                  required
-                />
-              </div>
+ 
               <div className="mb-4">
                 <label className="block text-dparacolor">Message</label>
                 <textarea
