@@ -4,10 +4,10 @@ import db from "../models/index.js"
 export const submitContactForm = async (req, res) => {
   console.log(req.body)
   try {
-    const { fullName, email, subject, message } = req.body;
+    const { fullName, email, message } = req.body;
 
     // Validate required fields
-    if (!fullName || !email || !subject || !message) {
+    if (!fullName || !email || !message) {
       return res.status(400).json({
         success: false,
         message: 'Please provide all required fields.',
@@ -18,7 +18,6 @@ export const submitContactForm = async (req, res) => {
     const contact = await db.Contact.create({
       fullName,
       email,
-      subject,
       message,
     });
 
@@ -29,7 +28,6 @@ export const submitContactForm = async (req, res) => {
     await sendAdminNotification({
       fullName,
       email,
-      subject,
       message,
     });
 

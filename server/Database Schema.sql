@@ -299,3 +299,12 @@ CREATE TABLE "Mentors" (
   FOREIGN KEY ("user_id") REFERENCES "Users" (id) ON DELETE CASCADE
 );
 
+CREATE TABLE "Contacts" (
+  "id" SERIAL PRIMARY KEY,
+  "fullName" VARCHAR(255) NOT NULL,
+  "email" VARCHAR(255) NOT NULL,
+  "message" TEXT NOT NULL,
+  "status" VARCHAR(10) DEFAULT 'pending' CHECK ("status" IN ('pending', 'responded')),
+  "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

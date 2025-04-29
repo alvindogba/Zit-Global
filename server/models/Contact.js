@@ -17,10 +17,7 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
-      subject: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+     
       message: {
         type: DataTypes.TEXT,
         allowNull: false,
