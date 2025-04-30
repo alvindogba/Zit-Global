@@ -121,6 +121,33 @@ export const sendMentorConfirmation = async (userEmail, fullName) => {
   }
 };
 
+// Send confirmation email to Mentees
+export const sendMenteeConfirmation = async (userEmail, fullName) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: userEmail,
+    subject: 'Thank You for Signing Up as a Mentee',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>Thank You for Signing Up!</h2>
+        <p>Dear ${fullName},</p>
+        <p>We appreciate your willingness to be a mentee.</p>
+        <p>We have received your application and will reach out soon regarding the next steps.</p>
+        <br/>
+        <p>Best regards,</p>
+        <p>The ZIT Team</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Error sending mentee confirmation email:', error);
+    throw error;
+  }
+};
+
 // Send confirmation email to School Admins
 export const sendSchoolAdminConfirmation = async (userEmail, fullName) => {
   const mailOptions = {
