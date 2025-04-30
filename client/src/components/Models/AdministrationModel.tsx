@@ -29,6 +29,7 @@ interface FormData {
 }
 
 export default function AdministrationModel() {
+      const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
@@ -68,6 +69,8 @@ export default function AdministrationModel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
+    setError(null); // Reset error state
+
 
     try {
       console.log(formData);
@@ -85,13 +88,22 @@ export default function AdministrationModel() {
         console.error('Submission failed with status:', response.status);
       }
       setIsOpen(false);
-    } catch (error) {
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          setError(error.response.data.error || 'Email already exists.');
+        } else {
+          setError('Something went wrong. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.error('Error submitting form:', error);
+    } finally {
+      setIsLoading(false);
     }
-    finally {
-      setIsLoading(false); // Stop loading
-    }
-  };
+  }
+
 
   return (
     <>
@@ -147,6 +159,10 @@ export default function AdministrationModel() {
                     <div className="space-y-3 sm:space-y-4">
                       <InputField label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required />
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
                       <InputField label="School Name" name="schoolName" value={formData.schoolName} onChange={handleChange} required />
                       <InputField label="School Location (City & Country)" name="schoolLocation" value={formData.schoolLocation} onChange={handleChange} required />
@@ -183,6 +199,10 @@ export default function AdministrationModel() {
                       <SelectField label="How did you hear about us?" name="referral" value={formData.referral} onChange={handleChange}
                         options={['Website', 'Referral', 'Social Media', 'Other']} required />
                     </div>
+                    {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                   </div>
                 </div>
               </div>
@@ -241,8 +261,8 @@ export default function AdministrationModel() {
       <ScrollBackHome />
 
     </>
-  );
-}
+  )
+  };
 
 // Step Indicator Component
 const StepIndicator = ({ currentStep }: { currentStep: number }) => (

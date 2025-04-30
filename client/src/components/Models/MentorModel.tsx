@@ -27,6 +27,8 @@ interface FormData {
 }
 
 export default function MentorModel() {
+    const [error, setError] = useState<string | null>(null);
+  
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
@@ -63,6 +65,8 @@ export default function MentorModel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
+    setError(null); // Reset error state
+    
 
     try {
       console.log(formData);
@@ -80,13 +84,22 @@ export default function MentorModel() {
         console.error('Submission failed with status:', response.status);
       }
       setIsOpen(false);
-    } catch (error) {
+    }  catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          setError(error.response.data.error || 'Email already exists.');
+        } else {
+          setError('Something went wrong. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.error('Error submitting form:', error);
+    } finally {
+      setIsLoading(false);
     }
-    finally {
-      setIsLoading(false); // Stop loading
-    }
-  };
+  }
+
   return (
     <>  
       <header className="h-max md:py-0 py-4 fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-primary shadow-sm">
@@ -140,6 +153,10 @@ export default function MentorModel() {
                     <div className="space-y-3 sm:space-y-4">
                       <InputField label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required />
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
                       <InputField label="Current Profession" name="profession" value={formData.profession} onChange={handleChange} required />
                     </div>
@@ -175,6 +192,10 @@ export default function MentorModel() {
                       <SelectField label="How did you hear about us?" name="referral" value={formData.referral} onChange={handleChange}
                         options={['Website', 'Referral', 'Social Media', 'Other']} required />
                     </div>
+                    {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                   </div>
                 </div>
               </div>
@@ -231,7 +252,7 @@ export default function MentorModel() {
       <ScrollBackHome />
     </>
   );
-}
+};
 
 // Step Indicator Component
 const StepIndicator = ({ currentStep }: { currentStep: number }) => (

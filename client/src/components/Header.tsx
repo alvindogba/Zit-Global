@@ -52,7 +52,6 @@ function Header() {
   // Form state for the contact form in the side panel
   const [formState, setFormState] = useState({
     fullName: "",
-    phone: "",
     email: "",
     message: "",
     submitted: false,
@@ -97,7 +96,6 @@ function Header() {
     console.log("Form submitted successfully:", response.data);
     setFormState({
       fullName: "",
-      phone: "",
       email: "",
       message: "",
       submitted: true,
@@ -503,14 +501,7 @@ function Header() {
                   className="w-full p-2 border border-gray-300 rounded-md text-sm"
                   required
                 />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Your Phone Number"
-                  value={formState.phone}
-                  onChange={handleFormChange}
-                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                />
+              
                 <input
                   type="email"
                   name="email"

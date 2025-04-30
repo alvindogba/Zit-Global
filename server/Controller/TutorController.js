@@ -1,4 +1,4 @@
-import {sendTutorConfirmation, sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation, sendTeacherConfirmation  } from '../utils/IccEmailService.js';
+import { sendTutorConfirmation, sendStudentConfirmation, sendParentConfirmation, sendMentorConfirmation, sendSchoolAdminConfirmation, sendTeacherConfirmation } from '../utils/IccEmailService.js';
 import { sendAdminNotification } from '../utils/IccEmailService.js';
 import db from "../models/index.js";
 import bcrypt from 'bcryptjs';
@@ -41,18 +41,24 @@ export const createSchoolAdmin = async (req, res) => {
         message: 'Please provide all required fields.',
       });
     }
-      // creating the password hash for the user
-      const password = 'zit_schoolAdmin'; // Replace with actual password
-      const hash= await bcrypt.hash(password, saltRounds);
-      // Create a new user
-      const newUser = await db.User.create({
-        full_name: fullName,
-        email,
-        phone_number: phone,
-        password_hash: hash, 
-        role: 'administrator',
-        is_active: false,
-      });
+    // creating the password hash for the user
+    const password = 'zit_schoolAdmin'; // Replace with actual password
+    const hash = await bcrypt.hash(password, saltRounds);
+
+     // checking if the tuter already exists
+     const existingSchoolAdmin = await db.SchoolAdmin.findOne({ where: { email } });
+
+     if (existingSchoolAdmin) {
+       return res.status(409).json({ error: 'Email already exists. You have already applied.' });    }
+    // Create a new user
+    const newUser = await db.User.create({
+      full_name: fullName,
+      email,
+      phone_number: phone,
+      password_hash: hash,
+      role: 'administrator',
+      is_active: false,
+    });
 
     // Create School Admin entry in the database
     const schoolAdmin = await db.SchoolAdmin.create({
@@ -79,12 +85,12 @@ export const createSchoolAdmin = async (req, res) => {
     await sendAdminNotification(
       'School Admin',
       {
-      fullName,
-      email,
-      phone,
-      schoolName,
-      schoolLocation,
-    });
+        fullName,
+        email,
+        phone,
+        schoolName,
+        schoolLocation,
+      });
 
     return res.status(201).json({
       success: true,
@@ -102,7 +108,7 @@ export const createSchoolAdmin = async (req, res) => {
 };
 
 export const createTeacher = async (req, res) => {
-  
+
   console.log(req.body);
   try {
     const {
@@ -144,21 +150,28 @@ export const createTeacher = async (req, res) => {
       });
     }
 
-          // creating the password hash for the user
-          const password = 'zit_teacher'; // Replace with actual password
-          const hash= await bcrypt.hash(password, saltRounds);
-          // Create a new user
-          const newUser = await db.User.create({
-            full_name: fullName,
-            email,
-            phone_number: phone,
-            password_hash: hash, 
-            role: 'teacher',
-            is_active: false,
-          });
-    
+    // creating the password hash for the user
+    const password = 'zit_teacher'; // Replace with actual password
+    const hash = await bcrypt.hash(password, saltRounds);
 
-//     // Create Teacher entry in the database
+     // checking if the tuter already exists
+     const existingTeacher = await db.Teacher.findOne({ where: { email } });
+
+     if (existingTeacher) {
+       return res.status(409).json({ error: 'Email already exists. You have already applied.' });   
+       }
+    // Create a new user
+    const newUser = await db.User.create({
+      full_name: fullName,
+      email,
+      phone_number: phone,
+      password_hash: hash,
+      role: 'teacher',
+      is_active: false,
+    });
+
+
+    //     // Create Teacher entry in the database
     const teacher = await db.Teacher.create({
       fullName,
       user_id: newUser.id,
@@ -177,17 +190,18 @@ export const createTeacher = async (req, res) => {
       referral
     });
 
-//     // Send confirmation email to user
+    //     // Send confirmation email to user
     await sendTeacherConfirmation(email, fullName);
 
     //     // Send notification email to admin
     await sendAdminNotification(
       'Teacher',
-      { fullName: teacher.fullName,
-        email:    teacher.email,
-        phone:    teacher.phone,
-        
-      }                                   
+      {
+        fullName: teacher.fullName,
+        email: teacher.email,
+        phone: teacher.phone,
+
+      }
     );
 
     return res.status(201).json({
@@ -208,302 +222,319 @@ export const createTeacher = async (req, res) => {
 
 
 
-  // Controller for creating a Parent entry ==============
+// Controller for creating a Parent entry ==============
 export const createParent = async (req, res) => {
-    console.log(req.body);
-    try {
-      const {
-        fullName,
-        email,
-        phone,
-        relationToStudent,
-        studentName,
-        studentAge,
-        schoolName,
-        gradeLevel,
-        subjects,
-        tutoringStyle,
-        learningGoals,
-        availability,
-        comments,
-        referral,
-      } = req.body;
-  
-      // Validate required fields
-      if (
-        !fullName ||
-        !email ||
-        !phone ||
-        !relationToStudent ||
-        !studentName ||
-        !studentAge ||
-        !schoolName ||
-        !gradeLevel ||
-        !tutoringStyle ||
-        !availability
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: 'Please provide all required fields for parent registration.',
-        });
-      }
+  console.log(req.body);
+  try {
+    const {
+      fullName,
+      email,
+      phone,
+      relationToStudent,
+      studentName,
+      studentAge,
+      schoolName,
+      gradeLevel,
+      subjects,
+      tutoringStyle,
+      learningGoals,
+      availability,
+      comments,
+      referral,
+    } = req.body;
 
-            // creating the password hash for the user
-            const password = 'zit_parent'; // Replace with actual password
-            const hash= await bcrypt.hash(password, saltRounds);
-            // Create a new user
-            const newUser = await db.User.create({
-              full_name: fullName,
-              email,
-              phone_number: phone,
-              password_hash: hash, 
-              role: 'parent',
-              is_active: false,
-            });
-      
-  
-      // Create Parent entry in the database
-      const parent = await db.Parent.create({
-        fullName,
-        user_id: newUser.id, // Assuming you have a user_id field in your Parent model
-        email,
-        phone,
-        relationToStudent,
-        studentName,
-        studentAge,
-        schoolName,
-        gradeLevel,
-        subjects,
-        tutoringStyle,
-        learningGoals,
-        availability,
-        comments,
-        referral,
-      });
-  
-      // Send confirmation email to user
-      await sendParentConfirmation(email, fullName);
-  
-      // Send notification email to admin
-      await sendAdminNotification(
-        'Parent',                            // ← submissionType
-        {
-        fullName,
-        email,
-        phone,
-        schoolName,
-        gradeLevel,
-      });
-  
-      return res.status(201).json({
-        success: true,
-        message: 'Parent registration submitted successfully. A confirmation email has been sent.',
-        data: parent,
-      });
-    } catch (error) {
-      console.error('Error creating parent entry:', error);
-      return res.status(500).json({
+    // Validate required fields
+    if (
+      !fullName ||
+      !email ||
+      !phone ||
+      !relationToStudent ||
+      !studentName ||
+      !studentAge ||
+      !schoolName ||
+      !gradeLevel ||
+      !tutoringStyle ||
+      !availability
+    ) {
+      return res.status(400).json({
         success: false,
-        message: 'An error occurred while processing your parent registration.',
-        error: error.message,
+        message: 'Please provide all required fields for parent registration.',
       });
     }
-  };
 
-  // controller for creating Tutees entry ==================
-  export const createTutees = async (req, res) => {
-    console.log("Tutees Data",  req.body);
-    try {
-      const {
+    // creating the password hash for the user
+    const password = 'zit_parent'; // Replace with actual password
+    const hash = await bcrypt.hash(password, saltRounds);
+
+     // checking if the tuter already exists
+     const existingParent = await db.Parent.findOne({ where: { email } });
+
+     if (existingParent) {
+       return res.status(409).json({ error: 'Email already exists. You have already applied.' });    }
+    // Create a new user
+    const newUser = await db.User.create({
+      full_name: fullName,
+      email,
+      phone_number: phone,
+      password_hash: hash,
+      role: 'parent',
+      is_active: false,
+    });
+
+
+    // Create Parent entry in the database
+    const parent = await db.Parent.create({
+      fullName,
+      user_id: newUser.id, // Assuming you have a user_id field in your Parent model
+      email,
+      phone,
+      relationToStudent,
+      studentName,
+      studentAge,
+      schoolName,
+      gradeLevel,
+      subjects,
+      tutoringStyle,
+      learningGoals,
+      availability,
+      comments,
+      referral,
+    });
+
+    // Send confirmation email to user
+    await sendParentConfirmation(email, fullName);
+
+    // Send notification email to admin
+    await sendAdminNotification(
+      'Parent',                            // ← submissionType
+      {
         fullName,
-        dob,
         email,
         phone,
-        gender,
         schoolName,
         gradeLevel,
-        subjects,
-        learningStyle,
-        tutoringNeeds,
-        objectives,
-        availability,
-        tutorType,
-        referral,
-      } = req.body;
-  
-      // Validate required fields
-      if (
-        !fullName ||
-        !dob ||
-        !email ||
-        !phone ||
-        !gender ||
-        !schoolName ||
-        !gradeLevel ||
-        !learningStyle ||
-        !tutoringNeeds ||
-        !availability ||
-        !tutorType
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: 'Please provide all required fields for student registration.',
-        });
-      }
-   
-      // creating the password hash for the user
-      const password = 'zit_tutees'; // Replace with actual password
-      const hash= await bcrypt.hash(password, saltRounds);
-      // Create a new user
-      const newUser = await db.User.create({
-        full_name: fullName,
-        email,
-        phone_number: phone,
-        password_hash: hash, 
-        role: 'tutee',
-        is_active: false,
       });
 
-      // Create Tutees entry in the database
-      const newTutees = await db.Tutees.create({
-        user_id: newUser.id, // Assuming you have a user_id field in your Tutees model
-        fullName,
-        dob,
-        email,
-        phone,
-        gender,
-        schoolName,
-        gradeLevel,
-        subjects,
-        learningStyle,
-        tutoringNeeds,
-        objectives,
-        availability,
-        tutorType,
-        referral,
-      });
-  
-    
-      // Send confirmation email to user
-      await sendStudentConfirmation(newTutees.email, newTutees.fullName);
-  
-      await sendAdminNotification(
-        'Tutee',                            // ← submissionType
-        {
-          fullName: newTutees.fullName,
-          email:    newTutees.email,
-          phone:    newTutees.phone,
-          schoolName: newTutees.schoolName,
-          gradeLevel: newTutees.gradeLevel
-        }                                   // ← submissionData
-      );
-      
-      return res.status(200).json({
-        success: true,
-        message: 'Student registration submitted successfully. A confirmation email has been sent.',
-        data: newTutees,
-      });
-    } catch (error) {
-      console.error('Error creating student entry:', error);
-      return res.status(500).json({
+    return res.status(201).json({
+      success: true,
+      message: 'Parent registration submitted successfully. A confirmation email has been sent.',
+      data: parent,
+    });
+  } catch (error) {
+    console.error('Error creating parent entry:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your parent registration.',
+      error: error.message,
+    });
+  }
+};
+
+// controller for creating Tutees entry ==================
+export const createTutees = async (req, res) => {
+  console.log("Tutees Data", req.body);
+  try {
+    const {
+      fullName,
+      dob,
+      email,
+      phone,
+      gender,
+      schoolName,
+      gradeLevel,
+      subjects,
+      learningStyle,
+      tutoringNeeds,
+      objectives,
+      availability,
+      tutorType,
+      referral,
+    } = req.body;
+
+    // Validate required fields
+    if (
+      !fullName ||
+      !dob ||
+      !email ||
+      !phone ||
+      !gender ||
+      !schoolName ||
+      !gradeLevel ||
+      !learningStyle ||
+      !tutoringNeeds ||
+      !availability ||
+      !tutorType
+    ) {
+      return res.status(400).json({
         success: false,
-        message: 'An error occurred while processing your student registration.',
-        error: error.message,
+        message: 'Please provide all required fields for student registration.',
       });
     }
-  };
+
+    // creating the password hash for the user
+    const password = 'zit_tutees'; // Replace with actual password
+    const hash = await bcrypt.hash(password, saltRounds);
+
+     // checking if the tuter already exists
+     const existingTutees = await db.Tutees.findOne({ where: { email } });
+
+     if (existingTutees) {
+       return res.status(409).json({ error: 'Email already exists. You have already applied.' });    }
+    // Create a new user
+    const newUser = await db.User.create({
+      full_name: fullName,
+      email,
+      phone_number: phone,
+      password_hash: hash,
+      role: 'tutee',
+      is_active: false,
+    });
+
+    // Create Tutees entry in the database
+    const newTutees = await db.Tutees.create({
+      user_id: newUser.id, // Assuming you have a user_id field in your Tutees model
+      fullName,
+      dob,
+      email,
+      phone,
+      gender,
+      schoolName,
+      gradeLevel,
+      subjects,
+      learningStyle,
+      tutoringNeeds,
+      objectives,
+      availability,
+      tutorType,
+      referral,
+    });
 
 
-  // Controller for creating a Mentor entry
+    // Send confirmation email to user
+    await sendStudentConfirmation(newTutees.email, newTutees.fullName);
+
+    await sendAdminNotification(
+      'Tutee',                            // ← submissionType
+      {
+        fullName: newTutees.fullName,
+        email: newTutees.email,
+        phone: newTutees.phone,
+        schoolName: newTutees.schoolName,
+        gradeLevel: newTutees.gradeLevel
+      }                                   // ← submissionData
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: 'Student registration submitted successfully. A confirmation email has been sent.',
+      data: newTutees,
+    });
+  } catch (error) {
+    console.error('Error creating student entry:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your student registration.',
+      error: error.message,
+    });
+  }
+};
+
+
+// Controller for creating a Mentor entry
 export const createTutor = async (req, res) => {
-    console.log(req.body);
-    try {
-      const {
-        fullName,
-        email,
-        phone,
-        currentRole,
-        subjects,
-        priorTeachingExperience,
-        experienceDetails,
-        tutoringFormat,
-        availability,
-        educationalBackground,
-        referral,
-      } = req.body;
-  
-      // Validate required fields
-      if (
-        !fullName ||
-        !email ||
-        !phone ||
-        !availability
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: 'Please provide all required fields for mentor registration.',
-        });
-      }
+  console.log(req.body);
+  try {
+    const {
+      fullName,
+      email,
+      phone,
+      currentRole,
+      subjects,
+      priorTeachingExperience,
+      experienceDetails,
+      tutoringFormat,
+      availability,
+      educationalBackground,
+      referral,
+    } = req.body;
 
-      // Creating the password hash for the user
-      const password = 'zit_tutor'; // Replace with actual password
-      const hash= await bcrypt.hash(password, saltRounds);
-
-     // Create a new user
-      const newUser = await db.User.create({
-        full_name: fullName,
-        email,
-        phone_number: phone,
-        password_hash: hash, 
-        role: 'tutor', 
-        is_active: false,
-      });
-      // Create Tutor entry in the database
-      const newTutor = await db.Tutor.create({
-        user_id: newUser.id, // Assuming you have a user_id field in your Tutees model
-        fullName,
-        email,
-        phone,
-        currentRole,
-        subjects,
-        priorTeachingExperience,
-        experienceDetails,
-        tutoringFormat,
-        availability,
-        educationalBackground,
-        referral,
-      });
-  
-      // Send confirmation email to user
-      await sendTutorConfirmation(newTutor.email, newTutor.fullName);
-  
-      // Send notification email to admin
-      await sendAdminNotification(
-        'Tutor',                            // ← submissionType
-        {
-          fullName: newTutor.fullName,
-          email:    newTutor.email,
-          phone:    newTutor.phone,
-          currentRole: newTutor.currentRole,
-          subjects: newTutor.subjects
-        }                                   // ← submissionData
-      );
-
-  
-
-      return res.status(201).json({
-        success: true,
-        message: 'Tutor registration submitted successfully. A confirmation email has been sent.',
-        data: newTutor,
-      });
-    } catch (error) {
-      console.error('Error creating mentor entry:', error);
-      return res.status(500).json({
+    // Validate required fields
+    if (
+      !fullName ||
+      !email ||
+      !phone ||
+      !availability
+    ) {
+      return res.status(400).json({
         success: false,
-        message: 'An error occurred while processing your mentor registration.',
-        error: error.message,
+        message: 'Please provide all required fields for mentor registration.',
       });
     }
-  };
-  
+
+    // Creating the password hash for the user
+    const password = 'zit_tutor'; // Replace with actual password
+    const hash = await bcrypt.hash(password, saltRounds);
+
+    // checking if the tuter already exists
+    const existingTutor = await db.Tutor.findOne({ where: { email } });
+
+    if (existingTutor) {
+      return res.status(409).json({ error: 'Email already exists. You have already applied.' });    }
+    // Create a new user
+    const newUser = await db.User.create({
+      full_name: fullName,
+      email,
+      phone_number: phone,
+      password_hash: hash,
+      role: 'tutor',
+      is_active: false,
+    });
+    // Create Tutor entry in the database
+    const newTutor = await db.Tutor.create({
+      user_id: newUser.id, // Assuming you have a user_id field in your Tutees model
+      fullName,
+      email,
+      phone,
+      currentRole,
+      subjects,
+      priorTeachingExperience,
+      experienceDetails,
+      tutoringFormat,
+      availability,
+      educationalBackground,
+      referral,
+    });
+
+    // Send confirmation email to user
+    await sendTutorConfirmation(newTutor.email, newTutor.fullName);
+
+    // Send notification email to admin
+    await sendAdminNotification(
+      'Tutor',                            // ← submissionType
+      {
+        fullName: newTutor.fullName,
+        email: newTutor.email,
+        phone: newTutor.phone,
+        currentRole: newTutor.currentRole,
+        subjects: newTutor.subjects
+      }                                   // ← submissionData
+    );
+
+
+
+    return res.status(201).json({
+      success: true,
+      message: 'Tutor registration submitted successfully. A confirmation email has been sent.',
+      data: newTutor,
+    });
+  } catch (error) {
+    console.error('Error creating mentor entry:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your mentor registration.',
+      error: error.message,
+    });
+  }
+};
+
 
