@@ -43,6 +43,7 @@ import AdministrationModel from './components/Models/AdministrationModel'
 import MentorModel from './components/Models/MentorModel'
 import TutorModel from './components/Models/TutorModel';
 import TeacherModel from './components/Models/TeacherModel'
+import MenteeModel from './components/Models/MenteeModel'
 const IccSucessPage = lazy(() => import("./pages/IccSucessPage"))
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -96,6 +97,7 @@ function App() {
                 <Route path="/icc/parent-guardian"element={<ParentModel />}/>
                 <Route path="/icc/mentor"element={<MentorModel />}/>
                 <Route path="/icc/tutor"element={<TutorModel />}/>
+                <Route path="/icc/mentee"element={<MenteeModel />}/>
                 <Route path="/icc/administration"element={<AdministrationModel />}/>
                 <Route path='/icc-success'element={<IccSucessPage />} />
               </Routes>

@@ -28,11 +28,15 @@ const Hero: React.FC = () => {
 
         <div className="flex flex-wrap gap-4">
           <Link to='/icc/mentor'
-            className="bg-secondary font-sans hover:bg-primary hover:font-semibold text-xs text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+            className="bg-secondary font-sans hover:bg-primary hover:font-semibold text-sm text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
           >
             Become a Mentor
           </Link>
-          
+          <Link to='/icc/mentee'
+            className="border border-white font-sans hover:border-none hover:text-white hover:bg-primary hover:font-semibold text-sm text-white px-3 sm:px-6 py-2 sm:py-2 transition-colors rounded-md inline-flex items-center justify-center"
+          >
+            Become a Mentee
+          </Link>
         </div>
       </div>
     </section>

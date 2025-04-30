@@ -25,7 +25,12 @@ const Hero: React.FC = () => {
           <Link to='/icc/tutor'
             className="font-sans bg-secondary text-white hover:font-semibold px-3 py-2 rounded-md hover:bg-primary"
           >
-            Apply Now and Get Started
+            Apply As a Tutor
+          </Link>
+          <Link to='/icc/student'
+            className="font-sans border border-white text-white hover:border-none hover:font-semibold px-3 py-2 rounded-md hover:bg-primary"
+          >
+            Apply As a Tutee
           </Link>
         </div>
       </div>

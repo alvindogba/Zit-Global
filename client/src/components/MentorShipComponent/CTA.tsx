@@ -16,7 +16,9 @@ const CTA: React.FC = () => {
         <Link to="/icc/mentor" className="bg-secondary text-white hover:font-semibold px-3 py-2 rounded-md hover:bg-primary">
           Apply as a Mentor
         </Link>
-        
+        <Link to="/icc/mentee" className="border border-primary text-primary hover:text-white hover:border-none hover:font-semibold px-3 py-2 rounded-md hover:bg-primary">
+          Apply as a Mentee
+        </Link>
       </div>
     </div>
     </div>
