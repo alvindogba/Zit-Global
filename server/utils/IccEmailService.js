@@ -45,7 +45,7 @@ export const sendTutorConfirmation = async (userEmail, fullName) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: userEmail,
-    subject: 'Thank You for Signing Up as a Mentor',
+    subject: 'Thank You for Signing Up as a Tutor',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2>Thank You for Signing Up!</h2>
