@@ -1,12 +1,12 @@
 // Mentorship Router Code:
 import express from 'express';
-import { mentorController } from '../Controller/MentoringController.js';
+import { mentorController, menteeController } from '../Controller/MentoringController.js';
 
 const mentoringRouter = express.Router();
 
 // Create routes for Tutorring Program
 mentoringRouter.post("/create", mentorController)
-
+mentoringRouter.post("/create/mentee", menteeController)
 
 
 export default mentoringRouter;

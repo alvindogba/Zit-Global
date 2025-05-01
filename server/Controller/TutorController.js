@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 
 const saltRounds = 12;
 
+// Controller for creating a School Admin entry
 export const createSchoolAdmin = async (req, res) => {
   console.log(req.body);
   try {
@@ -107,8 +108,8 @@ export const createSchoolAdmin = async (req, res) => {
   }
 };
 
+// Controller for creating a Teacher entry
 export const createTeacher = async (req, res) => {
-
   console.log(req.body);
   try {
     const {
@@ -218,9 +219,6 @@ export const createTeacher = async (req, res) => {
     });
   }
 };
-
-
-
 
 // Controller for creating a Parent entry ==============
 export const createParent = async (req, res) => {
@@ -440,7 +438,7 @@ export const createTutees = async (req, res) => {
 };
 
 
-// Controller for creating a Mentor entry
+// Controller for creating a Tutor entry
 export const createTutor = async (req, res) => {
   console.log(req.body);
   try {

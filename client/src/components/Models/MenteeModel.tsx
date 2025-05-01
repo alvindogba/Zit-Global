@@ -22,6 +22,7 @@ interface FormData {
 }
 
 export default function MenteeForm() {
+  const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -59,19 +60,29 @@ export default function MenteeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null); // Reset error state
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/icc/mentees`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/mentor/create/mentee`,
         formData
       );
 
-      if (response.status === 200) {
-        navigate('/icc-success', { state: { mentee: response.data.data } });
+      if (response.status === 200 || response.status === 201) {
+        navigate('/icc-success', { state: { student: response.data.data } });
       } else {
         console.error('Submission failed with status:', response.status);
       }
       setIsOpen(false);
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          setError(error.response.data.error || 'Email already exists.');
+        } else {
+          setError('Something went wrong. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.error('Error submitting form:', error);
     } finally {
       setIsLoading(false);
@@ -120,6 +131,10 @@ export default function MenteeForm() {
                         <SelectField label="Gender" name="gender" value={formData.gender} onChange={handleChange} options={['Male', 'Female']} required />
                       </div>
                       <InputField label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                       <InputField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} />
                     </div>
                   </div>
@@ -142,6 +157,10 @@ export default function MenteeForm() {
                         <SelectField label="Preferred Mentor Type" name="mentorType" value={formData.mentorType} onChange={handleChange} options={['Industry Expert', 'Peer Mentor', 'No Preference']} required />
                       </div>
                       <SelectField label="How did you hear about us?" name="referral" value={formData.referral} onChange={handleChange} options={['Website', 'Friend', 'Social Media', 'Other']} required />
+                      {error && (
+                        <div className="mb-4 text-red-600 font-medium bg-red-50 border border-red-200 p-2 rounded">
+                          {error}
+                        </div>)}
                     </div>
                   </div>
                 </div>
