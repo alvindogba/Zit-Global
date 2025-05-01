@@ -41,6 +41,12 @@ export const mentorController = async (req, res) => {
         message: 'Please provide all required fields.',
       });
     }
+        // checking if the mentee already exists
+        const existingMentee = await db.Mentee.findOne({ where: { email } });
+    
+        if (existingMentee) {
+          return res.status(409).json({ error: 'Email already exists. You have already applied.' });   
+        }
       // creating the password hash for the user
       const password = 'zit_mentor'; // Replace with actual password
       const hash= await bcrypt.hash(password, saltRounds);
@@ -137,6 +143,13 @@ export const menteeController = async (req, res) => {
         message: 'Please provide all required fields.',
       });
     }
+
+        // checking if the mentee already exists
+        const existingMentee = await db.Mentee.findOne({ where: { email } });
+    
+        if (existingMentee) {
+          return res.status(409).json({ error: 'Email already exists. You have already applied.' });   
+        }
       // creating the password hash for the user
       const password = 'zit_mentee'; // Replace with actual password
       const hash= await bcrypt.hash(password, saltRounds);
@@ -167,12 +180,7 @@ export const menteeController = async (req, res) => {
       referral,
     });
 
-    // checking if the mentee already exists
-    const existingMentee = await db.Mentee.findOne({ where: { email } });
-    
-    if (existingMentee) {
-      return res.status(409).json({ error: 'Email already exists. You have already applied.' });   
-    }
+
 
     // Send confirmation email to user
     await sendMenteeConfirmation(email, fullName);

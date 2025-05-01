@@ -67,7 +67,7 @@ export default function MenteeForm() {
         formData
       );
 
-      if (response.status === 200 || response.status === 201) {
+      if ( response.status === 201) {
         navigate('/icc-success', { state: { student: response.data.data } });
       } else {
         console.error('Submission failed with status:', response.status);
