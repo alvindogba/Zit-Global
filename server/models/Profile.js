@@ -1,0 +1,49 @@
+import { Model, DataTypes } from 'sequelize';
+
+export default (sequelize) => {
+  class Profile extends Model {
+    static associate(models) {
+      Profile.hasMany(models.Referral, { foreignKey: 'affiliate_id' });
+      Profile.hasMany(models.Payout, { foreignKey: 'affiliate_id' });
+    }
+  }
+
+  Profile.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    password_hash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    full_name: DataTypes.STRING,
+    avatar_url: DataTypes.TEXT,
+    affiliate_code: {
+      type: DataTypes.STRING(8),
+      unique: true,
+      allowNull: false,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+  }, {
+    sequelize,
+    modelName: 'Profile',
+    tableName: 'profiles',
+    timestamps: false,
+  });
+
+  return Profile;
+};

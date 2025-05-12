@@ -16,6 +16,7 @@ import contactRouter from './Routes/ContactRoute.js';
 import tutorRoute from './Routes/TutorShipRoute.js';
 import authRouter from './Routes/portalAuthRouter.js'; // the auth router
 import mentoringRouter from "./Routes/mentorRoute.js"
+import partnerRouter from './Routes/Partner.js';
 
 
 const app = express();
@@ -73,6 +74,10 @@ app.use('/uploads', express.static(uploadDir, {
 
 // The Dashboard Routes
 app.use("/portal/auth", authRouter); // Auth routes for the dashboard
+// The partnering auth router
+// Routes
+app.use('/api/partner', partnerRouter);
+
 
 // Routes
 app.use('/api/mentor', mentoringRouter)
