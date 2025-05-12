@@ -16,7 +16,6 @@ import contactRouter from './Routes/ContactRoute.js';
 import tutorRoute from './Routes/TutorShipRoute.js';
 import authRouter from './Routes/portalAuthRouter.js'; // the auth router
 import mentoringRouter from "./Routes/mentorRoute.js"
-import partnerRouter from './Routes/Partner.js';
 
 
 const app = express();
@@ -80,7 +79,8 @@ app.use('/api/partner', partnerRouter);
 
 
 // Routes
-app.use('/api/mentor', mentoringRouter)
+app.use('/api/mentor', mentoringRouter);
+app.use('/api/mentee', menteeRouter);
 app.use("/api/icc", tutorRoute);
 app.use("/admission", router);
 app.use('/api/stripe', stripeRouter);

@@ -84,7 +84,7 @@ export default function MentorModel() {
         console.error('Submission failed with status:', response.status);
       }
       setIsOpen(false);
-    }  catch (error: any) {
+    }  catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 409) {
           setError(error.response.data.error || 'Email already exists.');
@@ -315,7 +315,11 @@ const CheckboxGroup = ({ label, options, selected, onChange }: any) => (
   </div>
 );
 
-const TextAreaField = ({ label, ...props }: any) => (
+interface TextAreaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string;
+}
+
+const TextAreaField: React.FC<TextAreaFieldProps> = ({ label, ...props }) => (
   <div className="form-control">
     <label className="label">
       <span className="label-text font-medium">{label}</span>

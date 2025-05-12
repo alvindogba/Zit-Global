@@ -299,6 +299,25 @@ CREATE TABLE "Mentors" (
   FOREIGN KEY ("user_id") REFERENCES "Users" (id) ON DELETE CASCADE
 );
 
+-- The Mentee Table
+CREATE TABLE "Mentees" (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  "user_id" UUID NOT NULL UNIQUE,
+  "fullName" VARCHAR(255) NOT NULL,
+  "email" VARCHAR(255) NOT NULL,
+  "phone" VARCHAR(255),
+  "age" INTEGER NOT NULL,
+  "gender" VARCHAR(50) NOT NULL,
+  "mentorshipNeeds" TEXT NOT NULL,
+  "objectives" TEXT,
+  "availability" VARCHAR(255) NOT NULL,
+  "preferredMentorshipFormat" VARCHAR(255),
+  "referral" VARCHAR(255),
+  "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY ("user_id") REFERENCES "Users" (id) ON DELETE CASCADE
+);
+
 CREATE TABLE "Contacts" (
   "id" SERIAL PRIMARY KEY,
   "fullName" VARCHAR(255) NOT NULL,
