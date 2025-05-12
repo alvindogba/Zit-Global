@@ -16,6 +16,8 @@ import contactRouter from './Routes/ContactRoute.js';
 import tutorRoute from './Routes/TutorShipRoute.js';
 import authRouter from './Routes/portalAuthRouter.js'; // the auth router
 import mentoringRouter from "./Routes/mentorRoute.js"
+import partnerRouter from "./Routes/Partner.js"
+import menteeRouter from "./Routes/menteeRoute.js"
 
 
 const app = express();
