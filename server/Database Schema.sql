@@ -357,3 +357,13 @@ CREATE TABLE payouts (
   status VARCHAR(50) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- udating the donation table 
+ALTER TABLE "Donations"
+ADD COLUMN ref_code VARCHAR(8),
+
+ADD CONSTRAINT fk_donations_ref_code
+FOREIGN KEY (ref_code)
+REFERENCES profiles(affiliate_code)
+ON DELETE SET NULL
+ON UPDATE CASCADE;

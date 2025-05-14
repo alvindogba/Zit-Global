@@ -44,7 +44,7 @@ const SuccessPage = () => {
         </h1>
         <p className="mt-2 text-dparacolor font-roboto">
           Thank you, <span className="font-medium">{student.fullName}</span>,
-          for registering for our Tutoring Program.
+          for registering for our Impact and Connect Program.
         </p>
         <p className="mt-2 text-dparacolor font-roboto">
           A confirmation email has been sent to{' '}

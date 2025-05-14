@@ -7,7 +7,7 @@ const HowItWorks: React.FC = () => {
   const steps = [
     {
       id: 1,
-      title: "Create Your Affiliate Link",
+      title: "Create Your referral Link",
       description: "Sign up for free and instantly generate your unique referral link from your dashboard.",
       icon: <Link size={24} className="text-blue-600" />,
       image: "https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -37,7 +37,7 @@ const HowItWorks: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Start Earning in 3 Easy Steps</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Our affiliate program is designed to be simple and rewarding. Here's how you can get started.
+            Our Partnership program is designed to be simple and rewarding. Here's how you can get started.
           </p>
         </div>
 

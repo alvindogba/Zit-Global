@@ -8,6 +8,7 @@ import { IoIosHeart } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoCard } from "react-icons/io5";
 import paypalImg from '../../asset/images/paypal.png'
+import { getReferralCode } from "../../hooks/refTracdker";
 
 // Stripe imports
 import {
@@ -56,7 +57,8 @@ const DonationMultiStepForm = () => {
   const [error, setError] = useState("");
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [processing, setProcessing] = useState(false);
-
+const ref_code = getReferralCode();
+console.log("referral code", ref_code)
   // Stripe hooks
   const stripe = useStripe();
   const elements = useElements();
@@ -152,7 +154,8 @@ const DonationMultiStepForm = () => {
           amount,
           paymentMethod: "card",
           transactionId: paymentIntent!.id,
-          giftType
+          giftType,
+          ref_code
         }
       );
       navigate(`/success?transactionId=${paymentIntent!.id}&email=${donorInfo.email}`);
@@ -184,7 +187,8 @@ const DonationMultiStepForm = () => {
           email: donorInfo.email,
           amount: amountInCents,
           currency: 'usd', // Add currency selector if needed
-          interval: interval
+          interval: interval,
+          ref_code
         }
       );
 
@@ -211,6 +215,7 @@ const DonationMultiStepForm = () => {
           currency: "USD",
           donorInfo,
           giftType,
+          ref_code
         }
       );
 
@@ -243,7 +248,8 @@ const DonationMultiStepForm = () => {
           amount,
           paymentMethod: "paypal",
           transactionId,
-          giftType
+          giftType,
+          ref_code
         }
       );
       navigate(`/success?transactionId=${transactionId}&email=${encodeURIComponent(donorInfo.email)}`);

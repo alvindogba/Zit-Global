@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
@@ -20,13 +20,13 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2 text-center md:text-left">
             <div className="mb-4 inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
-              Affiliate Program
+              Partner with Us
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
               Earn Commissions by Supporting Causes You Care About
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-xl mx-auto md:mx-0">
-              Join Our Affiliate Program. Turn Your Influence into Impact. Get Paid for Every Donation You Refer.
+              Join Our Partnership Program. Turn Your Influence into Impact. Get Paid for Every Donation You Refer.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button 

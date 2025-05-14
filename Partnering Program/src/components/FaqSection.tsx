@@ -14,7 +14,7 @@ const FaqSection: React.FC = () => {
     },
     {
       question: "Is there a cost to join?",
-      answer: "No, joining our affiliate program is completely free! There are no hidden fees or charges. We believe in providing value first and only earn when you do."
+      answer: "No, joining our Partnership program is completely free! There are no hidden fees or charges. We believe in providing value first and only earn when you do."
     },
     {
       question: "How do I track my referrals?",

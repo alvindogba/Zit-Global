@@ -74,14 +74,14 @@ const DashboardSection: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Your Earnings at a Glance</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Our intuitive dashboard gives you real-time insights into your affiliate performance.
+            Our intuitive dashboard gives you real-time insights into your partner performance.
           </p>
         </div>
 
         <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
           <div className="p-6 bg-blue-700 text-white">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold">Affiliate Dashboard</h3>
+              <h3 className="text-xl font-bold">Partner Dashboard</h3>
               <div className="text-sm bg-white/20 rounded-full px-4 py-1">
                 Last Updated: Just Now
               </div>

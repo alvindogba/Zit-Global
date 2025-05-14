@@ -25,7 +25,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-            AffiliateProgram
+            Partnership Program
           </Link>
         </div>
 

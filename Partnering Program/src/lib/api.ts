@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_BACKEND_URL
+console.log('API_URL:', API_URL);
+if (!API_URL) {
+  throw new Error('VITE_API_URL is not defined in .env file');
+}
+console.log('API_URL:', API_URL);
 
 const api = axios.create({
   baseURL: API_URL,

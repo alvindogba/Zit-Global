@@ -88,6 +88,10 @@ app.use("/admission", router);
 app.use('/api/stripe', stripeRouter);
 app.use('/api/paypal', paypalRouter);
 app.use('/api/contact', contactRouter);
+
+app.get('/', (req, res) =>{
+res.send('Welcome to the ICC API!');
+})
 app.get('/test', (req, res) => res.json({ message: 'Server is running!' }));
 app.get('/health', (req, res) => res.status(200).json({ status: 'healthy', uptime: process.uptime() }));
 
@@ -106,6 +110,7 @@ const startServer = async () => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     testDatabaseConnection();
+ 
   });
 };
 

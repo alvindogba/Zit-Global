@@ -48,6 +48,10 @@ export default (sequelize, DataTypes) => {
     giftType: {
       type: DataTypes.ENUM('one-time', 'monthly'),
     
+    },
+    ref_code: {
+      type: DataTypes.STRING,
+      allowNull: true,
     }
   }, {
     tableName: 'Donations',

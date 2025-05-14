@@ -63,12 +63,36 @@ paypalRouter.post("/save-donation", async (req, res) => {
       return res.status(400).json({ message: "Payment not verified" });
     }
 
+
+
     // Save donation to DB
     const donation = await db.Donations.create({
       ...req.body,
       status: "completed",
-      giftType: "one-time"
+      giftType: "one-time",
+
     });
+
+    // Affiliate logic
+    // ✅ Affiliate logic
+    if (req.body.ref_code) {
+      const affiliate = await db.Profile.findOne({
+        where: { affiliate_code: req.body.ref_code }
+      });
+
+      if (affiliate) {
+        const commissionRate = 0.15; // or your preferred rate
+        const commission = req.body.amount * commissionRate;
+
+        await db.Referral.create({
+          affiliate_id: affiliate.id,
+          transaction_id: donation.transactionId || `DON-${Date.now()}`, // fallback if needed
+          amount: donation.amount,
+          commission,
+          status: 'pending',
+        });
+      }
+    }
 
     // Send receipt
     const receiptNumber = generateReceipt();
@@ -87,7 +111,7 @@ paypalRouter.post("/create-paypalsubscription", async (req, res) => {
   try {
     // Extract donor's details and donation amount from the request body.
     const { firstName, lastName, email, phone, state, country } = req.body.donorInfo;
-    const { amount } = req.body;
+    const { amount, ref_code } = req.body;
 
     console.log(`User details - First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Phone: ${phone}, State: ${state}, Country: ${country}, Amount: ${amount}`);
 
@@ -188,7 +212,7 @@ paypalRouter.post("/create-paypalsubscription", async (req, res) => {
     // Step 5: Create a Subscription using the plan.
     const subscriptionPayload = {
       plan_id: planId,
-      custom_id: `donation_${amount}`, // <-- Include your donation amount as custom metadata
+      custom_id: JSON.stringify({ amount, ref_code }), // ← Store both values
       application_context: {
         brand_name: "Zongea Institute of Technology",
         locale: "en-US",
@@ -209,6 +233,8 @@ paypalRouter.post("/create-paypalsubscription", async (req, res) => {
       },
       data: subscriptionPayload,
     });
+
+
 
     // Step 6: Return the subscription approval URL to the frontend.
     const approvalUrl = subscriptionResponse.data.links.find(link => link.rel === 'approve').href;
@@ -264,39 +290,66 @@ paypalRouter.post('/confirm-subscription', async (req, res) => {
     }
 
     // Step 4: Extract donation and subscriber details.
-    // Try to use custom_id if available, otherwise fallback (for example, using the outstanding_balance value).
     let donationAmount = 0;
+    let ref_code = null;
+
     if (subscriptionData.custom_id && typeof subscriptionData.custom_id === 'string') {
-      // Expecting custom_id in the format "donation_<amount>"
-      const donationAmountString = subscriptionData.custom_id.replace('donation_', '');
-      donationAmount = parseFloat(donationAmountString);
-    } else if (
-      subscriptionData.billing_info &&
-      subscriptionData.billing_info.outstanding_balance &&
-      subscriptionData.billing_info.outstanding_balance.value
-    ) {
-      // Fallback to the outstanding balance value
-      donationAmount = parseFloat(subscriptionData.billing_info.outstanding_balance.value) || 0;
-    } else {
-      // If you cannot determine the donation amount, you may choose to throw an error or set a default value.
-      console.warn('Donation amount not found in subscription data.');
+      try {
+        const customData = JSON.parse(subscriptionData.custom_id);
+        donationAmount = parseFloat(customData.amount) || 0;
+        ref_code = customData.ref_code || null;
+      } catch (err) {
+        console.warn("Invalid custom_id format:", subscriptionData.custom_id);
+      }
     }
 
     const donorEmail = subscriptionData.subscriber.email_address;
     const firstName = subscriptionData.subscriber.name?.given_name || '';
     const lastName = subscriptionData.subscriber.name?.surname || '';
+    const phone = subscriptionData.subscriber?.phone?.phone_number?.national_number || 'N/A';
+    const state = subscriptionData.subscriber?.shipping_address?.admin_area_1 || 'N/A';
+    const country = subscriptionData.subscriber?.shipping_address?.country_code || 'N/A';
+
 
     // Step 5: Record the donation details in your database (omitted for brevity)
     const donationData = {
-      subscriptionId: subscriptionData.id,
-      email: donorEmail,
-      donationAmount, // the extracted or fallback value
+      amount: donationAmount,
+      paymentMethod: 'PayPal Subscription',
+      transactionId: subscriptionData.id,
       firstName,
       lastName,
-      status: subscriptionData.status,
+      email: donorEmail,
+      phone,
+      state,
+      country,
+      giftType: 'monthly',
+      ref_code,
     };
 
     // Here you’d store donationData (e.g., insert into your database)
+    const donation = await db.Donations.create(donationData);
+
+
+ // Affiliate logic
+     // ✅ Affiliate logic
+ if (ref_code) {
+  const affiliate = await db.Profile.findOne({
+    where: { affiliate_code: ref_code }
+  });
+
+  if (affiliate) {
+    const commissionRate = 0.15;
+    const commission = donation.amount * commissionRate;
+
+    await db.Referral.create({
+      affiliate_id: affiliate.id,
+      transaction_id: donation.transactionId || `DON-${Date.now()}`,
+      amount: donation.amount,
+      commission,
+      status: 'pending',
+    });
+  }
+}
 
     // Step 6: Return a successful response.
     res.status(200).json({

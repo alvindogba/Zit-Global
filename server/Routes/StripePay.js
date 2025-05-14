@@ -45,6 +45,29 @@ stripeRouter.post('/save-donation', async (req, res) => {
       ...req.body,
       status: 'completed',
     });
+
+    
+
+    // Affiliate logic
+     // ✅ Affiliate logic
+    if (req.body.ref_code) {
+      const affiliate = await db.Profile.findOne({
+        where: { affiliate_code: req.body.ref_code }
+      });
+
+      if (affiliate) {
+        const commissionRate = 0.15; // or your preferred rate
+        const commission = req.body.amount * commissionRate;
+
+        await db.Referral.create({
+          affiliate_id: affiliate.id,
+          transaction_id: donation.transactionId || `DON-${Date.now()}`, // fallback if needed
+          amount: donation.amount,
+          commission,
+          status: 'pending',
+        });
+      }
+    }
     // Generate receipt
     const generateReceipt = () => {
         const year = new Date().getFullYear();
@@ -56,7 +79,7 @@ stripeRouter.post('/save-donation', async (req, res) => {
     // Send confirmation email
     console.log(donation, receiptBuffer);
     await sendDonationReceipt(donation, receiptBuffer);
-    res.json({ success: true, donationId: donation._id });
+    res.json({ success: true, donationId: donation.id });
   } catch (error) {
     console.error('Error saving donation:', error);
     res.status(500).json({ error: 'Failed to save donation' });
@@ -82,14 +105,16 @@ stripeRouter.get('/get-success-donation/:transactionId', async (req, res) => {
 
 // The Strip Subscription End point 
 stripeRouter.post("/create-subscription-session", async (req, res) => {
+  console.log(req.body)
   try {
-    const { email, amount, currency, interval } = req.body;
+    const { email, amount, currency, interval, ref_code} = req.body;
 
     // 1. Create Stripe Customer
     const customer = await stripe.customers.create({
 
       metadata: {
         // Add any additional donor info here
+         
       ...req.body
       }
     });
@@ -103,22 +128,25 @@ stripeRouter.post("/create-subscription-session", async (req, res) => {
     });
 
     // 3. Create Checkout Session
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      customer: customer.id,
-      line_items: [{
-        price: price.id,
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: `${process.env.FRONTEND_URL}/stripe-monthly-success?sessionId={CHECKOUT_SESSION_ID}`, // optional: you can replace with transaction id later
-      cancel_url: `${process.env.FRONTEND_URL}/donate`,
-      subscription_data: {
-        metadata: {
-          // Store any relevant subscription metadata
-        }
-      }
-    });
+   const session = await stripe.checkout.sessions.create({
+  payment_method_types: ['card'],
+  customer: customer.id,
+  line_items: [{
+    price: price.id,
+    quantity: 1,
+  }],
+  mode: 'subscription',
+  success_url: `${process.env.FRONTEND_URL}/stripe-monthly-success?sessionId={CHECKOUT_SESSION_ID}`,
+  cancel_url: `${process.env.FRONTEND_URL}/donate`,
+  metadata: {
+    ref_code, // ✅ move here
+  },
+  subscription_data: {
+    metadata: {
+      ref_code, // optional, only needed if you need it on the Subscription too
+    }
+  }
+});
 
     res.json({ sessionId: session.id });
 
@@ -135,19 +163,69 @@ stripeRouter.get("/get-subscription-success/:sessionId", async (req, res) => {
     const customer = await stripe.customers.retrieve(session.customer);
     const subscription = await stripe.subscriptions.retrieve(session.subscription);
 
+    const amount = session.amount_total / 100;
+    const transactionId = subscription.id;
+    const interval = subscription.items.data[0].price.recurring.interval;
+    const createdAt = new Date(session.created * 1000);
+    const ref_code = session.metadata?.ref_code || null;
+
+    console.log(ref_code)
+    // Save to Donations table
+ const existingDonation = await db.Donations.findOne({
+  where: { transactionId }
+});
+
+if (!existingDonation) {
+  // Insert only if not already present
+  await db.Donations.create({
+    amount,
+    paymentMethod: 'stripe',
+    transactionId,
+    email: customer.email,
+    firstName: customer.name?.split(' ')[0] || '',
+    lastName: customer.name?.split(' ')[1] || '',
+    phone: '',
+    country: '',
+    state: '',
+    giftType: 'monthly',
+    ref_code,
+    status: 'completed',
+  });
+
+  // Insert referral if applicable
+  if (ref_code) {
+    const referrer = await db.Profile.findOne({ where: { affiliate_code: ref_code } });
+    if (referrer) {
+      const commission = +(amount * 0.15).toFixed(2);
+      await db.Referral.create({
+        affiliate_id: referrer.id,
+        transaction_id: transactionId,
+        amount,
+        commission,
+        status: 'completed',
+      });
+    }
+  }
+} else {
+  console.log('Donation already recorded for transaction:', transactionId);
+}
+
 
     res.json({
+      success: true,
       email: customer.email,
-      amount: session.amount_total / 100,
-      interval: subscription.items.data[0].price.recurring.interval,
-      createdAt: session.created * 1000, // Convert from Unix to JS date
-      subscriptionId: subscription.id,
+      amount,
+      interval,
+      createdAt,
+      subscriptionId: transactionId,
     });
+
   } catch (err) {
     console.error('Error fetching subscription success data:', err);
     res.status(500).json({ error: 'Failed to fetch subscription details' });
   }
 });
+
 
 
 

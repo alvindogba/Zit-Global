@@ -46,10 +46,14 @@ import TeacherModel from './components/Models/TeacherModel'
 import MenteeModel from './components/Models/MenteeModel'
 const IccSucessPage = lazy(() => import("./pages/IccSucessPage"))
 
+// Referral link persist 
+import {storeReferralCode} from './hooks/refTracdker';
+
 // Initialize Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function App() {
+  storeReferralCode();
   return (
     <PayPalScriptProvider options={{
       clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
