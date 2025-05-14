@@ -32,7 +32,6 @@ export const mentorController = async (req, res) => {
       ! profession ||
       !  mentorshipAreas ||
       ! priorExperience ||
-      ! experienceDetails ||
       ! mentorshipFormat ||
       !availability
     ) {
@@ -42,9 +41,9 @@ export const mentorController = async (req, res) => {
       });
     }
         // checking if the mentee already exists
-        const existingMentee = await db.Mentee.findOne({ where: { email } });
+        const existingMentor = await db.Mentor.findOne({ where: { email } });
     
-        if (existingMentee) {
+        if (existingMentor) {
           return res.status(409).json({ error: 'Email already exists. You have already applied.' });   
         }
       // creating the password hash for the user
