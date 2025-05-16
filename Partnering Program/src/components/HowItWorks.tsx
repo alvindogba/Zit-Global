@@ -9,21 +9,21 @@ const HowItWorks: React.FC = () => {
       id: 1,
       title: "Create Your referral Link",
       description: "Sign up for free and instantly generate your unique referral link from your dashboard.",
-      icon: <Link size={24} className="text-blue-600" />,
+      icon: <Link size={24} className="text-secondary" />,
       image: "https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
       id: 2,
       title: "Share Your Link",
       description: "Share your personalized link on social media, email, or your website to reach your audience.",
-      icon: <Share2 size={24} className="text-blue-600" />,
+      icon: <Share2 size={24} className="text-secondary" />,
       image: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
       id: 3,
       title: "Track & Earn",
       description: "Watch your earnings grow in real-time as people donate through your referral link.",
-      icon: <BarChart size={24} className="text-blue-600" />,
+      icon: <BarChart size={24} className="text-secondary" />,
       image: "https://images.pexels.com/photos/7681661/pexels-photo-7681661.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     }
   ];
@@ -32,10 +32,10 @@ const HowItWorks: React.FC = () => {
     <section id="how-it-works" className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <div className="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-blue-800 rounded-full mb-4">
+          <div className="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-secondary rounded-full mb-4">
             Process
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Start Earning in 3 Easy Steps</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">Start Earning in 3 Easy Steps</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Our Partnership program is designed to be simple and rewarding. Here's how you can get started.
           </p>
@@ -50,13 +50,13 @@ const HowItWorks: React.FC = () => {
                   key={step.id}
                   className={`flex items-center w-full text-left p-4 mb-2 rounded-lg transition-all ${
                     activeStep === step.id 
-                      ? 'bg-blue-100 text-blue-800' 
+                      ? 'bg-white text-primary' 
                       : 'bg-white text-gray-700 hover:bg-gray-100'
                   }`}
                   onClick={() => setActiveStep(step.id)}
                 >
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
-                    activeStep === step.id ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+                    activeStep === step.id ? 'bg-secondary text-white' : 'bg-gray-200 text-secondary'
                   }`}>
                     {step.id}
                   </div>
@@ -75,7 +75,7 @@ const HowItWorks: React.FC = () => {
             {steps.map(step => (
               activeStep === step.id && (
                 <div key={step.id} className="bg-white rounded-xl overflow-hidden shadow-lg animate-fadeIn">
-                  <div className="relative h-64 md:h-80 bg-blue-100">
+                  <div className="relative h-64 md:h-80 bg-secondary">
                     <img 
                       src={step.image} 
                       alt={step.title} 
@@ -95,10 +95,10 @@ const HowItWorks: React.FC = () => {
                       <div className="bg-gray-100 p-4 rounded-lg">
                         <div className="text-sm font-mono mb-2 text-gray-500">Your unique referral link:</div>
                         <div className="flex items-center">
-                          <code className="bg-white text-blue-800 px-3 py-2 rounded border border-gray-300 flex-grow truncate">
+                          <code className="bg-white text-secondary px-3 py-2 rounded border border-gray-300 flex-grow truncate">
                             https://yourplatform.com/donate?ref=YOUR_USERNAME
                           </code>
-                          <button className="ml-2 bg-blue-600 text-white px-3 py-2 rounded font-medium text-sm">
+                          <button className="ml-2 bg-secondary text-white px-3 py-2 rounded font-medium text-sm">
                             Copy
                           </button>
                         </div>

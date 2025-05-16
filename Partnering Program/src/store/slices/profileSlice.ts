@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { profiles } from '../../lib/api';
+import { profiles, Profile } from '../../lib/api';
 
 interface ProfileState {
-  data: any | null;
+  data: Profile | null;
   loading: boolean;
   error: string | null;
 }
@@ -13,17 +13,43 @@ const initialState: ProfileState = {
   error: null,
 };
 
-export const fetchProfile = createAsyncThunk('profile/fetchProfile', async () => {
-  const response = await profiles.getProfile();
-  console.log('Fetched profile:', response.user);
-  return response.user;
-});
+export const fetchProfile = createAsyncThunk(
+  'profile/fetchProfile',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await profiles.getProfile();
+    console.log(response.user)
+      return response.user;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch profile');
+    }
+  }
+);
+
+export const uploadAvatar = createAsyncThunk(
+  'profile/uploadAvatar',
+  async (file: File, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await profiles.uploadAvatar(file);
+      // Update the profile with the new avatar URL
+      dispatch(updateProfile({ avatarUrl: response.avatarUrl }));
+      return response.avatarUrl;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to upload avatar');
+    }
+  }
+);
 
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
-  async (data: { fullName?: string; avatarUrl?: string }) => {
-    const response = await profiles.updateProfile(data);
-    return response.user;
+  async (data: Partial<Profile>, { rejectWithValue }) => {
+    try {
+      const response = await profiles.updateProfile(data);
+      console.log(response.user)
+      return response.user;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to update profile');
+    }
   }
 );
 

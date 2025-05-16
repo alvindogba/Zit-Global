@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import BenefitsSection from './components/BenefitsSection';
@@ -34,6 +36,16 @@ function App() {
           <Route path="/signup" element={
             <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
               <SignUpForm />
+            </div>
+          } />
+          <Route path="/forgot-password" element={
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+              <ForgotPassword />
+            </div>
+          } />
+          <Route path="/reset-password" element={
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+              <ResetPassword />
             </div>
           } />
           <Route path="/dashboard/*" element={

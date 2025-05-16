@@ -38,6 +38,26 @@ export default (sequelize) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    reset_token: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    company: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    position: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    bio: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   }, {
     sequelize,
     modelName: 'Profile',

@@ -24,24 +24,24 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+          <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary/90 to-secondary bg-clip-text text-transparent">
             Partnership Program
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <a href="#benefits" className="text-gray-700 hover:text-blue-600 font-medium">Benefits</a>
-          <a href="#how-it-works" className="text-gray-700 hover:text-blue-600 font-medium">How It Works</a>
-          <a href="#testimonials" className="text-gray-700 hover:text-blue-600 font-medium">Testimonials</a>
-          <a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium">FAQ</a>
-          <Link to="/dashboard" className="text-gray-700 hover:text-blue-600 font-medium">Dashboard</Link>
+          <a href="#benefits" className="text-primary hover:text-secondary font-bold">Benefits</a>
+          <a href="#how-it-works" className="text-primary hover:text-secondary font-bold">How It Works</a>
+          <a href="#testimonials" className="text-primary hover:text-secondary font-bold">Testimonials</a>
+          <a href="#faq" className="text-primary hover:text-secondary font-bold">FAQ</a>
+          <Link to="/dashboard" className="text-primary hover:text-secondary font-bold">Dashboard</Link>
         </nav>
 
         <div className="hidden md:block">
           <button 
             onClick={() => navigate('/signup')} 
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-all"
+            className="bg-secondary hover:bg-primary text-white font-bold py-2 px-6 rounded-full transition-all"
           >
             Sign Up
           </button>
@@ -62,35 +62,35 @@ const Header: React.FC = () => {
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <a 
               href="#benefits" 
-              className="text-gray-700 py-2 border-b" 
+              className="text-primary py-2 border-b" 
               onClick={() => setIsMenuOpen(false)}
             >
               Benefits
             </a>
             <a 
               href="#how-it-works" 
-              className="text-gray-700 py-2 border-b" 
+              className="text-primary py-2 border-b" 
               onClick={() => setIsMenuOpen(false)}
             >
               How It Works
             </a>
             <a 
               href="#testimonials" 
-              className="text-gray-700 py-2 border-b" 
+              className="text-primary py-2 border-b" 
               onClick={() => setIsMenuOpen(false)}
             >
               Testimonials
             </a>
             <a 
               href="#faq" 
-              className="text-gray-700 py-2 border-b" 
+              className="text-primary py-2 border-b" 
               onClick={() => setIsMenuOpen(false)}
             >
               FAQ
             </a>
             <Link 
               to="/dashboard" 
-              className="text-gray-700 py-2 border-b"
+              className="text-primary py-2 border-b"
               onClick={() => setIsMenuOpen(false)}
             >
               Dashboard
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
                 setIsMenuOpen(false);
                 navigate('/signup');
               }} 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-all w-full"
+              className="bg-secondary hover:bg-primary text-white font-bold py-2 px-6 rounded-full transition-all w-full"
             >
               Sign Up
             </button>

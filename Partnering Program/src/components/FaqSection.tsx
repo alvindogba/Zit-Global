@@ -44,10 +44,10 @@ const FaqSection: React.FC = () => {
     <section id="faq" className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <div className="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-blue-800 rounded-full mb-4">
+          <div className="inline-block px-4 py-1 text-sm font-semibold bg-primary/10 text-secondary rounded-full mb-4">
             FAQs
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">Frequently Asked Questions</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Have questions? We've got answers. If you don't see what you're looking for, reach out to our support team.
           </p>
@@ -59,7 +59,7 @@ const FaqSection: React.FC = () => {
               <div 
                 key={index} 
                 className={`border rounded-lg overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? 'border-blue-200 bg-blue-50' : 'border-gray-200'
+                  openIndex === index ? 'border-primary/10 bg-primary/5' : 'border-gray-200'
                 }`}
               >
                 <button 
@@ -86,7 +86,7 @@ const FaqSection: React.FC = () => {
           
           <div className="mt-12 text-center">
             <p className="text-gray-600 mb-6">Still have questions?</p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full transition-all shadow-md hover:shadow-lg">
+            <button className="bg-secondary hover:bg-secondary/80 text-white font-medium py-3 px-8 rounded-full transition-all shadow-md hover:shadow-lg">
               Contact Support
             </button>
           </div>

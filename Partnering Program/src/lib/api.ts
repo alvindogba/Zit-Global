@@ -23,26 +23,65 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+export interface AuthResponse {
+  user: {
+    id: string;
+    email: string;
+    fullName: string;
+  };
+  token: string;
+  message?: string;
+}
+
 export const auth = {
-  signUp: async (data: { email: string; password: string; fullName: string }) => {
+  signUp: async (data: { email: string; password: string; fullName: string }): Promise<AuthResponse> => {
     const response = await api.post('/auth/signup', data);
     return response.data;
   },
-  
-  signIn: async (data: { email: string; password: string }) => {
+  signIn: async (data: { email: string; password: string }): Promise<AuthResponse> => {
     const response = await api.post('/auth/login', data);
     return response.data;
   },
+  forgotPassword: async (email: string): Promise<void> => {
+    await api.post('/auth/forgot-password', { email });
+  },
+  resetPassword: async (credentials: { password: string; confirmPassword: string; token: string }): Promise<void> => {
+    await api.post('/auth/reset-password', credentials);
+  },
 };
 
+export interface Profile {
+  id: string;
+  fullName: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  position?: string;
+  avatarUrl?: string;
+  bio?: string;
+  referralLink?: string;
+}
+
 export const profiles = {
-  getProfile: async () => {
-    const response = await api.get('/profiles/me');
+  uploadAvatar: async (file: File) => {
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    const response = await api.post('/profile/avatar', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
+
+  getProfile: async (): Promise<{ user: Profile }> => {
+    const response = await api.get('/profile/me');
     return response.data;
   },
   
-  updateProfile: async (data: { fullName?: string; avatarUrl?: string }) => {
-    const response = await api.put('/profiles/me', data);
+  updateProfile: async (data: Partial<Profile>): Promise<{ user: Profile }> => {
+    const response = await api.put('/profile/me', data);
     return response.data;
   },
 };
@@ -55,6 +94,7 @@ export const referrals = {
   
   getStats: async () => {
     const response = await api.get('/referrals/stats');
+
     return response.data;
   },
 };
@@ -62,6 +102,7 @@ export const referrals = {
 export const payouts = {
   getPayouts: async () => {
     const response = await api.get('/payouts');
+    console.log("payouts ", response.data)
     return response.data;
   },
   

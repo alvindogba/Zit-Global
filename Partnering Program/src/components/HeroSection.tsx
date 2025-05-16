@@ -13,13 +13,13 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <section className="relative  min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/7876708/pexels-photo-7876708.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-cover bg-center opacity-5"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2 text-center md:text-left">
-            <div className="mb-4 inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+            <div className="mb-4 mt-10 inline-block px-8 py-2 bg-blue-100  text-secondary rounded-full text-md font-semibold shadow-lg animate-pulse">
               Partner with Us
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
@@ -31,12 +31,12 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button 
                 onClick={() => navigate('/signup')}
-                className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl"
+                className="bg-secondary hover:bg-primary text-white text-lg font-medium py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl"
               >
                 Get Started for Free
               </button>
               <button 
-                className="bg-white text-blue-600 border border-blue-600 hover:bg-blue-50 text-lg font-medium py-3 px-8 rounded-full transition-all flex items-center justify-center gap-2"
+                className="bg-white text-secondary border border-secondary hover:bg-primary-50 text-lg font-medium py-3 px-8 rounded-full transition-all flex items-center justify-center gap-2"
                 onClick={() => scrollToSection('how-it-works')}
               >
                 See How It Works <ChevronDown size={18} />
@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
             
-            <div className="absolute -bottom-6 -right-6 bg-green-100 text-green-800 rounded-full px-5 py-2 shadow-lg animate-pulse">
+            <div className="absolute -bottom-6 -right-6 bg-blue-100 text-secondary rounded-full px-5 py-2 shadow-lg animate-pulse">
               +$45.00 earned today
             </div>
           </div>
@@ -74,7 +74,7 @@ const HeroSection: React.FC = () => {
             onClick={() => scrollToSection('benefits')} 
             className="animate-bounce bg-white rounded-full p-2 shadow-md"
           >
-            <ChevronDown className="text-blue-600" />
+            <ChevronDown className="text-secondary" />
           </button>
         </div>
       </div>

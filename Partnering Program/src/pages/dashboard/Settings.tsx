@@ -1,14 +1,86 @@
-import React, { useState } from 'react';
-import { User, Bell, Shield, CreditCard, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { User, Bell, Shield, CreditCard, Camera } from 'lucide-react';
+import { RootState, AppDispatch } from '../../store/store';
+import { updateProfile, uploadAvatar } from '../../store/slices/profileSlice';
+import toast from 'react-hot-toast';
+
+interface FormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  company: string;
+  position: string;
+  bio: string;
+}
 
 const Settings: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [activeTab, setActiveTab] = useState('profile');
+  const { data: profile, loading } = useSelector((state: RootState) => state.profile);
+
+  const [formData, setFormData] = useState<FormData>({
+    fullName: '',
+    email: '',
+    phone: '',
+    company: '',
+    position: '',
+    bio: '',
+  });
+
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (profile) {
+      setFormData({
+        fullName: profile.fullName || '',
+        email: profile.email || '',
+        phone: profile.phone || '',
+        company: profile.company || '',
+        position: profile.position || '',
+        bio: profile.bio || '',
+      });
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(selectedImage);
+    } else {
+      setImagePreview(null);
+    }
+  }, [selectedImage]);
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setSelectedImage(file);
+    try {
+      await dispatch(uploadAvatar(file)).unwrap();
+      toast.success('Avatar uploaded successfully');
+    } catch {
+      toast.error('Failed to upload avatar');
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      await dispatch(updateProfile(formData)).unwrap();
+      toast.success('Profile updated successfully');
+    } catch {
+      toast.error('Failed to update profile');
+    }
+  };
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Settings</h1>
 
-      {/* Settings Navigation */}
       <div className="bg-white rounded-lg shadow mb-6">
         <div className="border-b px-6">
           <div className="flex overflow-x-auto">
@@ -17,7 +89,7 @@ const Settings: React.FC = () => {
               { id: 'notifications', label: 'Notifications', icon: Bell },
               { id: 'security', label: 'Security', icon: Shield },
               { id: 'payment', label: 'Payment', icon: CreditCard },
-            ].map(tab => (
+            ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
@@ -35,215 +107,97 @@ const Settings: React.FC = () => {
         </div>
       </div>
 
-      {/* Settings Content */}
       <div className="bg-white rounded-lg shadow p-6">
         {activeTab === 'profile' && (
           <div className="space-y-6">
             <div className="flex items-center gap-6">
-              <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
-                <User size={40} className="text-gray-400" />
+              <div className="relative">
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200">
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                  ) : profile?.avatarUrl ? (
+                    <img src={`${import.meta.env.VITE_BASE_URL}${profile.avatarUrl}`} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <User size={40} className="text-gray-400" />
+                    </div>
+                  )}
+                </div>
+                <label htmlFor="avatar-upload" className="absolute bottom-0 right-0 p-1 bg-blue-500 rounded-full cursor-pointer hover:bg-blue-600">
+                  <Camera className="w-4 h-4 text-white" />
+                  <input type="file" id="avatar-upload" className="hidden" accept="image/*" onChange={handleAvatarChange} />
+                </label>
               </div>
               <div>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                  Upload Photo
-                </button>
-                <p className="text-sm text-gray-500 mt-2">
-                  JPG, GIF or PNG. Max size of 800K
-                </p>
+                <p className="text-sm text-gray-500">Click the camera icon to upload a new photo</p>
+                <p className="text-xs text-gray-400 mt-1">JPG, GIF or PNG. Max size of 800K</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  defaultValue="John"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  defaultValue="Doe"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  defaultValue="john.doe@example.com"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  defaultValue="+1 (555) 123-4567"
-                />
-              </div>
+              {[
+                { name: 'fullName', label: 'Full Name' },
+                { name: 'email', label: 'Email', type: 'email' },
+                { name: 'phone', label: 'Phone', type: 'tel' },
+                { name: 'company', label: 'Company' },
+                { name: 'position', label: 'Position' },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{field.label}</label>
+                  <input
+                    type={field.type || 'text'}
+                    name={field.name}
+                    value={(formData as any)[field.name]}
+                    onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+              ))}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Bio
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
               <textarea
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                rows={4}
-                defaultValue="Digital marketing professional with 5+ years of experience in affiliate marketing."
+                name="bio"
+                value={formData.bio}
+                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32"
               />
             </div>
 
             <div className="flex justify-end">
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                Save Changes
+              <button
+                type="button"
+                onClick={handleSave}
+                disabled={loading}
+                className={`px-6 py-2 rounded-lg text-white font-medium ${
+                  loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                }`}
+              >
+                {loading ? 'Saving...' : 'Save Changes'}
               </button>
             </div>
           </div>
         )}
 
         {activeTab === 'notifications' && (
-          <div className="space-y-6">
-            <h3 className="font-medium mb-4">Email Notifications</h3>
-            <div className="space-y-4">
-              {[
-                { label: 'New referral notifications', defaultChecked: true },
-                { label: 'Commission payment updates', defaultChecked: true },
-                { label: 'Monthly performance reports', defaultChecked: true },
-                { label: 'Product updates and announcements', defaultChecked: false },
-                { label: 'Newsletter', defaultChecked: false },
-              ].map((notification, index) => (
-                <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <Mail size={20} className="text-gray-400" />
-                    <span>{notification.label}</span>
-                  </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      className="sr-only peer"
-                      defaultChecked={notification.defaultChecked}
-                    />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                  </label>
-                </div>
-              ))}
-            </div>
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Notification Settings</h2>
+            <p className="text-gray-500">You can add notification preferences here.</p>
           </div>
         )}
 
         {activeTab === 'security' && (
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-medium mb-4">Change Password</h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Current Password
-                  </label>
-                  <input
-                    type="password"
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    New Password
-                  </label>
-                  <input
-                    type="password"
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Confirm New Password
-                  </label>
-                  <input
-                    type="password"
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                  Update Password
-                </button>
-              </div>
-            </div>
-
-            <div className="pt-6 border-t">
-              <h3 className="font-medium mb-4">Two-Factor Authentication</h3>
-              <p className="text-gray-600 mb-4">
-                Add an extra layer of security to your account by enabling two-factor authentication.
-              </p>
-              <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-                Enable 2FA
-              </button>
-            </div>
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Security Settings</h2>
+            <p className="text-gray-500">You can add password change, 2FA, etc.</p>
           </div>
         )}
 
         {activeTab === 'payment' && (
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-medium mb-4">Payment Methods</h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <CreditCard size={24} className="text-blue-600" />
-                    </div>
-                    <div>
-                      <div className="font-medium">PayPal</div>
-                      <div className="text-sm text-gray-500">john.doe@example.com</div>
-                    </div>
-                  </div>
-                  <button className="text-red-600 hover:text-red-700">Remove</button>
-                </div>
-              </div>
-              <button className="mt-4 text-blue-600 font-medium">
-                + Add Payment Method
-              </button>
-            </div>
-
-            <div className="pt-6 border-t">
-              <h3 className="font-medium mb-4">Payout Settings</h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Minimum Payout Amount
-                  </label>
-                  <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option>$50</option>
-                    <option>$100</option>
-                    <option>$250</option>
-                    <option>$500</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Payout Frequency
-                  </label>
-                  <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option>Monthly</option>
-                    <option>Bi-weekly</option>
-                    <option>Weekly</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Payment Settings</h2>
+            <p className="text-gray-500">You can add billing and card info here.</p>
           </div>
         )}
       </div>

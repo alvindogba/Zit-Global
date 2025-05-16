@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, Phone, Mail, ExternalLink } from 'lucide-react';
+import { Phone, Mail, ExternalLink } from 'lucide-react';
 
 const Support: React.FC = () => {
   return (
@@ -7,17 +7,8 @@ const Support: React.FC = () => {
       <h1 className="text-2xl font-bold mb-6">Support</h1>
 
       {/* Contact Options */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <MessageSquare size={24} className="text-blue-600" />
-          </div>
-          <h3 className="font-semibold mb-2">Live Chat</h3>
-          <p className="text-gray-600 mb-4">Get instant help from our support team</p>
-          <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-            Start Chat
-          </button>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      
 
         <div className="bg-white rounded-lg shadow p-6">
           <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
