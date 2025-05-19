@@ -38,7 +38,7 @@ const CtaSection: React.FC = () => {
             Start Earning Today <ArrowRight size={20} />
           </button>
           
-          <div className="mt-6 text-sm text-white font-roboto">
+          <div className="mt-6 text-sm text-primary font-roboto">
             By signing up, you agree to our <a href="#" className="underline hover:text-secondary transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-secondary transition-colors">Privacy Policy</a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import express from 'express';
-import { signUp, login, getProfile, updateProfile, getAllReferrals, getReferralsState, forgotPassword, resetPassword, uploadAvatar, getPayouts, requestPayout } from '../Controller/PartnerController.js';
+import { signUp, login, getProfile, updateProfile, getAllReferrals, getReferralsState, forgotPassword, resetPassword, uploadAvatar, getPayouts, requestPayout, updatePayoutStatus } from '../Controller/PartnerController.js';
 import tokenCheck from '../middleware/tokenCheck.js';
 import upload from '../Middlewares/multerConfig.js';
 
@@ -22,8 +22,10 @@ partnerRouter.put('/profile/me', tokenCheck, updateProfile);
 partnerRouter.get('/referrals', tokenCheck, getAllReferrals);
 partnerRouter.get("/referrals/stats", tokenCheck, getReferralsState);
 
+
 // Payout routes
-partnerRouter.get('/payouts', tokenCheck, getPayouts);
-partnerRouter.post('/payouts/request', tokenCheck, requestPayout);
+partnerRouter.get('/payouts', tokenCheck, getPayouts); // Both admin and users can get payouts
+partnerRouter.post('/payouts/request', tokenCheck, requestPayout); // Users can request payouts
+partnerRouter.put('/payouts/:payoutId/status', tokenCheck, updatePayoutStatus); // Only admins can update status
 
 export default partnerRouter;

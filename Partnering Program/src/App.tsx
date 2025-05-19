@@ -26,8 +26,22 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import BenefitsPage from './pages/BenefitsPage';
 import FaqPage from './pages/FaqPage';
 import PartnersPage from './pages/PartnersPage';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { rehydrateAuth } from './store/slices/authSlice';
+import { RootState } from './store/store';
+
 
 function App() {
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
+  const user = useSelector((state: RootState) => state.auth.user);
+
+  useEffect(() => {
+    if (!token || !user) {
+      dispatch(rehydrateAuth());
+    }
+  }, [dispatch, token, user]);
   return (
     <Router>
       <div className="min-h-screen bg-white">
@@ -58,7 +72,6 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           }>
-            <Route index element={<Analytics />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="referrals" element={<Referrals />} />
             <Route path="payouts" element={<Payouts />} />

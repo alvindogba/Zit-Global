@@ -367,3 +367,18 @@ FOREIGN KEY (ref_code)
 REFERENCES profiles(affiliate_code)
 ON DELETE SET NULL
 ON UPDATE CASCADE;
+
+--updating the profile table 
+ALTER TABLE profiles
+ADD COLUMN total_earning INTEGER,
+ADD COLUMN ballance INTEGER;
+
+--updating the payout table 
+ALTER TABLE payouts
+ADD COLUMN payment_method VARCHAR(50) NOT NULL,
+ADD COLUMN payment_details JSON NOT NULL;
+
+--updating the profile to add payout detail
+ALTER TABLE profiles
+ADD COLUMN stripe_account_id VARCHAR(255),
+ADD COLUMN paypal_email VARCHAR(255);

@@ -58,6 +58,23 @@ export default (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    total_earning: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    ballance: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    stripe_account_id: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    paypal_email: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
+
   }, {
     sequelize,
     modelName: 'Profile',

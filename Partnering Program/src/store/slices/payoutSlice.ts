@@ -1,6 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { payouts } from '../../lib/api';
 
+interface PayoutRequest {
+  amount: number;
+  paymentMethod: string;
+  details: any;
+}
+
 interface PayoutState {
   list: any[];
   loading: boolean;
@@ -20,8 +26,8 @@ export const fetchPayouts = createAsyncThunk('payout/fetchPayouts', async () => 
 
 export const requestPayout = createAsyncThunk(
   'payout/request',
-  async (amount: number) => {
-    const response = await payouts.requestPayout(amount);
+  async (request: PayoutRequest) => {
+    const response = await payouts.requestPayout(request);
     return response;
   }
 );
