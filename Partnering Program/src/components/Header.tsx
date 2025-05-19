@@ -1,17 +1,32 @@
+// src/components/Header.tsx
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import ZitLogo from "../../../client/src/asset/images/zongea-logo.png";
+
+interface NavigationItem {
+  name: string;
+  href: string;
+}
+
+const navigation: NavigationItem[] = [
+  { name: "Benefits", href: "/benefits" },
+  { name: "How It Works", href: "/how-it-works" },
+  { name: "FAQ", href: "/faq" },
+  { name: "Partners", href: "/partners" },
+  { name: "Dashboard", href: "/dashboard" },
+];
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isHashActive = (href: string) => href.startsWith('/') && location.hash === href;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -19,91 +34,83 @@ const Header: React.FC = () => {
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled ? 'bg-primary shadow-md py-2' : 'bg-primary py-4'
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 md:px-12 flex justify-between items-center">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary/90 to-secondary bg-clip-text text-transparent">
-            Partnership Program
-          </Link>
+          <NavLink to="/" className="text-2xl font-bold">
+            <img src={ZitLogo} alt="Zit Logo" className="w-32 h-16 object-contain" />
+          </NavLink>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
-          <a href="#benefits" className="text-primary hover:text-secondary font-bold">Benefits</a>
-          <a href="#how-it-works" className="text-primary hover:text-secondary font-bold">How It Works</a>
-          <a href="#testimonials" className="text-primary hover:text-secondary font-bold">Testimonials</a>
-          <a href="#faq" className="text-primary hover:text-secondary font-bold">FAQ</a>
-          <Link to="/dashboard" className="text-primary hover:text-secondary font-bold">Dashboard</Link>
+        <nav className="hidden md:flex space-x-6 items-center">
+          {navigation.map((item) => (
+            <NavLink 
+              key={item.name}
+              to={item.href}
+              className={({ isActive }) =>
+                `text-md font-roboto transition-colors ${
+                  isActive || isHashActive(item.href)
+                    ? 'text-secondary font-semibold'
+                    : 'text-white hover:text-secondary'
+                }`
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="hidden md:block">
           <button 
             onClick={() => navigate('/signup')} 
-            className="bg-secondary hover:bg-primary text-white font-bold py-2 px-6 rounded-full transition-all"
+            className="bg-secondary hover:bg-white hover:text-primary text-white font-sans text-sm font-semibold py-2 px-6 rounded-md transition-all shadow-sm"
           >
             Sign Up
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-gray-700"
+          className="md:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a 
-              href="#benefits" 
-              className="text-primary py-2 border-b" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Benefits
-            </a>
-            <a 
-              href="#how-it-works" 
-              className="text-primary py-2 border-b" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              How It Works
-            </a>
-            <a 
-              href="#testimonials" 
-              className="text-primary py-2 border-b" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Testimonials
-            </a>
-            <a 
-              href="#faq" 
-              className="text-primary py-2 border-b" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              FAQ
-            </a>
-            <Link 
-              to="/dashboard" 
-              className="text-primary py-2 border-b"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Dashboard
-            </Link>
-            <button 
-              onClick={() => {
-                setIsMenuOpen(false);
-                navigate('/signup');
-              }} 
-              className="bg-secondary hover:bg-primary text-white font-bold py-2 px-6 rounded-full transition-all w-full"
-            >
-              Sign Up
-            </button>
+        <div className="md:hidden bg-white border-t animate-fadeIn">
+          <div className="container mx-auto px-4 py-4 flex flex-col divide-y divide-gray-100">
+            {navigation.map((item) => (
+              <NavLink 
+                key={item.name}
+                to={item.href}
+                className={({ isActive }) =>
+                  `py-2 text-base font-medium ${
+                    isActive || isHashActive(item.href)
+                      ? 'text-secondary font-semibold'
+                      : 'text-primary hover:text-secondary'
+                  }`
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </NavLink>
+            ))}
+
+            <div className="pt-4 mt-2">
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  navigate('/signup');
+                }} 
+                className="bg-secondary hover:bg-primary text-white font-semibold py-2 px-6 rounded-md transition-all w-full shadow-sm"
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -40,14 +40,14 @@ const BenefitsSection: React.FC = () => {
 
   return (
     <section id="benefits" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-12">
         <div className="text-center mb-16">
           <div className="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-secondary rounded-full mb-4">
             Benefits
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">Why Become a Partner?</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Join thousands of partners who are earning passive income while supporting meaningful causes.
+            Join a growing community of partners who are earning passive income while making a positive impact on meaningful causes.
           </p>
         </div>
 

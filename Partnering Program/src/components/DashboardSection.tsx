@@ -67,7 +67,7 @@ const DashboardSection: React.FC = () => {
 
   return (
     <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-12">
         <div className="text-center mb-16">
           <div className="inline-block px-3 py-1 text-sm font-semibold bg-primary/10 text-secondary rounded-full mb-4">
             Dashboard

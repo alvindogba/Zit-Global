@@ -6,7 +6,7 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import BenefitsSection from './components/BenefitsSection';
 import HowItWorks from './components/HowItWorks';
-import TestimonialsSection from './components/TestimonialsSection';
+// import TestimonialsSection from './components/TestimonialsSection';
 import DashboardSection from './components/DashboardSection';
 import FaqSection from './components/FaqSection';
 import CtaSection from './components/CtaSection';
@@ -21,6 +21,11 @@ import Reports from './pages/dashboard/Reports';
 import Support from './pages/dashboard/Support';
 import DashboardSettings from './pages/dashboard/Settings';
 import ProtectedRoute from './components/ProtectedRoute';
+//header pages
+import HowItWorksPage from './pages/HowItWorksPage';
+import BenefitsPage from './pages/BenefitsPage';
+import FaqPage from './pages/FaqPage';
+import PartnersPage from './pages/PartnersPage';
 
 function App() {
   return (
@@ -67,13 +72,17 @@ function App() {
               <HeroSection />
               <BenefitsSection />
               <HowItWorks />
-              <TestimonialsSection />
+              {/* <TestimonialsSection /> */}
               <DashboardSection />
               <FaqSection />
               <CtaSection />
               <Footer />
             </>
           } />
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/benefits" element={<BenefitsPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/partners" element={<PartnersPage />} />
         </Routes>
       </div>
     </Router>
