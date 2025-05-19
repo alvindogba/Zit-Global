@@ -12,6 +12,8 @@ interface FormData {
   company: string;
   position: string;
   bio: string;
+  stripeAccountId: string;
+  paypalEmail: string;
 }
 
 const Settings: React.FC = () => {
@@ -26,7 +28,9 @@ const Settings: React.FC = () => {
     company: '',
     position: '',
     bio: '',
-  });
+    stripeAccountId: '',
+    paypalEmail: '',
+    });
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -40,6 +44,8 @@ const Settings: React.FC = () => {
         company: profile.company || '',
         position: profile.position || '',
         bio: profile.bio || '',
+        stripeAccountId: profile.stripeAccountId || '',
+        paypalEmail: profile.paypalEmail || '',
       });
     }
   }, [profile]);
@@ -141,6 +147,8 @@ const Settings: React.FC = () => {
                 { name: 'phone', label: 'Phone', type: 'tel' },
                 { name: 'company', label: 'Company' },
                 { name: 'position', label: 'Position' },
+                { name: 'stripeAccountId', label: 'Stripe Account ID' },
+                { name: 'paypalEmail', label: 'PayPal Email' },
               ].map((field) => (
                 <div key={field.name}>
                   <label className="block text-sm font-medium text-gray-700 mb-1">{field.label}</label>

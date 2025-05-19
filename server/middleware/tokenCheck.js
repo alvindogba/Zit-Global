@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
+    console.log("access tokek required ")
     return res.status(401).json({ error: 'Access token required' });
   }
 

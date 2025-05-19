@@ -1,26 +1,84 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CreditCard, DollarSign, Download } from 'lucide-react';
-import { fetchPayouts, requestPayout } from '../../store/slices/payoutSlice';
 import { RootState } from '../../store/store';
 import { toast } from 'react-hot-toast';
+import { DollarSign, CreditCard, Download } from 'lucide-react';
+import { fetchProfile as getProfile, updateProfile } from '../../store/slices/profileSlice';
+import { fetchPayouts, requestPayout } from '../../store/slices/payoutSlice';
 
 const Payouts: React.FC = () => {
   const dispatch = useDispatch();
   const { list: payouts, loading } = useSelector((state: RootState) => state.payout);
-  const stats = useSelector((state: RootState) => state.referral.stats);
+  const stats = useSelector((state: RootState) => state.profile.data);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedMethod, setSelectedMethod] = useState<string>('');
+  const [tempStripeId, setTempStripeId] = useState('');
+  const [tempPaypalEmail, setTempPaypalEmail] = useState('');
 
   useEffect(() => {
     dispatch(fetchPayouts() as any);
+    dispatch(getProfile() as any);
   }, [dispatch]);
 
-  const handleRequestPayout = async (amount: number) => {
-    try {
-      await dispatch(requestPayout(amount) as any);
-      toast.success('Payout request submitted successfully');
-    } catch (error) {
-      toast.error('Failed to request payout');
+  useEffect(() => {
+    if (stats) {
+      setTempStripeId(stats.stripeAccountId || '');
+      setTempPaypalEmail(stats.paypalEmail || '');
     }
+  }, [stats]);
+
+  const handleWithdraw = async () => {
+    if (!selectedMethod) {
+      toast.error('Please select a payment method');
+      return;
+    }
+
+    // Validate payment details
+    if (selectedMethod === 'paypal' && !stats?.paypalEmail && !tempPaypalEmail) {
+      toast.error('Please enter your PayPal email');
+      return;
+    }
+
+    if (selectedMethod === 'stripe' && !stats?.stripeAccountId && !tempStripeId) {
+      toast.error('Please enter your Stripe account ID');
+      return;
+    }
+
+    try {
+      // If payment details are new, update profile first
+      if ((selectedMethod === 'paypal' && !stats?.paypalEmail && tempPaypalEmail) ||
+          (selectedMethod === 'stripe' && !stats?.stripeAccountId && tempStripeId)) {
+        await dispatch(updateProfile({
+          stripeAccountId: selectedMethod === 'stripe' ? tempStripeId : stats?.stripeAccountId,
+          paypalEmail: selectedMethod === 'paypal' ? tempPaypalEmail : stats?.paypalEmail
+        }) as any).unwrap();
+        dispatch(getProfile() as any); // Refresh profile data
+      }
+
+      // Submit withdrawal request
+      await dispatch(requestPayout({
+        amount: stats?.withdrawableBalance || 0,
+        paymentMethod: selectedMethod,
+        details: selectedMethod === 'paypal' ? 
+          { email: stats?.paypalEmail || tempPaypalEmail } : 
+          { accountId: stats?.stripeAccountId || tempStripeId }
+      }) as any).unwrap(); 
+
+      toast.success('Withdrawal request submitted successfully');
+      setShowPaymentModal(false);
+      dispatch(fetchPayouts() as any);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to submit withdrawal request');
+    }
+  };
+
+  const handlePaymentMethodSubmit = () => {
+    if (!selectedMethod) {
+      toast.error('Please select a payment method');
+      return;
+    }
+
+    handleWithdraw();
   };
 
   if (loading) {
@@ -38,34 +96,142 @@ const Payouts: React.FC = () => {
             <h3 className="text-lg">Available Balance</h3>
             <DollarSign size={24} />
           </div>
-          <div className="text-3xl font-bold mb-4">${stats?.total_commission || '0.00'}</div>
+          <div className="text-3xl font-bold mb-4">${stats?.withdrawableBalance || '0.00'}</div>
           <button 
-            onClick={() => handleRequestPayout(stats?.total_commission || 0)}
+            onClick={() => setShowPaymentModal(true)}
             className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50"
+            disabled={!stats?.withdrawableBalance}
           >
             Withdraw Funds
           </button>
         </div>
 
+        {/* Payment Methods */}
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Payment Method</h3>
+            <h3 className="text-lg font-semibold">Payment Methods</h3>
             <CreditCard size={24} className="text-blue-500" />
           </div>
-          <div className="flex items-center gap-4 p-4 border rounded-lg mb-4">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-              <CreditCard size={24} className="text-blue-600" />
-            </div>
-            <div>
-              <div className="font-medium">PayPal</div>
-              <div className="text-sm text-gray-500">Connected</div>
-            </div>
+          <div className="space-y-4">
+            <button 
+              onClick={() => setSelectedMethod('paypal')}
+              className={`w-full flex items-center gap-4 p-4 border rounded-lg hover:border-blue-500 transition-colors ${selectedMethod === 'paypal' ? 'border-blue-500 bg-blue-50' : ''}`}
+            >
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <img src="/paypal-icon.png" alt="PayPal" className="w-6 h-6" />
+              </div>
+              <div className="flex-1 text-left">
+                <h3 className="font-semibold">PayPal</h3>
+                <p className="text-sm text-gray-500">
+                  {stats?.paypalEmail ? 
+                    `Send to: ${stats.paypalEmail}` : 
+                    'Get paid directly to your PayPal account'}
+                </p>
+              </div>
+            </button>
+
+            {selectedMethod === 'paypal' && !stats?.paypalEmail && (
+              <div className="p-4 border rounded-lg bg-gray-50">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  PayPal Email
+                </label>
+                <input
+                  type="email"
+                  value={tempPaypalEmail}
+                  onChange={(e) => setTempPaypalEmail(e.target.value)}
+                  placeholder="Enter your PayPal email"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <p className="mt-2 text-xs text-gray-500">
+                  This email will be saved to your profile for future withdrawals
+                </p>
+              </div>
+            )}
+
+            <button 
+              onClick={() => setSelectedMethod('stripe')}
+              className={`w-full flex items-center gap-4 p-4 border rounded-lg hover:border-blue-500 transition-colors ${selectedMethod === 'stripe' ? 'border-blue-500 bg-blue-50' : ''}`}
+            >
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <CreditCard size={24} className="text-blue-600" />
+              </div>
+              <div className="flex-1 text-left">
+                <h3 className="font-semibold">Stripe</h3>
+                <p className="text-sm text-gray-500">
+                  {stats?.stripeAccountId ? 
+                    `Account ID: ${stats.stripeAccountId}` : 
+                    'Get paid via Stripe Connect'}
+                </p>
+              </div>
+            </button>
+
+            {selectedMethod === 'stripe' && !stats?.stripeAccountId && (
+              <div className="p-4 border rounded-lg bg-gray-50">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Stripe Account ID
+                </label>
+                <input
+                  type="text"
+                  value={tempStripeId}
+                  onChange={(e) => setTempStripeId(e.target.value)}
+                  placeholder="Enter your Stripe account ID"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <p className="mt-2 text-xs text-gray-500">
+                  This ID will be saved to your profile for future withdrawals
+                </p>
+              </div>
+            )}
           </div>
-          <button className="text-blue-600 font-medium">
-            + Add Payment Method
-          </button>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-semibold mb-4">Withdraw Funds</h2>
+            
+            <div className="mb-4">
+              <div className="font-medium mb-2">Amount</div>
+              <div className="text-2xl font-bold">${stats?.withdrawableBalance}</div>
+            </div>
+
+            <div className="mb-4">
+              <div className="font-medium mb-2">Payment Method</div>
+              {selectedMethod === 'stripe' && (
+                <div className="space-y-4">
+                  <div className="text-sm text-gray-600 mb-2">
+                    You'll be redirected to Stripe to complete your payment
+                  </div>
+                </div>
+              )}
+              {selectedMethod === 'paypal' && (
+                <div className="space-y-4">
+                  <div className="text-sm text-gray-600 mb-2">
+                    You'll be redirected to PayPal to complete your payment
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-end gap-4">
+              <button
+                onClick={() => setShowPaymentModal(false)}
+                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handlePaymentMethodSubmit}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Confirm Withdrawal
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Payout History */}
       <div className="bg-white rounded-lg shadow">

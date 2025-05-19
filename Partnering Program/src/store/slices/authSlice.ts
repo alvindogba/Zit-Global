@@ -9,6 +9,8 @@ interface User {
   id: string;
   email: string;
   fullName: string;
+  stripeAccountId?: string;
+  paypalEmail?: string;
 }
 
 interface AuthState {
@@ -31,7 +33,13 @@ const initialState: AuthState = {
 
 export const signUp = createAsyncThunk<
   AuthResponse,
-  { email: string; password: string; fullName: string },
+  { 
+    email: string; 
+    password: string; 
+    fullName: string;
+    stripeAccountId?: string;
+    paypalEmail?: string;
+  },
   ThunkConfig
 >('auth/signUp', async (data, { rejectWithValue }) => {
   try {
@@ -83,6 +91,8 @@ export const resetPassword = createAsyncThunk<
   }
 });
 
+
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -93,6 +103,16 @@ const authSlice = createSlice({
       localStorage.removeItem('token');
       localStorage.removeItem('user');
     },
+
+    rehydrateAuth: (state) => {
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      if (token && user) {
+        state.token = token;
+        state.user = JSON.parse(user);
+      }
+    },
+  
   },
   extraReducers: (builder) => {
     // Sign up
@@ -157,5 +177,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, rehydrateAuth } = authSlice.actions;
 export default authSlice.reducer;

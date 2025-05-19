@@ -64,7 +64,7 @@ stripeRouter.post('/save-donation', async (req, res) => {
           transaction_id: donation.transactionId || `DON-${Date.now()}`, // fallback if needed
           amount: donation.amount,
           commission,
-          status: 'pending',
+          status: 'completed',
         });
       }
     }
@@ -202,7 +202,7 @@ if (!existingDonation) {
         transaction_id: transactionId,
         amount,
         commission,
-        status: 'completed',
+        status: 'pending',
       });
     }
   }

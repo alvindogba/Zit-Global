@@ -17,6 +17,7 @@ const api = axios.create({
 // Add token to requests if it exists
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
+  console.log('Token from localStorage:', token); // Check this!
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -28,13 +29,21 @@ export interface AuthResponse {
     id: string;
     email: string;
     fullName: string;
+    stripeAccountId?: string;
+    paypalEmail?: string;
   };
   token: string;
   message?: string;
 }
 
 export const auth = {
-  signUp: async (data: { email: string; password: string; fullName: string }): Promise<AuthResponse> => {
+  signUp: async (data: { 
+    email: string; 
+    password: string; 
+    fullName: string;
+    stripeAccountId?: string;
+    paypalEmail?: string;
+  }): Promise<AuthResponse> => {
     const response = await api.post('/auth/signup', data);
     return response.data;
   },
@@ -60,6 +69,11 @@ export interface Profile {
   avatarUrl?: string;
   bio?: string;
   referralLink?: string;
+  withdrawableBalance?: number;
+  totalEarnings?: number;
+  totalWithdrawn?: number;
+  stripeAccountId?: string;
+  paypalEmail?: string;
 }
 
 export const profiles = {
@@ -99,6 +113,12 @@ export const referrals = {
   },
 };
 
+export interface PayoutRequest {
+  amount: number;
+  paymentMethod: string;
+  details: any;
+}
+
 export const payouts = {
   getPayouts: async () => {
     const response = await api.get('/payouts');
@@ -106,8 +126,8 @@ export const payouts = {
     return response.data;
   },
   
-  requestPayout: async (amount: number) => {
-    const response = await api.post('/payouts/request', { amount });
+  requestPayout: async (request: PayoutRequest) => {
+    const response = await api.post('/payouts/request', request);
     return response.data;
   },
 };

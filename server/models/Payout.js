@@ -25,6 +25,14 @@ export default (sequelize) => {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
+    payment_method: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    payment_details: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

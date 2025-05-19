@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   BarChart, Users, DollarSign, Link as LinkIcon,
   LogOut, Settings, Bell, Menu,
-  Home, CreditCard, PieChart, MessageSquare
+  Home, CreditCard, MessageSquare
 } from 'lucide-react';
 import { RootState } from '../store/store';
 import { logout } from '../store/slices/authSlice';
@@ -44,9 +44,13 @@ const Dashboard: React.FC = () => {
     }
   };
   useEffect(() => {
-    dispatch(fetchProfile() as any);
-    dispatch(fetchReferralStats() as any);
-  }, [dispatch]);
+   
+      console.log("user is not null");
+      dispatch(fetchProfile() as any);
+      dispatch(fetchReferralStats() as any);
+ 
+  }, [dispatch, navigate]);
+  
 
   const handleLogout = () => {
     dispatch(logout());
@@ -72,9 +76,8 @@ const Dashboard: React.FC = () => {
 
   // Safely access stats with null checks and default values
   const totalReferrals = stats?.length || 0;
-  const totalAmountPaid = stats?.reduce((sum: number, r: any) => Number(sum) + Number(r.amount), 0) || 0;
-  const totalCommission = stats?.reduce((sum: number, r: any) => Number(sum) + Number(r.commission), 0) || 0;
-  const userBalance = totalCommission;
+  const totalCommission = profile?.totalEarnings || 0;
+  const userBalance = profile?.withdrawableBalance || 0;
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
@@ -180,7 +183,7 @@ const Dashboard: React.FC = () => {
             <Route path="/" element={
               <div>
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between mb-4 ">
                       <h3 className="text-gray-500 text-sm">Total Earnings</h3>
@@ -197,17 +200,11 @@ const Dashboard: React.FC = () => {
                     <p className="text-2xl font-bold">{totalReferrals}</p>
                   </div>
 
-                  <div className="bg-white rounded-lg shadow p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-gray-500 text-sm">Total Amount</h3>
-                      <BarChart className="text-blue-500" size={20} />
-                    </div>
-                    <p className="text-2xl font-bold">${totalAmountPaid}</p>
-                  </div>
+                 
 
                   <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-gray-500 text-sm">Available Balance</h3>
+                      <h3 className="text-gray-500 text-sm">Withdrawable Balance</h3>
                       <DollarSign className="text-blue-500" size={20} />
                     </div>
                     <p className="text-2xl font-bold">${userBalance}</p>
