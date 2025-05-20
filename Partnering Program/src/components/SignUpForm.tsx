@@ -49,7 +49,7 @@ const SignUpForm: React.FC = () => {
     <div className="max-w-md w-full mx-auto">
       <button 
         onClick={() => navigate('/')} 
-        className="mb-8 text-gray-600 hover:text-gray-900 flex items-center gap-2"
+        className="mb-8 text-white hover:text-secondary flex items-center gap-2"
       >
         <ArrowLeft size={20} />
         Back to Home
@@ -69,6 +69,7 @@ const SignUpForm: React.FC = () => {
               onChange={(e) => setFullName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
+              placeholder="Enter your full name"
             />
           </div>
           <div>
@@ -82,6 +83,7 @@ const SignUpForm: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
+              placeholder="Enter your email address"
             />
           </div>
           <div>
@@ -95,6 +97,7 @@ const SignUpForm: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
+              placeholder="Enter your password"
             />
           </div>
           <div className="space-y-4">
@@ -141,8 +144,8 @@ const SignUpForm: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ${
-                isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-blue-700'
+              className={`w-full bg-primary text-white py-2 px-4 rounded-lg font-medium ${
+                isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-secondary'
               }`}
             >
               {isLoading ? 'Creating Account...' : 'Create Account'}
@@ -150,7 +153,7 @@ const SignUpForm: React.FC = () => {
           </div>
           <p className="text-center text-sm text-gray-600 mt-4">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+            <Link to="/login" className="text-primary hover:text-secondary font-medium">
               Login
             </Link>
           </p>

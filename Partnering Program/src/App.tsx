@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import images from './assests/forms-bg.jpg'
 import { Toaster } from 'react-hot-toast';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
@@ -48,23 +49,60 @@ function App() {
         <Toaster position="top-right" />
         <Routes>
           <Route path="/login" element={
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-              <LoginForm />
+            <div className="min-h-screen flex items-center justify-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6)), url(${images})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                transition: 'background-image 1s ease-in',
+              }}
+            >
+                <div className="w-full md:w-1/2 p-6">
+                  <LoginForm />
+                </div>
+
             </div>
           } />
           <Route path="/signup" element={
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-              <SignUpForm />
+            <div className="min-h-screen flex items-center justify-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6)), url(${images})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                transition: 'background-image 1s ease-in',
+              }}
+            >
+                <div className="w-full md:w-1/2 p-6">
+                  <SignUpForm />
+                </div>
             </div>
           } />
           <Route path="/forgot-password" element={
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-              <ForgotPassword />
+            <div className="min-h-screen flex items-center justify-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6)), url(${images})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                transition: 'background-image 1s ease-in',
+              }}
+            >
+                <div className="w-full md:w-1/2 p-6">
+                  <ForgotPassword />
+                </div>
             </div>
           } />
           <Route path="/reset-password" element={
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-              <ResetPassword />
+            <div className="min-h-screen flex items-center justify-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6), rgba(0, 0, 84, 0.6)), url(${images})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                transition: 'background-image 1s ease-in',
+              }}
+            >
+                <div className="w-full md:w-1/2 p-6">
+                  <ResetPassword />
+                </div>
             </div>
           } />
           <Route path="/dashboard/*" element={

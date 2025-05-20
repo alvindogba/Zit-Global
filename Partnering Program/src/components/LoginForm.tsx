@@ -37,7 +37,7 @@ const LoginForm: React.FC = () => {
     <div className="max-w-md w-full mx-auto">
       <button 
         onClick={() => navigate('/')} 
-        className="mb-8 text-gray-600 hover:text-gray-900 flex items-center gap-2"
+        className="mb-8 text-white hover:text-secondary flex items-center gap-2"
       >
         <ArrowLeft size={20} />
         Back to Home
@@ -57,6 +57,7 @@ const LoginForm: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
+              placeholder="Enter your email address"
             />
           </div>
           
@@ -71,14 +72,15 @@ const LoginForm: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
+              placeholder="Enter your password"
             />
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ${
-              isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-blue-700'
+            className={`w-full bg-primary text-white py-2 px-4 rounded-lg font-medium ${
+              isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-secondary'
             }`}
           >
             {isLoading ? 'Logging in...' : 'Login'}
@@ -87,13 +89,13 @@ const LoginForm: React.FC = () => {
           <div className="flex flex-col space-y-3 mt-4 text-sm text-center">
             <Link 
               to="/forgot-password" 
-              className="text-blue-600 hover:text-blue-700"
+              className="text-primary hover:text-secondary"
             >
               Forgot your password?
             </Link>
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <Link to="/signup" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link to="/signup" className="text-primary hover:text-secondary font-medium">
                 Sign up
               </Link>
             </p>
