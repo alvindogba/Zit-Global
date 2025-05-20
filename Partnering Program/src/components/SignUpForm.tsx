@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { ArrowLeft, CreditCard, CircleDollarSign } from 'lucide-react';
+import { ArrowLeft} from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import type { RootState } from '../store/store';
 import { signUp } from '../store/slices/authSlice';
@@ -11,8 +11,7 @@ const SignUpForm: React.FC = () => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
 
-  const [stripeAccountId, setStripeAccountId] = useState('');
-  const [paypalEmail, setPaypalEmail] = useState('');
+ 
 
   const navigate = useNavigate();
 
@@ -27,8 +26,6 @@ const SignUpForm: React.FC = () => {
         email, 
         password, 
         fullName,
-        stripeAccountId: stripeAccountId || undefined,
-        paypalEmail: paypalEmail || undefined
       })).unwrap();
       if (result?.user) {
         toast.success('Account created successfully!');
@@ -105,40 +102,6 @@ const SignUpForm: React.FC = () => {
               <hr className="flex-grow border-gray-300" />
               <span className="px-4 text-sm text-gray-500">Payment Details (Optional)</span>
               <hr className="flex-grow border-gray-300" />
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-                  <CreditCard size={16} />
-                  Stripe Account ID
-                </label>
-                <input
-                  type="text"
-                  value={stripeAccountId}
-                  onChange={(e) => setStripeAccountId(e.target.value)}
-                  placeholder="Enter your Stripe account ID"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-                  <CircleDollarSign size={16} />
-                  PayPal Email
-                </label>
-                <input
-                  type="email"
-                  value={paypalEmail}
-                  onChange={(e) => setPaypalEmail(e.target.value)}
-                  placeholder="Enter your PayPal email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              <p className="text-xs text-gray-500 italic">
-                You can add or update your payment details later in your profile settings.
-              </p>
             </div>
 
             <button

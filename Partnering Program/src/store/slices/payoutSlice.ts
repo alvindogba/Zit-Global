@@ -1,10 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { payouts } from '../../lib/api';
+import { payouts, UpdatePayoutStatusRequest } from '../../lib/api';
 
 interface PayoutRequest {
   amount: number;
   paymentMethod: string;
-  details: any;
+}
+
+interface UpdatePayoutStatusParams {
+  payoutId: number;
+  request: UpdatePayoutStatusRequest;
 }
 
 interface PayoutState {
@@ -28,6 +32,14 @@ export const requestPayout = createAsyncThunk(
   'payout/request',
   async (request: PayoutRequest) => {
     const response = await payouts.requestPayout(request);
+    return response;
+  }
+);
+
+export const updatePayoutStatus = createAsyncThunk(
+  'payout/updateStatus',
+  async ({ payoutId, request }: UpdatePayoutStatusParams) => {
+    const response = await payouts.updateStatus(payoutId, request);
     return response;
   }
 );
@@ -61,6 +73,21 @@ const payoutSlice = createSlice({
       .addCase(requestPayout.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Failed to request payout';
+      })
+      .addCase(updatePayoutStatus.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updatePayoutStatus.fulfilled, (state, action) => {
+        state.loading = false;
+        const updatedPayout = action.payload;
+        state.list = state.list.map((payout: any) =>
+          payout.id === updatedPayout.id ? updatedPayout : payout
+        );
+      })
+      .addCase(updatePayoutStatus.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Failed to update payout status';
       });
   },
 });

@@ -116,18 +116,26 @@ export const referrals = {
 export interface PayoutRequest {
   amount: number;
   paymentMethod: string;
-  details: any;
+}
+
+export interface UpdatePayoutStatusRequest {
+  status: 'approved' | 'rejected' | 'processing' | 'completed' | 'failed';
+  adminNote?: string;
 }
 
 export const payouts = {
   getPayouts: async () => {
-    const response = await api.get('/payouts');
-    console.log("payouts ", response.data)
+    const response = await api.get('/api/partner/payouts');
     return response.data;
   },
   
   requestPayout: async (request: PayoutRequest) => {
-    const response = await api.post('/payouts/request', request);
+    const response = await api.post('/api/partner/payouts/request', request);
+    return response.data;
+  },
+
+  updateStatus: async (payoutId: number, request: UpdatePayoutStatusRequest) => {
+    const response = await api.put(`/api/partner/payouts/${payoutId}/status`, request);
     return response.data;
   },
 };

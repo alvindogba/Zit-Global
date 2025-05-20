@@ -5,6 +5,8 @@ import Stripe from 'stripe';
 import paypal from '@paypal/payouts-sdk';
 import { sendPasswordResetEmail } from '../services/emailService.js';
 import dotenv from 'dotenv';
+import { Op } from 'sequelize';
+
 dotenv.config();
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -14,7 +16,7 @@ const paypalClient = () => {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
 
-  const environment = new paypal.core.LiveEnvironment(clientId, clientSecret);
+  const environment = new paypal.core.SandboxEnvironment(clientId, clientSecret);
   // For production:
   // const environment = new paypal.core.LiveEnvironment(clientId, clientSecret);
 
@@ -24,7 +26,7 @@ const paypalClient = () => {
 // The sign up Controller 
 export const signUp = async (req, res) => {
   try {
-    const { email, password, fullName, stripeAccountId, paypalEmail } = req.body;
+    const { email, password, fullName } = req.body;
 
     // Check if user already exists
     const existingUser = await db.Profile.findOne({ where: { email } });
@@ -66,8 +68,6 @@ export const signUp = async (req, res) => {
       password_hash,
       full_name: fullName,
       affiliate_code,
-      stripe_account_id: stripeAccountId,
-      paypal_email: paypalEmail
     });
 
     // Generate JWT token
@@ -82,8 +82,6 @@ export const signUp = async (req, res) => {
         id: user.id,
         email: user.email,
         fullName: user.full_name,
-        stripeAccountId: user.stripe_account_id,
-        paypalEmail: user.paypal_email
       },
       token,
     });
@@ -121,8 +119,6 @@ export const login = async (req, res) => {
         id: user.id,
         email: user.email,
         fullName: user.full_name,
-        stripeAccountId: user.stripe_account_id,
-        paypalEmail: user.paypal_email
       }
     });
   } catch (error) {
@@ -450,7 +446,7 @@ export const requestPayout = async (req, res) => {
   try {
     console.log('Received request payout request:', req.user);
     const userId = req.user.id;
-    const { amount, paymentMethod, details } = req.body;
+    const { amount, paymentMethod } = req.body;
     console.log('Amount:', amount, 'Payment Method:', paymentMethod);
 
     // Validate payment method
@@ -460,18 +456,77 @@ export const requestPayout = async (req, res) => {
       });
     }
 
-    // Validate payment details
-    if (paymentMethod === 'stripe' && !details?.accountId) {
+    // Check for pending payouts
+    const pendingPayout = await db.Payout.findOne({
+      where: {
+        affiliate_id: userId,
+        status: {
+          [Op.in]: ['pending_review', 'approved', 'processing']
+        }
+      }
+    });
+
+    if (pendingPayout) {
       return res.status(400).json({
-        error: 'Stripe Account ID is required for Stripe payouts'
-      });
-    }
-    if (paymentMethod === 'paypal' && !details?.email) {
-      return res.status(400).json({
-        error: 'PayPal email is required for PayPal payouts'
+        error: 'You have a pending payout request. Please wait until it is processed.',
+        pendingPayout: {
+          id: pendingPayout.id,
+          status: pendingPayout.status,
+          amount: pendingPayout.amount,
+          created_at: pendingPayout.created_at
+        }
       });
     }
 
+    // If payment method is Stripe, handle onboarding
+    if (paymentMethod === 'stripe') {
+      const profile = await db.Profile.findByPk(userId);
+      
+      if (!profile.stripe_account_id) {
+        // Create Stripe account link for onboarding
+        const account = await stripe.accounts.create({
+          type: 'express',
+          country: 'US',
+          email: req.user.email,
+          capabilities: {
+            transfers: { requested: true }
+          }
+        });
+
+        // Save the account ID
+        await profile.update({ stripe_account_id: account.id });
+
+        // Create account link for onboarding
+        const accountLink = await stripe.accountLinks.create({
+          account: account.id,
+          refresh_url: `${process.env.PARTNER_FRONTEND_URL}/dashboard/payouts?session_id=${account.id}`,
+          return_url: `${process.env.PARTNER_FRONTEND_URL}/dashboard/payouts?success=true`,
+          type: 'account_onboarding'
+        });
+
+        return res.status(200).json({
+          redirect: true,
+          url: accountLink.url
+        });
+      }
+
+      // Check if Stripe account is properly set up
+      const account = await stripe.accounts.retrieve(profile.stripe_account_id);
+      
+      if (!account.details_submitted || !account.payouts_enabled) {
+        const accountLink = await stripe.accountLinks.create({
+          account: profile.stripe_account_id,
+          refresh_url: `${process.env.PARTNER_FRONTEND_URL}/dashboard/payouts?session_id=${profile.stripe_account_id}`,
+          return_url: `${process.env.PARTNER_FRONTEND_URL}/dashboard/payouts?success=true`,
+          type: 'account_onboarding'
+        });
+
+        return res.status(200).json({
+          redirect: true,
+          url: accountLink.url
+        });
+      }
+    }
     // Minimum payout amount
     const MINIMUM_PAYOUT_AMOUNT = 50; // $50 minimum payout
 
@@ -497,42 +552,44 @@ export const requestPayout = async (req, res) => {
       }
     }) || 0;
 
-    // Calculate withdrawable balance
-    const withdrawableBalance = totalEarnings - totalWithdrawn;
+    // Calculate available balance
+    const availableBalance = totalEarnings - totalWithdrawn;
 
-    // Check if user has sufficient balance
-    if (amount > withdrawableBalance) {
+    if (amount > availableBalance) {
       return res.status(400).json({
-        error: 'Insufficient balance',
-        withdrawableBalance
+        error: `Insufficient balance. Available balance: $${availableBalance.toFixed(2)}`
       });
     }
 
-    // Get user's profile for payment processing
+    // Get user profile for payment details
     const profile = await db.Profile.findByPk(userId);
-    if (!profile) {
-      return res.status(404).json({ error: 'Profile not found' });
-    }
 
-    // Create payout record in pending state
+    // Create payout record
     const payout = await db.Payout.create({
       affiliate_id: userId,
       amount,
-      status: 'pending_review', // Initial state waiting for admin review
+      status: 'pending_review',
       payment_method: paymentMethod,
       payment_details: {
-        [paymentMethod === 'stripe' ? 'stripeAccountId' : 'paypalEmail']:
-          paymentMethod === 'stripe' ? details.accountId : details.email
+        stripeAccountId: profile.stripe_account_id,
+        paypalEmail: profile.paypal_email,
+        request_date: new Date().toISOString(),
+        available_balance: availableBalance
       }
     });
 
     // Send notification to admin about new payout request
-
     // TODO: Implement admin notification system
 
     res.status(200).json({
-      message: 'Payout request submitted successfully. Waiting for admin review.',
-      payout
+      message: 'Payout request created successfully',
+      payout: {
+        id: payout.id,
+        amount: payout.amount,
+        status: payout.status,
+        payment_method: payout.payment_method,
+        created_at: payout.created_at
+      }
     });
   } catch (error) {
     console.error('Error in requestPayout:', error);
@@ -546,37 +603,34 @@ export const updatePayoutStatus = async (req, res) => {
     const { payoutId } = req.params;
     const { status, adminNote } = req.body;
 
-    // Verify admin role
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ error: 'Only admins can update payout status' });
-    }
-
-    // Find the payout
-    const payout = await db.Payout.findByPk(payoutId);
-    if (!payout) {
-      return res.status(404).json({ error: 'Payout not found' });
-    }
-
-    // Validate status transition
-    const validTransitions = {
-      pending_review: ['approved', 'rejected'],
-      approved: ['processing'],
-      processing: ['completed', 'failed'],
-      rejected: [],
-      failed: ['pending_review'], // Allow retrying failed payouts
-      completed: []
-    };
-
-    if (!validTransitions[payout.status]?.includes(status)) {
-      return res.status(400).json({
-        error: `Invalid status transition from ${payout.status} to ${status}`
-      });
-    }
-
-    // Start a transaction
+    // Start transaction
     const transaction = await db.sequelize.transaction();
 
     try {
+      // Find payout
+      const payout = await db.Payout.findByPk(payoutId, { transaction });
+      if (!payout) {
+        await transaction.rollback();
+        return res.status(404).json({ error: 'Payout not found' });
+      }
+
+      // Validate status transition
+      const validTransitions = {
+        pending_review: ['approved', 'rejected'],
+        approved: ['processing'],
+        processing: ['completed', 'failed'],
+        completed: [],
+        failed: ['pending_review'],
+        rejected: ['pending_review']
+      };
+
+      if (!validTransitions[payout.status]?.includes(status)) {
+        await transaction.rollback();
+        return res.status(400).json({
+          error: `Invalid status transition from ${payout.status} to ${status}`
+        });
+      }
+
       // Update payout status
       await payout.update({
         status,
@@ -584,23 +638,24 @@ export const updatePayoutStatus = async (req, res) => {
         processed_at: ['completed', 'failed'].includes(status) ? new Date() : null
       }, { transaction });
 
-      // If approved, verify payment details and prepare payment
-      if (status === 'approved') {
+      // Additional validations for processing status
+      if (status === 'processing') {
+        // Get user's profile
         const profile = await db.Profile.findByPk(payout.affiliate_id, { transaction });
         if (!profile) {
           throw new Error('Profile not found');
         }
 
-        // Verify payment details exist and match profile
+        // Validate payment details based on method
         if (payout.payment_method === 'stripe') {
-          if (!payout.payment_details?.stripeAccountId) {
+          if (!payout.payment_details.stripeAccountId) {
             throw new Error('Stripe account ID is missing in payout details');
           }
           if (payout.payment_details.stripeAccountId !== profile.stripe_account_id) {
-            throw new Error('Stripe account mismatch');
+            throw new Error('Stripe account ID mismatch');
           }
         } else if (payout.payment_method === 'paypal') {
-          if (!payout.payment_details?.paypalEmail) {
+          if (!payout.payment_details.paypalEmail) {
             throw new Error('PayPal email is missing in payout details');
           }
           if (payout.payment_details.paypalEmail !== profile.paypal_email) {
@@ -643,8 +698,7 @@ export const updatePayoutStatus = async (req, res) => {
             request.requestBody(requestBody);
             paymentResponse = await client.execute(request);
             console.log('PayPal Payout Response:', paymentResponse);
-
-          } 
+          }
 
           // Store payment response
           await payout.update({
@@ -713,7 +767,8 @@ export const updatePayoutStatus = async (req, res) => {
       });
     } catch (error) {
       await transaction.rollback();
-      throw error;
+      console.error('Error in updatePayoutStatus:', error);
+      res.status(500).json({ error: error.message });
     }
   } catch (error) {
     console.error('Error in updatePayoutStatus:', error);
@@ -721,3 +776,18 @@ export const updatePayoutStatus = async (req, res) => {
   }
 };
 
+// Export all controllers
+// export {
+//   signUp,
+//   login,
+//   getProfile,
+//   forgotPassword,
+//   resetPassword,
+//   uploadAvatar,
+//   updateProfile,
+//   getAllReferrals,
+//   getReferralsState,
+//   getPayouts,
+//   requestPayout,
+//   updatePayoutStatus
+// };
