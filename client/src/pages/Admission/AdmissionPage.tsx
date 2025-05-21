@@ -328,6 +328,7 @@ function AdmissionPage() {
             <option value="basic-computer">Basic to Computer</option>
             <option value="graphic-design">Graphic Design</option>
             <option value="full-stack-development">Full Stack Development</option>
+            <option value="database-administration">Database Administration</option>
             <option value="ui-ux-design">UI-UX Design</option>
             <option value="cybersecurity">Cybersecurity</option>
           </select>
