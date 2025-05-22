@@ -5,6 +5,12 @@ import upload from '../Middlewares/multerConfig.js';
 
 
 const partnerRouter = express.Router();
+
+// Token verification endpoint
+partnerRouter.get('/verify-token', tokenCheck, (req, res) => {
+  // If tokenCheck middleware passes, the token is valid
+  res.status(200).json({ valid: true });
+});
 // Authentication routes 
 partnerRouter.post('/auth/signup', signUp);
 partnerRouter.post('/auth/login', login);

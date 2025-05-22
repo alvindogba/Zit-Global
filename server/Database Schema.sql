@@ -373,6 +373,10 @@ ALTER TABLE profiles
 ADD COLUMN total_earning INTEGER,
 ADD COLUMN ballance INTEGER;
 
+--updating the profile table 
+ALTER TABLE profiles
+ADD COLUMN affiliate_link VARCHAR(255);
+
 --updating the payout table 
 ALTER TABLE payouts
 ADD COLUMN payment_method VARCHAR(50),

@@ -6,8 +6,9 @@ import paypal from '@paypal/payouts-sdk';
 import { sendPasswordResetEmail } from '../services/emailService.js';
 import dotenv from 'dotenv';
 import { Op } from 'sequelize';
+import { shortUrl } from '../utils/ShortingUrl.js';
 
-dotenv.config();
+dotenv.config();  
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -62,19 +63,33 @@ export const signUp = async (req, res) => {
       }
     }
 
+    // Combine the affilite code with the link to shuting it 
+    const affiliateLink = `${process.env.ZONGEA_TECH_DONATION_SITE}/donate?ref=${affiliate_code}`;
+   let bitlyUrl = affiliateLink
+    // Skippping the shortUrl in development
+     if(process.env.NODE_ENV === 'production'){
+      bitlyUrl = await shortUrl(affiliateLink);
+     }
+
+  
+   
     // Create user with optional payment details
     const user = await db.Profile.create({
       email,
       password_hash,
       full_name: fullName,
       affiliate_code,
+      affiliate_link: bitlyUrl,
+      
+  
+     
     });
 
     // Generate JWT token
     const token = jwt.sign(
       { id: user.id },
       process.env.JWT_SECRET,
-      { expiresIn: '30d' }
+      { expiresIn: '1d' }
     );
 
     res.status(201).json({
@@ -111,7 +126,7 @@ export const login = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(200).json({
       token,

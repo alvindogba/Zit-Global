@@ -30,6 +30,10 @@ export default (sequelize) => {
       unique: true,
       allowNull: false,
     },
+    affiliate_link: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
