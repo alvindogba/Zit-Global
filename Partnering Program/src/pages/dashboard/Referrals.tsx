@@ -13,25 +13,25 @@ const Referrals: React.FC = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='text-primary'>Loading...</div>;
   }
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Referrals</h1>
+      <h1 className="text-2xl font-bold mb-6 text-primary">Referrals</h1>
 
       {/* Search and Filter */}
       <div className="bg-white rounded-lg shadow p-6 mb-8">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 relative">
-            <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary" />
             <input
               type="text"
               placeholder="Search by transaction ID..."
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/10 focus:border-transparent"
             />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-50">
+          <button className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-primary/30 hover:text-primary">
             <Filter size={20} />
             <span>Filter</span>
           </button>
@@ -42,8 +42,8 @@ const Referrals: React.FC = () => {
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <div className="p-6 border-b">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold flex items-center gap-2">
-              <Users size={20} className="text-blue-500" />
+            <h2 className="font-semibold flex items-center gap-2 text-primary">
+              <Users size={20} className="text-secondary" />
               Active Referrals
             </h2>
             <select className="border rounded-lg px-3 py-1">
@@ -59,12 +59,12 @@ const Referrals: React.FC = () => {
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50">
-                <th className="text-left py-3 px-6">Transaction ID</th>
-                <th className="text-left py-3 px-6">Source</th>
-                <th className="text-right py-3 px-6">Date</th>
-                <th className="text-right py-3 px-6">Amount</th>
-                <th className="text-right py-3 px-6">Commission</th>
-                <th className="text-right py-3 px-6">Status</th>
+                <th className="text-left py-3 px-6 text-primary">Transaction ID</th>
+                <th className="text-left py-3 px-6 text-primary">Source</th>
+                <th className="text-right py-3 px-6 text-primary">Date</th>
+                <th className="text-right py-3 px-6 text-primary">Amount</th>
+                <th className="text-right py-3 px-6 text-primary">Commission</th>
+                <th className="text-right py-3 px-6 text-primary">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -94,12 +94,12 @@ const Referrals: React.FC = () => {
 
         <div className="p-6 border-t">
           <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-600">
               Showing {referrals.length} entries
             </div>
             <div className="flex gap-2">
               <button className="px-3 py-1 border rounded hover:bg-gray-50">Previous</button>
-              <button className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">1</button>
+              <button className="px-3 py-1 bg-primary text-white rounded hover:bg-primary/80">1</button>
               <button className="px-3 py-1 border rounded hover:bg-gray-50">2</button>
               <button className="px-3 py-1 border rounded hover:bg-gray-50">3</button>
               <button className="px-3 py-1 border rounded hover:bg-gray-50">Next</button>

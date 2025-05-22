@@ -5,14 +5,14 @@ const Reports: React.FC = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Reports</h1>
+        <h1 className="text-2xl font-bold text-primary">Reports</h1>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-50">
-            <Calendar size={20} />
+            <Calendar size={20} className="text-secondary"/>
             <span>Date Range</span>
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            <Download size={20} />
+          <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80">
+            <Download size={20} className="text-secondary"/>
             <span>Export</span>
           </button>
         </div>
@@ -38,8 +38,8 @@ const Reports: React.FC = () => {
         {/* Revenue by Source */}
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-semibold flex items-center gap-2">
-              <PieChart size={20} className="text-blue-500" />
+            <h2 className="font-semibold flex items-center gap-2 text-primary">
+              <PieChart size={20} className="text-secondary" />
               Revenue by Source
             </h2>
             <select className="border rounded-lg px-3 py-1">
