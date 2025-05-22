@@ -85,7 +85,7 @@ const Settings: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Settings</h1>
+      <h1 className="text-2xl font-bold mb-6 text-primary">Settings</h1>
 
       <div className="bg-white rounded-lg shadow mb-6">
         <div className="border-b px-6">
@@ -101,8 +101,8 @@ const Settings: React.FC = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-4 py-4 border-b-2 font-medium ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    ? 'border-secondary text-secondary'
+                    : 'border-transparent text-primary hover:text-primary/80'
                 }`}
               >
                 <tab.icon size={20} />
@@ -125,18 +125,18 @@ const Settings: React.FC = () => {
                     <img src={`${import.meta.env.VITE_BASE_URL}${profile.avatarUrl}`} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <User size={40} className="text-gray-400" />
+                      <User size={40} className="text-secondary" />
                     </div>
                   )}
                 </div>
-                <label htmlFor="avatar-upload" className="absolute bottom-0 right-0 p-1 bg-blue-500 rounded-full cursor-pointer hover:bg-blue-600">
-                  <Camera className="w-4 h-4 text-white" />
+                <label htmlFor="avatar-upload" className="absolute bottom-0 right-0 p-1 bg-primary/30 rounded-full cursor-pointer hover:bg-primary/80">
+                  <Camera className="w-4 h-4 text-primary" />
                   <input type="file" id="avatar-upload" className="hidden" accept="image/*" onChange={handleAvatarChange} />
                 </label>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Click the camera icon to upload a new photo</p>
-                <p className="text-xs text-gray-400 mt-1">JPG, GIF or PNG. Max size of 800K</p>
+                <p className="text-sm text-gray-600">Click the camera icon to upload a new photo</p>
+                <p className="text-xs text-gray-500 mt-1">JPG, GIF or PNG. Max size of 800K</p>
               </div>
             </div>
 
@@ -151,25 +151,25 @@ const Settings: React.FC = () => {
                 { name: 'paypalEmail', label: 'PayPal Email' },
               ].map((field) => (
                 <div key={field.name}>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{field.label}</label>
+                  <label className="block text-sm font-medium text-primary mb-1">{field.label}</label>
                   <input
                     type={field.type || 'text'}
                     name={field.name}
                     value={(formData as any)[field.name]}
                     onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border focus:border-1 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-transparent"
                   />
                 </div>
               ))}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+              <label className="block text-sm font-medium text-primary mb-1">Bio</label>
               <textarea
                 name="bio"
                 value={formData.bio}
                 onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-transparent h-32"
               />
             </div>
 
@@ -179,7 +179,7 @@ const Settings: React.FC = () => {
                 onClick={handleSave}
                 disabled={loading}
                 className={`px-6 py-2 rounded-lg text-white font-medium ${
-                  loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                  loading ? 'bg-primary/60 cursor-not-allowed' : 'bg-primary hover:bg-secondary'
                 }`}
               >
                 {loading ? 'Saving...' : 'Save Changes'}

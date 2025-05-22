@@ -328,18 +328,6 @@ CREATE TABLE "Contacts" (
   "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- The Partner ship table
-CREATE TABLE profiles (
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  full_name VARCHAR(255),
-  avatar_url TEXT,
-  affiliate_code VARCHAR(8) UNIQUE NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE referrals (
   id SERIAL PRIMARY KEY,
   affiliate_id INTEGER REFERENCES profiles(id),
@@ -358,6 +346,18 @@ CREATE TABLE payouts (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- The Partner ship table
+CREATE TABLE profiles (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  full_name VARCHAR(255),
+  avatar_url TEXT,
+  affiliate_code VARCHAR(8) UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+); 
+
 -- udating the donation table 
 ALTER TABLE "Donations"
 ADD COLUMN ref_code VARCHAR(8),
@@ -372,6 +372,13 @@ ON UPDATE CASCADE;
 ALTER TABLE profiles
 ADD COLUMN total_earning INTEGER,
 ADD COLUMN ballance INTEGER;
+ADD COLUMN position VARCHAR(255);
+ADD COLUMN bio VARCHAR(255);
+ADD COLUMN company VARCHAR(255);
+ADD COLUMN stripe_account_id VARCHAR(255);
+ADD COLUMN paypal_email VARCHAR(255);
+ADD COLUMN reset_token VARCHAR(255);
+ADD COLUMN phone VARCHAR(255);
 
 --updating the profile table 
 ALTER TABLE profiles
@@ -381,8 +388,3 @@ ADD COLUMN affiliate_link VARCHAR(255);
 ALTER TABLE payouts
 ADD COLUMN payment_method VARCHAR(50),
 ADD COLUMN payment_details JSON NOT NULL;
-
---updating the profile to add payout detail
-ALTER TABLE profiles
-ADD COLUMN stripe_account_id VARCHAR(255),
-ADD COLUMN paypal_email VARCHAR(255);

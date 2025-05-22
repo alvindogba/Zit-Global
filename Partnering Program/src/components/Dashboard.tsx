@@ -6,6 +6,7 @@ import {
   LogOut, Settings, Bell, Menu,
   Home, CreditCard, MessageSquare
 } from 'lucide-react';
+import ZitLogo from "../assests/ZIT-LOGO-Partnership-side.png"
 import { RootState } from '../store/store';
 import { logout } from '../store/slices/authSlice';
 import { fetchProfile } from '../store/slices/profileSlice';
@@ -96,9 +97,11 @@ const Dashboard: React.FC = () => {
       >
         <div className="h-full flex flex-col">
           <div className="p-6">
-            <Link to="/" className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              Partner(ZIT)
+            <abbr title="ZIT Partner Program">
+            <Link to="/" className="">
+              <img src={ZitLogo} alt="Zit Logo" className='w-40'/>
             </Link>
+            </abbr>
           </div>
 
           <nav className="flex-1 p-4">
@@ -109,8 +112,8 @@ const Dashboard: React.FC = () => {
                   to={item.path}
                   onClick={() => setIsSidebarOpen(false)}
                   className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${location.pathname === item.path
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'text-secondary bg-primary/30'
+                      : 'text-primary hover:bg-primary/30'
                     }`}
                 >
                   <item.icon size={20} />
@@ -127,8 +130,8 @@ const Dashboard: React.FC = () => {
                     to={item.path}
                     onClick={() => setIsSidebarOpen(false)}
                     className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${location.pathname === item.path
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? 'text-secondary bg-primary/30'
+                        : 'text-primary hover:bg-primary/30'
                       }`}
                   >
                     <item.icon size={20} />
@@ -156,18 +159,18 @@ const Dashboard: React.FC = () => {
                 </button>
               </div>
               <div className="flex items-center space-x-4">
-                <button className="p-2 text-gray-400 hover:text-gray-500 relative">
+                <button className="p-2 text-primary hover:text-primary/80 relative">
                   <Bell size={20} />
                   <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
                 <div className="relative">
                   <button className="flex items-center space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                      <span className="text-sm font-medium text-blue-600">
+                    <div className="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center">
+                      <span className="text-sm font-medium text-primary">
                         {userInitial}
                       </span>
                     </div>
-                    <span className="text-gray-700 hidden sm:inline">
+                    <span className="text-primary hidden sm:inline">
                       {userName}
                     </span>
 
@@ -186,29 +189,29 @@ const Dashboard: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between mb-4 ">
-                      <h3 className="text-gray-500 text-sm">Total Earnings</h3>
-                      <DollarSign className="text-blue-500" size={20} />
+                      <h3 className="text-primary text-sm">Total Earnings</h3>
+                      <DollarSign className="text-secondary" size={20} />
                     </div>
-                    <p className="text-2xl font-bold ">${totalCommission.toFixed(2)}</p>
+                    <p className="text-2xl font-bold text-black">${totalCommission.toFixed(2)}</p>
                   </div>
 
                   <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-gray-500 text-sm">Active Referrals</h3>
-                      <Users className="text-blue-500" size={20} />
+                      <h3 className="text-primary text-sm">Active Referrals</h3>
+                      <Users className="text-secondary" size={20} />
                     </div>
-                    <p className="text-2xl font-bold">{totalReferrals}</p>
+                    <p className="text-2xl font-bold text-black">{totalReferrals}</p>
                   </div>
 
                  
 
                   <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-gray-500 text-sm">Withdrawable Balance</h3>
-                      <DollarSign className="text-blue-500" size={20} />
+                      <h3 className="text-primary text-sm">Withdrawable Balance</h3>
+                      <DollarSign className="text-secondary" size={20} />
                     </div>
-                    <p className="text-2xl font-bold">${userBalance}</p>
-                    <button className="mt-2 text-sm text-blue-600 font-medium">Withdraw</button>
+                    <p className="text-2xl font-bold text-black">${userBalance}</p>
+                    <button className="mt-2 text-sm text-primary hover:text-secondary font-medium">Withdraw</button>
                   </div>
                 </div>
 
@@ -217,17 +220,17 @@ const Dashboard: React.FC = () => {
                   {/* Referral Link */}
                   <div className="lg:col-span-2 bg-white rounded-lg shadow">
                     <div className="p-6">
-                      <h2 className="text-lg font-semibold mb-4">Your Referral Link</h2>
+                      <h2 className="text-lg font-semibold mb-4 text-primary">Your Referral Link</h2>
                       <div className="flex gap-2">
                         <input
                           type="text"
                           value={referralLink}
                           readOnly
-                          className="flex-1 bg-gray-50 px-4 py-2 rounded-lg text-gray-600"
+                          className="flex-1 bg-gray-100 px-4 py-2 rounded-lg text-gray-600"
                         />
                         <button
                           onClick={handleCopy}
-                          className={`px-4 py-2 rounded-lg text-white transition-all duration-200 ${isCopy ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"
+                          className={`px-4 py-2 rounded-lg text-white transition-all duration-200 ${isCopy ? "bg-green-600 hover:bg-green-700" : "bg-primary hover:bg-primary/80"
                             }`}
                         >
                           {isCopy ? "Copied!" : "Copy"}
@@ -239,22 +242,22 @@ const Dashboard: React.FC = () => {
                   {/* Quick Actions */}
                   <div className="bg-white rounded-lg shadow">
                     <div className="p-6">
-                      <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
+                      <h2 className="text-lg font-semibold mb-4 text-primary">Quick Actions</h2>
                       <div className="space-y-2">
                         <Link
                           to="/dashboard/settings"
-                          className="w-full text-left px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center gap-3"
+                          className="w-full text-left px-4 py-2 rounded-lg hover:bg-primary/30 flex text-primary hover:text-secondary items-center gap-3"
                         >
-                          <Settings size={18} className="text-gray-400" />
+                          <Settings size={18} className="" />
                           <span>Account Settings</span>
                         </Link>
-                        <button className="w-full text-left px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center gap-3">
-                          <LinkIcon size={18} className="text-gray-400" />
+                        <button className="w-full text-left px-4 py-2 rounded-lg hover:bg-primary/30  text-primary hover:text-secondary flex items-center gap-3">
+                          <LinkIcon size={18} className="" />
                           <span>Marketing Materials</span>
                         </button>
                         <button
                           onClick={handleLogout}
-                          className="w-full text-left px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center gap-3 text-red-600"
+                          className="w-full text-left px-4 py-2 rounded-lg hover:bg-primary/30 flex items-center gap-3 text-secondary"
                         >
                           <LogOut size={18} />
                           <span>Sign Out</span>
