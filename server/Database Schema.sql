@@ -382,5 +382,5 @@ ADD COLUMN phone VARCHAR(255);
 
 --updating the payout table 
 ALTER TABLE payouts
-ADD COLUMN payment_method VARCHAR(50) NOT NULL,
+ADD COLUMN payment_method VARCHAR(50),
 ADD COLUMN payment_details JSON NOT NULL;

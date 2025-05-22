@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { toast } from 'react-hot-toast';
 import { DollarSign, CreditCard, Download } from 'lucide-react';
-import { fetchProfile as getProfile, updateProfile } from '../../store/slices/profileSlice';
+import { fetchProfile as getProfile } from '../../store/slices/profileSlice';
 import { fetchPayouts, requestPayout } from '../../store/slices/payoutSlice';
 import paypalIcon from '../../../../client/src/asset/images/paypal.png';
 
@@ -34,42 +34,35 @@ const Payouts: React.FC = () => {
       return;
     }
 
-    // Validate payment details
-    if (selectedMethod === 'paypal' && !stats?.paypalEmail && !tempPaypalEmail) {
-      toast.error('Please enter your PayPal email');
-      return;
-    }
-
-    if (selectedMethod === 'stripe' && !stats?.stripeAccountId && !tempStripeId) {
-      toast.error('Please enter your Stripe account ID');
-      return;
-    }
-
     try {
-      // If payment details are new, update profile first
-      if ((selectedMethod === 'paypal' && !stats?.paypalEmail && tempPaypalEmail) ||
-          (selectedMethod === 'stripe' && !stats?.stripeAccountId && tempStripeId)) {
-        await dispatch(updateProfile({
-          stripeAccountId: selectedMethod === 'stripe' ? tempStripeId : stats?.stripeAccountId,
-          paypalEmail: selectedMethod === 'paypal' ? tempPaypalEmail : stats?.paypalEmail
-        }) as any).unwrap();
-        dispatch(getProfile() as any); // Refresh profile data
-      }
-
       // Submit withdrawal request
-      await dispatch(requestPayout({
+      const response = await dispatch(requestPayout({
         amount: stats?.withdrawableBalance || 0,
-        paymentMethod: selectedMethod,
-        details: selectedMethod === 'paypal' ? 
-          { email: stats?.paypalEmail || tempPaypalEmail } : 
-          { accountId: stats?.stripeAccountId || tempStripeId }
-      }) as any).unwrap(); 
+        paymentMethod: selectedMethod
+      }) as any).unwrap();
+
+      // If we get a redirect URL (for Stripe onboarding), redirect to it
+      if (response.redirect) {
+        window.location.href = response.url;
+        return;
+      }
 
       toast.success('Withdrawal request submitted successfully');
       setShowPaymentModal(false);
       dispatch(fetchPayouts() as any);
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Failed to submit withdrawal request');
+    } catch (error: any) {
+      // If there's a pending payout, show the details
+      if (error.response?.data?.pendingPayout) {
+        const { status, amount, created_at } = error.response.data.pendingPayout;
+        toast.error(
+          `You have a pending payout request:\n` +
+          `Status: ${status}\n` +
+           `Amount: $${amount}\n` +
+          `Requested: ${new Date(created_at).toLocaleDateString()}`
+        );
+      } else {
+        toast.error(error.response?.data?.error || 'Failed to submit withdrawal request');
+      }
     }
   };
 
@@ -196,22 +189,41 @@ const Payouts: React.FC = () => {
             <div className="mb-4">
               <div className="font-medium mb-2 text-primary">Amount</div>
               <div className="text-2xl font-bold">${stats?.withdrawableBalance}</div>
+              <div className="text-sm text-gray-600">
+                Minimum withdrawal amount: $50
+              </div>
             </div>
 
             <div className="mb-4">
-              <div className="font-medium mb-2 text-primary">Payment Method</div>
+              <div className="font-medium mb-2">Select Payment Method</div>
+              <div className="grid grid-cols-2 gap-4">
+                <button
+                  onClick={() => setSelectedMethod('stripe')}
+                  className={`p-4 border rounded-lg flex flex-col items-center gap-2 ${
+                    selectedMethod === 'stripe' ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                  }`}
+                >
+                  <CreditCard size={24} />
+                  <span>Stripe</span>
+                </button>
+                <button
+                  onClick={() => setSelectedMethod('paypal')}
+                  className={`p-4 border rounded-lg flex flex-col items-center gap-2 ${
+                    selectedMethod === 'paypal' ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                  }`}
+                >
+                  <img src="/paypal.svg" alt="PayPal" className="w-6 h-6" />
+                  <span>PayPal</span>
+                </button>
+              </div>
               {selectedMethod === 'stripe' && (
-                <div className="space-y-4">
-                  <div className="text-sm text-gray-600 mb-2">
-                    You'll be redirected to Stripe to complete your payment
-                  </div>
+                <div className="mt-4 text-sm text-gray-600">
+                  You'll be redirected to Stripe to set up your account for direct deposits.
                 </div>
               )}
               {selectedMethod === 'paypal' && (
-                <div className="space-y-4">
-                  <div className="text-sm text-gray-600 mb-2">
-                    You'll be redirected to PayPal to complete your payment
-                  </div>
+                <div className="mt-4 text-sm text-gray-600">
+                  Funds will be sent to your connected PayPal account.
                 </div>
               )}
             </div>
