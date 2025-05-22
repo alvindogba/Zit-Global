@@ -388,3 +388,8 @@ ADD COLUMN affiliate_link VARCHAR(255);
 ALTER TABLE payouts
 ADD COLUMN payment_method VARCHAR(50),
 ADD COLUMN payment_details JSON NOT NULL;
+
+--updating the admisssion table to seed desire course: 
+UPDATE public."Admissions"
+SET "desireProgram" = 'database-administration'
+WHERE "desireProgram" IS NULL OR "desireProgram" = '';

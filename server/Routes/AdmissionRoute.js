@@ -3,6 +3,7 @@ import multer from 'multer';
 import { NewAdmission, getApplicationStatus, updateApplicationStatus } from '../Controller/AdmissionController.js';
 import { isAdmin } from '../middleware/authMiddleware.js';
 import {createTeacher } from '../Controller/TutorController.js';
+import { getStudentsByProgram } from '../Controller/AdmissionController.js';
 
 // Create an Express Router
 const router = express.Router();
@@ -43,10 +44,16 @@ router.post('/register', uploadFields, NewAdmission);
 // Get application status
 router.get('/status/:id', getApplicationStatus);
 
-// Update application status (admin only)
-router.put('/status/:id', isAdmin, updateApplicationStatus);
+
 
 
 // Teachers Registration 
 router.post('/teachers', createTeacher)
+
+// Admin ================================================================================
+// Update application status (admin only)
+router.put('/status/:id', isAdmin, updateApplicationStatus);
+// Get students by program
+router.get('/students',  getStudentsByProgram);
+
 export default router;

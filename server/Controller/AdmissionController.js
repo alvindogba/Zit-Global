@@ -61,8 +61,6 @@ export const NewAdmission = async (req, res) => {
     });
   }
 };
-
-
 // Get application status
 export const getApplicationStatus = async (req, res) => {
   try {
@@ -171,5 +169,30 @@ export const updateApplicationStatus = async (req, res) => {
       success: false,
       message: 'Error updating application status'
     });
+  }
+};
+
+
+export const getStudentsByProgram = async (req, res) => {
+  try {
+    const { program } = req.query;
+    console.log('Requested program:', program);
+
+    const queryOptions = {
+      order: [['createdAt', 'DESC']],
+    };
+
+    // Only add the where clause if a specific program is requested
+    if (program) {
+      queryOptions.where = {
+        desiredProgram: program,
+      };
+    }
+
+    const students = await db.Admission.findAll(queryOptions);
+    res.status(200).json(students);
+  } catch (error) {
+    console.error('Error fetching students by program:', error);
+    res.status(500).json({ error: 'Server error fetching students.' });
   }
 };

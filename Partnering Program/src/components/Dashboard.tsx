@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
   // Use user data from auth state, fallback to profile data if needed
   const userInitial = user?.fullName?.charAt(0) || profile?.fullName?.charAt(0) || 'U';
   const userName = user?.fullName || profile?.fullName || 'User';
-  const referralLink = profile?.referralLink || '111';
+  const referralLink = profile?.affiliate_link || '111';
 
   // Safely access stats with null checks and default values
   const totalReferrals = stats?.length || 0;

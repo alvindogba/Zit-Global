@@ -173,16 +173,13 @@ export const getProfile = async (req, res) => {
     // Calculate withdrawable balance
     const withdrawableBalance = totalEarnings - totalWithdrawn;
 
-    const affiliateCode = user.affiliate_code;
-    const referralLink = `${process.env.ZONGEA_TECH_DONATION_SITE}/donate?ref=${affiliateCode}`;
-
     res.status(200).json({
       user: {
         id: user.id,
         email: user.email,
         fullName: user.full_name,
-        affiliateCode,
-        referralLink,
+        affiliate_code: user.affiliate_code,
+        affiliate_link: user.affiliate_link,
         phone: user.phone,
         company: user.company,
         bio: user.bio,

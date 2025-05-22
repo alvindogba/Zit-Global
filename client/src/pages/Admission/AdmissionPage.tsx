@@ -323,7 +323,7 @@ function AdmissionPage() {
             className={inputClassName}
             required
           >
-            <option value="">Select a program</option>
+            <option value="">Select a program <span className="text-red-500">*</span></option>
             <option value="microsoft-365">MicroSoft 365</option>
             <option value="basic-computer">Basic to Computer</option>
             <option value="graphic-design">Graphic Design</option>

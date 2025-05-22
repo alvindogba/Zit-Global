@@ -68,7 +68,8 @@ export interface Profile {
   position?: string;
   avatarUrl?: string;
   bio?: string;
-  referralLink?: string;
+  affiliate_code?: string;
+  affiliate_link?: string;
   withdrawableBalance?: number;
   totalEarnings?: number;
   totalWithdrawn?: number;
