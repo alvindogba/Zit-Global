@@ -393,3 +393,9 @@ ADD COLUMN payment_details JSON NOT NULL;
 UPDATE public."Admissions"
 SET "desireProgram" = 'database-administration'
 WHERE "desireProgram" IS NULL OR "desireProgram" = '';
+
+
+--updating the profile table to seed the affiliation link
+UPDATE "Profiles"
+SET "affiliate_link" = 'https://zongeatech.com/donate?ref=' || "affiliate_code"
+WHERE "affiliate_code" IS NOT NULL AND "affiliate_link" IS NULL;
